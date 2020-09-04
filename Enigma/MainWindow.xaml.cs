@@ -23,7 +23,8 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show("Hello world");
+            MessageBox.Show("Hello world, Hello Enigma");
+           
         }
 
 
