@@ -26,5 +26,6 @@ namespace Enigma
             MessageBox.Show("Hello world");
         }
         int enigma = 0;
+        int enigma3 = 1000;
     }
 }
