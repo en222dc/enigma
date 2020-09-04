@@ -25,7 +25,6 @@ namespace Enigma
             InitializeComponent();
             MessageBox.Show("Hello world");
         }
-
-
+        int enigma = 0;
     }
 }
