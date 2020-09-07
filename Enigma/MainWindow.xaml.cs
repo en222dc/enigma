@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Enigma.Models;
+using Enigma.Models.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +25,14 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show("Hello world, Hello Enigma");
-           
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string playerName = txtPlayerName.Text;
+            Player newPlayer = new Player(playerName);
 
+            newPlayer = PlayerRepository.AddNewPlayerToDb(newPlayer);
+        }
     }
 }
