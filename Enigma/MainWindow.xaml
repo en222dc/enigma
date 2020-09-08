@@ -5,11 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Enigma"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="900" Background="#463A5F">
     <Grid>
-        <Button Content="Lägg till" HorizontalAlignment="Left" Margin="155,217,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <TextBox x:Name="txtPlayerName" HorizontalAlignment="Left" Margin="155,170,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="557,188,0,0" VerticalAlignment="Top"/>
+        
+        <Button x:Name="btnPlayGame" Content="Play Game!" FontFamily="Bell MT" FontSize="20"
+                    Grid.Row="4" Grid.Column="1"
+                    VerticalAlignment="Center" HorizontalAlignment="Right"
+                    Height="50"
+                    Width="200" Background="#FF00D8CF">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        
+        <Button x:Name="btnNewPlayer" Content="New Player" FontFamily="Bell MT" FontSize="20"
+                    Grid.Row="4" Grid.Column ="1"
+                    VerticalAlignment="Center" HorizontalAlignment="Left"
+                    Height="50"
+                    Width="200" Background="#FF00D8CF">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Label Content="Welcome to Engima Game" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Banschrift" Foreground="White" FontSize="27" Padding="30"/>
+
+
+        <StackPanel Width="175" Height="150" Grid.Column="1" VerticalAlignment="Bottom">
+
+            <StackPanel.Background>
+                <ImageBrush ImageSource="C:\Users\chris\Desktop\enigmabild.png"></ImageBrush>
+            </StackPanel.Background>
+
+        </StackPanel>
+
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="150"/>
+            
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="200"/>
+
+        </Grid.ColumnDefinitions>
 
     </Grid>
 </Window>
