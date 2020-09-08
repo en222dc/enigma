@@ -1,0 +1,37 @@
+﻿<Page x:Class="Enigma.Views.SolvePuzzlePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Enigma.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SolvePuzzlePage">
+    <Border Background="#463A5F">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content="Solve the last puzzle!"/>
+            <Label Grid.Row="1" Grid.Column="1"
+                   VerticalAlignment="Top" HorizontalAlignment="Center"
+                   Content="Time elapsed: 01:45"
+                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
+            <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" 
+                   Source="\Assets\Images\crackTheCode.png" 
+                   Stretch="Uniform"/> 
+        </Grid>
+    </Border>
+</Page>
