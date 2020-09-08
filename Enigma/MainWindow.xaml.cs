@@ -27,12 +27,6 @@ namespace Enigma
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string playerName = txtPlayerName.Text;
-            Player newPlayer = new Player(playerName);
-
-            newPlayer = PlayerRepository.AddNewPlayerToDb(newPlayer);
-        }
+       
     }
 }
