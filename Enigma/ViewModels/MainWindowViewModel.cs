@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Enigma.ViewModels
 {
-    class Class1
+    class MainWindowViewModel
     {
     }
 }
