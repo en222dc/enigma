@@ -1,0 +1,57 @@
+﻿<Page x:Class="Enigma.ViewModels.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Enigma.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="StartPage"  Background="#463A5F" >
+    <Grid>
+
+        <Button x:Name="btnPlayGame" Content="Play Game!" FontFamily="Bell MT" FontSize="20"
+                    Grid.Row="4" Grid.Column="1"
+                    VerticalAlignment="Top" HorizontalAlignment="Right"
+                    Height="50"
+                    Width="200" Background="#FF00D8CF">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button x:Name="btnNewPlayer" Content="New Player" FontFamily="Bell MT" FontSize="20"
+                    Grid.Row="4" Grid.Column ="1"
+                    VerticalAlignment="Top" HorizontalAlignment="Left"
+                    Height="50"
+                    Width="200" Background="#FF00D8CF">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Label Content="Welcome to Engima Game" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Banschrift" Foreground="White" FontSize="27" Padding="30"/>
+        <Image Height ="400" Width="150"  VerticalAlignment="Center"  Grid.Column = "1" Grid.Row="0" Source=" /Assets/EnigmaLogo.png"/>
+
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="100"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="200"/>
+
+        </Grid.ColumnDefinitions>
+
+    </Grid>
+
+</Page>
