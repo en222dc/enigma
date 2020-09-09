@@ -1,5 +1,6 @@
 ﻿using Enigma.Models;
 using Enigma.Models.Repositories;
+using Enigma.ViewModels;
 using Enigma.Views;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,10 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
+
+            var highscorePage = new HighScorePage();
+
+            MainFrame.Content = highscorePage;
 
         }
 

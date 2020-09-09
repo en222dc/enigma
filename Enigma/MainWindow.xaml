@@ -5,19 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Enigma"
         mc:Ignorable="d"
-        
         Title="MainWindow" Height="450" Width="900" Background="#463A5F">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
         <Frame Grid.Row="0" Name="MenuFrame"/>
         <Frame Grid.Row ="1" Name="MainFrame"/>
-
-
-
     </Grid>
 </Window>
