@@ -7,12 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\image1.jpg" />
+    <None Remove="Assets\Images\image2.jpg" />
+    <None Remove="Assets\Images\image3.jpg" />
+    <None Remove="Assets\Images\image4.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ViewModels\Base\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Npgsql" Version="4.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\image1.jpg" />
+    <Resource Include="Assets\Images\image2.jpg" />
+    <Resource Include="Assets\Images\image3.jpg" />
+    <Resource Include="Assets\Images\image4.jpg" />
   </ItemGroup>
 
 </Project>

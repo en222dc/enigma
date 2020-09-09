@@ -1,0 +1,77 @@
+﻿<Page x:Class="Enigma.Views.PuzzlePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Enigma.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PuzzlePage">
+    <Border Background="#463A5F">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.ColumnSpan="4" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   Content="What is missing from the sequence?" 
+                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />
+            <Label Grid.Row="1" Grid.ColumnSpan="4"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="Time elapsed: 01:45"
+                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
+            <Label x:Name="lblPuzzleSequence"
+                   Grid.Row="2" Grid.ColumnSpan="4"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="0 10 10 20 30"
+                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
+            <TextBox x:Name="txtSequenceAnswer"
+                     Grid.Row="3" Grid.ColumnSpan="4"
+                     VerticalAlignment="Center" HorizontalAlignment="Center"
+                     MinWidth="310"
+                     Height="40" />
+            <Button x:Name="btnSolvePuzzle"
+                    Grid.Row="4" Grid.ColumnSpan="4"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Height="40"
+                    Width="200"
+                    Content="Solve Puzzle!"
+                    Background="#FF48CB73"
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
+            
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnGetClue"
+                    Grid.Row="5" Grid.ColumnSpan="4"
+                    VerticalAlignment="Top" HorizontalAlignment="Center"
+                    Height="40"
+                    Width="200"
+                    Content="Give me a hint! (+30 sec)"
+                    Background="#CD7F8D"
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+        </Grid>
+    </Border>
+</Page>

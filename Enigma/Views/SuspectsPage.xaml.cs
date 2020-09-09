@@ -1,11 +1,6 @@
-﻿using Enigma.Models;
-using Enigma.Models.Repositories;
-using Enigma.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,19 +11,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Enigma
+namespace Enigma.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SuspectsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SuspectsPage : Page
     {
-        public MainWindow()
+        public SuspectsPage()
         {
             InitializeComponent();
-
         }
-
-
     }
 }
