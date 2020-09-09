@@ -20,18 +20,82 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="1" 
+            <Label Grid.Row="0" Grid.ColumnSpan="8" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
                    Content="Solve the last puzzle!"/>
-            <Label Grid.Row="1" Grid.Column="1"
+            <Label Grid.Row="1" Grid.ColumnSpan="8"
                    VerticalAlignment="Top" HorizontalAlignment="Center"
                    Content="Time elapsed: 01:45"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
-            <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" 
+            <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="2"
                    Source="\Assets\Images\crackTheCode.png" 
-                   Stretch="Uniform"/> 
+                   Stretch="Uniform">
+                <Image.LayoutTransform>
+                    <RotateTransform CenterX="25" CenterY="25" Angle="15" />
+                </Image.LayoutTransform>
+            </Image>
+            <Label x:Name="lblFirstSymbol" 
+                   Grid.Row="2" Grid.Column="2" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content="#"/>
+            <Label x:Name="lblSecondSymbol" 
+                   Grid.Row="2" Grid.Column="3" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content="#"/>
+            <Label x:Name="lblThirdSymbol" 
+                   Grid.Row="2" Grid.Column="4" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content="#"/>
+            <Label x:Name="lblFourthSymbol" 
+                   Grid.Row="2" Grid.Column="5" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content="#"/>
+            <TextBox x:Name="txtFirstSymbol"
+                     Grid.Row="3" Grid.Column="2"
+                     VerticalAlignment="Top"
+                     Height="40"
+                     Margin="5"/>
+            <TextBox x:Name="txtSecondSymbol"
+                     Grid.Row="3" Grid.Column="3"
+                     VerticalAlignment="Top"
+                     Height="40"
+                     Margin="5"/>
+            <TextBox x:Name="txtThirdSymbol"
+                     Grid.Row="3" Grid.Column="4"
+                     VerticalAlignment="Top"
+                     Height="40"
+                     Margin="5"/>
+            <TextBox x:Name="txtFourthSymbol"
+                     Grid.Row="3" Grid.Column="5"
+                     VerticalAlignment="Top"
+                     Height="40"
+                     Margin="5"/>
+            <Button x:Name="btnShowSuspects"
+                    Grid.Row="4" Grid.ColumnSpan="8"
+                    VerticalAlignment="Top" HorizontalAlignment="Center"
+                    Height="40"
+                    Width="200"
+                    Content="Show Suspects!"
+                    Background="#FF48CB73"
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Grid>
     </Border>
 </Page>
