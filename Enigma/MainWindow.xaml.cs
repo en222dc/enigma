@@ -1,5 +1,7 @@
 ﻿using Enigma.Models;
 using Enigma.Models.Repositories;
+using Enigma.ViewModels;
+using Enigma.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,11 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content =  new StartPage();
+            MenuFrame.Content = new MenuPage();
+
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Enigma.ViewModels
+namespace Enigma.Views
 {
     /// <summary>
-    /// Interaction logic for HighScoreEndPage.xaml
+    /// Interaction logic for MenuPage.xaml
     /// </summary>
-    public partial class HighScoreEndPage : Page
+    public partial class MenuPage : Page
     {
-        public HighScoreEndPage()
+        public MenuPage()
         {
             InitializeComponent();
         }

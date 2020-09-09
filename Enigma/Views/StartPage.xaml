@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Enigma.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="StartPage" Height="450" Width="900" Background="#463A5F" >
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="StartPage"  Background="#463A5F" >
     <Grid>
 
         <Button x:Name="btnPlayGame" Content="Play Game!" FontFamily="Bell MT" FontSize="20"
@@ -34,7 +34,7 @@
         </Button>
 
         <Label Content="Welcome to Engima Game" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Banschrift" Foreground="White" FontSize="27" Padding="30"/>
-        <Image Height ="400" Width="150"  VerticalAlignment="Center"  Grid.Column = "1" Grid.Row="0" Source="Assets/EnigmaLogo.png"/>
+        <Image Height ="400" Width="150"  VerticalAlignment="Center"  Grid.Column = "1" Grid.Row="0" Source=" /Assets/EnigmaLogo.png"/>
 
 
         <Grid.RowDefinitions>

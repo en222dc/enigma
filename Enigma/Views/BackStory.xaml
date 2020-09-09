@@ -9,9 +9,8 @@
       Title="BackStory" Height="450" Width="900" Background="#463A5F" >
 
     <Grid>
-        <Label Content="HighScore"  Grid.Row="0" HorizontalAlignment="Left"  Margin="15" FontFamily="Banschrift" Foreground="White" FontSize="27" />
-        <Label Content="Help and Rules"  Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="15" FontFamily="Banschrift" Foreground="White" FontSize="27" />
-        <TextBlock Text="    The president of Russia has assigned you to solve the mysterious murder of his wife Katja.
+  
+        <TextBlock Text= "The president of Russia has assigned you to solve the mysterious murder of his wife Katja.
 The police has apprehended 4 suspects. The only clue at your disposal is a puzzle left by the killer with the note Solve me for a clue
 Will Christofer be the player who finds the killer the fastest?" TextWrapping="WrapWithOverflow"  Grid.Row="1" HorizontalAlignment="Center"  Margin="15" FontFamily="Banschrift"  Foreground="White" FontSize="27" />
 
