@@ -10,10 +10,21 @@
      
    
     <Grid>
-        <Label Content="HighScore" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="HighScore" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="TopPlayer" Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="1." Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="2." Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="3." Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="Evelina" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="Patric" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="Chris" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="Chris" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="Helena" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        <Label Content="Evelina" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
         <Grid.RowDefinitions>
 
             <RowDefinition Height="3*" />
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
 
@@ -24,6 +35,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+
+
+
 
         </Grid.ColumnDefinitions>
 

@@ -10,7 +10,7 @@
 
     <Grid>
         <Label Content="Pick A Player" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
-        <Label Content=" Helena" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontFamily="Banschrift" Foreground="White" FontSize="40" />
+        
         <Grid.RowDefinitions>
 
             <RowDefinition Height="3*" />
