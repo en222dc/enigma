@@ -34,7 +34,7 @@
         </Button>
 
         <Label Content="Welcome to Engima Game" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Banschrift" Foreground="White" FontSize="27" Padding="30"/>
-        <Image Height ="400" Width="150"  VerticalAlignment="Center"  Grid.Column = "1" Grid.Row="0" Source=" /Assets/EnigmaLogo.png"/>
+        <Image Height ="400" Width="150"  VerticalAlignment="Center"  Grid.Column = "1" Grid.Row="0" Source=" /Assets/Images/EnigmaLogo.png"/>
 
 
         <Grid.RowDefinitions>
