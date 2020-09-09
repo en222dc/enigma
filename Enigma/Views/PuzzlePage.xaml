@@ -31,10 +31,30 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    Content="Time elapsed: 01:45"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
-            <Label x:Name="lblPuzzleSequence"
-                   Grid.Row="2" Grid.ColumnSpan="4"
+            <Label x:Name="lblPuzzleSequence1"
+                   Grid.Row="2" Grid.Column="0"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="0 10 10 20 30"
+                   Content="{Binding Fibonacci[0]}"
+                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
+            <Label x:Name="lblPuzzleSequence2"
+                   Grid.Row="2" Grid.Column="1"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="{Binding Fibonacci[1]}"
+                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
+            <Label x:Name="lblPuzzleSequence3"
+                   Grid.Row="2" Grid.Column="2"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="{Binding Fibonacci[2]}"
+                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
+            <Label x:Name="lblPuzzleSequence4"
+                   Grid.Row="2" Grid.Column="4"
+                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Content="{Binding Fibonacci[3]}"
+                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
+            <Label x:Name="lblPuzzleSequence5"
+                   Grid.Row="2" Grid.Column="4"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="{Binding Fibonacci[4]}"
                    FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
             <TextBox x:Name="txtSequenceAnswer"
                      Grid.Row="3" Grid.ColumnSpan="4"

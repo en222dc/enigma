@@ -27,8 +27,9 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
-           
-            DataContext = new PuzzlePageViewModel();
+
+            MainFrame.Content = new PuzzlePage();
+           // DataContext = new PuzzlePageViewModel();
 
             
 
