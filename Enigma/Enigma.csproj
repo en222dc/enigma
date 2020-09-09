@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\EnigmaLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ViewModels\Base\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
@@ -17,6 +21,10 @@
 
   <ItemGroup>
     <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\EnigmaLogo.png" />
   </ItemGroup>
 
 </Project>
