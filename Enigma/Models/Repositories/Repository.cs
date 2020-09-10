@@ -6,7 +6,7 @@ using Npgsql;
 
 namespace Enigma.Models.Repositories
 {
-    class PlayerRepository
+    class Repository
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings["sup_db4"].ConnectionString;
 
@@ -45,16 +45,14 @@ namespace Enigma.Models.Repositories
 
         #region READ
 
-        //string stmt = "SELECT player_name, time FROM player INNER JOIN highscore ON  player_id = fk_player_id ORDER BY highscore DESC
-
-        public static IEnumerable<Player> GetPlayers()
+        public static IEnumerable<Highscore> GetHighscores()
         {
-            string stmt = "SELECT player_id, player_name FROM player ORDER BY player_id;";
+            string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
-                Player player = null;
-                List<Player> players = new List<Player>();
+                Highscore highscore = null;
+                List<Highscore> highscores = new List<Highscore>();
                 conn.Open();
 
                 using (var command = new NpgsqlCommand(stmt, conn))
@@ -63,21 +61,50 @@ namespace Enigma.Models.Repositories
                     {
                         while (reader.Read())
                         {
-
-                            player = new Player()
+                            highscore = new Highscore()
                             {
-                                Player_id = (int)reader["player_id"],
+                                Time = (int)reader["time"],
                                 Player_name = (string)reader["player_name"],
                             };
-                            players.Add(player);
+                            highscores.Add(highscore);
                         }
                     }
                 }
 
-                return players;
+                return highscores;
             }
         }
+        /*
+        public static IEnumerable<Highscore> GetTopPlayer()
+        {
+            string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC;";
 
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                Highscore highscore = null;
+                List<Highscore> highscores = new List<Highscore>();
+                conn.Open();
+
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            highscore = new Highscore()
+                            {
+                                Time = (int)reader["time"],
+                                Player_name = (string)reader["player_name"],
+                            };
+                            highscores.Add(highscore);
+                        }
+                    }
+                }
+
+                return highscores;
+            }
+        }
+        */
         #endregion
     }
 }

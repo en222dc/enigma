@@ -23,7 +23,7 @@ namespace Enigma.ViewModels
         {
             InitializeComponent();
 
-            lstBoHighscoreName.ItemsSource = PlayerRepository.GetPlayers();
+            lstBoHighscoreName.ItemsSource = Repository.GetHighscores();
         }
     }
 }

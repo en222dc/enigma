@@ -19,6 +19,7 @@ namespace Enigma.Models
         {
 
         }
+
         public override string ToString()
         {
             return Player_name;
