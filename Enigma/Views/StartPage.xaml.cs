@@ -21,6 +21,12 @@ namespace Enigma.ViewModels
         public StartPage()
         {
             InitializeComponent();
+            DataContext = new StartPageViewModel();
+        }
+
+        private void btnPlayGame_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

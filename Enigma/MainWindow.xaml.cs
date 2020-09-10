@@ -27,8 +27,11 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content =  new StartPage();
-            MenuFrame.Content = new MenuPage();
+            var startPage = new StartPage();
+            var menuPage = new MenuPage();
+            
+            MainFrame.Content =  startPage;
+            MenuFrame.Content =  menuPage;
 
 
 

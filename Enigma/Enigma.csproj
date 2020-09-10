@@ -11,20 +11,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Base\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Npgsql" Version="4.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <Page Include="App.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Assets\EnigmaLogo.png" />
   </ItemGroup>
 
 </Project>

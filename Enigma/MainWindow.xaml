@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         
         <Frame Grid.Row="0" Name="MenuFrame"/>
-        <Frame Grid.Row ="1" Name="MainFrame"/>
+        <Frame Grid.Row ="1" Name="MainFrame" />
 
 
 

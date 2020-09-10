@@ -18,9 +18,9 @@ namespace Enigma.ViewModels
     /// </summary>
     public partial class HighScorePage : Page
     {
-        public HighScoreEndPage()
+        public HighScorePage()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
