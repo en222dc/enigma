@@ -23,12 +23,17 @@ namespace Enigma
     /// </summary>
     public partial class MainWindow : Window
     {
+        SymbolAlphabet solve = new SymbolAlphabet();
+
         public MainWindow()
         {
             InitializeComponent();
-
+            
         }
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            solve.TranslateSuspectNameToArray(solve.SuspectName);
+        }
     }
 }
