@@ -27,9 +27,9 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center" 
                    Content="What is missing from the sequence?" 
                    FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />
-            <Label Grid.Row="1" Grid.ColumnSpan="4"
+            <Label Grid.Row="1" Grid.ColumnSpan="4" Name="TimeRunning"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="Time elapsed: 01:45"
+                   Content="Time elapsed: "
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <Label x:Name="lblPuzzleSequence"
                    Grid.Row="2" Grid.ColumnSpan="4"
@@ -48,7 +48,7 @@
                     Width="200"
                     Content="Solve Puzzle!"
                     Background="#FF48CB73"
-                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Click="btnSolvePuzzle_Click" >
             
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

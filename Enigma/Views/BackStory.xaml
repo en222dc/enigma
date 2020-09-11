@@ -18,7 +18,7 @@ Will Christofer be the player who finds the killer the fastest?" TextWrapping="W
                     Grid.Row="4" Grid.Column="1"
                     VerticalAlignment="Top" HorizontalAlignment="Center"
                     Height="60"
-                    Width="250" Background="#FF00D8CF">
+                    Width="250" Background="#FF00D8CF" Click="btnLetsPaly_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>

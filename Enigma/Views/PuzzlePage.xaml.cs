@@ -22,5 +22,10 @@ namespace Enigma.Views
         {
             InitializeComponent();
         }
+
+        private void btnSolvePuzzle_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/SolvePuzzlePage.xaml", UriKind.Relative));
+        }
     }
 }

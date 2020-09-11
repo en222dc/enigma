@@ -22,5 +22,10 @@ namespace Enigma.Views
         {
             InitializeComponent();
         }
+
+        private void btnShowSuspects_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/SuspectsPage.xaml", UriKind.Relative));
+        }
     }
 }
