@@ -22,5 +22,10 @@ namespace Enigma.ViewModels
         {
             InitializeComponent();
         }
+
+        private void btnLetsPaly_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/SuspectsPage.xaml", UriKind.Relative));
+        }
     }
 }

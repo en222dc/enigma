@@ -39,6 +39,12 @@ namespace Enigma
 
             //MainFrame.Content = highscorePage;
 
+            MainFrame.Content = new PuzzlePage();
+           // DataContext = new PuzzlePageViewModel();
+
+            
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
