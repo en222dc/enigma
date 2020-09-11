@@ -34,12 +34,12 @@
                  Background="#463A5F"
                  BorderBrush="#463A5F"
                  Grid.Column="0" Grid.Row="2"
-                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
                  FontFamily="Banschrift" Foreground="White" FontSize="30"/>
         <ListBox x:Name="lstBoTopPlayer" 
                  Grid.Column="1" 
                  Grid.Row="2" 
                  Background="#463A5F"
-                 BorderBrush="#463A5F"/>
+                 BorderBrush="#463A5F"
+                 FontFamily="Banschrift" Foreground="White" FontSize="30"/>
     </Grid>
 </Page>

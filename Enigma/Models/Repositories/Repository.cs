@@ -47,7 +47,7 @@ namespace Enigma.Models.Repositories
 
         public static IEnumerable<Highscore> GetHighscores()
         {
-            string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC LIMIT 5;";
+            string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC LIMIT 3;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -74,15 +74,15 @@ namespace Enigma.Models.Repositories
                 return highscores;
             }
         }
-        /*
-        public static IEnumerable<Highscore> GetTopPlayers()
+        
+        public static IEnumerable<Player> GetTopPlayers()
         {
-            string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC;";
+            string stmt = "SELECT player_name FROM highscore JOIN player ON fk_player_id=player_id GROUP BY player_name ORDER BY COUNT (fk_player_id) DESC LIMIT 3;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
-                Highscore highscore = null;
-                List<Highscore> highscores = new List<Highscore>();
+                Player player = null;
+                List<Player> topPlayers = new List<Player>();
                 conn.Open();
 
                 using (var command = new NpgsqlCommand(stmt, conn))
@@ -91,20 +91,18 @@ namespace Enigma.Models.Repositories
                     {
                         while (reader.Read())
                         {
-                            highscore = new Highscore()
+                            player = new Player()
                             {
-                                Time = (int)reader["time"],
                                 Player_name = (string)reader["player_name"],
                             };
-                            highscores.Add(highscore);
+                            topPlayers.Add(player);
                         }
                     }
                 }
-
-                return highscores;
+                return topPlayers;
             }
         }
-        */
+        
         #endregion
     }
 }
