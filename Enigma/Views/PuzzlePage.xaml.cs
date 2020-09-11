@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Enigma.Models;
+using Enigma.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +23,13 @@ namespace Enigma.Views
         public PuzzlePage()
         {
             InitializeComponent();
+            DataContext = new PuzzlePageViewModel();
+            //var puzzle = new Fibonacci();
+            //var showFibonacci = new PuzzlePage();
+            //int[] fibonacciArray = new int[5];
+            //puzzle.GenerateRandomNr(fibonacciArray);
+            // puzzle.GetRestOfNr(fibonacciArray);
+
         }
 
         private void btnSolvePuzzle_Click(object sender, RoutedEventArgs e)
