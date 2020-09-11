@@ -46,17 +46,6 @@ namespace Enigma.Models
 
         };
 
-        //public string TranslateSuspectName(string suspect)
-        //{
-        //    suspect = SuspectName.ToLower();
-
-        //    foreach (KeyValuePair<char, char> pair in SymbolMap)
-        //    {
-        //        suspect = suspect.Replace(pair.Value, pair.Key);
-        //    }
-
-        //    return suspect;
-        //}
 
         public char[] TranslateSuspectNameToArray (char[] symbolArray) // Metod som översätter latinska alfabetet till nepaliska och sätter in symbolerna i min array
         {
@@ -81,18 +70,5 @@ namespace Enigma.Models
         }
 
 
-        //public char[] GetSuspectArray ()
-        //{
-        //    for (int i = 0; i < SuspectArray.Length; i++)
-        //    {
-        //        foreach (char c in SuspectName.ToLower())
-        //        {
-        //            SuspectArray[i] = c;
-        //            i++;
-        //        }
-        //    }
-
-        //    return SuspectArray;
-        //}
     }
 }

@@ -11,18 +11,40 @@ using System.Runtime.CompilerServices;
 
 namespace Enigma.ViewModels
 {
-    public class SolvePuzzlePageViewModel
+    public class SolvePuzzlePageViewModel: INotifyPropertyChanged
     {
+        private ObservableCollection<char> _symbolArray;
+        public ObservableCollection<char> SymbolArray
+        {
+            get { return _symbolArray; }
+            set
+            {
+                if (value != _symbolArray)
+                {
+                    _symbolArray = value;
+                    OnPropertyChanged("SymbolArray");
+                }
+            }
+        }
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
-
-        public char[] SymbolArray { get; set; }
 
         public SolvePuzzlePageViewModel()
         {
-            IGameLogicSymbol symbol = new SymbolAlphabet();
-            SymbolArray = new char[4];
-            symbol.TranslateSuspectNameToArray(SymbolArray);
+            SymbolArray = new ObservableCollection<char>();
+            char[] symbolarray = new char[4];
+            IGameLogicSymbol symbols = new SymbolAlphabet();
+            symbols.TranslateSuspectNameToArray(symbolarray);
+
+            foreach (char symbol in symbolarray)
+            {
+                SymbolArray.Add(symbol);
+            }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
