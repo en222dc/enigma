@@ -29,6 +29,7 @@ namespace Enigma
         {
             InitializeComponent();
             MainFrame.Content = new SolvePuzzlePage();
+            DataContext = new SolvePuzzlePageViewModel();
             
         }
 
