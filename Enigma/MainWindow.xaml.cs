@@ -27,6 +27,17 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
+            var startPage = new StartPage();
+            var menuPage = new MenuPage();
+            
+            MainFrame.Content =  startPage;
+            MenuFrame.Content =  menuPage;
+
+
+
+            //var highscorePage = new HighScorePage();
+
+            //MainFrame.Content = highscorePage;
 
             MainFrame.Content = new PuzzlePage();
            // DataContext = new PuzzlePageViewModel();
@@ -36,6 +47,13 @@ namespace Enigma
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //string playerName = txtPlayerName.Text;
+            //Player newPlayer = new Player(playerName);
+
+            //newPlayer = PlayerRepository.AddNewPlayerToDb(newPlayer);
+        }
 
     }
 }

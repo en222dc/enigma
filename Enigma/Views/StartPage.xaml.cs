@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,22 @@ namespace Enigma.ViewModels
         public StartPage()
         {
             InitializeComponent();
+            
+           
+           // DataContext = new PlayerRegistration();
+        }
+
+        private void btnNewPlayer_Click(object sender, RoutedEventArgs e)
+        {
+
+            NavigationService.Navigate(new Uri("/Views/PlayerRegistration.xaml", UriKind.Relative)); // kilde https://www.c-sharpcorner.com/UploadFile/e3d1d8/data-passing-from-one-page-to-another-in-xaml/
+  
+        }
+
+        private void btnPlayGame_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/PickPlayer.xaml", UriKind.Relative));
         }
     }
-}
+    }
+

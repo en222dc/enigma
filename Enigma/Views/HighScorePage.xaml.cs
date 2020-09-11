@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.Models.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,9 +19,11 @@ namespace Enigma.ViewModels
     /// </summary>
     public partial class HighScorePage : Page
     {
-        //public HighScoreEndPage()
-        //{
-        //    InitializeComponent();
-        //}
+        public HighScorePage()
+        {
+            InitializeComponent();
+
+            lstBoHighscoreName.ItemsSource = Repository.GetHighscores();
+        }
     }
 }

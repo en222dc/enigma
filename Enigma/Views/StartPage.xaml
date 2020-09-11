@@ -9,11 +9,11 @@
       Title="StartPage"  Background="#463A5F" >
     <Grid>
 
-        <Button x:Name="btnPlayGame" Content="Play Game!" FontFamily="Bell MT" FontSize="20"
-                    Grid.Row="4" Grid.Column="1"
+        <Button x:Name="btnPlayGame" Content="Play Game!"  FontFamily="Bell MT" FontSize="20"  Command ="{Binding PlayGameCommand}"
+                    Grid.Row="4" Grid.Column="1" 
                     VerticalAlignment="Top" HorizontalAlignment="Right"
                     Height="50"
-                    Width="200" Background="#FF00D8CF">
+                    Width="200" Background="#FF00D8CF" Click="btnPlayGame_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
@@ -25,7 +25,7 @@
                     Grid.Row="4" Grid.Column ="1"
                     VerticalAlignment="Top" HorizontalAlignment="Left"
                     Height="50"
-                    Width="200" Background="#FF00D8CF">
+                    Width="200" Background="#FF00D8CF" Click="btnNewPlayer_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
