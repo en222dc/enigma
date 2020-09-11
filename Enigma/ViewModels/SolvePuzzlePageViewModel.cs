@@ -7,18 +7,18 @@ using Enigma.Models;
 using System.Threading.Channels;
 using System.Windows.Input;
 
+
     
 
 namespace Enigma.ViewModels
 {
-    class SolvePuzzlePageViewModel
+    public class SolvePuzzlePageViewModel
     {
-        
 
         public SolvePuzzlePageViewModel()
         {
-            char[] symbolArray = new char[4];
             IGameLogicSymbol symbol = new SymbolAlphabet();
+            char[] symbolArray = new char[4];
             symbol.TranslateSuspectNameToArray(symbolArray);
         }
            

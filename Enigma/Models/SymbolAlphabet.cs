@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using Enigma.ViewModels;
+using Enigma.Models;
 
 namespace Enigma.Models
 {
-    class SymbolAlphabet :IGameLogicSymbol
+    class SymbolAlphabet : IGameLogicSymbol
     {
         public string Hint { get; set; } = "Use the solve-sheet to translate the symbols to get the name of the killer"; // Potentiell hint för sista puzzlet
 
