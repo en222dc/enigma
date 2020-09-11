@@ -33,7 +33,7 @@ namespace Enigma
             MainFrame.Content =  startPage;
             MenuFrame.Content =  menuPage;
 
-
+            
 
             //var highscorePage = new HighScorePage();
 

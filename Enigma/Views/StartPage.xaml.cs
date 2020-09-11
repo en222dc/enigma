@@ -1,7 +1,9 @@
 ﻿using Enigma.Views;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,8 +25,9 @@ namespace Enigma.ViewModels
         {
             InitializeComponent();
             
+            
            
-           // DataContext = new PlayerRegistration();
+            DataContext = new StartPageViewModel();
         }
 
         private void btnNewPlayer_Click(object sender, RoutedEventArgs e)
@@ -34,10 +37,7 @@ namespace Enigma.ViewModels
   
         }
 
-        private void btnPlayGame_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Views/PickPlayer.xaml", UriKind.Relative));
-        }
+       
     }
     }
 
