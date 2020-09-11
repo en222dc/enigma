@@ -1,5 +1,6 @@
 ﻿using Enigma.Models;
 using Enigma.Models.Repositories;
+using Enigma.ViewModels;
 using Enigma.Views;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,23 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
+            var startPage = new StartPage();
+            var menuPage = new MenuPage();
+            
+            MainFrame.Content =  startPage;
+            MenuFrame.Content =  menuPage;
+
+
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //string playerName = txtPlayerName.Text;
+            //Player newPlayer = new Player(playerName);
+
+            //newPlayer = PlayerRepository.AddNewPlayerToDb(newPlayer);
+        }
 
     }
 }

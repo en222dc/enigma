@@ -22,5 +22,10 @@ namespace Enigma.ViewModels
         {
             InitializeComponent();
         }
+
+        private void btnAddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/BackStory.xaml", UriKind.Relative));
+        }
     }
 }
