@@ -18,7 +18,7 @@
 
             </Grid.ColumnDefinitions>
 
-            <Label Content="Start" Grid.Column="0" FontSize="20" Margin="10" Foreground="Black" VerticalAlignment="Center"/>
+            <Label Content="Binding "  Grid.Column="0" FontSize="20" Margin="10" Foreground="Black" VerticalAlignment="Center"/>
             <Label Content="HighScore" Grid.Column="1" FontSize="20" Margin="10" Foreground="Black" VerticalAlignment="Center"/>
             <Label Content="Help and Rules" Grid.Column="2" FontSize="20" Margin="10" Foreground="Black" VerticalAlignment="Center"/>
             <Label Content="Exit" Grid.Column="3" FontSize="20" Margin="10" Foreground="Black" VerticalAlignment="Center"/>
