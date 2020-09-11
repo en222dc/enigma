@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.DirectoryServices.ActiveDirectory;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace Enigma.ViewModels
 {
@@ -41,9 +42,8 @@ namespace Enigma.ViewModels
            //  MainWindow.ContentProperty = new PickPlayerPage();
             // startPage.Content = new PickPlayer();
 
-           
 
-            ButtonName = "Play!";
+          //  ButtonName = "Play!";
              
         }
         protected void OnPropertyChanged ([CallerMemberName] string name = null)
