@@ -28,9 +28,9 @@ namespace Enigma
         {
             InitializeComponent();
 
-            var highscorePage = new HighScorePage();
+            //var highscorePage = new HighScorePage();
 
-            MainFrame.Content = highscorePage;
+            //MainFrame.Content = highscorePage;
 
         }
 
