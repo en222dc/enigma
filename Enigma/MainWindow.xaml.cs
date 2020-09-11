@@ -35,9 +35,9 @@ namespace Enigma
 
 
 
-            //var highscorePage = new HighScorePage();
+            var highscorePage = new HighScorePage();
 
-            //MainFrame.Content = highscorePage;
+            MainFrame.Content = highscorePage;
 
             MainFrame.Content = new PuzzlePage();
            // DataContext = new PuzzlePageViewModel();
