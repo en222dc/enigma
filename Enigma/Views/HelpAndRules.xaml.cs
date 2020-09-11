@@ -11,21 +11,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Enigma.ViewModels
+namespace Enigma.Views
 {
     /// <summary>
-    /// Interaction logic for PlayerRegistration.xaml
+    /// Interaction logic for HelpAndRules.xaml
     /// </summary>
-    public partial class PlayerRegistration : Page
+    public partial class HelpAndRules : Page
     {
-        public PlayerRegistration()
+        public HelpAndRules()
         {
             InitializeComponent();
-        }
-
-        private void btnAddPlayer_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Views/BackStory.xaml", UriKind.Relative));
         }
     }
 }
