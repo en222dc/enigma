@@ -31,31 +31,42 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    Content="Time elapsed: 01:45"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
-            <Label x:Name="lblPuzzleSequence1"
-                   Grid.Row="2" Grid.Column="0"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="{Binding Fibonacci[0]}"
-                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
-            <Label x:Name="lblPuzzleSequence2"
-                   Grid.Row="2" Grid.Column="1"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="{Binding Fibonacci[1]}"
-                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
-            <Label x:Name="lblPuzzleSequence3"
-                   Grid.Row="2" Grid.Column="2"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="{Binding Fibonacci[2]}"
-                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
-            <Label x:Name="lblPuzzleSequence4"
-                   Grid.Row="2" Grid.Column="4"
-                   VerticalAlignment="Center" HorizontalAlignment="Left"
-                   Content="{Binding Fibonacci[3]}"
-                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
-            <Label x:Name="lblPuzzleSequence5"
-                   Grid.Row="2" Grid.Column="4"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="{Binding Fibonacci[4]}"
-                   FontSize="40" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" />
+            <TextBox x:Name="txtSequenceAnswer1"
+                     Grid.Row="2" Grid.Column="0"
+                     VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Width="80"
+                     Height="40" 
+                     Text="{Binding Fibonacci[0]}"
+                     FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold"/>
+            <TextBox x:Name="txtSequenceAnswer2"
+                     Grid.Row="2" Grid.Column="1"
+                     VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Width="80"
+                     Height="40" 
+                     Text="{Binding FirstHelp}"
+                     FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold"/>
+            <TextBox x:Name="txtSequenceAnswer3"
+                     Grid.Row="2" Grid.Column="2"
+                     VerticalAlignment="Center" HorizontalAlignment="Left"
+                     Width="80"
+                     Height="40" 
+                     Text="{Binding SecondHelp}"
+                     FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold"/>
+            <TextBox x:Name="txtSequenceAnswer4"
+                     Grid.Row="2" Grid.Column="2"
+                     VerticalAlignment="Center" HorizontalAlignment="Right"
+                     Width="80"
+                     Height="40"                      
+                     FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold"/>
+            <TextBox x:Name="txtSequenceAnswer5"
+                     Grid.Row="2" Grid.Column="4"
+                     VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Width="80"
+                     Height="40" 
+                     Text="{Binding Fibonacci[4]}"
+                     FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold"/>
+                    
+            
             <TextBox x:Name="txtSequenceAnswer"
                      Grid.Row="3" Grid.ColumnSpan="4"
                      VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -70,6 +81,22 @@
                     Background="#FF48CB73"
                    FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
             
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnSNyttNr"
+                    Grid.Row="4" Grid.Column="4"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Height="40"
+                    Width="200"
+                    Content="Avslöja ytterligare (+15sec)"
+                    Command="{Binding GetNbrsCommand}"
+                    Background="#FF48CB73"
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
+
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="20"/>
