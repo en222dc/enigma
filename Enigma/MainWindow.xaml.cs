@@ -1,5 +1,6 @@
 ﻿using Enigma.Models;
 using Enigma.Models.Repositories;
+using Enigma.ViewModels;
 using Enigma.Views;
 using System;
 using System.Collections.Generic;
@@ -23,17 +24,14 @@ namespace Enigma
     /// </summary>
     public partial class MainWindow : Window
     {
-        SymbolAlphabet solve = new SymbolAlphabet();
 
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new SolvePuzzlePageViewModel();
+            MainFrame.Content = new SolvePuzzlePage();
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            solve.TranslateSuspectNameToArray(solve.SuspectName);
-        }
     }
 }

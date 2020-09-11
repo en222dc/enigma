@@ -6,15 +6,13 @@ using System.Windows;
 
 namespace Enigma.Models
 {
-    class SymbolAlphabet
+    class SymbolAlphabet :IGameLogicSymbol
     {
         public string Hint { get; set; } = "Use the solve-sheet to translate the symbols to get the name of the killer"; // Potentiell hint för sista puzzlet
 
         public string SuspectName { get; set; } = "Adam"; // Hårdkodar ett SuspectName för testning
 
-        public char[] SuspectArray { get; set; } = new char[4]; // Skapar en array så att spelet kan skjuta ut en karaktär för varje klarat puzzel, mest för testning mot ViewModel och View. 
-
-        public static Dictionary<char, char> SymbolMap { get; set; } = new Dictionary<char, char> // Skapar en mappning av vilka symboler som är kopplade till respektive bokstav
+        public Dictionary<char, char> SymbolMap { get; set; } = new Dictionary<char, char> // Skapar en mappning av vilka symboler som är kopplade till respektive bokstav
         {
 
                 { 'क', 'a' },
@@ -58,25 +56,25 @@ namespace Enigma.Models
         //    return suspect;
         //}
 
-        public char[] TranslateSuspectNameToArray (string suspect) // Metod som översätter latinska alfabetet till nepaliska och sätter in symbolerna i min array
+        public char[] TranslateSuspectNameToArray (char[] symbolArray) // Metod som översätter latinska alfabetet till nepaliska och sätter in symbolerna i min array
         {
-            suspect = SuspectName.ToLower();
+            string suspect = SuspectName.ToLower();
 
             foreach (KeyValuePair<char, char> pair in SymbolMap)
             {
                 suspect = suspect.Replace(pair.Value, pair.Key);
             }
 
-            for (int i = 0; i < SuspectArray.Length; i++)
+            for (int i = 0; i < symbolArray.Length; i++)
             {
                 foreach (char c in suspect)
                 {
-                    SuspectArray[i] = c;
+                    symbolArray[i] = c;
                     i++;
                 }
             }
 
-            return SuspectArray;
+            return symbolArray;
 
         }
 
