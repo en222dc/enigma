@@ -75,7 +75,7 @@ namespace Enigma.Models.Repositories
             }
         }
         /*
-        public static IEnumerable<Highscore> GetTopPlayer()
+        public static IEnumerable<Highscore> GetTopPlayers()
         {
             string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC;";
 
