@@ -77,7 +77,7 @@ namespace Enigma.Models.Repositories
         
         public static IEnumerable<Player> GetTopPlayers()
         {
-            string stmt = "SELECT player_name FROM highscore JOIN player ON fk_player_id=player_id GROUP BY player_name ORDER BY COUNT (fk_player_id) DESC LIMIT 3;";
+            string stmt = "SELECT player_name, COUNT(*) AS number_of_games FROM player INNER JOIN highscore on player_id = fk_player_id GROUP BY player_name, player_id ORDER BY COUNT(*) DESC LIMIT 3;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -94,6 +94,7 @@ namespace Enigma.Models.Repositories
                             player = new Player()
                             {
                                 Player_name = (string)reader["player_name"],
+                                //NumberOfGames = (int)reader["number_of_games"]
                             };
                             topPlayers.Add(player);
                         }
