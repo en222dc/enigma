@@ -1,0 +1,68 @@
+﻿<Page x:Class="Enigma.Views.HelpAndRules"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Enigma.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HelpAndRules">
+
+    <Border Background="#463A5F">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+
+
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.ColumnSpan="10"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="Help and Rules"
+                   FontSize="27" Foreground="White" FontFamily="Banschrift" FontWeight="Bold"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" TextWrapping="Wrap"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                   Text= "At any time you can exit the game by pressing the Exit Game buttom in the top menu"
+                   FontSize="20" Foreground="White" FontFamily="Bell MT"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" TextWrapping="Wrap"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                   Text="If this is your first time playing, create a new player by pressing the New Player Button and enter your desired player name, after your player is created the game begins."
+                   FontSize="20" Foreground="White" FontFamily="Bell MT"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="6" TextWrapping="Wrap"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Text="The goal of the game is to solve a series of puzzles sa fast as possible to unveil a symbol or hint. This hint or symbol will lead you to a killer out of 4 suspects which are displayed in the beginning of the game"
+                   FontSize="20" Foreground="White" FontFamily="Bell MT"/>
+            
+            <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="6" TextWrapping="Wrap"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Text="If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 30 seconds to your time"
+                   FontSize="20" Foreground="White" FontFamily="Bell MT" />
+        </Grid>
+    
+        
+    </Border>
+
+</Page>

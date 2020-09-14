@@ -11,26 +11,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Enigma.ViewModels
+namespace Enigma.Views
 {
     /// <summary>
-    /// Interaction logic for BackStory.xaml
+    /// Interaction logic for HelpAndRules.xaml
     /// </summary>
-    public partial class BackStory : Page
+    public partial class HelpAndRules : Page
     {
-        public BackStory()
+        public HelpAndRules()
         {
             InitializeComponent();
-            DataContext = new BackStoryViewModel();
-         }
-
-        
-        public BackStory(BackStoryViewModel backStoryViewModel) 
-        {
-            InitializeComponent();
-           
         }
-        
-   
     }
 }

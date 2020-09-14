@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Enigma.ViewModels
 {
-    class MainWindowViewModel
+    class MenuPageViewModel
     {
     }
 }

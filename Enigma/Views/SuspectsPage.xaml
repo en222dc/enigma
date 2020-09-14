@@ -52,7 +52,7 @@
                     Width="200"
                     Content="Go To Puzzle!"
                     Background="#FF48CB73"
-                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Click="btnGoToPuzzle_Click" >
 
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

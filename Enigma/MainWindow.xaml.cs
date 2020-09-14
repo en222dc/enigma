@@ -24,14 +24,43 @@ namespace Enigma
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+
         public MainWindow()
         {
             InitializeComponent();
+
+          // DataContext = new MainViewModel();
+
+            
+            var startPage = new StartPage();
+            var menuPage = new MenuPage();
+            
+       
+            MainFrame.Content =  startPage;
+            MenuFrame.Content =  menuPage;
+            
+            
 
             var highscorePage = new HighScorePage();
 
             MainFrame.Content = highscorePage;
 
+            //MainFrame.Content = new PuzzlePage();
+           // DataContext = new PuzzlePageViewModel();
+
+            
+
+
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //string playerName = txtPlayerName.Text;
+            //Player newPlayer = new Player(playerName);
+
+            //newPlayer = PlayerRepository.AddNewPlayerToDb(newPlayer);
+        }
+
     }
 }
