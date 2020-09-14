@@ -33,7 +33,5 @@ namespace Enigma
             MainFrame.Content = highscorePage;
 
         }
-
-
     }
 }
