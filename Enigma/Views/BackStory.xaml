@@ -5,20 +5,37 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Enigma.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="BackStory" Height="450" Width="900" Background="#463A5F" >
+      Title="BackStory">
+    <Page.Background>
+        <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
+    </Page.Background>
 
     <Grid>
-  
-        <TextBlock Text= "The president of Russia has assigned you to solve the mysterious murder of his wife Katja.
+        <Label Grid.Row="0" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="30" Foreground="DarkGray" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content="Oh, no! What happend here?"/>
+        <TextBlock 
+            Grid.Row="1" 
+            Text= "The president of Russia has assigned you to solve the mysterious murder of his wife Katja.
 The police has apprehended 4 suspects. The only clue at your disposal is a puzzle left by the killer with the note Solve me for a clue
-Will Christofer be the player who finds the killer the fastest?" TextWrapping="WrapWithOverflow"  Grid.Row="1" HorizontalAlignment="Center"  Margin="15" FontFamily="Banschrift"  Foreground="White" FontSize="27" />
+Will You be the player who finds the killer the fastest?" 
+            TextWrapping="WrapWithOverflow"  
+            HorizontalAlignment="Center"  
+            Margin="30" 
+            FontFamily="Banschrift"  Foreground="DarkGray" FontSize="27" />
 
-        <Button x:Name="btnLetsPaly" Content="Lets Play!" FontFamily="Bell MT" FontSize="20" Command= "{Binding GoToPageCommand}"
-                    Grid.Row="4" Grid.Column="1"
-                    VerticalAlignment="Top" HorizontalAlignment="Center"
-                    Height="60"
-                    Width="250" Background="#FF00D8CF" >
+        <Button x:Name="btnLetsPaly" 
+                Content="Start the Game" 
+                FontFamily="Bell MT" FontSize="30" Foreground="White"
+                Margin="0 30"
+                Command= "{Binding GoToPageCommand}"
+                Grid.Row="2"
+                VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                Height="60"
+                Width="250" 
+                BorderBrush="#4E0106" BorderThickness="2"
+                Background="#5C0106" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
@@ -28,10 +45,9 @@ Will Christofer be the player who finds the killer the fastest?" TextWrapping="W
 
 
         <Grid.RowDefinitions>
-            
-            <RowDefinition Height="70" />
-            <RowDefinition Height="250"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*"/>
 
         </Grid.RowDefinitions>
         

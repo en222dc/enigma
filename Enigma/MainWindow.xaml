@@ -5,13 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Enigma"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="900" Background="#463A5F">
+        Title="MainWindow" WindowState="Maximized" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush ImageSource="\Assets\Images\bloodyKnife.jpg" Stretch="Fill"/>
+    </Window.Background>
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        <Frame Grid.Row="0" Name="MenuFrame"/>
-        <Frame Grid.Row ="1" Name="MainFrame"/>
+        <Frame Grid.Row ="0" Grid.Column="1" Name="MainFrame"/>
+        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Name="MenuFrame"/>
     </Grid>
 </Window>

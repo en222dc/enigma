@@ -32,12 +32,11 @@ namespace Enigma.ViewModels
 
         private void btnNewPlayer_Click(object sender, RoutedEventArgs e)
         {
-
+          
            // NavigationService.Navigate(new Uri("/Views/PlayerRegistration.xaml", UriKind.Relative)); // kilde https://www.c-sharpcorner.com/UploadFile/e3d1d8/data-passing-from-one-page-to-another-in-xaml/
   
         }
 
-       
     }
-    }
+}
 
