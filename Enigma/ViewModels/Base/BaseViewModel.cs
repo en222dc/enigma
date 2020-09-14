@@ -7,7 +7,7 @@ using System.Windows.Navigation;
 
 namespace Enigma.ViewModels.Base
 {
-    class BaseViewModel : INotifyPropertyChanged
+  public  class BaseViewModel : INotifyPropertyChanged
     {
 
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService; // har endret mainframe til mainframe

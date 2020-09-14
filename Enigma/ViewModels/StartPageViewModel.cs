@@ -11,10 +11,10 @@ using System.Windows.Navigation;
 
 namespace Enigma.ViewModels
 {
-    public class StartPageViewModel : INotifyPropertyChanged
+    public class StartPageViewModel : BaseViewModel
     {
 
-        int counter = 0;
+        /*
         private string buttonName;
         
         public string ButtonName
@@ -26,31 +26,26 @@ namespace Enigma.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        */
         
         public ICommand PlayGameCommand { get; set;} 
 
         public StartPageViewModel()
         {
-            PlayGameCommand = new RelayCommand(PlayGame);
+            PlayGameCommand = new RelayCommand(GoToPage);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void PlayGame()
+        public void GoToPage()
 
         {
-            DateTime time = new DateTime();
-            counter = time.Second;
+              
+            var model = new BackStoryViewModel();
+            var page = new BackStory(model);
+            NavigationService.Navigate(page);
 
-
-            
-            //Stopwatch stopWatch = new Stopwatch();
-           // ButtonName = stopWatch.ToString();
-          // ButtonName  = Timer.ActiveCount.ToString();
-          //  counter++;  
-         ButtonName = counter.ToString();
-
+         
              
         }
         protected void OnPropertyChanged ([CallerMemberName] string name = null)

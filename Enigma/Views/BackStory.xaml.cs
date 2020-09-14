@@ -21,11 +21,16 @@ namespace Enigma.ViewModels
         public BackStory()
         {
             InitializeComponent();
-        }
+            DataContext = new BackStoryViewModel();
+         }
 
-        private void btnLetsPaly_Click(object sender, RoutedEventArgs e)
+        
+        public BackStory(BackStoryViewModel backStoryViewModel) 
         {
-            NavigationService.Navigate(new Uri("/Views/SuspectsPage.xaml", UriKind.Relative));
+            InitializeComponent();
+           
         }
+        
+   
     }
 }

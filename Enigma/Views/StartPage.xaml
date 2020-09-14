@@ -10,7 +10,7 @@
       >
     <Grid>
 
-        <Button x:Name="btnPlayGame" Content="{Binding ButtonName}"  FontFamily="Bell MT" FontSize="20"  Command ="{Binding PlayGameCommand}"
+        <Button x:Name="btnPlayGame" Content="Play"  FontFamily="Bell MT" FontSize="20"  Command ="{Binding PlayGameCommand}"
                     Grid.Row="4" Grid.Column="1" 
                     VerticalAlignment="Top" HorizontalAlignment="Right"
                     Height="50"

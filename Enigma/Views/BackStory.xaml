@@ -14,11 +14,11 @@
 The police has apprehended 4 suspects. The only clue at your disposal is a puzzle left by the killer with the note Solve me for a clue
 Will Christofer be the player who finds the killer the fastest?" TextWrapping="WrapWithOverflow"  Grid.Row="1" HorizontalAlignment="Center"  Margin="15" FontFamily="Banschrift"  Foreground="White" FontSize="27" />
 
-        <Button x:Name="btnLetsPaly" Content="Lets Play!" FontFamily="Bell MT" FontSize="20"
+        <Button x:Name="btnLetsPaly" Content="Lets Play!" FontFamily="Bell MT" FontSize="20" Command= "{Binding GoToPageCommand}"
                     Grid.Row="4" Grid.Column="1"
                     VerticalAlignment="Top" HorizontalAlignment="Center"
                     Height="60"
-                    Width="250" Background="#FF00D8CF" Click="btnLetsPaly_Click">
+                    Width="250" Background="#FF00D8CF" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
