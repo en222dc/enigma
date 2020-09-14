@@ -1,4 +1,5 @@
-﻿using Enigma.ViewModels;
+﻿using Enigma.Models.Repositories;
+using Enigma.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Enigma.Views
         {
             InitializeComponent();
             DataContext = new StartPageViewModel();
+
+            lstAllPlayers.ItemsSource = Repository.GetAllPlayers();
         }
     }
 }

@@ -74,7 +74,36 @@ namespace Enigma.Models.Repositories
                 return highscores;
             }
         }
-        
+
+        public static IEnumerable<Player> GetAllPlayers()
+        {
+            string stmt = "SELECT player_name FROM player;";
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                Player player = null;
+                List<Player> allPlayers = new List<Player>();
+                conn.Open();
+
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            player = new Player()
+                            {
+                                Player_name = (string)reader["player_name"],
+                                //NumberOfGames = (int)reader["number_of_games"]
+                            };
+                            allPlayers.Add(player);
+                        }
+                    }
+                }
+                return allPlayers;
+            }
+        }
+
         public static IEnumerable<Player> GetTopPlayers()
         {
             string stmt = "SELECT player_name, COUNT(*) AS number_of_games FROM player INNER JOIN highscore on player_id = fk_player_id GROUP BY player_name, player_id ORDER BY COUNT(*) DESC LIMIT 3;";

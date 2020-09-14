@@ -30,21 +30,24 @@ namespace Enigma
         {
             InitializeComponent();
 
-          // DataContext = new MainViewModel();
+            Repository.GetAllPlayers();
 
-            
-            var startPage = new StartPage();
+            // DataContext = new MainViewModel();
             var menuPage = new MenuPage();
+            MenuFrame.Content =  menuPage;
+
+            /*
+            var startPage = new StartPage();
             
        
             MainFrame.Content =  startPage;
-            MenuFrame.Content =  menuPage;
-            
-            
+            */
+            var pickPlayer = new PickPlayer();
+            MainFrame.Content = pickPlayer;
 
-            var highscorePage = new HighScorePage();
+            //var highscorePage = new HighScorePage();
 
-            MainFrame.Content = highscorePage;
+            //MainFrame.Content = highscorePage;
 
             //MainFrame.Content = new PuzzlePage();
            // DataContext = new PuzzlePageViewModel();
