@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Enigma.Models;
+using Enigma.Models.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -25,6 +27,17 @@ namespace Enigma.ViewModels
 
         private void btnAddPlayer_Click(object sender, RoutedEventArgs e)
         {
+            
+            var player = new Player
+            {
+                Player_name = txtPlayerName.Text
+            };
+
+            Repository.AddNewPlayerToDb(player);
+            
+
+            //PlayerRegistrationViewModel.AddPlayer();
+
             NavigationService.Navigate(new Uri("/Views/BackStory.xaml", UriKind.Relative));
         }
     }

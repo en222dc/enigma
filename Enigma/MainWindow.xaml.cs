@@ -42,8 +42,8 @@ namespace Enigma
        
             MainFrame.Content =  startPage;
             */
-            var pickPlayer = new PickPlayer();
-            MainFrame.Content = pickPlayer;
+            var newPlayerRegistration = new PlayerRegistration();
+            MainFrame.Content = newPlayerRegistration;
 
             //var highscorePage = new HighScorePage();
 

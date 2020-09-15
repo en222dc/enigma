@@ -11,8 +11,14 @@
 
     <Grid>
        
-        <Label Content="What`s your Name?" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" FontFamily="Banschrift" Foreground="White" FontSize="27" />
-        <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"  Text="" TextWrapping="Wrap"  Width="300" Height="40" />
+        <Label Content="What´s your Name?" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" FontFamily="Banschrift" Foreground="White" FontSize="27" />
+        <TextBox x:Name="txtPlayerName" 
+                 Grid.Column="1" Grid.Row="1" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center" 
+                 Margin="10"
+                 FontSize="20"
+                 Padding="10 3"
+                 Width="200" Height="40" />
         <Button x:Name="btnAddPlayer" Content="Play Game!" FontFamily="Bell MT" FontSize="20"
                     Grid.Row="4" Grid.Column="1"
                     VerticalAlignment="Top" HorizontalAlignment="Center"
