@@ -6,31 +6,14 @@ namespace Enigma.ViewModels
 {
     public class SolvePuzzlePageViewModel: INotifyPropertyChanged
     {
-        private ObservableCollection<char> _symbolArray;
-        public ObservableCollection<char> SymbolArray
-        {
-            get { return _symbolArray; }
-            set
-            {
-                if (value != _symbolArray)
-                {
-                    _symbolArray = value;
-                    OnPropertyChanged("SymbolArray");
-                }
-            }
-        }
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
+        public ObservableCollection<char> SymbolArray { get; set; }
 
         public SolvePuzzlePageViewModel()
         {
             SymbolArray = new ObservableCollection<char>();
             char[] symbolarray = new char[4];
-            IGameLogicSymbol symbols = new SymbolAlphabet();
-            symbols.TranslateSuspectNameToArray(symbolarray);
+            IGameLogicSymbol symbols = new KillerTranslation();
+            symbols.TranslateKillerName(symbolarray);
 
             foreach (char symbol in symbolarray)
             {
