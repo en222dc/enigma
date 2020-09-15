@@ -30,9 +30,9 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
                    Content="Solve the last puzzle!"/>
-            <Label Grid.Row="1" Grid.ColumnSpan="8"
+            <Label Grid.Row="1" Grid.ColumnSpan="8" 
                    VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Content="Time elapsed: 01:45"
+                   Content="{Binding TimeLapse2}"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="2"
                    Source="\Assets\Images\crackTheCode.png" 

@@ -21,11 +21,9 @@ namespace Enigma.ViewModels
         public PlayerRegistration()
         {
             InitializeComponent();
+            DataContext =  new PlayerRegistrationViewModel();
         }
 
-        private void btnAddPlayer_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Views/BackStory.xaml", UriKind.Relative));
-        }
+      
     }
 }

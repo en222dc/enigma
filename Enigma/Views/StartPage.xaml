@@ -10,7 +10,7 @@
       >
     <Grid>
 
-        <Button x:Name="btnPlayGame" Content="{Binding ButtonName}"  FontFamily="Bell MT" FontSize="20"  Command ="{Binding PlayGameCommand}"
+        <Button x:Name="btnPlayGame" Content="Play!"  FontFamily="Bell MT" FontSize="20"  Command ="{Binding PlayGameCommand}"
                     Grid.Row="4" Grid.Column="1" 
                     VerticalAlignment="Top" HorizontalAlignment="Right"
                     Height="50"
@@ -22,11 +22,11 @@
             </Button.Resources>
         </Button>
 
-        <Button x:Name="btnNewPlayer" Content="New Player" FontFamily="Bell MT" FontSize="20"
+        <Button x:Name="btnNewPlayer" Content="New Player" Command ="{Binding CreatePlayerCommand}" FontFamily="Bell MT" FontSize="20"
                     Grid.Row="4" Grid.Column ="1"
                     VerticalAlignment="Top" HorizontalAlignment="Left"
                     Height="50"
-                    Width="200" Background="#FF00D8CF" Click="btnNewPlayer_Click">
+                    Width="200" Background="#FF00D8CF" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>
@@ -34,7 +34,7 @@
             </Button.Resources>
         </Button>
 
-        <Label Content="Welcome to Engima Game" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Banschrift" Foreground="White" FontSize="27" Padding="30"/>
+        <Label Content="Welcome to Enigma"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Banschrift" Foreground="White" FontSize="27" Padding="30"/>
         <Image Height ="400" Width="150"  VerticalAlignment="Center"  Grid.Column = "1" Grid.Row="0" Source=" /Assets/Images/EnigmaLogo.png"/>
         
 

@@ -23,11 +23,9 @@ namespace Enigma.ViewModels
         public void GoToPageCommand()
 
         {
-
              var model = new BackStoryViewModel();
-            var page = new BackStory(model);
-            // var page = new Page2();
-            NavigationService.Navigate(page);
+            var page = new BackStory();
+        NavigationService.Navigate(page);
 
 
 

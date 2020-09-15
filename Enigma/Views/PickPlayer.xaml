@@ -27,13 +27,13 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.ColumnSpan="2"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
                    Content="Pick a Player"
                    FontSize="27" Foreground="White" FontFamily="Banschrift" FontWeight="Bold"/>
 
             <StackPanel Grid.Row="1" Grid.Column ="0" Grid.RowSpan="4">
                 <Label
-                   HorizontalAlignment="Center" Margin="15"
+                   HorizontalAlignment="Center" Margin="15" 
                    Content="Helena"
                    FontSize="27" Foreground="White" FontFamily="Bell MT" FontWeight="Bold"/>
                 <Label

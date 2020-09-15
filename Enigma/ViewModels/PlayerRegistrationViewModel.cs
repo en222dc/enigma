@@ -6,5 +6,6 @@ namespace Enigma.ViewModels
 {
     class PlayerRegistrationViewModel
     {
+
     }
 }

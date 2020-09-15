@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 
 namespace Enigma.ViewModels.Base
 {

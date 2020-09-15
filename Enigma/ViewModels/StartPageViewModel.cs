@@ -12,65 +12,50 @@ using System.Windows.Threading;
 
 namespace Enigma.ViewModels
 {
+
     public class StartPageViewModel : BaseViewModel
     {
-
-        private int totalSeconds = 0;
-        public string TimeLapse { get; set; }
-
-        private DispatcherTimer dispatcherTimer = null;
-
-
+  
         private string buttonName;
-
+        
         public string ButtonName
         {
             get { return buttonName; }
-            set
+            set 
             {
                 buttonName = value;
                 OnPropertyChanged();
             }
         }
 
-
-        public void Time()
-        {
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Tick += new EventHandler(Timer_Tick2);
-        }
-
-
-        private void Timer_Tick2(object state, EventArgs e)
-        {
-            totalSeconds++;
-            TimeLapse = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
-        }
-
-
+  
         
-        
-        public ICommand PlayGameCommand { get; set;} 
+        public ICommand PlayGameCommand { get; set;}
+        public ICommand CreatePlayerCommand { get; set; }
 
         public StartPageViewModel()
         {
-            PlayGameCommand = new RelayCommand(GoToPage);
+            PlayGameCommand = new RelayCommand(GoToPickPlayerPage);
+            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void GoToPage()
+        public void GoToPickPlayerPage()
 
         {
-            string hei = "Hei";
-            ButtonName = hei;  
-          //  var model = new BackStoryViewModel();
-          //  var page = new BackStory(model);
-           // NavigationService.Navigate(page);
-
-         
+            var model = new PuzzlePageViewModel();
+            var page = new PuzzlePage();
+            NavigationService.Navigate(page);
              
+        }
+
+        public void GoToCreatePlayerPage()
+        {
+            var model = new PlayerRegistrationViewModel();
+            var page = new PlayerRegistration();
+            NavigationService.Navigate(page);
         }
         protected void OnPropertyChanged ([CallerMemberName] string name = null)
         {

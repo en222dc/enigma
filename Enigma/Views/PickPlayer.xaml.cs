@@ -22,7 +22,12 @@ namespace Enigma.Views
         public PickPlayer()
         {
             InitializeComponent();
-            DataContext = new StartPageViewModel();
+            DataContext = new PickPlayerViewModel();
+        }
+
+        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

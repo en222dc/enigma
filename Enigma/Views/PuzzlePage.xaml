@@ -29,7 +29,7 @@
                    FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />
             <Label Grid.Row="1" Grid.ColumnSpan="4" Name="TimeRunning"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="Time elapsed: "
+                   Content="{Binding TimeLapse}"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <TextBox x:Name="txtSequenceAnswer1"
                      Grid.Row="2" Grid.Column="0"
@@ -69,17 +69,17 @@
             
             <TextBox x:Name="txtSequenceAnswer"
                      Grid.Row="3" Grid.ColumnSpan="4"
-                     VerticalAlignment="Center" HorizontalAlignment="Center"
+                     VerticalAlignment="Center" HorizontalAlignment="Center" 
                      MinWidth="310"
                      Height="40" />
             <Button x:Name="btnSolvePuzzle"
-                    Grid.Row="4" Grid.ColumnSpan="4"
+                    Grid.Row="4" Grid.ColumnSpan="4" Command="{Binding SolvedPuzzle}"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
                     Height="40"
                     Width="200"
                     Content="Solve Puzzle!"
                     Background="#FF48CB73"
-                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Click="btnSolvePuzzle_Click" >
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold"  >
             
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -88,7 +88,7 @@
                 </Button.Resources>
             </Button>
             <Button x:Name="btnSNyttNr"
-                    Grid.Row="4" Grid.Column="4"
+                    Grid.Row="4" Grid.Column="4" 
                     VerticalAlignment="Center" HorizontalAlignment="Center"
                     Height="40"
                     Width="200"
