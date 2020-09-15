@@ -8,14 +8,10 @@ namespace Enigma.Models
 {
     class KillerCreation: GetSuspects
     {
-        public string KillerName { get; set; }
-
-        public ImageSource KillerPortrait { get; set; }
-
         Random random = new Random();
 
-        //GetSuspects suspects = new GetSuspects();
-
+        public string KillerName { get; set; }
+        public ImageSource KillerPortrait { get; set; }
 
         public KillerCreation()
         {

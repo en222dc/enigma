@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Enigma.Models
 {
-    class KillerTranslation
+    public class KillerTranslation: SymbolAlphabet
     {
         // Klassens syfte är att översätta mördarens namn till symboler. Använder sig av KillerCreation och SymbolAlphabet:
     }
