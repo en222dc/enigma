@@ -12,8 +12,8 @@ namespace Enigma.ViewModels
         {
             SymbolArray = new ObservableCollection<char>();
             char[] symbolarray = new char[4];
-            IGameLogicSymbol symbols = new SymbolAlphabet();
-            symbols.TranslateSuspectNameToArray(symbolarray);
+            IGameLogicSymbol symbols = new KillerTranslation();
+            symbols.TranslateKillerName(symbolarray);
 
             foreach (char symbol in symbolarray)
             {

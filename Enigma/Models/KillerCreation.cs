@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace Enigma.Models
 {
-    class KillerCreation: GetSuspects
+    public class KillerCreation: GetSuspects
     {
         Random random = new Random();
 
