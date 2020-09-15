@@ -29,7 +29,7 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
-            
+            KillerCreation killer = new KillerCreation();
             MainFrame.Content = new SolvePuzzlePage();
         }
 

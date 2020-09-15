@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Enigma.Models
 {
-    class KillerCreation
+    class KillerCreation: GetSuspects
     {
-        public List<string> SuspectNames { get; set; }
+        public string KillerName { get; set; }
 
-        Random random = new Random(); 
+        public ImageSource KillerPortrait { get; set; }
 
-        public string CreateKiller()
+        Random random = new Random();
+
+        //GetSuspects suspects = new GetSuspects();
+
+
+        public KillerCreation()
         {
-            SuspectNames = new List<string> { "Olga", "Odam", "Adam", "Dani" };
+            int index = random.Next(Suspects.Count);
 
-            int index = random.Next(SuspectNames.Count);
+            KillerName = Suspects[index].Name.ToString();
+            KillerPortrait = Suspects[index].Portrait;
 
-            return SuspectNames[index];
         }
-        
+
     }
 }
