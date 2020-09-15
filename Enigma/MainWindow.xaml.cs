@@ -38,7 +38,7 @@ namespace Enigma
             
        
             MainFrame.Content =  startPage;
-            //MenuFrame.Content =  menuPage;
+            MenuFrame.Content =  menuPage;
             
             
 
