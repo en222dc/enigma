@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using Enigma.Views;
+﻿using System.Collections.ObjectModel;
 using Enigma.Models;
-using System.Threading.Channels;
-using System.Windows.Input;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Enigma.ViewModels
 {

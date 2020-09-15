@@ -8,7 +8,7 @@ using Enigma.Models;
 
 namespace Enigma.Models
 {
-    class SymbolAlphabet : IGameLogicSymbol
+    public class SymbolAlphabet : IGameLogicSymbol
     {
         public string Hint { get; set; } = "Use the solve-sheet to translate the symbols to get the name of the killer"; // Potentiell hint för sista puzzlet
 

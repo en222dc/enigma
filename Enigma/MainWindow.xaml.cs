@@ -29,10 +29,8 @@ namespace Enigma
         public MainWindow()
         {
             InitializeComponent();
+            
             MainFrame.Content = new SolvePuzzlePage();
-
-
-
         }
 
     }
