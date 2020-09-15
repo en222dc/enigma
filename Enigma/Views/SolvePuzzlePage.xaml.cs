@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace Enigma.Views
         public SolvePuzzlePage()
         {
             InitializeComponent();
+            DataContext = new SolvePuzzlePageViewModel();
         }
     }
 }

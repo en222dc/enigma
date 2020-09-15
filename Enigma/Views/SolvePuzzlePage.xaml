@@ -45,23 +45,23 @@
                    Grid.Row="2" Grid.Column="2" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal"
-                   Content="{Binding SymbolArray}"
+                   Content="{Binding SymbolArray[0]}"
                    />
             <Label x:Name="lblSecondSymbol" 
                    Grid.Row="2" Grid.Column="3" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="10" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
-                   Content="{Binding SymbolArray}"/>
+                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content="{Binding SymbolArray[1]}"/>
             <Label x:Name="lblThirdSymbol" 
                    Grid.Row="2" Grid.Column="4" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="10" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
-                   Content="{Binding SymbolArray}"/>
+                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content="{Binding SymbolArray[2]}"/>
             <Label x:Name="lblFourthSymbol" 
                    Grid.Row="2" Grid.Column="5" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="10" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
-                   Content = "{Binding SymbolArray}"/>
+                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   Content = "{Binding SymbolArray[3]}"/>
             <TextBox x:Name="txtFirstSymbol"
                      Grid.Row="3" Grid.Column="2"
                      VerticalAlignment="Top"

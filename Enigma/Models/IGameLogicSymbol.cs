@@ -10,7 +10,7 @@ namespace Enigma
 
         public string SuspectName { get; set; }
 
-        public Dictionary<char, char> SymbolMap { get; set; }
+        public static Dictionary<char, char> SymbolMap { get; set; }
 
         public char[] TranslateSuspectNameToArray(char[] symbolArray);
     }

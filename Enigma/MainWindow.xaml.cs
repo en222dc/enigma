@@ -25,12 +25,14 @@ namespace Enigma
     public partial class MainWindow : Window
     {
 
+
         public MainWindow()
         {
             InitializeComponent();
             MainFrame.Content = new SolvePuzzlePage();
-            DataContext = new SolvePuzzlePageViewModel();
-            
+
+
+
         }
 
     }

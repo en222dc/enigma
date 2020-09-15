@@ -14,7 +14,7 @@ namespace Enigma.Models
 
         public string SuspectName { get; set; } = "Adam"; // Hårdkodar ett SuspectName för testning
 
-        public Dictionary<char, char> SymbolMap { get; set; } = new Dictionary<char, char> // Skapar en mappning av vilka symboler som är kopplade till respektive bokstav
+        public static Dictionary<char, char> SymbolMap { get; set; } = new Dictionary<char, char> // Skapar en mappning av vilka symboler som är kopplade till respektive bokstav
         {
 
                 { 'क', 'a' },
@@ -68,6 +68,38 @@ namespace Enigma.Models
             return symbolArray;
 
         }
+
+        //public char ReturnFirstSymbol (char [] symbolArray)
+        //{
+        //    if (IsSolved == true)
+        //    {
+        //        return symbolArray[0];
+        //    }
+        //}
+
+        //public char ReturnSecondSymbol (char[] symbolArray)
+        //{
+        //    if (IsSolved == true)
+        //    {
+        //        return symbolArray[1];
+        //    }
+        //}
+
+        //public char ReturnThirdSymbol(char[] symbolArray)
+        //{
+        //    if (IsSolved == true)
+        //    {
+        //        return symbolArray[2];
+        //    }
+        //}
+
+        //public char ReturnFourthSymbol(char[] symbolArray)
+        //{
+        //    if (IsSolved == true)
+        //    {
+        //        return symbolArray[3];
+        //    }
+        //}
 
 
     }
