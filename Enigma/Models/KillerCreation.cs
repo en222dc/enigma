@@ -12,11 +12,11 @@ namespace Enigma.Models
 
         public string CreateKiller()
         {
-            var killerselection = new List<string> { "Olga", "Odam", "Adam", "Dani" };
+            SuspectNames = new List<string> { "Olga", "Odam", "Adam", "Dani" };
 
-            int index = random.Next(killerselection.Count);
+            int index = random.Next(SuspectNames.Count);
 
-            return killerselection[index];
+            return SuspectNames[index];
         }
         
     }
