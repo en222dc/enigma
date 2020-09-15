@@ -59,7 +59,7 @@ namespace Enigma.ViewModels
             set
             {                
                 _firstHelp = value;
-                OnPropertyChanged();               
+                              
             }
         } //Hämtar den 2:a siffran i NummerSekvensen.
                 
@@ -70,24 +70,15 @@ namespace Enigma.ViewModels
             set
             {
                 _secondHelp = value;
-                OnPropertyChanged();
+                
             }
         } //Hämtar den 3:e siffran i NummerSekvensen.
 
         private bool _isCorrect;
 
-        public bool IsCorrect //Har binding i vyn till bakgrundsfärg för tillfället
-        {
-            get 
-            { 
-                return _isCorrect;               
-            }
-            set
-            {
-                _isCorrect = value;
-            }           
-        
-        } 
+        public bool IsCorrect { get; set; } = false;
+       
+       
 
         #endregion
 
@@ -117,34 +108,26 @@ namespace Enigma.ViewModels
 
         #region  Kollar ifall det gissade svaret av användaren är rätt eller fel och presenterar deti gränssnittet
 
+        
+
         private string _buttonName = "Solve Puzzle";
-        public string ButtonName
-        {
-            get { return _buttonName; }
-            set
-            {
-                _buttonName = value;
-                OnPropertyChanged();
-            }
-        }              
+        public string ButtonName { get; set; } = "Guess nr";
+                
 
 
-        private string _guess;
-        public string Guess 
-        {
-            get { return _guess; }
-            set
-            {
-                _guess = value;
-                OnPropertyChanged();
-            }
-        }
+        private string _guess4thNr;
+        public string Guess4thNr { get; set; }
+        
 
-      
+        private string _guess5thNr;
+        public string Guess5thNr { get; set; }
+       
+
+       
 
         public void CheckIfGuessCorrect()
         {
-            if (Guess == Fibonacci[3].ToString())
+            if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr==Fibonacci[4].ToString())
             {
                 ButtonName = "Go To The Next Puzzle!";
             }
@@ -160,10 +143,7 @@ namespace Enigma.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;       
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+       
 
        
     }

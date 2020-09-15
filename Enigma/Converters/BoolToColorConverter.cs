@@ -33,12 +33,7 @@ namespace Enigma.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(bool)value)
-            {
-                return new SolidColorBrush(Colors.Red);
-            }
-            else return new SolidColorBrush(Colors.Green);
-
+            throw new NotImplementedException();
         }
     }
 }

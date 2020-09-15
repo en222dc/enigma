@@ -37,11 +37,12 @@
             <Label Grid.Row="0" Grid.ColumnSpan="4" 
                    VerticalAlignment="Center" HorizontalAlignment="Center" 
                    Content="What is missing from the sequence?" 
-                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />
+                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />           
             <Label Grid.Row="1" Grid.ColumnSpan="4" 
                    VerticalAlignment="Top" HorizontalAlignment="Center" 
-                   Content="{Binding Hint, Source={StaticResource FibonacciProperty}}" 
-                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />
+                   Content="{Binding Fibonacci, Source={StaticResource PuzzlePageViewModel}}" 
+                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal"                 
+                   />
             <Label Grid.Row="1" Grid.ColumnSpan="4"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    Content="Time elapsed: 01:45"
@@ -58,17 +59,17 @@
                      VerticalAlignment="Center" HorizontalAlignment="Center"
                      Width="80"
                      Height="40" 
-                     Text="{Binding FirstHelp}"
+                     Text="{Binding Fibonacci[1]}"
                      FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold" IsEnabled="False"/>
             <TextBox x:Name="txtSequenceAnswer3"
                      Grid.Row="2" Grid.Column="2"
                      VerticalAlignment="Center" HorizontalAlignment="Left"
                      Width="80"
                      Height="40" 
-                     Text="{Binding SecondHelp}"
+                     Text="{Binding Fibonacci[2]}"
                      FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold" IsEnabled="False"/>
             <TextBox x:Name="txtSequenceAnswer4"
-                     Text="{Binding Guess}"                     
+                     Text="{Binding Guess4thNr}"                     
                      Grid.Row="2" Grid.Column="2"
                      VerticalAlignment="Center" HorizontalAlignment="Right"
                      Width="80"
@@ -80,8 +81,8 @@
                      VerticalAlignment="Center" HorizontalAlignment="Center"
                      Width="80"
                      Height="40" 
-                     Text="{Binding Fibonacci[4]}"
-                     FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold" IsEnabled="False"/>
+                     Text="{Binding Guess5thNr}"
+                     FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold"/>
 
             <TextBox x:Name="txtSequenceAnswer"                                         
                      Grid.Row="3" Grid.ColumnSpan="4"

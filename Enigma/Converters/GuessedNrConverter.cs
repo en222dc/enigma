@@ -17,7 +17,7 @@ namespace Enigma.Converters
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            value = PuzzlePageViewModel.Guess;
+            value = PuzzlePageViewModel.Guess4thNr;
             
             string v = (string)value;
             
