@@ -24,11 +24,7 @@ namespace Enigma.Views
         {
             InitializeComponent();
             DataContext = new PuzzlePageViewModel();
-            //var puzzle = new Fibonacci();
-            //var showFibonacci = new PuzzlePage();
-            //int[] fibonacciArray = new int[5];
-            //puzzle.GenerateRandomNr(fibonacciArray);
-            // puzzle.GetRestOfNr(fibonacciArray);
+           
 
         }
     }
