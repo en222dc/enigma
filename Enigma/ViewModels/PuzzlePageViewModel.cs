@@ -1,30 +1,43 @@
 ﻿using Enigma.Converters;
 using Enigma.GameLogic;
 using Enigma.Models;
-using Enigma.ViewModels.Commands;
 using Enigma.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Enigma.ViewModels
 {
     class PuzzlePageViewModel: INotifyPropertyChanged
     {
-        
+        #region Properties
         public ObservableCollection<int> Fibonacci { get; set; } = new ObservableCollection<int>();
-        public ObservableCollection<IGameLogic> listOfPuzzles { get; set; } = new ObservableCollection<IGameLogic>();
+        public ObservableCollection<IGameLogic> listOfPuzzles { get; set; } = new ObservableCollection<IGameLogic>();    //Används inte till något för tillfället, kan vara bra att ha ifall vi vill ha flera pussel 
+        public Visibility LblInvisibleHintGetVisible { get; set; }
 
-        public GoToNextPuzzleCommand GoToNextPuzzleCommand { get; set; }
+        public string ButtonName { get; set; } = "Guess nr";
+        public string Guess4thNr { get; set; }
+        public string Guess5thNr { get; set; }
 
-       
+        #endregion
 
+        #region Commands
+
+        public ICommand GetNxtNrInSequenceCommand { get; set; }
+
+        public ICommand CheckIfGuessCorrectCommand { get; set; }
+
+        public ICommand ShowHintCommand { get; set; }
+
+        #endregion
 
         #region Konstruktor
         public PuzzlePageViewModel()
         {
+            LblInvisibleHintGetVisible = Visibility.Hidden;
             //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
             int[] fibonacciArray = new int[5];
             IGameLogic fibonacci = new Fibonacci();            
@@ -39,91 +52,15 @@ namespace Enigma.ViewModels
 
             listOfPuzzles.Add(fibonacci);
 
-            GetNxtNrInSequenceCommand = new RelayCommand(GetNxtNrInSequence);
+           // GetNxtNrInSequenceCommand = new RelayCommand(GetNxtNrInSequence); Används inte för tillfället (Har dock sparat metoden för den ifall vi vill använda oss av den senare.
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            ShowHintCommand = new RelayCommand(ShowHint);
            
 
         }
         #endregion
-        
-        #region Gränssnitt för att visa Fibonacci-sekvensen
-       
-        #region Variabler och propertys
-       
-        int count = 0; // Variabel för att hålla räkningen på vilket fack i Fibonacci-sekvensen som värdet ska hämtas ifrån
-       
-        private string _firstHelp; //Variabel för att kunna föra in värdet från en array i propertyn "FirstHelp"
-        public string FirstHelp
-        {
-            get { return _firstHelp; }
-            set
-            {                
-                _firstHelp = value;
-                              
-            }
-        } //Hämtar den 2:a siffran i NummerSekvensen.
-                
-        private string _secondHelp; //Variabel för att kunna föra in värdet från en array i propertyn "SecondHelp"
-        public string SecondHelp
-        {
-            get { return _secondHelp; }
-            set
-            {
-                _secondHelp = value;
-                
-            }
-        } //Hämtar den 3:e siffran i NummerSekvensen.
 
-        private bool _isCorrect;
-
-        public bool IsCorrect { get; set; } = false;
-       
-       
-
-        #endregion
-
-        
-
-        public ICommand GetNxtNrInSequenceCommand { get; set; }
-
-        public ICommand CheckIfGuessCorrectCommand { get; set; }
-        
-        public void GetNxtNrInSequence()
-        {            
-              count++; // Variabel för att veta filket fack koden ska hämta ifrån i "Fibonacci"-arrayen.
-            if (count==1)
-            {
-              FirstHelp =  Fibonacci[count].ToString();
-            }
-            if (count==2)
-            {
-                SecondHelp= Fibonacci[count].ToString();
-            }
-           
-        }
-
-
-
-        #endregion
-
-        #region  Kollar ifall det gissade svaret av användaren är rätt eller fel och presenterar deti gränssnittet
-
-        
-
-        private string _buttonName = "Solve Puzzle";
-        public string ButtonName { get; set; } = "Guess nr";
-                
-
-
-        private string _guess4thNr;
-        public string Guess4thNr { get; set; }
-        
-
-        private string _guess5thNr;
-        public string Guess5thNr { get; set; }
-       
-
-       
+        #region Metoder
 
         public void CheckIfGuessCorrect()
         {
@@ -135,9 +72,32 @@ namespace Enigma.ViewModels
 
         }
 
-       
+        public void ShowHint()
+        {
+            if (LblInvisibleHintGetVisible==Visibility.Visible)
+            {
+                LblInvisibleHintGetVisible = Visibility.Hidden;
+            }
+            else  LblInvisibleHintGetVisible = Visibility.Visible;
+
+        }
+
+        //public void GetNxtNrInSequence()
+        //    {            
+        //          count++; // Variabel för att veta filket fack koden ska hämta ifrån i "Fibonacci"-arrayen.
+        //        if (count==1)
+        //        {
+        //          FirstHelp =  Fibonacci[count].ToString();
+        //        }
+        //        if (count==2)
+        //        {
+        //            SecondHelp= Fibonacci[count].ToString();
+        //        }
+
+        //    } // Den här metoden används inte för tillfället
 
         #endregion
+
 
 
 

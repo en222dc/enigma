@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -9,10 +10,23 @@ namespace Enigma.Converters
 {
     class BoolToColorConverter : IValueConverter
     {
+       
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-           
-
+            //if (value==null)
+            //{
+            //    return false;
+            //}
+            //if (!string.IsNullOrEmpty(value.ToString()))
+            //{
+            //    return true;
+            //}
+            //else return false;
+            
+            if (value==null)
+            {
+                return null;
+            }
             if ((bool)value)
             {
                 return new SolidColorBrush(Colors.Green);
@@ -33,6 +47,7 @@ namespace Enigma.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+           
             throw new NotImplementedException();
         }
     }

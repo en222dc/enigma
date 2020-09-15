@@ -12,7 +12,7 @@
       Title="PuzzlePage">
     <Page.Resources>
         <vm:PuzzlePageViewModel x:Key="PuzzlePageViewModel"/>
-        <models:Fibonacci x:Key="FibonacciProperty"/>
+        <models:Fibonacci x:Key="FibonacciProperty"/>        
         <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         
@@ -40,12 +40,17 @@
                    FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />           
             <Label Grid.Row="1" Grid.ColumnSpan="4" 
                    VerticalAlignment="Top" HorizontalAlignment="Center" 
-                   Content="{Binding Fibonacci, Source={StaticResource PuzzlePageViewModel}}" 
+                    
                    FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal"                 
                    />
             <Label Grid.Row="1" Grid.ColumnSpan="4"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    Content="Time elapsed: 01:45"
+                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
+            <Label Grid.Row="5" Grid.ColumnSpan="4"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="{Binding Hint, Source={StaticResource FibonacciProperty}}"
+                   Visibility="{Binding LblInvisibleHintGetVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <TextBox x:Name="txtSequenceAnswer1"
                      Grid.Row="2" Grid.Column="0"
@@ -67,15 +72,20 @@
                      Width="80"
                      Height="40" 
                      Text="{Binding Fibonacci[2]}"
+                     
                      FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold" IsEnabled="False"/>
             <TextBox x:Name="txtSequenceAnswer4"
-                     Text="{Binding Guess4thNr}"                     
+                     Text="{Binding Guess4thNr}"  
+                     
                      Grid.Row="2" Grid.Column="2"
                      VerticalAlignment="Center" HorizontalAlignment="Right"
                      Width="80"
                      Height="40"                      
                      FontSize="40" Foreground="Black" FontFamily="Times New Roman" 
-                     Background="{Binding IsCorrect, Converter={StaticResource BoolToColorConverter}}" FontWeight="Bold"/>
+                 
+                     Background="{Binding IsCorrect, Converter={StaticResource BoolToColorConverter}, Source={StaticResource PuzzlePageViewModel}}" FontWeight="Bold"
+                     />
+           
             <TextBox x:Name="txtSequenceAnswer5"
                      Grid.Row="2" Grid.Column="4"
                      VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -94,6 +104,7 @@
                     VerticalAlignment="Center" HorizontalAlignment="Center"
                     Height="40"
                     Width="200"
+                    
                     Content="{Binding ButtonName}"
                    Command="{Binding CheckIfGuessCorrectCommand}"
                     Background="#FF48CB73"
@@ -106,6 +117,23 @@
 
             </Button>
 
+            <Button x:Name="btnShowHint"
+                    Grid.Row="4" Grid.Column="0"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Height="40"
+                    Width="200"
+                    Content="Show Hint (+60sec)"
+                    Command="{Binding ShowHintCommand}"
+                    Background="#FF48CB73"
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+            
             <Button x:Name="btnSNyttNr"
                     Grid.Row="4" Grid.Column="4"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
