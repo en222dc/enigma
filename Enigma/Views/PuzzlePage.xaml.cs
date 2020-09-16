@@ -1,5 +1,6 @@
 ﻿using Enigma.Models;
 using Enigma.ViewModels;
+using Enigma.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Enigma.Views
     /// Interaction logic for PuzzlePage.xaml
     /// </summary>
     public partial class PuzzlePage : Page
+
     {
         public PuzzlePage()
         {
@@ -28,6 +30,12 @@ namespace Enigma.Views
 
         }
 
-       
+        public PuzzlePage(BaseViewModel PuzzelPageViewModel)
+        {
+            InitializeComponent();
+            DataContext = PuzzelPageViewModel;
+        }
+
+
     }
 }

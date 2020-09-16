@@ -30,7 +30,8 @@ namespace Enigma.ViewModels
         private DispatcherTimer dispatcherTimer = null;
 
         public string _timeLapse;
-     
+        private PuzzlePageViewModel model;
+
         #endregion
 
         #region Commands
@@ -68,11 +69,24 @@ namespace Enigma.ViewModels
             Time();
 
         }
+
+
+
+        public String KillerName { get; set; }
+        public PuzzlePageViewModel(List<Suspect> killer)
+        {
+
+            KillerName = killer[0].Name;
+        }
+
+      
+
+
         #endregion
 
         #region Metoder
 
-        
+
         public void CheckIfGuessCorrect()
         {
             if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr == Fibonacci[4].ToString())

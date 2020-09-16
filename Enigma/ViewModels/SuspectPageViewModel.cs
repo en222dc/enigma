@@ -25,6 +25,15 @@ namespace Enigma.ViewModels
             PlayGameCommand = new RelayCommand(GoToPageCommand);
         }
 
+        
+        public void ChangePage()
+        {
+            var model = new PuzzlePageViewModel(Killer);
+            //var page = new PuzzlePageViewModel(model);
+            NavigationService.Navigate(model);
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void GoToPageCommand()
