@@ -29,6 +29,7 @@ namespace Enigma.Models
         {
             return $"{Player_name}      {Time}";
         }
+
     }
 }
 
