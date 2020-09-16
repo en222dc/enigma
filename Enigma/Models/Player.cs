@@ -8,6 +8,7 @@ namespace Enigma.Models
     {
         public int Player_id { get; set; }
         public string Player_name { get; set; }
+        //public int NumberOfGames { get; set; }
 
 
         public Player(string playerName)
@@ -22,7 +23,7 @@ namespace Enigma.Models
 
         public override string ToString()
         {
-            return Player_name;
+            return $"{Player_name}";
         }
     }
 }

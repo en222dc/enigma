@@ -1,4 +1,5 @@
-﻿using Enigma.ViewModels;
+﻿using Enigma.Models.Repositories;
+using Enigma.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,12 +23,9 @@ namespace Enigma.Views
         public PickPlayer()
         {
             InitializeComponent();
-            DataContext = new PickPlayerViewModel();
-        }
+            DataContext = new StartPageViewModel();
 
-        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
+            lstAllPlayers.ItemsSource = Repository.GetAllPlayers();
         }
     }
 }
