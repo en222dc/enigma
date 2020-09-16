@@ -6,53 +6,31 @@
       xmlns:local="clr-namespace:Enigma.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="900"
-      Title="StartPage"  Background="#463A5F" 
-      >
+      Title="StartPage">
     <Grid>
-
-        <Button x:Name="btnPlayGame" Content="Play"  FontFamily="Bell MT" FontSize="20"  Command ="{Binding PlayGameCommand}"
-                    Grid.Row="4" Grid.Column="1" 
-                    VerticalAlignment="Top" HorizontalAlignment="Right"
-                    Height="50"
-                    Width="200" Background="#FF00D8CF">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-
-        <Button x:Name="btnNewPlayer" Content="New Player" FontFamily="Bell MT" FontSize="20"
-                    Grid.Row="4" Grid.Column ="1"
-                    VerticalAlignment="Top" HorizontalAlignment="Left"
-                    Height="50"
-                    Width="200" Background="#FF00D8CF">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-
-        <Label Content="Welcome to Engima Game" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Banschrift" Foreground="White" FontSize="27" Padding="30"/>
-        <Image Height ="400" Width="150"  VerticalAlignment="Center"  Grid.Column = "1" Grid.Row="0" Source=" /Assets/Images/EnigmaLogo.png"/>
-        
-
-            <Grid.RowDefinitions>
-
-            <RowDefinition Height="300"/>
-            <RowDefinition Height="100"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="500"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="200"/>
-
-        </Grid.ColumnDefinitions>
-
+        <Label Content="Welcome to Engima" 
+               HorizontalAlignment="Center" VerticalAlignment="Top" 
+               FontFamily="Castellar" Foreground="#5C0106" FontSize="40" FontWeight="Bold"
+               Padding="0 70 0 0"/>
+        <Button x:Name="btnPlayGame" Content="New Game"  
+                FontFamily="Bell MT" FontSize="35"  Foreground="White"
+                BorderBrush="#4E0106" BorderThickness="2"
+                Background="#5C0106"
+                Command ="{Binding PlayGameCommand}"
+                Grid.Row="1"
+                VerticalAlignment="Top" HorizontalAlignment="Center"
+                Height="60"
+                Width="300">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
-
 </Page>
