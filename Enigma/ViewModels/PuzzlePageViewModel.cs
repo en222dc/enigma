@@ -102,8 +102,6 @@ namespace Enigma.ViewModels
         #endregion
 
         private int totalSeconds = 0;
-
-
         private DispatcherTimer dispatcherTimer = null;
 
         // private string TimeLapse { get; set; }
@@ -134,8 +132,7 @@ namespace Enigma.ViewModels
         private void Timer_Tick2(object state, EventArgs e)
         {
             totalSeconds++;
-            //TimeLapse = string.Format("{0:hh\:mm\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
-            OnPropertyChanged();
+            TimeLapse = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
         }
 
         public void Hint15()
@@ -156,6 +153,7 @@ namespace Enigma.ViewModels
             var page = new SolvePuzzlePage(model);
             NavigationService.Navigate(page);
         }
+
 
 
     }

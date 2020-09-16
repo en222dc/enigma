@@ -1,4 +1,5 @@
-﻿using Enigma.ViewModels.Base;
+﻿using Enigma.Models;
+using Enigma.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,11 +11,17 @@ namespace Enigma.ViewModels
 {
     class SuspectsPageModel : BaseViewModel
     {
+        List<Suspect> ListOfSuspects = new List<Suspect>();
+        List<Suspect> Killer = new List<Suspect>();
 
         public ICommand PlayGameCommand { get; set; }
 
         public SuspectsPageModel()
         {
+            GetSuspects getSuspects = new GetSuspects();
+            getSuspects.GetAllSuspects(ListOfSuspects);
+            KillerCreation killerCreation = new KillerCreation();
+            killerCreation.GetKiller(ListOfSuspects, Killer);
             PlayGameCommand = new RelayCommand(GoToPageCommand);
         }
 
