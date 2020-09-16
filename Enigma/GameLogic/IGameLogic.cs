@@ -10,6 +10,6 @@ namespace Enigma.GameLogic
 
         public void GenerateRandomNr(int[]anyArray);
 
-        public int[] GetRestOfNr(int[]anyArray);
+        public int[] GetRestOfNrInSequence(int[]anyArray);
     }
 }
