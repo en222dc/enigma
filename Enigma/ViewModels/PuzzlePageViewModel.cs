@@ -106,7 +106,7 @@ namespace Enigma.ViewModels
 
         private DispatcherTimer dispatcherTimer = null;
 
-        // private string TimeLapse { get; set; }
+       // private string TimeLapse { get; set; }
 
 
         private string _timeLapse;
@@ -134,7 +134,7 @@ namespace Enigma.ViewModels
         private void Timer_Tick2(object state, EventArgs e)
         {
             totalSeconds++;
-            //TimeLapse = string.Format("{0:hh\:mm\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
+            TimeLapse = string.Format(@"{0:hh\:mm\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
             OnPropertyChanged();
         }
 
