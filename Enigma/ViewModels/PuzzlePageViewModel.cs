@@ -25,6 +25,12 @@ namespace Enigma.ViewModels
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
 
+        private int totalSeconds = 0;
+
+        private DispatcherTimer dispatcherTimer = null;
+
+        public string _timeLapse;
+     
         #endregion
 
         #region Commands
@@ -72,6 +78,7 @@ namespace Enigma.ViewModels
             if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr == Fibonacci[4].ToString())
             {
                 ButtonName = "Go To The Next Puzzle!";
+                CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
             }
             else ButtonName = "Wrong, guess again!";
 
@@ -88,12 +95,18 @@ namespace Enigma.ViewModels
 
         }
 
+        public void ChangePage()
+        {
+            var model = new SolvePuzzlePageViewModel(totalSeconds);
+            var page = new SolvePuzzlePage(model);
+            NavigationService.Navigate(page);
+        }
+
 
         #endregion
 
-        private int totalSeconds = 0;
-        private DispatcherTimer dispatcherTimer = null;
-        private string _timeLapse;
+        #region Time
+
         public string TimeLapse
         {
             get { return _timeLapse; }
@@ -103,7 +116,6 @@ namespace Enigma.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         public void Time()
         {
@@ -132,14 +144,9 @@ namespace Enigma.ViewModels
 
             return totalSeconds;
         }
-      
+#endregion
 
-        public void ChangePage()
-        {
-            var model = new SolvePuzzlePageViewModel(totalSeconds);
-            var page = new SolvePuzzlePage(model);
-            NavigationService.Navigate(page);
-        }
+      
 
 
 

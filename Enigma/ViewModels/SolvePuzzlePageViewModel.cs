@@ -27,11 +27,8 @@ namespace Enigma.ViewModels
             
             
        private int totalSeconds = 0;
-        private DispatcherTimer dispatcherTimer = null;
-
-    // private string TimeLapse2 { set; get; }
-
-
+       private DispatcherTimer dispatcherTimer = null;
+ 
         private string _timeLapse2;
         public string TimeLapse2
         {
