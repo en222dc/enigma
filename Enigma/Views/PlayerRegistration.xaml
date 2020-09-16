@@ -23,7 +23,7 @@
                     Grid.Row="4" Grid.Column="1"
                     VerticalAlignment="Top" HorizontalAlignment="Center"
                     Height="60"
-                    Width="250" Background="#FF00D8CF" Click="btnAddPlayer_Click">
+                    Width="250" Background="#FF00D8CF" >
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="20"/>

@@ -30,9 +30,9 @@
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
                    Content="Solve the last puzzle!"/>
-            <Label Grid.Row="1" Grid.ColumnSpan="8"
+            <Label Grid.Row="1" Grid.ColumnSpan="8" 
                    VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Content="Time elapsed: 01:45"
+                   Content="{Binding TimeLapse2}"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="2"
                    Source="\Assets\Images\crackTheCode.png" 
@@ -83,13 +83,13 @@
                      Height="40"
                      Margin="5"/>
             <Button x:Name="btnShowSuspects"
-                    Grid.Row="4" Grid.ColumnSpan="8"
-                    VerticalAlignment="Top" HorizontalAlignment="Center"
+                    Grid.Row="4" Grid.ColumnSpan="2"
+                    VerticalAlignment="Top" HorizontalAlignment="Left"
                     Height="40"
                     Width="200"
                     Content="Show Suspects!"
                     Background="#FF48CB73"
-                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Click="btnShowSuspects_Click" >
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Grid.Column="3" >
 
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

@@ -15,14 +15,14 @@ namespace Enigma.ViewModels
 
         public BackStoryViewModel()
         {
-            GoToPageCommand = new RelayCommand(GoToPage);
+            GoToPageCommand = new RelayCommand(GoToPuzzlePage);
         }
 
 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void GoToPage()
+        public void GoToPuzzlePage()
 
         {  
             var model = new PuzzlePageViewModel();

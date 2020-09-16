@@ -25,11 +25,7 @@ namespace Enigma.ViewModels
          }
 
         
-        public BackStory(BackStoryViewModel backStoryViewModel) 
-        {
-            InitializeComponent();
-           
-        }
+      
         
    
     }

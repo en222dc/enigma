@@ -8,53 +8,53 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 
 namespace Enigma.ViewModels
 {
+
     public class StartPageViewModel : BaseViewModel
     {
 
-        /*
-        private string buttonName;
-        
-        public string ButtonName
-        {
-            get { return buttonName; }
-            set 
-            {
-                buttonName = value;
-                OnPropertyChanged();
-            }
-        }
-        */
-        
-        public ICommand PlayGameCommand { get; set;} 
+        public string ButtonName { get; set; } = "Play Game";
+
+
+
+        public ICommand PlayGameCommand { get; set;}
+        public ICommand CreatePlayerCommand { get; set; }
 
         public StartPageViewModel()
         {
-            PlayGameCommand = new RelayCommand(GoToPage);
+            PlayGameCommand = new RelayCommand(GoToPickPlayerPage);
+            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);
+
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+       // public event PropertyChangedEventHandler PropertyChanged;
 
-        public void GoToPage()
+        public void GoToPickPlayerPage()
 
         {
-              
-            var model = new BackStoryViewModel();
-            var page = new BackStory(model);
+            var model = new PuzzlePageViewModel();
+            var page = new PuzzlePage();
             NavigationService.Navigate(page);
-
-         
              
         }
+
+        public void GoToCreatePlayerPage()
+        {
+            var model = new PlayerRegistrationViewModel();
+            var page = new PlayerRegistration();
+            NavigationService.Navigate(page);
+        }
+
+
+        /*
         protected void OnPropertyChanged ([CallerMemberName] string name = null)
         {
-            
-           
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
            
         }
-
+        */
         }
 }

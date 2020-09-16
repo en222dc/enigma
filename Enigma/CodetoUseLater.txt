@@ -1,4 +1,0 @@
-﻿
-
-Koden under kan brukest til btnplay i 
-** Content="{Binding ButtonName, FallbackValue= Play Game!}" Command="{Binding PlayGameCommand}" 
