@@ -15,21 +15,11 @@ namespace Enigma.ViewModels
 
     public class StartPageViewModel : BaseViewModel
     {
-  
-        private string buttonName;
-        
-        public string ButtonName
-        {
-            get { return buttonName; }
-            set 
-            {
-                buttonName = value;
-                OnPropertyChanged();
-            }
-        }
 
-  
-        
+        public string ButtonName { get; set; } = "Play Game";
+
+
+
         public ICommand PlayGameCommand { get; set;}
         public ICommand CreatePlayerCommand { get; set; }
 
@@ -40,7 +30,7 @@ namespace Enigma.ViewModels
 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+       // public event PropertyChangedEventHandler PropertyChanged;
 
         public void GoToPickPlayerPage()
 
@@ -57,11 +47,14 @@ namespace Enigma.ViewModels
             var page = new PlayerRegistration();
             NavigationService.Navigate(page);
         }
+
+
+        /*
         protected void OnPropertyChanged ([CallerMemberName] string name = null)
         {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
            
         }
-
+        */
         }
 }

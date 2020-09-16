@@ -82,13 +82,13 @@
                      Height="40"
                      Margin="5"/>
             <Button x:Name="btnShowSuspects"
-                    Grid.Row="4" Grid.ColumnSpan="8"
-                    VerticalAlignment="Top" HorizontalAlignment="Center"
+                    Grid.Row="4" Grid.ColumnSpan="2"
+                    VerticalAlignment="Top" HorizontalAlignment="Left"
                     Height="40"
                     Width="200"
                     Content="Show Suspects!"
                     Background="#FF48CB73"
-                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Click="btnShowSuspects_Click" >
+                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Grid.Column="3" >
 
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

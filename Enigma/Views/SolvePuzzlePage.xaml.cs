@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Enigma.ViewModels;
+using Enigma.ViewModels.Base;
+using Enigma.Views.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,11 +24,18 @@ namespace Enigma.Views
         public SolvePuzzlePage()
         {
             InitializeComponent();
+         //   DataContext = new SolvePuzzelPageViewModel();
         }
 
-        private void btnShowSuspects_Click(object sender, RoutedEventArgs e)
+        public SolvePuzzlePage(BaseViewModel SolvePuzzelPageViewModel)
         {
-            NavigationService.Navigate(new Uri("/Views/SuspectsPage.xaml", UriKind.Relative));
+            InitializeComponent();
+            DataContext = SolvePuzzelPageViewModel;
         }
+
+
+
+
+
     }
 }

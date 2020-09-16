@@ -19,14 +19,13 @@ namespace Enigma.ViewModels
     class SolvePuzzelPageViewModel : BaseViewModel
     {
 
-
-        /*private int totalSeconds = 0;
-
-
+        private int totalSeconds = 0;
         private DispatcherTimer dispatcherTimer = null;
 
+        // private string TimeLapse2 { set; get; }
 
-        string _timeLapse2;
+
+        private string _timeLapse2;
         public string TimeLapse2
         {
             get { return _timeLapse2; }
@@ -54,15 +53,22 @@ namespace Enigma.ViewModels
             TimeLapse2 = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;  
-
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        public SolvePuzzelPageViewModel( int total)
         {
-
-
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            totalSeconds = total;
+            Time();
+           
 
         }
-    }*/
+
+        public SolvePuzzelPageViewModel()
+        {
+           
+
+
+        }
+
+
     }
-}
+    }
+

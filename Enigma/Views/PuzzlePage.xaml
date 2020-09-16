@@ -73,7 +73,7 @@
                      MinWidth="310"
                      Height="40" />
             <Button x:Name="btnSolvePuzzle"
-                    Grid.Row="4" Grid.ColumnSpan="4" Command="{Binding SolvedPuzzle}"
+                    Grid.Row="4" Grid.ColumnSpan="4" Command="{Binding SolvedPuzzel}"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
                     Height="40"
                     Width="200"

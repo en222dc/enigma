@@ -11,20 +11,24 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Channels;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using System.Windows.Threading;
 
 namespace Enigma.ViewModels
 {
-    class PuzzlePageViewModel: INotifyPropertyChanged // Shows no timer if it inherent from BaseViewModel??
+    class PuzzlePageViewModel: BaseViewModel // Shows no timer if it inherent from BaseViewModel??
     {
         private int totalSeconds = 0;
      
 
         private DispatcherTimer dispatcherTimer = null;
 
-             
-        string _timeLapse;
+      // private string TimeLapse { get; set; }
+
+          
+      private string _timeLapse;
         public string TimeLapse
         {
             get { return _timeLapse; }
@@ -33,8 +37,8 @@ namespace Enigma.ViewModels
                 _timeLapse = value;
                 OnPropertyChanged();
             }
-        }        
-
+        }
+     
 
         public void Time()
         {
@@ -50,20 +54,18 @@ namespace Enigma.ViewModels
         {
             totalSeconds++;
             TimeLapse = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
+            OnPropertyChanged();
         }
 
         public void Hint15()
-        {
-          
-                totalSeconds = +totalSeconds + 15;
-             
-        
+        {  
+                totalSeconds+=15;
         }
 
         public int getTimeElapsed()
         {
-
-            return 1;
+          
+            return totalSeconds;
         }
 
 
@@ -72,9 +74,9 @@ namespace Enigma.ViewModels
 
         public void ChangePage()
         {
-            var model = new SolvePuzzelPageViewModel();
-            var page = new SolvePuzzlePage();
-          //  NavigationService.Navigate(page);
+            var model = new SolvePuzzelPageViewModel(totalSeconds);
+            var page = new SolvePuzzlePage(model);
+            NavigationService.Navigate(page);
         }
 
    
@@ -121,10 +123,10 @@ namespace Enigma.ViewModels
             {
             Fibonacci.Add(position);
             }
-
+            Time();
             GetNbrsCommand = new RelayCommand(GetNbr);
             SolvedPuzzel = new RelayCommand(ChangePage);
-            Time();
+           
 
 
           
@@ -137,7 +139,7 @@ namespace Enigma.ViewModels
 
         public ICommand GetNbrsCommand { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+     
 
         public void GetNbr()
         {
@@ -158,15 +160,8 @@ namespace Enigma.ViewModels
            
            
         }
+        
+        
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-
-
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        }
-
-        //public GetN
     }
 }
