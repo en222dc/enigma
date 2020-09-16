@@ -61,12 +61,7 @@ namespace Enigma.ViewModels
 
         }
 
-        public SolvePuzzelPageViewModel()
-        {
-           
-
-
-        }
+       
 
 
     }

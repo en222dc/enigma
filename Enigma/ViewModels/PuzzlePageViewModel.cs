@@ -79,6 +79,7 @@ namespace Enigma.ViewModels
             NavigationService.Navigate(page);
         }
 
+
    
 
 
@@ -123,15 +124,14 @@ namespace Enigma.ViewModels
             {
             Fibonacci.Add(position);
             }
-            Time();
             GetNbrsCommand = new RelayCommand(GetNbr);
             SolvedPuzzel = new RelayCommand(ChangePage);
+            Time();
            
 
 
-          
-         
-        }
+           }
+
 
 
       
@@ -160,6 +160,8 @@ namespace Enigma.ViewModels
            
            
         }
+
+
         
         
 

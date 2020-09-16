@@ -42,12 +42,12 @@ namespace Enigma
             
             
 
-            var highscorePage = new HighScorePage();
+           // var highscorePage = new HighScorePage();
 
-            MainFrame.Content = highscorePage;
+           // MainFrame.Content = MainViewModel();
 
             //MainFrame.Content = new PuzzlePage();
-           // DataContext = new PuzzlePageViewModel();
+            DataContext = new MainViewModel();
 
             
 
