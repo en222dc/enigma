@@ -13,7 +13,7 @@
     <Page.Resources>
         <vm:PuzzlePageViewModel x:Key="PuzzlePageViewModel"/>
         <models:Fibonacci x:Key="FibonacciProperty"/>        
-        <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+      
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         
 
