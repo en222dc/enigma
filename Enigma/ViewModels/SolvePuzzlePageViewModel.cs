@@ -1,10 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using Enigma.Models;
 using System.ComponentModel;
+using Enigma.ViewModels.Base;
+using System.Windows.Threading;
+using System;
 
 namespace Enigma.ViewModels
 {
-    public class SolvePuzzlePageViewModel: INotifyPropertyChanged
+    public class SolvePuzzlePageViewModel : BaseViewModel
     {
         public ObservableCollection<char> SymbolArray { get; set; }
 
@@ -19,8 +22,52 @@ namespace Enigma.ViewModels
             {
                 SymbolArray.Add(symbol);
             }
+
+        }
+            
+            
+       private int totalSeconds = 0;
+        private DispatcherTimer dispatcherTimer = null;
+
+    // private string TimeLapse2 { set; get; }
+
+
+        private string _timeLapse2;
+        public string TimeLapse2
+        {
+            get { return _timeLapse2; }
+            set
+            {
+                _timeLapse2 = value;
+                OnPropertyChanged();
+            }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void Time()
+        {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Tick += new EventHandler(Timer_Tick2);
+            dispatcherTimer.Start();
+
+        }
+
+
+   
+     private void Timer_Tick2(object state, EventArgs e)
+        {
+            totalSeconds++;
+            TimeLapse2 = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
+        }
+
+        public SolvePuzzlePageViewModel(int total)
+        {
+            totalSeconds = total;
+            Time();
+
+
+        }
     }
-}
+
+    }

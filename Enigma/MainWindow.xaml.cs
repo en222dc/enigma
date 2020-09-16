@@ -33,20 +33,12 @@ namespace Enigma
           // DataContext = new MainViewModel();
 
             
-            var helpPage = new HelpAndRules();
+            var startpage = new StartPage();
             var menuPage = new MenuPage();
-            
-       
-            //MainFrame.Content =  helpPage;
+          
+            MainFrame.Content =  startpage;
             MenuFrame.Content =  menuPage;
             
-            
-
-           // var highscorePage = new HighScorePage();
-
-           // MainFrame.Content = MainViewModel();
-
-            //MainFrame.Content = new PuzzlePage();
             DataContext = new MainViewModel();
 
             

@@ -59,12 +59,14 @@ namespace Enigma.ViewModels
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
 
+            Time();
 
         }
         #endregion
 
         #region Metoder
 
+        
         public void CheckIfGuessCorrect()
         {
             if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr == Fibonacci[4].ToString())
@@ -80,35 +82,17 @@ namespace Enigma.ViewModels
             if (LblInvisibleHintGetVisible == Visibility.Visible)
             {
                 LblInvisibleHintGetVisible = Visibility.Hidden;
+                Hint60();
             }
             else LblInvisibleHintGetVisible = Visibility.Visible;
 
         }
 
-        //public void GetNxtNrInSequence()
-        //    {            
-        //          count++; // Variabel för att veta filket fack koden ska hämta ifrån i "Fibonacci"-arrayen.
-        //        if (count==1)
-        //        {
-        //          FirstHelp =  Fibonacci[count].ToString();
-        //        }
-        //        if (count==2)
-        //        {
-        //            SecondHelp= Fibonacci[count].ToString();
-        //        }
-
-        //    } // Den här metoden används inte för tillfället
 
         #endregion
 
         private int totalSeconds = 0;
-
-
         private DispatcherTimer dispatcherTimer = null;
-
-       // private string TimeLapse { get; set; }
-
-
         private string _timeLapse;
         public string TimeLapse
         {
@@ -134,13 +118,13 @@ namespace Enigma.ViewModels
         private void Timer_Tick2(object state, EventArgs e)
         {
             totalSeconds++;
-            TimeLapse = string.Format(@"{0:hh\:mm\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
+            TimeLapse = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
             OnPropertyChanged();
         }
 
-        public void Hint15()
+        public void Hint60()
         {
-            totalSeconds += 15;
+            totalSeconds += 60;
         }
 
         public int getTimeElapsed()
@@ -148,14 +132,30 @@ namespace Enigma.ViewModels
 
             return totalSeconds;
         }
-        public ICommand SolvedPuzzel { get; set; }
+      
 
         public void ChangePage()
         {
-            var model = new SolvePuzzelPageViewModel(totalSeconds);
+            var model = new SolvePuzzlePageViewModel(totalSeconds);
             var page = new SolvePuzzlePage(model);
             NavigationService.Navigate(page);
         }
+
+
+
+        //public void GetNxtNrInSequence()
+        //    {            
+        //          count++; // Variabel för att veta filket fack koden ska hämta ifrån i "Fibonacci"-arrayen.
+        //        if (count==1)
+        //        {
+        //          FirstHelp =  Fibonacci[count].ToString();
+        //        }
+        //        if (count==2)
+        //        {
+        //            SecondHelp= Fibonacci[count].ToString();
+        //        }
+
+        //    } // Den här metoden används inte för tillfället
 
 
     }
