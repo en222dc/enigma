@@ -49,7 +49,7 @@
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <Label Grid.Row="5" Grid.ColumnSpan="4"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="{Binding Hint, Source={StaticResource FibonacciProperty}}"
+                   Content="{Binding Hint, Source={StaticResource FibonacciProperty}}"                 
                    Visibility="{Binding LblInvisibleHintGetVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <TextBox x:Name="txtSequenceAnswer1"
@@ -81,10 +81,8 @@
                      VerticalAlignment="Center" HorizontalAlignment="Right"
                      Width="80"
                      Height="40"                      
-                     FontSize="40" Foreground="Black" FontFamily="Times New Roman" 
-                 
-                     Background="{Binding IsCorrect, Converter={StaticResource BoolToColorConverter}, Source={StaticResource PuzzlePageViewModel}}" FontWeight="Bold"
-                     />
+                     FontSize="40" Foreground="Black" FontFamily="Times New Roman"                  
+                     FontWeight="Bold"/>
            
             <TextBox x:Name="txtSequenceAnswer5"
                      Grid.Row="2" Grid.Column="4"
