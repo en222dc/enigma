@@ -34,7 +34,7 @@ namespace Enigma.Models
             }
         }
 
-        public int[] GetRestOfNr(int[]anyArray)
+        public int[] GetRestOfNrInSequence(int[]anyArray)
         {
                 int haveValues = 2;
 
