@@ -11,9 +11,14 @@
     </Page.Background>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
         <Label Grid.Row="0" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="30" Foreground="DarkGray" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   FontSize="35" Foreground="#5F606B" FontFamily="Bahnschrift" FontWeight="Normal" 
                    Content="Oh, no! What happend here?"/>
         <TextBlock 
             Grid.Row="1" 
@@ -23,7 +28,7 @@ Will You be the player who finds the killer the fastest?"
             TextWrapping="WrapWithOverflow"  
             HorizontalAlignment="Center"  
             Margin="30" 
-            FontFamily="Banschrift"  Foreground="DarkGray" FontSize="27" />
+            FontFamily="Banschrift"  Foreground="#5F606B" FontSize="30" />
 
         <Button x:Name="btnLetsPaly" 
                 Content="Start the Game" 
@@ -31,7 +36,7 @@ Will You be the player who finds the killer the fastest?"
                 Margin="0 30"
                 Command= "{Binding GoToPageCommand}"
                 Grid.Row="2"
-                VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
                 Height="60"
                 Width="250" 
                 BorderBrush="#4E0106" BorderThickness="2"
@@ -43,13 +48,5 @@ Will You be the player who finds the killer the fastest?"
             </Button.Resources>
         </Button>
 
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="1*"/>
-
-        </Grid.RowDefinitions>
-        
     </Grid>
 </Page>

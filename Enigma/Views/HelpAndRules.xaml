@@ -7,62 +7,72 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HelpAndRules">
-
-    <Border Background="#463A5F">
-
-        <Grid>
+    <Page.Background>
+        <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
+    </Page.Background>
+    <Grid>
             <Grid.RowDefinitions>
-                
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                
-            </Grid.RowDefinitions>
-
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-
-
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.ColumnSpan="10"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="Help and Rules"
-                   FontSize="27" Foreground="White" FontFamily="Banschrift" FontWeight="Bold"/>
-
-            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" TextWrapping="Wrap"
-                   HorizontalAlignment="Center" VerticalAlignment="Top"
-                   Text= "At any time you can exit the game by pressing the Exit Game buttom in the top menu"
-                   FontSize="20" Foreground="White" FontFamily="Bell MT"/>
-
-            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" TextWrapping="Wrap"
-                   HorizontalAlignment="Center" VerticalAlignment="Top"
-                   Text="If this is your first time playing, create a new player by pressing the New Player Button and enter your desired player name, after your player is created the game begins."
-                   FontSize="20" Foreground="White" FontFamily="Bell MT"/>
-
-            <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="6" TextWrapping="Wrap"
-                   HorizontalAlignment="Left" VerticalAlignment="Top"
-                   Text="The goal of the game is to solve a series of puzzles sa fast as possible to unveil a symbol or hint. This hint or symbol will lead you to a killer out of 4 suspects which are displayed in the beginning of the game"
-                   FontSize="20" Foreground="White" FontFamily="Bell MT"/>
+            <Label Grid.Row="0" Grid.Column="1"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Content="Help and Rules"
+                FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
             
-            <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="6" TextWrapping="Wrap"
-                   HorizontalAlignment="Left" VerticalAlignment="Top"
-                   Text="If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 30 seconds to your time"
-                   FontSize="20" Foreground="White" FontFamily="Bell MT" />
-        </Grid>
-    
-        
-    </Border>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text= "At any time you can exit the game by pressing Exit in the menu"
+                           FontSize="20" Foreground="#5F606B" FontFamily="Bell MT"
+                           Padding="5" Margin="10 0 0 0"/>
 
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="If this is your first time playing, create a new player by pressing the New Player Button and enter your desired player name, after your player is created the game begins."
+                           FontSize="20" Foreground="#5F606B" FontFamily="Bell MT"
+                           Padding="5" Margin="10 0 0 0"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="The goal of the game is to solve a series of puzzles sa fast as possible to unveil a symbol or hint. This hint or symbol will lead you to a killer out of 4 suspects which are displayed in the beginning of the game"
+                           FontSize="20" Foreground="#5F606B" FontFamily="Bell MT"
+                           Padding="5" Margin="10 0 0 0"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Left" VerticalAlignment="Top"
+                           Text="If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add some seconds to your time."
+                           FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" 
+                           Padding="5" Margin="10 0 0 0"/>
+        </StackPanel>
+        <Button x:Name="btnBackToGame" 
+                Content="Back to the Game" 
+                Grid.Column="1" Grid.Row="2"
+                FontFamily="Bell MT" FontSize="30" Foreground="White"
+                Margin="0 30"
+                Command= "{Binding GoToPageCommand}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Height="60"
+                Width="250" 
+                BorderBrush="#4E0106" BorderThickness="2"
+                Background="#5C0106" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+            
+        </Grid>
 </Page>
