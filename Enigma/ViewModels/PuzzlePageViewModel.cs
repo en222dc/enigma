@@ -101,6 +101,7 @@ namespace Enigma.ViewModels
 
         #endregion
 
+        #region Timer
         private int totalSeconds = 0;
         private DispatcherTimer dispatcherTimer = null;
 
@@ -154,7 +155,7 @@ namespace Enigma.ViewModels
             NavigationService.Navigate(page);
         }
 
-
+        #endregion
 
     }
 }
