@@ -117,7 +117,7 @@ namespace Enigma.ViewModels
             int[] fibonacciArray = new int[5];
             IGameLogic fibonacci = new Fibonacci();
             fibonacci.GenerateRandomNr(fibonacciArray);
-            fibonacci.GetRestOfNr(fibonacciArray);
+            fibonacci.GetRestOfNrInSequence(fibonacciArray);
             
             foreach (var position in fibonacciArray)
             {
