@@ -37,14 +37,14 @@ namespace Enigma
             var menuPage = new MenuPage();
             
        
-            MainFrame.Content =  helpPage;
+            //MainFrame.Content =  helpPage;
             MenuFrame.Content =  menuPage;
             
             
 
-            //var highscorePage = new HighScorePage();
+            var highscorePage = new HighScorePage();
 
-            //MainFrame.Content = highscorePage;
+            MainFrame.Content = highscorePage;
 
             //MainFrame.Content = new PuzzlePage();
            // DataContext = new PuzzlePageViewModel();
