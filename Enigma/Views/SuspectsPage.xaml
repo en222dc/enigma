@@ -18,9 +18,9 @@
         </Grid.RowDefinitions>
         
         <Label Grid.Row="0"
-                   Content="These are your suspects:"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
+               Content="These are your suspects:"
+               VerticalAlignment="Center" HorizontalAlignment="Center"
+               FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
         
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -86,10 +86,10 @@
 
         <Button x:Name="btnGoToPuzzle"
                 Content="Go To Puzzle!"
-                FontFamily="Bell MT" FontSize="30" Foreground="White"
-                Margin="0 30"
                 Command= "{Binding GoToPageCommand}"
                 Grid.Row="2"
+                FontFamily="Bell MT" FontSize="30" Foreground="White"
+                Margin="0 30"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Height="60"
                 Width="250" 

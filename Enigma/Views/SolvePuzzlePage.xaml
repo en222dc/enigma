@@ -7,96 +7,117 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SolvePuzzlePage">
-    <Border Background="#463A5F">
-        <Grid>
+    <Page.Background>
+        <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
+    </Page.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Solve the last puzzle!"
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
+        <Label x:Name="lblShowTime"
+                Grid.Row="1" Grid.Column="1" 
+                VerticalAlignment="Top" HorizontalAlignment="Center"
+                Content="{Binding TimeLapse2}"
+                FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" />
+        <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="auto" />
-                <RowDefinition />
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.ColumnSpan="8" 
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
-                   Content="Solve the last puzzle!"/>
-            <Label Grid.Row="1" Grid.ColumnSpan="8" 
-                   VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Content="{Binding TimeLapse2}"
-                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
-            <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="2"
-                   Source="\Assets\Images\crackTheCode.png" 
-                   Stretch="Uniform">
-                <Image.LayoutTransform>
-                    <RotateTransform CenterX="25" CenterY="25" Angle="15" />
-                </Image.LayoutTransform>
-            </Image>
             <Label x:Name="lblFirstSymbol" 
-                   Grid.Row="2" Grid.Column="2" 
+                   Grid.Row="0" Grid.Column="0" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal"
-                   Content="{Binding SymbolArray[0]}"
-                   />
+                   FontSize="50" Foreground="#5F606B" FontFamily="Bahnschrift"
+                   Content="{Binding SymbolArray[0]}" />
             <Label x:Name="lblSecondSymbol" 
-                   Grid.Row="2" Grid.Column="3" 
+                   Grid.Row="0" Grid.Column="1" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   FontSize="50" Foreground="#5F606B" FontFamily="Bahnschrift" 
                    Content="{Binding SymbolArray[1]}"/>
             <Label x:Name="lblThirdSymbol" 
-                   Grid.Row="2" Grid.Column="4" 
+                   Grid.Row="0" Grid.Column="2" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   FontSize="50" Foreground="#5F606B" FontFamily="Bahnschrift" 
                    Content="{Binding SymbolArray[2]}"/>
             <Label x:Name="lblFourthSymbol" 
-                   Grid.Row="2" Grid.Column="5" 
+                   Grid.Row="0" Grid.Column="3" 
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="50" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
+                   FontSize="50" Foreground="#5F606B" FontFamily="Bahnschrift" 
                    Content = "{Binding SymbolArray[3]}"/>
-            <TextBox x:Name="txtFirstSymbol"
-                     Grid.Row="3" Grid.Column="2"
-                     VerticalAlignment="Top"
-                     Height="40"
-                     Margin="5"/>
-            <TextBox x:Name="txtSecondSymbol"
-                     Grid.Row="3" Grid.Column="3"
-                     VerticalAlignment="Top"
-                     Height="40"
-                     Margin="5"/>
-            <TextBox x:Name="txtThirdSymbol"
-                     Grid.Row="3" Grid.Column="4"
-                     VerticalAlignment="Top"
-                     Height="40"
-                     Margin="5"/>
-            <TextBox x:Name="txtFourthSymbol"
-                     Grid.Row="3" Grid.Column="5"
-                     VerticalAlignment="Top"
-                     Height="40"
-                     Margin="5"/>
-            <Button x:Name="btnShowSuspects"
-                    Grid.Row="4" Grid.ColumnSpan="2"
-                    VerticalAlignment="Top" HorizontalAlignment="Left"
-                    Height="40"
-                    Width="200"
-                    Content="Show Suspects!"
-                    Background="#FF48CB73"
-                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Grid.Column="3" >
 
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
+            <TextBox x:Name="txtFirstSymbol"
+                     Grid.Row="1" Grid.Column="0"
+                     VerticalAlignment="Top" HorizontalAlignment="Center"
+                     Margin="5"
+                     Height="40"
+                     Width="50"
+                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift" />
+            <TextBox x:Name="txtSecondSymbol"
+                     Grid.Row="1" Grid.Column="1"
+                     VerticalAlignment="Top" HorizontalAlignment="Center"
+                     Margin="5"
+                     Height="40"
+                     Width="50"
+                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="txtThirdSymbol"
+                     Grid.Row="1" Grid.Column="2"
+                     VerticalAlignment="Top" HorizontalAlignment="Center"
+                     Margin="5"
+                     Height="40"
+                     Width="50"
+                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift" />
+            <TextBox x:Name="txtFourthSymbol"
+                     Grid.Row="1" Grid.Column="3"
+                     VerticalAlignment="Top" HorizontalAlignment="Center"
+                     Margin="5"
+                     Height="40"
+                     Width="50"
+                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"/>
         </Grid>
-    </Border>
+
+        <Image  Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4"
+                Source="\Assets\Images\solvesheet.png" 
+                Stretch="Uniform" Margin="199,72,-18,11"
+                Visibility="Visible">
+            <Image.LayoutTransform>
+                <RotateTransform CenterX="25" CenterY="25" Angle="15" />
+            </Image.LayoutTransform>
+        </Image>
+
+        <Button x:Name="btnShowSuspects"
+                    Content="Show Suspects!"
+                    Grid.Row="3" Grid.Column="1"
+                    FontFamily="Bell MT" FontSize="30" Foreground="White"
+                Margin="0 30"
+                Command= "{Binding GoToPageCommand}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Height="60"
+                Width="250" 
+                BorderBrush="#4E0106" BorderThickness="2"
+                Background="#5C0106" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
 </Page>

@@ -12,6 +12,7 @@
     <None Remove="Assets\Images\image2.jpg" />
     <None Remove="Assets\Images\image3.jpg" />
     <None Remove="Assets\Images\image4.jpg" />
+    <None Remove="Assets\Images\solvesheet.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
     <Resource Include="Assets\Images\image2.jpg" />
     <Resource Include="Assets\Images\image3.jpg" />
     <Resource Include="Assets\Images\image4.jpg" />
+    <Resource Include="Assets\Images\solvesheet.png" />
   </ItemGroup>
 
 </Project>

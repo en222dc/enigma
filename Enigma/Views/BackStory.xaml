@@ -29,7 +29,7 @@ Will You be the player who finds the killer the fastest?"
             TextWrapping="WrapWithOverflow"  
             HorizontalAlignment="Center"  
             Margin="30" 
-            FontFamily="Banschrift"  Foreground="#5F606B" FontSize="30" />
+            FontFamily="Bell MT"  Foreground="#5F606B" FontSize="30" />
 
         <Button x:Name="btnLetsPaly" 
                 Content="Start the Game" 
