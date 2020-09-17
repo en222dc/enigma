@@ -10,20 +10,6 @@ namespace Enigma.ViewModels
     public class SolvePuzzlePageViewModel : BaseViewModel
     {
         public ObservableCollection<char> SymbolArray { get; set; }
-
-        public SolvePuzzlePageViewModel()
-        {
-            SymbolArray = new ObservableCollection<char>();
-            char[] symbolarray = new char[4];
-            IGameLogicSymbol symbols = new KillerTranslation();
-            symbols.TranslateKillerName(symbolarray);
-
-            foreach (char symbol in symbolarray)
-            {
-                SymbolArray.Add(symbol);
-            }
-
-        }
             
             
        private int totalSeconds = 0;
@@ -58,12 +44,25 @@ namespace Enigma.ViewModels
             TimeLapse2 = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
         }
 
+        public void KillerNameToArray ()
+        {
+            SymbolArray = new ObservableCollection<char>();
+            char[] symbolarray = new char[4];
+            IGameLogicSymbol symbols = new KillerTranslation();
+            symbols.TranslateKillerName(symbolarray);
+
+            foreach (char symbol in symbolarray)
+            {
+                SymbolArray.Add(symbol);
+            }
+
+        }
+
         public SolvePuzzlePageViewModel(int total)
         {
+            KillerNameToArray();
             totalSeconds = total;
             Time();
-
-
         }
     }
 
