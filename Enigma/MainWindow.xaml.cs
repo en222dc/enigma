@@ -30,10 +30,10 @@ namespace Enigma
 
             InitializeComponent();
 
-            var pickPlayer = new PickPlayer();
+            var startPage = new StartPage();
             var menuPage = new MenuPage();
 
-            MainFrame.Content = pickPlayer;
+            MainFrame.Content = startPage;
             MenuFrame.Content = menuPage;
 
             DataContext = new MainViewModel();
