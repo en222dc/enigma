@@ -44,14 +44,40 @@ namespace Enigma.ViewModels
 
         public ICommand CheckIfGuessCorrectCommand { get; set; }
 
-        public ICommand ShowHintCommand { get; set; }      
+        public ICommand ShowHintCommand { get; set; }
 
         #endregion
 
 
 
         #region Konstruktor
-                      
+
+        public PuzzlePageViewModel()
+        {
+
+            //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
+            int[] fibonacciArray = new int[5];
+            IGameLogic fibonacci = new Fibonacci();
+            fibonacci.GenerateRandomNr(fibonacciArray);
+            fibonacci.GetRestOfNrInSequence(fibonacciArray);
+
+
+            foreach (var position in fibonacciArray)
+            {
+                Fibonacci.Add(position);
+            }
+
+            listOfPuzzles.Add(fibonacci);
+            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            ShowHintCommand = new RelayCommand(ShowHint);
+
+
+            Time();
+         
+
+
+        }
+
         public PuzzlePageViewModel(char[] encryptKillerName)
         {
             
