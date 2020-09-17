@@ -29,23 +29,12 @@
                    BorderBrush="#5C0106"
                    Background="#5C0106"/>
             <Button Content="Exit" 
+                   Command="{Binding ExitGameCommand}"
                    Grid.Column="2" Grid.Row="0"
                    FontSize="20" 
                    BorderBrush="#5C0106"
                    Background="#5C0106" Foreground="White"/>
-
-
-
-
-
-
-
-
         </Grid>
     </Border>
-   
-
-
-
 
 </Page>
