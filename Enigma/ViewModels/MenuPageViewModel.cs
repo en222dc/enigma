@@ -9,10 +9,12 @@ namespace Enigma.ViewModels
     class MenuPageViewModel : BaseViewModel
     {
         public ICommand ExitGameCommand { get; set; }
+        public ICommand ChangeToHighScorePageCommand { get; set; }
 
         public MenuPageViewModel()
         {
             ExitGameCommand = new RelayCommand(ExitGame);
+            ChangeToHighScorePageCommand = new RelayCommand(ChangeToHighScorePage);
         }
 
 
@@ -21,6 +23,12 @@ namespace Enigma.ViewModels
         {
             var startpage = new StartPage();
             NavigationService.Navigate(startpage);
+        }
+
+        public void ChangeToHighScorePage()
+        {
+            var  highScorePage  = new HighScorePage();
+            NavigationService.Navigate(highScorePage);
         }
     }
 }
