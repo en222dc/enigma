@@ -45,7 +45,7 @@
                    />
             <Label Grid.Row="1" Grid.ColumnSpan="4"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Content="Time elapsed: 01:45"
+                   Content="{Binding TimeLapse}"
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <Label Grid.Row="5" Grid.ColumnSpan="4"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -97,9 +97,9 @@
                      VerticalAlignment="Center" HorizontalAlignment="Center"
                      MinWidth="310"
                      Height="40" />
-            <Button x:Name="btnSolvePuzzle"
+            <Button x:Name="btnSolvePuzzle" 
                     Grid.Row="4" Grid.ColumnSpan="4"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Height="40"
                     Width="200"
                     
