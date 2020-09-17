@@ -28,9 +28,9 @@ namespace Enigma.ViewModels
         
         public void ChangePage()
         {
-            var model = new PuzzlePageViewModel(Killer);
+           // var model = new PuzzlePageViewModel(Killer);
             //var page = new PuzzlePageViewModel(model);
-            NavigationService.Navigate(model);
+           // NavigationService.Navigate(model);
         }
 
 

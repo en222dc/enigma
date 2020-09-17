@@ -11,11 +11,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PuzzlePage">
     <Page.Resources>
-        
-        <models:Fibonacci x:Key="FibonacciProperty"/>        
-      
+        <vm:PuzzlePageViewModel x:Key="PuzzlePageViewModel"/>
+        <models:Fibonacci x:Key="FibonacciProperty"/>
+
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        
+
 
     </Page.Resources>
     <Border Background="#463A5F">
@@ -33,11 +33,11 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>            
+            </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.ColumnSpan="4" 
                    VerticalAlignment="Center" HorizontalAlignment="Center" 
                    Content="What is missing from the sequence?" 
-                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />           
+                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" />
             <Label Grid.Row="1" Grid.ColumnSpan="4" 
                    VerticalAlignment="Top" HorizontalAlignment="Center" 
                     
@@ -46,6 +46,12 @@
             <Label Grid.Row="1" Grid.ColumnSpan="4"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    Content="{Binding TimeLapse}"
+                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
+            <Label Grid.Row="3" Grid.ColumnSpan="4"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="{Binding Symbols}" 
+                   Visibility="{Binding LblInvisibleSymbolsGetVisible}"
+                  
                    FontSize="19" Foreground="White" FontFamily="Bell MT" />
             <Label Grid.Row="5" Grid.ColumnSpan="4"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -83,7 +89,7 @@
                      Height="40"                      
                      FontSize="40" Foreground="Black" FontFamily="Times New Roman"                  
                      FontWeight="Bold"/>
-           
+
             <TextBox x:Name="txtSequenceAnswer5"
                      Grid.Row="2" Grid.Column="4"
                      VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -91,13 +97,6 @@
                      Height="40" 
                      Text="{Binding Guess5thNr}"
                      FontSize="40" Foreground="Black" FontFamily="Times New Roman" FontWeight="Bold"/>
-
-            <TextBox x:Name="txtSequenceAnswer"   
-                     Text="{Binding KillerName}"
-                     Grid.Row="3" Grid.ColumnSpan="4"
-                     VerticalAlignment="Center" HorizontalAlignment="Center"
-                     MinWidth="310"
-                     Height="40" />
             <Button x:Name="btnSolvePuzzle" 
                     Grid.Row="4" Grid.ColumnSpan="4"
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
@@ -131,26 +130,9 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            
-            
-            <Button x:Name="btnSNyttNr"
-                    Grid.Row="4" Grid.Column="4"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Height="40"
-                    Width="200"
-                    Content="Avslöja ytterligare (+15sec)"
-                    Command="{Binding GetNxtNrInSequenceCommand}"
-                    Background="#FF48CB73"
-                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" >
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
 
 
-            
+
         </Grid>
     </Border>
 </Page>
