@@ -26,7 +26,7 @@ namespace Enigma.ViewModels
         public StartPageViewModel()
         {
             PlayGameCommand = new RelayCommand(GoToPickPlayerPage);
-            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);
+            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage); 
 
         }
 
@@ -35,8 +35,8 @@ namespace Enigma.ViewModels
         public void GoToPickPlayerPage()
 
         {
-            var model = new PuzzlePageViewModel();
-            var page = new PuzzlePage();
+            var model = new PlayerRegistrationViewModel();
+            var page = new PlayerRegistration();
             NavigationService.Navigate(page);
              
         }

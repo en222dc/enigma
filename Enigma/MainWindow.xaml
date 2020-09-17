@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Enigma"
         mc:Ignorable="d"
+        
         Title="MainWindow" WindowState="Maximized" ResizeMode="NoResize">
     <Window.Background>
         <ImageBrush ImageSource="\Assets\Images\bloodyKnife.jpg" Stretch="Fill"/>

@@ -7,61 +7,99 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SuspectsPage">
-    <Border Background="#463A5F">
+    <Page.Background>
+        <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
+    </Page.Background>
         <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.ColumnSpan="4" 
+        
+        <Label Grid.Row="0"
+                   Content="These are your suspects:"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="20" Foreground="White" FontFamily="Bahnschrift" FontWeight="Normal" 
-                   Content="These are your suspects:"/>
-            <Image Source="\Assets\Images\image1.jpg" Stretch="Uniform" Grid.Column="0" Grid.Row="1" Margin="5" />
-            <Image Source="\Assets\Images\image2.jpg" Stretch="Uniform" Grid.Column="1" Grid.Row="1" Margin="5" />
-            <Image Source="\Assets\Images\image3.jpg" Stretch="Uniform" Grid.Column="2" Grid.Row="1" Margin="5" />
-            <Image Source="\Assets\Images\image4.jpg" Stretch="Uniform" Grid.Column="3" Grid.Row="1" Margin="5" />
-            <Label x:Name="lblSuspect1" Grid.Row="2" Grid.Column="0"
-                   VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Content="Adam"
-                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
-            <Label x:Name="lblSuspect2" Grid.Row="2" Grid.Column="1"
-                   VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Content="Olga"
-                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
-            <Label x:Name="lblSuspect3" Grid.Row="2" Grid.Column="2"
-                   VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Content="Odam"
-                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
-            <Label x:Name="lblSuspect4" Grid.Row="2" Grid.Column="3"
-                   VerticalAlignment="Top" HorizontalAlignment="Center"
-                   Content="Dani"
-                   FontSize="19" Foreground="White" FontFamily="Bell MT" />
-            <Button x:Name="btnGoToPuzzle"
-                    Grid.Row="4" Grid.ColumnSpan="4"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Height="40"
-                    Width="200"
-                    Content="Go To Puzzle!"
-                    Background="#FF48CB73"
-                   FontSize="15" Foreground="White" FontFamily="Bell MT" FontWeight="Bold" Click="btnGoToPuzzle_Click" >
-
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="20"/>
-                    </Style>
-                </Button.Resources>
+                   FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnSuspectOne"
+                    Grid.Column="0"
+                    IsEnabled="False">
+                <Image Source="\Assets\Images\image1.jpg" 
+                       Stretch="Uniform" 
+                       Margin="5" />
             </Button>
-
-
+            <Button x:Name="btnSuspectTwo"
+                    Grid.Column="1"
+                    IsEnabled="False">
+                    <Image Source="\Assets\Images\image2.jpg" 
+                           Stretch="Uniform" 
+                           Margin="5" />
+            </Button>
+            <Button x:Name="btnSuspectThree"
+                    Grid.Column="2"
+                    IsEnabled="False">
+                <Image Source="\Assets\Images\image3.jpg" 
+                       Stretch="Uniform" 
+                       Margin="5" />
+            </Button>
+            <Button x:Name="btnSuspectFour"
+                    Grid.Column="3"
+                    IsEnabled="False">
+                <Image Source="\Assets\Images\image4.jpg" 
+                       Stretch="Uniform" 
+                       Margin="5" />
+            </Button>
+            
+            <Label x:Name="lblSuspect1" 
+                   Content="Adam"
+                   Grid.Row="1" Grid.Column="0"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="19" Foreground="#5F606B" FontFamily="Banschrift" />
+            <Label x:Name="lblSuspect2" 
+                   Content="Olga"
+                   Grid.Row="1" Grid.Column="1"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="19" Foreground="#5F606B" FontFamily="Banschrift" />
+            <Label x:Name="lblSuspect3" 
+                   Grid.Row="1" Grid.Column="2"
+                   Content="Odam"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="19" Foreground="#5F606B" FontFamily="Banschrift" />
+            <Label x:Name="lblSuspect4" 
+                   Grid.Row="1" Grid.Column="3"
+                   Content="Dani"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="19" Foreground="#5F606B" FontFamily="Banschrift" />
         </Grid>
-        </Border>
+
+        <Button x:Name="btnGoToPuzzle"
+                Content="Go To Puzzle!"
+                FontFamily="Bell MT" FontSize="30" Foreground="White"
+                Margin="0 30"
+                Command= "{Binding GoToPageCommand}"
+                Grid.Row="2"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                Height="60"
+                Width="250" 
+                BorderBrush="#4E0106" BorderThickness="2"
+                Background="#5C0106" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+            </Button>
+        </Grid>
 </Page>
