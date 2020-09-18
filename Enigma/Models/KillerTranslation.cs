@@ -8,7 +8,6 @@ namespace Enigma.Models
     {
         // Klassens syfte är att översätta mördarens namn till symboler. Använder sig av KillerCreation och SymbolAlphabet
 
-        KillerCreation killercreator = new KillerCreation();
 
         public char[] TranslateKillerName(string killerName, char[]encryptedKillerName) // Metod som översätter latinska alfabetet till nepaliska och sätter in symbolerna i min array
         {
@@ -30,6 +29,16 @@ namespace Enigma.Models
 
             return encryptedKillerName;
 
+        }
+
+        public string SymbolsToLetters (string killer)
+        {
+            foreach (KeyValuePair<char, char> pair in SymbolMap)
+            {
+                killer = killer.ToLower().Replace(pair.Key, pair.Value);
+            }
+
+            return killer;
         }
 
     }

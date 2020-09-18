@@ -26,8 +26,6 @@ namespace Enigma.Views
         {
             InitializeComponent();
             DataContext = new PuzzlePageViewModel();
-           
-
         }
 
         public PuzzlePage(BaseViewModel PuzzelPageViewModel)

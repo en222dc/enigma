@@ -41,7 +41,7 @@ namespace Enigma.ViewModels
         {
              var model = new BackStoryViewModel();
             var page = new BackStory();
-        NavigationService.Navigate(page);
+            NavigationService.Navigate(page);
 
 
 

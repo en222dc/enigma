@@ -184,7 +184,6 @@ namespace Enigma.ViewModels
 
         public int getTimeElapsed()
         {
-
             return totalSeconds;
         }
         #endregion

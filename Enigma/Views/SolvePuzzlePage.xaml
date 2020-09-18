@@ -26,11 +26,11 @@
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
             FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
-            <Label x:Name="lblGuessWrong"
+        <Label x:Name="lblGuessWrong"
                    Grid.Row="0" Grid.Column="1" 
                    VerticalAlignment="Bottom" HorizontalAlignment="Center" Padding="5"
                    FontSize="25" Foreground="Red" FontFamily="Bahnschrift"
-                   Content="YOU GUESSED WRONG"/>
+                   Content="{Binding Guess}"/>
         <Label x:Name="lblShowTime"
                 Grid.Row="1" Grid.Column="1" 
                 VerticalAlignment="Top" HorizontalAlignment="Center"
@@ -74,45 +74,58 @@
                      Margin="5"
                      Height="40"
                      Width="50"
-                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift" />
+                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"
+                     Text="{Binding Guess1stSymbol}"/>
             <TextBox x:Name="txtSecondSymbol"
                      Grid.Row="1" Grid.Column="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
                      Margin="5"
                      Height="40"
                      Width="50"
-                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"/>
+                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"
+                     Text="{Binding Guess2ndSymbol}"/>
+
             <TextBox x:Name="txtThirdSymbol"
                      Grid.Row="1" Grid.Column="2"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
                      Margin="5"
                      Height="40"
                      Width="50"
-                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift" />
+                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"
+                     Text="{Binding Guess3rdSymbol}"/>
             <TextBox x:Name="txtFourthSymbol"
                      Grid.Row="1" Grid.Column="3"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
                      Margin="5"
                      Height="40"
                      Width="50"
-                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"/>
+                     FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"
+                     Text="{Binding Guess4thSymbol}"/>
         </Grid>
 
         <Image  Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4"
                 Source="\Assets\Images\solvesheet.png" 
-                Stretch="Uniform" Margin="199,72,-18,11"
-                Visibility="Visible">
+                Stretch="Uniform" Margin="265,72,-85,11"
+                Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-15.715"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
             <Image.LayoutTransform>
                 <RotateTransform CenterX="25" CenterY="25" Angle="15" />
             </Image.LayoutTransform>
         </Image>
 
         <Button x:Name="btnShowSuspects"
-                    Content="Show Suspects!"
+                    Content="Solve Puzzle"
                     Grid.Row="3" Grid.Column="1"
                     FontFamily="Bell MT" FontSize="30" Foreground="White"
                 Margin="0 30"
-                Command= "{Binding GoToPageCommand}"
+                Command = "{Binding IsGuessCorrectCommand}"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Height="60"
                 Width="250" 
