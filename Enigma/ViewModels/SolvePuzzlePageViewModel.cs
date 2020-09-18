@@ -58,10 +58,10 @@ namespace Enigma.ViewModels
 
         }
 
-        public SolvePuzzlePageViewModel(int total)
+        public SolvePuzzlePageViewModel(int totalSecondsFromPuzzlePage) // Legg til liste her Christoffer ObservableCollection<char> symbols
         {
             KillerNameToArray();
-            totalSeconds = total;
+            totalSeconds = totalSecondsFromPuzzlePage;
             Time();
         }
     }
