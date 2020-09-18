@@ -22,10 +22,13 @@ namespace Enigma.ViewModels
         public HighScorePage()
         {
             InitializeComponent();
+            DataContext = new HighscoreViewModel();
 
-            lstBoHighscoreName.ItemsSource = Repository.GetHighscores();
+           // lstBoHighscoreName.ItemsSource = Repository.GetHighscores();
 
-            lstBoTopPlayer.ItemsSource = Repository.GetTopPlayers();
+          //  lstBoTopPlayer.ItemsSource = Repository.GetTopPlayers();
+
+
         }
     }
 }

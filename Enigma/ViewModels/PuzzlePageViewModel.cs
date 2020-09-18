@@ -25,11 +25,13 @@ namespace Enigma.ViewModels
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
 
+        public string TimeLapse { get; set; }
+
         private int totalSeconds = 0;
 
         private DispatcherTimer dispatcherTimer = null;
 
-        public string _timeLapse;
+       // public string _timeLapse;
      
         #endregion
 
@@ -65,6 +67,9 @@ namespace Enigma.ViewModels
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
 
+           // HighScoreTimer timer = new HighScoreTimer();
+           // timer.getTime(totalSeconds, TimeLapse);
+           
             Time();
 
         }
@@ -89,7 +94,7 @@ namespace Enigma.ViewModels
             if (LblInvisibleHintGetVisible == Visibility.Visible)
             {
                 LblInvisibleHintGetVisible = Visibility.Hidden;
-                Hint60();
+               Hint60();
             }
             else LblInvisibleHintGetVisible = Visibility.Visible;
 
@@ -107,15 +112,7 @@ namespace Enigma.ViewModels
 
         #region Time
 
-        public string TimeLapse
-        {
-            get { return _timeLapse; }
-            set
-            {
-                _timeLapse = value;
-                OnPropertyChanged();
-            }
-        }
+      
 
         public void Time()
         {
@@ -138,12 +135,7 @@ namespace Enigma.ViewModels
         {
             totalSeconds += 60;
         }
-
-        public int getTimeElapsed()
-        {
-
-            return totalSeconds;
-        }
+      
 #endregion
 
       
