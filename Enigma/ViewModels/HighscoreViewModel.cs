@@ -18,6 +18,8 @@ using System.Collections;
             < add x: Name = "ConnectionDatabase" connectionString="" providerName= "System.Data.SqlClient" >
   
           </ connectionStrings >
+
+OBS Lag gjerne teksten bli igjen fordi jeg kanskje trenger det til å lagre highscore
 */
 
 namespace Enigma.ViewModels
