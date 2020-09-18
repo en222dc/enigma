@@ -21,13 +21,6 @@ namespace Enigma.Views
     /// </summary>
     public partial class SolvePuzzlePage : Page
     {
-        public SolvePuzzlePage()
-        {
-            InitializeComponent();
-            DataContext = new SolvePuzzlePageViewModel();
-        }
-
-
         public SolvePuzzlePage(BaseViewModel SolvePuzzlePageViewModel)
         {
             InitializeComponent();

@@ -9,15 +9,14 @@ using Enigma.Views;
 
 namespace Enigma.ViewModels
 {
-    public class SolvePuzzlePageViewModel : BaseViewModel, INotifyPropertyChanged
+    public class SolvePuzzlePageViewModel : BaseViewModel
     {
        public ObservableCollection<char> SymbolArray { get; set; }
-        private string Killer { get; set; }
        private char[] LetterArray { get; set; }
-       public char Guess1stSymbol { get; set; }
-       public char Guess2ndSymbol { get; set; }
-       public char Guess3rdSymbol { get; set; }
-       public char Guess4thSymbol { get; set; }
+       public string Guess1stSymbol { get; set; }
+       public string Guess2ndSymbol { get; set; }
+       public string Guess3rdSymbol { get; set; }
+       public string Guess4thSymbol { get; set; }
        public string Guess { get; set; } 
 
        public ICommand IsGuessCorrectCommand { get; set; }
@@ -86,7 +85,7 @@ namespace Enigma.ViewModels
         private void IsGuessCorrect()
         {
 
-            if (Guess1stSymbol == LetterArray[0] && Guess2ndSymbol == LetterArray[1] && Guess3rdSymbol == LetterArray[2] && Guess4thSymbol == LetterArray[3])
+            if (Guess1stSymbol == LetterArray[0].ToString() && Guess2ndSymbol == LetterArray[1].ToString() && Guess3rdSymbol == LetterArray[2].ToString() && Guess4thSymbol == LetterArray[3].ToString())
             {
                 IsGuessCorrectCommand = new RelayCommand(GoToSuspectPage);
             }
@@ -99,31 +98,21 @@ namespace Enigma.ViewModels
         private void GoToSuspectPage ()
         {
             var model = new SuspectsPageModel();
-            var page = new SuspectsPage();
+            var page = new SuspectsPage(model);
             NavigationService.Navigate(page);
 
-        }
-
-        public SolvePuzzlePageViewModel()
-        {
-            SymbolsToArray(Killer);
-            GetLetterArray(Killer);
-            IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
-            Time();
         }
 
 
         public SolvePuzzlePageViewModel(int total, string killer)
         {
-            
             SymbolsToArray(killer);
             GetLetterArray(killer);
             totalSeconds = total;
-            killer = Killer;
+            IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,7 +19,7 @@ namespace Enigma.Views
     /// </summary>
     public partial class SuspectsPage : Page
     {
-        public SuspectsPage()
+        public SuspectsPage(BaseViewModel SuspectPageModel)
         {
             InitializeComponent();
         }
