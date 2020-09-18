@@ -44,12 +44,12 @@ namespace Enigma.ViewModels
             TimeLapse2 = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
         }
 
-        public void KillerNameToArray ()
+        public void KillerNameToArray (string killername)
         {
             SymbolArray = new ObservableCollection<char>();
             char[] symbolarray = new char[4];
             IGameLogicSymbol symbols = new KillerTranslation();
-            symbols.TranslateKillerName(symbolarray);
+            symbols.TranslateKillerName(killername, symbolarray);
 
             foreach (char symbol in symbolarray)
             {
@@ -58,9 +58,9 @@ namespace Enigma.ViewModels
 
         }
 
-        public SolvePuzzlePageViewModel(int total)
+        public SolvePuzzlePageViewModel(int total, string killername)
         {
-            KillerNameToArray();
+            KillerNameToArray(killername);
             totalSeconds = total;
             Time();
         }

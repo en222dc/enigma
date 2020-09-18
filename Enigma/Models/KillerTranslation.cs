@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Enigma.Models
 {
-    public class KillerTranslation: SymbolAlphabet
+    public class KillerTranslation: SymbolAlphabet, IGameLogicSymbol
     {
         // Klassens syfte är att översätta mördarens namn till symboler. Använder sig av KillerCreation och SymbolAlphabet
 
         KillerCreation killercreator = new KillerCreation();
 
-        public char[] TranslateKillerName(Dictionary<char, char>symbolArray, string killerName, char[]encryptedKillerName) // Metod som översätter latinska alfabetet till nepaliska och sätter in symbolerna i min array
+        public char[] TranslateKillerName(string killerName, char[]encryptedKillerName) // Metod som översätter latinska alfabetet till nepaliska och sätter in symbolerna i min array
         {
            
 

@@ -6,6 +6,6 @@ namespace Enigma
 {
     interface IGameLogicSymbol
     {
-        public char[] TranslateKillerName(char[] symbolArray);
+        public char[] TranslateKillerName(string killername, char[] symbolArray);
     }
 }

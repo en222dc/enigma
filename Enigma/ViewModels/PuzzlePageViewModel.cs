@@ -137,7 +137,7 @@ namespace Enigma.ViewModels
 
         private void ChangePage()
         {
-            var model = new SolvePuzzlePageViewModel(totalSeconds);
+            var model = new SolvePuzzlePageViewModel(totalSeconds, Symbols);
             var page = new SolvePuzzlePage(model);
             NavigationService.Navigate(page);
         }

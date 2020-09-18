@@ -42,13 +42,10 @@ namespace Enigma.ViewModels
             killerCreation.GetKiller(ListOfSuspects, Killer);
 
 
-            Dictionary<char, char> symbolMap = SymbolAlphabet.SymbolMap;
-          
-
 
             string killerName = Killer[0].Name;
             KillerTranslation killerTranslation = new KillerTranslation();
-            killerTranslation.TranslateKillerName(symbolMap, killerName, encryptKillerName);
+            killerTranslation.TranslateKillerName(killerName, encryptKillerName);
 
 
 
