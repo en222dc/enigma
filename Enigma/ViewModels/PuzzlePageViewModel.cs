@@ -19,20 +19,22 @@ namespace Enigma.ViewModels
         #region Properties
         public ObservableCollection<int> Fibonacci { get; set; } = new ObservableCollection<int>();
         public ObservableCollection<IGameLogic> listOfPuzzles { get; set; } = new ObservableCollection<IGameLogic>();    //Används inte till något för tillfället, kan vara bra att ha ifall vi vill ha flera pussel 
-        public Visibility LblInvisibleHintGetVisible { get; set; }
+        public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
+        public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
+       
 
         public string ButtonName { get; set; } = "Guess nr";
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
-
-        public string TimeLapse { get; set; }
+        public String Symbols { get; set; }
 
         private int totalSeconds = 0;
 
         private DispatcherTimer dispatcherTimer = null;
 
-       // public string _timeLapse;
-     
+        public string _timeLapse;
+      
+
         #endregion
 
         #region Commands
@@ -45,10 +47,13 @@ namespace Enigma.ViewModels
 
         #endregion
 
+
+
         #region Konstruktor
+
         public PuzzlePageViewModel()
         {
-            LblInvisibleHintGetVisible = Visibility.Hidden;
+
             //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
             int[] fibonacciArray = new int[5];
             IGameLogic fibonacci = new Fibonacci();
@@ -62,45 +67,75 @@ namespace Enigma.ViewModels
             }
 
             listOfPuzzles.Add(fibonacci);
-
-            // GetNxtNrInSequenceCommand = new RelayCommand(GetNxtNrInSequence); Används inte för tillfället (Har dock sparat metoden för den ifall vi vill använda oss av den senare.
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
 
-           // HighScoreTimer timer = new HighScoreTimer();
-           // timer.getTime(totalSeconds, TimeLapse);
-           
+
             Time();
+         
+
 
         }
+
+        public PuzzlePageViewModel(char[] encryptKillerName)
+        {
+            
+            //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
+            int[] fibonacciArray = new int[5];
+            IGameLogic fibonacci = new Fibonacci();
+            fibonacci.GenerateRandomNr(fibonacciArray);
+            fibonacci.GetRestOfNrInSequence(fibonacciArray);
+
+
+            foreach (var position in fibonacciArray)
+            {
+                Fibonacci.Add(position);
+            }
+
+            listOfPuzzles.Add(fibonacci); 
+            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            ShowHintCommand = new RelayCommand(ShowHint);
+           
+
+            Time();           
+            EncryptetNameToString(encryptKillerName);
+
+
+        }
+
+
+
         #endregion
 
         #region Metoder
+                      
+        private void EncryptetNameToString(char[] encryptKillerName)
+        {          
+            foreach (var c in encryptKillerName)
+            {
+                Symbols += c;
+            }
+        }
 
-        
-        public void CheckIfGuessCorrect()
+        private void CheckIfGuessCorrect()
         {
             if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr == Fibonacci[4].ToString())
             {
                 ButtonName = "Go To The Next Puzzle!";
+                LblInvisibleSymbolsGetVisible = Visibility.Visible;               
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
             }
             else ButtonName = "Wrong, guess again!";
 
         }
 
-        public void ShowHint()
-        {
-            if (LblInvisibleHintGetVisible == Visibility.Visible)
-            {
-                LblInvisibleHintGetVisible = Visibility.Hidden;
-               Hint60();
-            }
-            else LblInvisibleHintGetVisible = Visibility.Visible;
-
+        private void ShowHint()
+        {           
+                LblInvisibleHintGetVisible = Visibility.Visible;
+                Hint60();           
         }
 
-        public void ChangePage()
+        private void ChangePage()
         {
             var model = new SolvePuzzlePageViewModel(totalSeconds);
             var page = new SolvePuzzlePage(model);
@@ -112,7 +147,18 @@ namespace Enigma.ViewModels
 
         #region Time
 
+        public string TimeLapse
+        {
+            get { return _timeLapse; }
+            set
+            {
+                _timeLapse = value;
+                OnPropertyChanged();
+            }
+        }
+
       
+
 
         public void Time()
         {
@@ -135,10 +181,14 @@ namespace Enigma.ViewModels
         {
             totalSeconds += 60;
         }
-      
-#endregion
 
-      
+        public int getTimeElapsed()
+        {
+
+            return totalSeconds;
+        }
+        #endregion
+
 
 
 
