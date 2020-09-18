@@ -25,59 +25,40 @@ namespace Enigma.ViewModels
     class HighscoreViewModel
     {
 
-       // public ObservableCollection<Highscore> HighScoreDatabase { get; set; } //= new ObservableCollection<int>();
-        public ObservableCollection<Player> PlayerNameDataBase { get; set; }// = new ObservableCollection<string>();
-        ICommand HighScoreDataBase { get; set; }
-        ICommand ShowTopPlayerName { get; set; }
-
-        List<Highscore> highscores { get; set; } 
-
-
+        public ObservableCollection<Highscore> HighScoreDatabase { get; set; } = new ObservableCollection<Highscore>();
+        public ObservableCollection<Player> PlayerNameDataBase { get; set; } = new ObservableCollection<Player>();
+       
 
         public HighscoreViewModel()
         {
 
-            HighScoreDataBase = new RelayCommand(ShowHighScoreFromDataBase);
-            FillList();
+
+            ShowHighScoreFromDataBase();
             
         }
 
         public void ShowHighScoreFromDataBase()
         {
-
-            //HighScoreSelectionChanged er i xaml filen.
-            //  "TopPlayerSelcetionChanged" er i xamlfilen
-
-
-            //  ItemsSource = Repository.GetHighscores();
-            // ItemsSource = Repository.GetTopPlayers();
-            // ListBox.DisplayMemberPath;
-
-
-            //SelectionChanged="TopPlayerSelcetionChanged"
-            //SelectionChanged="HighScoreSelcetionChanged"
-        }
-
-        public void FillList()
-            {
-               /// HighScoreDatabase = new ObservableCollection<Highscore>();
-            //Repository.GetHighscores;
-
-            highscores =new List<Highscore>();
-
             foreach (var highscore in Repository.GetHighscores())
             {
-                highscores.Add(highscore);
+                HighScoreDatabase.Add(highscore);
             }
-            
-          
-
+            foreach (var player in Repository.GetTopPlayers())
+            {
+                PlayerNameDataBase.Add(player);
+            }
         }
+
+    }
+
+      
+
+}
         
      
 
 
-    }
+    
 
-    }
+    
 
