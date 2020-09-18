@@ -9,9 +9,9 @@ namespace Enigma.Models
 {
     public class GetSuspects
     {
-        public List<Suspect> Suspects = new List<Suspect>();
+       
 
-        public GetSuspects()
+        public List<Suspect> GetAllSuspects(List<Suspect> Suspects)
         {
             Suspect suspect1 = new Suspect
             {
@@ -45,6 +45,17 @@ namespace Enigma.Models
 
             Suspects.Add(suspect4);
 
+            return Suspects;
+        }
+
+        public List<Suspect> GetKiller(List<Suspect> anyList, List<Suspect> returnList)
+        {
+            //List<Suspect> tempList = new List<Suspect>();
+            Random random = new Random();
+            int index = random.Next(anyList.Count);
+            returnList.Add(anyList[index]);
+
+            return returnList;
         }
 
     }

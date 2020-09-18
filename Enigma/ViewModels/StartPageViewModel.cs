@@ -1,6 +1,8 @@
-﻿using Enigma.ViewModels.Base;
+﻿using Enigma.Models;
+using Enigma.ViewModels.Base;
 using Enigma.Views;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
@@ -23,24 +25,43 @@ namespace Enigma.ViewModels
         public ICommand PlayGameCommand { get; set;}
         public ICommand CreatePlayerCommand { get; set; }
 
+
+        List<Suspect> ListOfSuspects = new List<Suspect>();
+        List<Suspect> Killer = new List<Suspect>();
+        char[] encryptKillerName = new char[4];
+
         public StartPageViewModel()
         {
-            PlayGameCommand = new RelayCommand(GoToPickPlayerPage);
-            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage); 
+            PlayGameCommand = new RelayCommand(ChangePage);
+            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);
+
+            GetSuspects getSuspects = new GetSuspects();
+            getSuspects.GetAllSuspects(ListOfSuspects);
+
+            KillerCreation killerCreation = new KillerCreation();
+            killerCreation.GetKiller(ListOfSuspects, Killer);
+
+
+            Dictionary<char, char> symbolMap = SymbolAlphabet.SymbolMap;
+          
+
+
+            string killerName = Killer[0].Name;
+            KillerTranslation killerTranslation = new KillerTranslation();
+            killerTranslation.TranslateKillerName(symbolMap, killerName, encryptKillerName);
+
+
 
         }
 
-       // public event PropertyChangedEventHandler PropertyChanged;
-
-        public void GoToPickPlayerPage()
-
+        public void ChangePage()
         {
-            var model = new PlayerRegistrationViewModel();
-            var page = new PlayerRegistration();
+            var model = new PuzzlePageViewModel(encryptKillerName);
+            var page = new PuzzlePage(model);
             NavigationService.Navigate(page);
-             
         }
 
+       
         public void GoToCreatePlayerPage()
         {
             var model = new PlayerRegistrationViewModel();
@@ -49,12 +70,5 @@ namespace Enigma.ViewModels
         }
 
 
-        /*
-        protected void OnPropertyChanged ([CallerMemberName] string name = null)
-        {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-           
-        }
-        */
-        }
+    }
 }

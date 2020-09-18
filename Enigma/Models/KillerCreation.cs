@@ -13,14 +13,14 @@ namespace Enigma.Models
         public string KillerName { get; set; }
         public ImageSource KillerPortrait { get; set; }
 
-        public KillerCreation()
-        {
-            int index = random.Next(Suspects.Count);
+        //public KillerCreation()
+        //{
+        //    int index = random.Next(Suspects.Count);
 
-            KillerName = Suspects[index].Name.ToString();
-            KillerPortrait = Suspects[index].Portrait;
+        //    KillerName = Suspects[index].Name.ToString();
+        //    KillerPortrait = Suspects[index].Portrait;
 
-        }
+        //}
 
     }
 }
