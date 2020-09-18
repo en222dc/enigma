@@ -33,13 +33,13 @@
                Grid.Column="1" Grid.Row="1"  
                HorizontalAlignment="Center" VerticalAlignment="Center" 
                FontFamily="Banschrift" Foreground="#5F606B" FontSize="30" />
-        <ListBox x:Name="lstBoHighscoreName"
+        <ListBox x:Name="lstBoHighscoreName" ItemsSource="{Binding HighScoreDatabase}" 
                  Grid.Column="0" Grid.Row="2"
                  FontFamily="Banschrift" Foreground="#5F606B" FontSize="30" 
                  BorderBrush="Transparent"
                  Background="Transparent"/>
 
-        <ListBox x:Name="lstBoTopPlayer" 
+        <ListBox x:Name="lstBoTopPlayer" ItemsSource="{Binding PlayerNameDataBase}" 
                  Grid.Column="1" 
                  Grid.Row="2" 
                  BorderBrush="Transparent"
