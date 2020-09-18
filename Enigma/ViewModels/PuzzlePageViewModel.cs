@@ -3,7 +3,6 @@ using Enigma.GameLogic;
 using Enigma.Models;
 using Enigma.ViewModels.Base;
 using Enigma.Views;
-using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +14,7 @@ using System.Windows.Threading;
 
 namespace Enigma.ViewModels
 {
-    class PuzzlePageViewModel : BaseViewModel, IMultipleCommands
+    class PuzzlePageViewModel : BaseViewModel
     {
         #region Properties
         public ObservableCollection<int> Fibonacci { get; set; } = new ObservableCollection<int>();
@@ -158,9 +157,7 @@ namespace Enigma.ViewModels
             }
         }
 
-        public CompositeCommand MultipleCommands { get; }
-
-
+      
 
 
         public void Time()
