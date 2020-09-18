@@ -58,6 +58,8 @@ namespace Enigma.ViewModels
 
         }
 
+
+
         public SolvePuzzlePageViewModel(int total, string killername)
         {
             KillerNameToArray(killername);

@@ -26,6 +26,11 @@
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
             FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
+            <Label x:Name="lblGuessWrong"
+                   Grid.Row="0" Grid.Column="1" 
+                   VerticalAlignment="Bottom" HorizontalAlignment="Center" Padding="5"
+                   FontSize="25" Foreground="Red" FontFamily="Bahnschrift"
+                   Content="YOU GUESSED WRONG"/>
         <Label x:Name="lblShowTime"
                 Grid.Row="1" Grid.Column="1" 
                 VerticalAlignment="Top" HorizontalAlignment="Center"
