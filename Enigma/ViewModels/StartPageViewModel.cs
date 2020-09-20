@@ -34,9 +34,11 @@ namespace Enigma.ViewModels
         public StartPageViewModel()
         {
             PlayGameCommand = new RelayCommand(ChangePage);
-            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);
-            ListOfSuspects = GetAllSuspects();
-           
+            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);           
+            ListOfSuspects = SetSuspectsForGame();
+            SetKiller(ListOfSuspects);
+            EncryptKillerName(ListOfSuspects);
+
 
 
         }
@@ -50,6 +52,71 @@ namespace Enigma.ViewModels
             }
 
             return Templist;
+        }
+
+        private ObservableCollection<Suspect> SetSuspectsForGame(int number = 4)
+        {
+            ObservableCollection<Suspect> TempList = new ObservableCollection<Suspect>();
+            TempList = GetAllSuspects();
+            ObservableCollection<Suspect> NewList = new ObservableCollection<Suspect>();
+
+            int index = 0;
+            int nr;
+            Random random = new Random();
+            for (int i = 0; i < number; i++)
+            {
+                if (index < number)
+                {
+                    nr = random.Next(TempList.Count);
+                    if (!NewList.Contains(TempList[nr]))
+                    {
+                        NewList.Add(TempList[nr]);
+                        index++;
+                    }
+                    else i = i - 1;
+                }
+            }
+            return NewList;
+        }
+
+        private void SetKiller(ObservableCollection<Suspect> suspects)
+        {
+
+            Random random = new Random();
+            int index;
+            index = random.Next(suspects.Count);
+            suspects[index].IsKiller = true;
+
+        }
+
+        public void EncryptKillerName(ObservableCollection<Suspect> listOfSuspects)
+        {
+            string killerName = "";
+            for (int suspect = 0; suspect < listOfSuspects.Count; suspect++)
+            {
+                if (listOfSuspects[suspect].IsKiller)
+                {
+                    killerName = listOfSuspects[suspect].Name;
+                    listOfSuspects[suspect].EncryptedName = new char[listOfSuspects[suspect].Name.Length];
+                    foreach (KeyValuePair<char, char> pair in SymbolAlphabet.SymbolMap)
+                    {
+                        killerName = killerName.ToLower().Replace(pair.Value, pair.Key);
+                    }
+
+
+                    for (int i = 0; i < killerName.Length; i++)
+                    {
+                        foreach (char c in killerName)
+                        {
+                            listOfSuspects[suspect].EncryptedName[i] = c;
+                            i++;
+                        }
+                    }
+                }
+            }      
+
+
+
         }
 
 
