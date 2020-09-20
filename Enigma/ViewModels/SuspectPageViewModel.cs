@@ -18,11 +18,11 @@ namespace Enigma.ViewModels
 
         public SuspectsPageModel()
         {
-            GetSuspects getSuspects = new GetSuspects();
-            getSuspects.GetAllSuspects(ListOfSuspects);
-            KillerCreation killerCreation = new KillerCreation();
-            killerCreation.GetKiller(ListOfSuspects, Killer);
-            PlayGameCommand = new RelayCommand(GoToPageCommand);
+            //GetSuspects getSuspects = new GetSuspects();
+            //getSuspects.GetAllSuspects(ListOfSuspects);
+            //KillerCreation killerCreation = new KillerCreation();
+            //killerCreation.GetKiller(ListOfSuspects, Killer);
+            //PlayGameCommand = new RelayCommand(GoToPageCommand);
         }
 
         

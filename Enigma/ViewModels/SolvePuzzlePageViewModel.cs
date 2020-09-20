@@ -46,15 +46,15 @@ namespace Enigma.ViewModels
 
         public void KillerNameToArray (string killername)
         {
-            SymbolArray = new ObservableCollection<char>();
-            char[] symbolarray = new char[4];
-            IGameLogicSymbol symbols = new KillerTranslation();
-            symbols.TranslateKillerName(killername, symbolarray);
+            //SymbolArray = new ObservableCollection<char>();
+            //char[] symbolarray = new char[4];
+            //IGameLogicSymbol symbols = new KillerTranslation();
+            //symbols.TranslateKillerName(killername, symbolarray);
 
-            foreach (char symbol in symbolarray)
-            {
-                SymbolArray.Add(symbol);
-            }
+            //foreach (char symbol in symbolarray)
+            //{
+            //    SymbolArray.Add(symbol);
+            //}
 
         }
 
