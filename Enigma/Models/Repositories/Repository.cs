@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using Npgsql;
+using System.Collections.ObjectModel;
 
 namespace Enigma.Models.Repositories
 {
@@ -132,7 +133,39 @@ namespace Enigma.Models.Repositories
                 return topPlayers;
             }
         }
-        
+
+
+        public static IEnumerable<Suspect> GetAllSuspects()
+        {
+            string stmt = "SELECT name FROM suspect;";
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                Suspect suspect = null;
+                ObservableCollection<Suspect> allSuspects = new ObservableCollection<Suspect>();
+                conn.Open();
+
+
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            suspect = new Suspect()
+                            {
+                                Name = (string)reader["name"],
+                        
+                            };
+                            allSuspects.Add(suspect);
+                        }
+                    }
+                }
+                return allSuspects;
+            }
+        }
+
         #endregion
     }
 }

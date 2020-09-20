@@ -1,8 +1,10 @@
 ﻿using Enigma.Models;
+using Enigma.Models.Repositories;
 using Enigma.ViewModels.Base;
 using Enigma.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
@@ -26,36 +28,36 @@ namespace Enigma.ViewModels
         public ICommand CreatePlayerCommand { get; set; }
 
 
-        List<Suspect> ListOfSuspects = new List<Suspect>();
-        List<Suspect> Killer = new List<Suspect>();
-        char[] encryptKillerName = new char[4];
+        ObservableCollection<Suspect> ListOfSuspects = new ObservableCollection<Suspect>();
+
 
         public StartPageViewModel()
         {
             PlayGameCommand = new RelayCommand(ChangePage);
             CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);
-
-            GetSuspects getSuspects = new GetSuspects();
-            getSuspects.GetAllSuspects(ListOfSuspects);
-
-            KillerCreation killerCreation = new KillerCreation();
-            killerCreation.GetKiller(ListOfSuspects, Killer);
-
-
-
-            string killerName = Killer[0].Name;
-            KillerTranslation killerTranslation = new KillerTranslation();
-            killerTranslation.TranslateKillerName(killerName, encryptKillerName);
-
+            ListOfSuspects = GetAllSuspects();
+           
 
 
         }
 
+        private ObservableCollection<Suspect> GetAllSuspects()
+        {
+            ObservableCollection<Suspect> Templist = new ObservableCollection<Suspect>();
+            foreach (var suspect in Repository.GetAllSuspects())
+            {
+                Templist.Add(suspect);
+            }
+
+            return Templist;
+        }
+
+
         public void ChangePage()
         {
-            var model = new PuzzlePageViewModel(encryptKillerName);
-            var page = new PuzzlePage(model);
-            NavigationService.Navigate(page);
+            //var model = new PuzzlePageViewModel(encryptKillerName);
+            //var page = new PuzzlePage(model);
+            //NavigationService.Navigate(page);
         }
 
        
