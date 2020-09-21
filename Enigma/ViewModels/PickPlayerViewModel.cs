@@ -72,8 +72,9 @@ namespace Enigma.ViewModels
         {
             if (IsMyPlayerNotNull())
             {
-                Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
-                UpdateAllPlayerList();
+                //Repository.
+                //Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
+                //UpdateAllPlayerList();
             }
             else
                 NoPlayerMessage();

@@ -137,9 +137,9 @@ namespace Enigma.ViewModels
 
         public void GoToCreatePlayerPage()
         {
-            var model = new PlayerRegistrationViewModel();
-            var page = new PlayerRegistration();
-            NavigationService.Navigate(page);
+            //var model = new PlayerRegistrationViewModel();
+            //var page = new PlayerRegistration();
+            //NavigationService.Navigate(page);
         }
 
         #endregion

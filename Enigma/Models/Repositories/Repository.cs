@@ -79,7 +79,7 @@ namespace Enigma.Models.Repositories
 
         public static ObservableCollection<Player> GetAllPlayers()
         {
-            string stmt = "SELECT player_name FROM player;";
+            string stmt = "SELECT player_name, player_id FROM player ORDER BY player_id DESC;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -96,7 +96,7 @@ namespace Enigma.Models.Repositories
                             player = new Player()
                             {
                                 Player_name = (string)reader["player_name"],
-                                //NumberOfGames = (int)reader["number_of_games"]
+                                Player_id = (int)reader["player_id"]
                             };
                             allPlayers.Add(player);
                         }
@@ -173,5 +173,7 @@ namespace Enigma.Models.Repositories
         }
 
         #endregion
+
+
     }
 }
