@@ -32,7 +32,7 @@
                             BorderBrush="Transparent"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column ="1" Margin="20">
-                <Button x:Name="btnPickPlayer"
+                <Button x:Name="btnPickPlayer" Command="{Binding ChoosePlayerCommand}"
                         Margin="0 0 0 50"
                         Content="Choose Player" 
                         FontFamily="Bell MT" FontSize="30" Foreground="White"
@@ -47,7 +47,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button x:Name="btnNewPlayer" 
+                <Button x:Name="btnNewPlayer" Command="{Binding CreateNewPlayerCommand}" 
                     Content="Create New Player" 
                     FontFamily="Bell MT" FontSize="30" Foreground="White"
                         VerticalAlignment="Top" HorizontalAlignment="Center"

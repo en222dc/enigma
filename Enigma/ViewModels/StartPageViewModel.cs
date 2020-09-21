@@ -32,8 +32,8 @@ namespace Enigma.ViewModels
 
         public StartPageViewModel()
         {
-            PlayGameCommand = new RelayCommand(ChangePage);
-            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);
+           // PlayGameCommand = new RelayCommand(ChangePage);
+            PlayGameCommand = new RelayCommand(GoToCreatePlayerPage);
 
             GetSuspects getSuspects = new GetSuspects();
             getSuspects.GetAllSuspects(ListOfSuspects);
@@ -61,8 +61,8 @@ namespace Enigma.ViewModels
        
         public void GoToCreatePlayerPage()
         {
-            var model = new PlayerRegistrationViewModel();
-            var page = new PlayerRegistration();
+            var model = new PickPlayerViewModel();
+            var page = new PickPlayer();
             NavigationService.Navigate(page);
         }
 

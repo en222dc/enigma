@@ -23,7 +23,7 @@ namespace Enigma.Views
         public PickPlayer()
         {
             InitializeComponent();
-            DataContext = new StartPageViewModel();
+            DataContext = new PickPlayerViewModel();
 
             lstAllPlayers.ItemsSource = Repository.GetAllPlayers();
         }

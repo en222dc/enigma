@@ -15,34 +15,30 @@ namespace Enigma.ViewModels
 
       
         
-            public ICommand CommandClick { get; set; }
+          public ICommand CreateNewPlayerCommand { get; set; }
+           public ICommand ChoosePlayerCommand { get; set; }
 
-            public PickPlayerViewModel()
+        public PickPlayerViewModel()
             {
-                CommandClick = new RelayCommand(GoToPuzzlePage);
-            }
+                ChoosePlayerCommand = new RelayCommand(GoToBackStoryPageAndPickPlayer);
+                CreateNewPlayerCommand = new RelayCommand(CreateNewPlayer);
+        }
 
 
-
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            public void GoToPuzzlePage()
+            public void GoToBackStoryPageAndPickPlayer()
 
             {
-                var model = new PuzzlePageViewModel();
-                var page = new PuzzlePage();
-
-                NavigationService.Navigate(page);
-
-
+              var page = new BackStory();
+               NavigationService.Navigate(page);
 
             }
+        public void CreateNewPlayer()
+        {
+          
+
+        }
         
-            protected void OnPropertyChanged([CallerMemberName] string name = null)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-            }
+          
         
         }
     }
