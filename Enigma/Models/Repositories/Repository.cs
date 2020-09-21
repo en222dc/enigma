@@ -174,6 +174,23 @@ namespace Enigma.Models.Repositories
 
         #endregion
 
-
+        #region DELETE
+        public static void DeleteChosenPlayerFromDb(int myPlayerId)
+        {
+            string stmt = "DELETE FROM player WHERE player_id = @player_id";
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("player_id", myPlayerId);
+                    command.Prepare();
+                    command.ExecuteScalar();
+                }
+            }
+            
+        }
+#endregion
     }
 }
+
