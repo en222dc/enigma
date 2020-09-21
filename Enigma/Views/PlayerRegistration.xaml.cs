@@ -24,21 +24,5 @@ namespace Enigma.ViewModels
         {
             InitializeComponent();
         }
-
-        private void btnAddPlayer_Click(object sender, RoutedEventArgs e)
-        {
-            
-            var player = new Player
-            {
-                //Player_name = txtPlayerName.Text
-            };
-
-            Repository.AddNewPlayerToDb(player);
-            
-
-            //PlayerRegistrationViewModel.AddPlayer();
-
-            NavigationService.Navigate(new Uri("/Views/BackStory.xaml", UriKind.Relative));
-        }
     }
 }

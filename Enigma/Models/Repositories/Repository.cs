@@ -78,7 +78,7 @@ namespace Enigma.Models.Repositories
 
         public static ObservableCollection<Player> GetAllPlayers()
         {
-            string stmt = "SELECT player_name FROM player;";
+            string stmt = "SELECT player_name, player_id FROM player ORDER BY player_id DESC;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -95,7 +95,7 @@ namespace Enigma.Models.Repositories
                             player = new Player()
                             {
                                 Player_name = (string)reader["player_name"],
-                                //NumberOfGames = (int)reader["number_of_games"]
+                                Player_id = (int)reader["player_id"]
                             };
                             allPlayers.Add(player);
                         }
@@ -133,7 +133,34 @@ namespace Enigma.Models.Repositories
                 return topPlayers;
             }
         }
-        
+
+        #endregion
+
+        #region DELETE
+        public static void DeleteChosenPlayerFromDb(int myPlayerId)
+        {
+            //string error = "Ooops, something whent wrong.";
+            //string playerDeleted = "The player and that players highscores has been deleted.";
+            //try
+            //{
+                string stmt = "DELETE FROM player WHERE player_id = @player_id";
+                using (var conn = new NpgsqlConnection(connectionString))
+                {
+                    using (var command = new NpgsqlCommand(stmt, conn))
+                    {
+                        conn.Open();
+                        command.Parameters.AddWithValue("player_id", myPlayerId);
+                        command.Prepare();
+                        command.ExecuteScalar();
+                    }
+                }
+            //}
+            //catch (PostgresException)
+            //{
+            //    return error;
+            //}
+            //return playerDeleted;
+        }
         #endregion
     }
 }
