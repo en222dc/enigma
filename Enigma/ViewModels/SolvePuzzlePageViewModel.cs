@@ -68,18 +68,18 @@ namespace Enigma.ViewModels
 
         public void GetLetterArray(string killer)
         {
-            KillerTranslation killerTranslation = new KillerTranslation();
-            killer = killerTranslation.SymbolsToLetters(killer);
-            LetterArray = new char[4];
+            //KillerTranslation killerTranslation = new KillerTranslation();
+            //killer = killerTranslation.SymbolsToLetters(killer);
+            //LetterArray = new char[4];
 
-            for (int i = 0; i < killer.Length; i++)
-            {
-                foreach (char c in killer)
-                {
-                    LetterArray[i] = c;
-                    i++;
-                }
-            }
+            //for (int i = 0; i < killer.Length; i++)
+            //{
+            //    foreach (char c in killer)
+            //    {
+            //        LetterArray[i] = c;
+            //        i++;
+            //    }
+            //}
         }
 
         private void IsGuessCorrect()
