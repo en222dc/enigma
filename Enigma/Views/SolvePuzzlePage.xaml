@@ -103,9 +103,9 @@
                      Text="{Binding Guess4thSymbol}"/>
         </Grid>
 
-        <Image  Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4"
+        <Image  Grid.Column="2" Grid.RowSpan="4"
                 Source="\Assets\Images\solvesheet.png" 
-                Stretch="Uniform" Margin="265,72,-85,11"
+                Stretch="Uniform" Margin="9,72,-95,11"
                 Visibility="Visible" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
