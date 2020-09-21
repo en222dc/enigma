@@ -28,6 +28,7 @@
             <StackPanel Grid.Row="1" Grid.Column ="0" Margin="20">
                 <ListBox x:Name="lstAllPlayers" 
                         ItemsSource="{Binding AllPlayers}"
+                        SelectedItem="{Binding MyPlayer}"
                         FontSize="30" FontFamily="Bell MT" FontWeight="Bold"
                         Foreground="#5F606B" 
                         Background="Transparent"
