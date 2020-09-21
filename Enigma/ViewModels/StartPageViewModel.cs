@@ -35,9 +35,6 @@ namespace Enigma.ViewModels
         #endregion
 
 
-        ObservableCollection<Suspect> ListOfSuspects = new ObservableCollection<Suspect>();
-
-
         #region Konstruktor
 
         public StartPageViewModel()
@@ -106,7 +103,7 @@ namespace Enigma.ViewModels
                 {
                     killerName = listOfSuspects[suspect].Name;
                     listOfSuspects[suspect].EncryptedName = new char[listOfSuspects[suspect].Name.Length];
-                    foreach (KeyValuePair<char, char> pair in SymbolAlphabet.SymbolMap)
+                    foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
                     {
                         killerName = killerName.ToLower().Replace(pair.Value, pair.Key);
                     }
@@ -137,7 +134,7 @@ namespace Enigma.ViewModels
 
         public void GoToCreatePlayerPage()
         {
-            var model = new PlayerRegistrationViewModel();
+            //var model = new PlayerRegistrationViewModel();
             var page = new PlayerRegistration();
             NavigationService.Navigate(page);
         }
