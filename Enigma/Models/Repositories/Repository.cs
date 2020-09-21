@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using Npgsql;
+using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
 
 namespace Enigma.Models.Repositories
 {
@@ -132,7 +134,46 @@ namespace Enigma.Models.Repositories
                 return topPlayers;
             }
         }
-        
+
+
+        public static IEnumerable<Suspect> GetAllSuspects()
+        {
+            string stmt = "SELECT name, portrait FROM suspect;";
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                Suspect suspect = null;
+                ObservableCollection<Suspect> allSuspects = new ObservableCollection<Suspect>();
+                conn.Open();
+
+
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            string nySträng = reader["portrait"].ToString();
+                            BitmapImage glowIcon = new BitmapImage();
+                            glowIcon.BeginInit();
+                            glowIcon.UriSource = new Uri($"{nySträng}", UriKind.Relative);
+
+
+                            suspect = new Suspect()
+                            {
+                                Name = (string)reader["name"],
+                                Portrait = glowIcon
+                            };
+                            allSuspects.Add(suspect);
+                        }
+                    }
+                }
+                return allSuspects;
+            }
+        }
+
+
         #endregion
     }
 }
