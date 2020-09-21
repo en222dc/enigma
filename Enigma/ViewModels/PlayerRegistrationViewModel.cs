@@ -17,14 +17,14 @@ namespace Enigma.ViewModels
         }
 
         
-        public void AddPlayer()
-        {
-            var player = new Player
-            {
-                Player_name = txtPlayerName.Text
-            };
-            Repository.AddNewPlayerToDb(player);
-        }
+        //public void AddPlayer()
+        //{
+        //    var player = new Player
+        //    {
+        //        Player_name = txtPlayerName.Text
+        //    };
+        //    Repository.AddNewPlayerToDb(player);
+        //}
         
 
         
