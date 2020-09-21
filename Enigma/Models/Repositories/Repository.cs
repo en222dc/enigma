@@ -4,6 +4,7 @@ using System.Text;
 using System.Configuration;
 using Npgsql;
 using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
 
 namespace Enigma.Models.Repositories
 {
@@ -78,7 +79,7 @@ namespace Enigma.Models.Repositories
 
         public static ObservableCollection<Player> GetAllPlayers()
         {
-            string stmt = "SELECT player_name, player_id FROM player ORDER BY player_id DESC;";
+            string stmt = "SELECT player_name FROM player;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -95,7 +96,7 @@ namespace Enigma.Models.Repositories
                             player = new Player()
                             {
                                 Player_name = (string)reader["player_name"],
-                                Player_id = (int)reader["player_id"]
+                                //NumberOfGames = (int)reader["number_of_games"]
                             };
                             allPlayers.Add(player);
                         }
@@ -134,33 +135,43 @@ namespace Enigma.Models.Repositories
             }
         }
 
-        #endregion
-
-        #region DELETE
-        public static void DeleteChosenPlayerFromDb(int myPlayerId)
+        public static IEnumerable<Suspect> GetAllSuspects()
         {
-            //string error = "Ooops, something whent wrong.";
-            //string playerDeleted = "The player and that players highscores has been deleted.";
-            //try
-            //{
-                string stmt = "DELETE FROM player WHERE player_id = @player_id";
-                using (var conn = new NpgsqlConnection(connectionString))
+            string stmt = "SELECT name, portrait FROM suspect;";
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                Suspect suspect = null;
+                ObservableCollection<Suspect> allSuspects = new ObservableCollection<Suspect>();
+                conn.Open();
+
+
+                using (var command = new NpgsqlCommand(stmt, conn))
                 {
-                    using (var command = new NpgsqlCommand(stmt, conn))
+                    using (var reader = command.ExecuteReader())
                     {
-                        conn.Open();
-                        command.Parameters.AddWithValue("player_id", myPlayerId);
-                        command.Prepare();
-                        command.ExecuteScalar();
+                        while (reader.Read())
+                        {
+
+                            string nySträng = reader["portrait"].ToString();
+                            BitmapImage glowIcon = new BitmapImage();
+                            glowIcon.BeginInit();
+                            glowIcon.UriSource = new Uri($"{nySträng}", UriKind.Relative);
+
+
+                            suspect = new Suspect()
+                            {
+                                Name = (string)reader["name"],
+                                Portrait = glowIcon
+                            };
+                            allSuspects.Add(suspect);
+                        }
                     }
                 }
-            //}
-            //catch (PostgresException)
-            //{
-            //    return error;
-            //}
-            //return playerDeleted;
+                return allSuspects;
+            }
         }
+
         #endregion
     }
 }

@@ -22,7 +22,7 @@
                    FontSize="20" 
                    BorderBrush="#5C0106"
                    Background="#5C0106" Foreground="White"/>
-            <Button Content="Help and Rules" 
+            <Button Content="Help and Rules" Command="{Binding ChangeToHelpAndRulesCommand}"
                    Grid.Column="1" Grid.Row="0"
                    FontSize="20" 
                    Foreground="White" 
