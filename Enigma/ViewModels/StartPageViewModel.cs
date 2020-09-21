@@ -129,9 +129,9 @@ namespace Enigma.ViewModels
 
         public void ChangePage()
         {
-            //var model = new PuzzlePageViewModel(encryptKillerName);
-            //var page = new PuzzlePage(model);
-            //NavigationService.Navigate(page);
+            var model = new PuzzlePageViewModel(ListOfSuspects);
+            var page = new PuzzlePage(model);
+            NavigationService.Navigate(page);
         }
 
 

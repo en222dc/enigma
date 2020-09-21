@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -26,7 +27,7 @@ namespace Enigma.ViewModels
         public string ButtonName { get; set; } = "Guess nr";
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
-        public String Symbols { get; set; }
+        public string EncryptedName { get; set; }
 
         private int totalSeconds = 0;
 
@@ -77,29 +78,22 @@ namespace Enigma.ViewModels
 
         }
 
-        public PuzzlePageViewModel(char[] encryptKillerName)
-        {
-            
-            //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
+        
+
+        public PuzzlePageViewModel(ObservableCollection<Suspect>ListOfSuspects)
+        {           
+           
             int[] fibonacciArray = new int[5];
-            IGameLogic fibonacci = new Fibonacci();
+            IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
             fibonacci.GenerateRandomNr(fibonacciArray);
             fibonacci.GetRestOfNrInSequence(fibonacciArray);
+            GetPuzzleSequenceToProperty(fibonacciArray);
+           
+            GetEncryptedName(ListOfSuspects);
+            Time();        
 
-
-            foreach (var position in fibonacciArray)
-            {
-                Fibonacci.Add(position);
-            }
-
-            listOfPuzzles.Add(fibonacci); 
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
-           
-
-            Time();           
-            EncryptetNameToString(encryptKillerName);
-
 
         }
 
@@ -108,12 +102,35 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Metoder
+
+        private void GetPuzzleSequenceToProperty(int[]array)
+        {
+            foreach (var item in array)
+            {
+                Fibonacci.Add(item);
+            }          
+        }
                       
+        private string GetEncryptedName(ObservableCollection<Suspect>List)
+        {
+            foreach (var item in List)
+            {
+                if (item.IsKiller)
+                {
+                    for (int i = 0; i < item.EncryptedName.Length; i++)
+                    {
+                        EncryptedName += item.EncryptedName[i];
+                    }                   
+                    return EncryptedName;
+                }
+            }
+            return EncryptedName; 
+        }
         private void EncryptetNameToString(char[] encryptKillerName)
         {          
             foreach (var c in encryptKillerName)
             {
-                Symbols += c;
+                EncryptedName += c;
             }
         }
 
@@ -130,14 +147,18 @@ namespace Enigma.ViewModels
         }
 
         private void ShowHint()
-        {           
+        {
+            if (LblInvisibleHintGetVisible==Visibility.Hidden)
+            {
                 LblInvisibleHintGetVisible = Visibility.Visible;
                 Hint60();           
+
+            }
         }
 
         private void ChangePage()
         {
-            var model = new SolvePuzzlePageViewModel(totalSeconds, Symbols);
+            var model = new SolvePuzzlePageViewModel(totalSeconds, EncryptedName);
             var page = new SolvePuzzlePage(model);
             NavigationService.Navigate(page);
         }
