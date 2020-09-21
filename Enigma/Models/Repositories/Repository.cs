@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using Npgsql;
+using System.Collections.ObjectModel;
 
 namespace Enigma.Models.Repositories
 {
@@ -75,14 +76,14 @@ namespace Enigma.Models.Repositories
             }
         }
 
-        public static IEnumerable<Player> GetAllPlayers()
+        public static ObservableCollection<Player> GetAllPlayers()
         {
             string stmt = "SELECT player_name FROM player;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 Player player = null;
-                List<Player> allPlayers = new List<Player>();
+                ObservableCollection<Player> allPlayers = new ObservableCollection<Player>();
                 conn.Open();
 
                 using (var command = new NpgsqlCommand(stmt, conn))

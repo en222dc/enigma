@@ -30,7 +30,7 @@ namespace Enigma.ViewModels
             
             var player = new Player
             {
-                Player_name = txtPlayerName.Text
+                //Player_name = txtPlayerName.Text
             };
 
             Repository.AddNewPlayerToDb(player);

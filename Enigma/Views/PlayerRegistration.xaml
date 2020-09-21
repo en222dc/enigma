@@ -22,13 +22,7 @@
                Margin="0 40 0 0" 
                FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
 
-        <TextBox x:Name="txtPlayerName" 
-                 Grid.Column="1" Grid.Row="0" 
-                 HorizontalAlignment="Center" VerticalAlignment="Center" 
-                 Margin="10"
-                 FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift" 
-                 Padding="10 3"
-                 Width="300" Height="50" />
+        
         <Button x:Name="btnAddPlayer" 
                 Content="Play Game!" 
                 FontFamily="Bell MT" FontSize="30" Foreground="White"

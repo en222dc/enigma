@@ -33,8 +33,13 @@ namespace Enigma
             var startPage = new StartPage();
             var menuPage = new MenuPage();
 
-            MainFrame.Content = startPage;
+            //Ta bort sen
+            var pickPlayerPage = new PickPlayer();
+
+
+            MainFrame.Content = pickPlayerPage;
             MenuFrame.Content = menuPage;
+
 
             DataContext = new MainViewModel();
         }
