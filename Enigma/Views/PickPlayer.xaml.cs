@@ -25,7 +25,7 @@ namespace Enigma.Views
             InitializeComponent();
             DataContext = new PickPlayerViewModel();
 
-            lstAllPlayers.ItemsSource = Repository.GetAllPlayers();
+            
         }
     }
 }

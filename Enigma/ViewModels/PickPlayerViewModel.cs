@@ -1,7 +1,10 @@
-﻿using Enigma.ViewModels.Base;
+﻿using Enigma.Models;
+using Enigma.Models.Repositories;
+using Enigma.ViewModels.Base;
 using Enigma.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,36 +15,46 @@ namespace Enigma.ViewModels
 {
     class PickPlayerViewModel : BaseViewModel
     {
+        public Player MyPlayer { get; set; }
+        public string PlayerName { get; set; }
+        public ObservableCollection<Player> AllPlayers { get; set; }
 
-      
-        
-          public ICommand CreateNewPlayerCommand { get; set; }
-           public ICommand ChoosePlayerCommand { get; set; }
+        public ICommand CommandClick { get; set; }
+        public ICommand AddPlayerClick { get; set; }
 
         public PickPlayerViewModel()
-            {
-                ChoosePlayerCommand = new RelayCommand(GoToBackStoryPageAndPickPlayer);
-                CreateNewPlayerCommand = new RelayCommand(CreateNewPlayer);
-        }
-
-
-            public void GoToBackStoryPageAndPickPlayer()
-
-            {
-              var page = new BackStory();
-               NavigationService.Navigate(page);
-
-            }
-        public void CreateNewPlayer()
         {
-          
+            CommandClick = new RelayCommand(GoToPuzzlePage);
+            AddPlayerClick = new RelayCommand(AddPlayer);
+            AllPlayers = Repository.GetAllPlayers();
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void GoToPuzzlePage()
+
+        {
+            var model = new PuzzlePageViewModel();
+            var page = new PuzzlePage();
+
+            NavigationService.Navigate(page);
         }
-        
-          
-        
+
+        public void AddPlayer()
+        {
+            var newPlayer = new Player
+            {
+                Player_name = PlayerName
+            };
+            MyPlayer = Repository.AddNewPlayerToDb(newPlayer);
         }
+
+        //protected void OnPropertyChanged([CallerMemberName] string name = null)
+        //    {
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        //    }
     }
+}
 
 
 
