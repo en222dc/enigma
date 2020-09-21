@@ -17,27 +17,46 @@ namespace Enigma.ViewModels
     {
         public Player MyPlayer { get; set; }
         public string PlayerName { get; set; }
+
+        public string ChoosePlayer { get; set; } = "Choose Player";
         public ObservableCollection<Player> AllPlayers { get; set; }
 
         public ICommand CommandClick { get; set; }
         public ICommand AddPlayerClick { get; set; }
+        public ICommand ChoosePlayerCommand { get; set; }
 
         public PickPlayerViewModel()
         {
-            CommandClick = new RelayCommand(GoToPuzzlePage);
+            //CommandClick = new RelayCommand(GoToPuzzlePage);
             AddPlayerClick = new RelayCommand(AddPlayer);
+            ChoosePlayerCommand = new RelayCommand(GoToPuzzlePage);
             AllPlayers = Repository.GetAllPlayers();
+
+        
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+     
 
         public void GoToPuzzlePage()
 
         {
-            var model = new PuzzlePageViewModel();
-            var page = new PuzzlePage();
+            if (MyPlayer == null)
+            {
+                ChoosePlayer = "You have to choose a Player";
+            }
+            else
+            {
 
-            NavigationService.Navigate(page);
+                var model = new BackStoryViewModel(MyPlayer);
+                var page = new BackStory(); 
+                NavigationService.Navigate(page);
+
+            }
+
+
+
+
+
         }
 
         public void AddPlayer()

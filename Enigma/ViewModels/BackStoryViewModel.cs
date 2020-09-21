@@ -1,4 +1,5 @@
-﻿using Enigma.ViewModels.Base;
+﻿using Enigma.Models;
+using Enigma.ViewModels.Base;
 using Enigma.Views;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,20 @@ namespace Enigma.ViewModels
     {
         public ICommand GoToPageCommand { get; set; }
 
-        public BackStoryViewModel()
+        public BackStoryViewModel(Player player)
         {
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
         }
 
+        public BackStoryViewModel()
+        {
+           
+        }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+
+
+
 
         public void GoToPuzzlePage()
 
@@ -33,11 +40,7 @@ namespace Enigma.ViewModels
 
 
         }
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        }
+       
 
     }
 }

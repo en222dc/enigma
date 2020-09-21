@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Enigma.Models
 {
-    class Player
+   public class Player
     {
         public int Player_id { get; set; }
         public string Player_name { get; set; }
