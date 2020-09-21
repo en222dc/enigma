@@ -20,28 +20,38 @@ namespace Enigma.ViewModels
     public class StartPageViewModel : BaseViewModel
     {
 
+        #region Properties
+
         public string ButtonName { get; set; } = "Play Game";
 
+        #endregion
 
+
+        #region
 
         public ICommand PlayGameCommand { get; set;}
         public ICommand CreatePlayerCommand { get; set; }
+
+        #endregion
 
 
         ObservableCollection<Suspect> ListOfSuspects = new ObservableCollection<Suspect>();
 
 
+        #region Konstruktor
+
         public StartPageViewModel()
-        {
+        {            
             PlayGameCommand = new RelayCommand(ChangePage);
             CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);           
             ListOfSuspects = SetSuspectsForGame();
             SetKiller(ListOfSuspects);
             EncryptKillerName(ListOfSuspects);
-
-
-
         }
+
+        #endregion
+
+        #region Metoder
 
         private ObservableCollection<Suspect> GetAllSuspects()
         {
@@ -56,27 +66,25 @@ namespace Enigma.ViewModels
 
         private ObservableCollection<Suspect> SetSuspectsForGame(int number = 4)
         {
-            ObservableCollection<Suspect> TempList = new ObservableCollection<Suspect>();
-            TempList = GetAllSuspects();
-            ObservableCollection<Suspect> NewList = new ObservableCollection<Suspect>();
-
-            int index = 0;
-            int nr;
+            ObservableCollection<Suspect> ListOfAllSuspects = new ObservableCollection<Suspect>();
+            ListOfAllSuspects = GetAllSuspects();
+            ObservableCollection<Suspect> SuspectsInGame = new ObservableCollection<Suspect>();
+           
+            int position;
             Random random = new Random();
             for (int i = 0; i < number; i++)
-            {
-                if (index < number)
-                {
-                    nr = random.Next(TempList.Count);
-                    if (!NewList.Contains(TempList[nr]))
+            {               
+                    position = random.Next(ListOfAllSuspects.Count);
+                    if (SuspectsInGame.Contains(ListOfAllSuspects[position]))
                     {
-                        NewList.Add(TempList[nr]);
-                        index++;
+                        i = i - 1;
                     }
-                    else i = i - 1;
-                }
+                    else
+                    { 
+                    SuspectsInGame.Add(ListOfAllSuspects[position]);                    
+                    }                
             }
-            return NewList;
+            return SuspectsInGame;
         }
 
         private void SetKiller(ObservableCollection<Suspect> suspects)
@@ -119,7 +127,6 @@ namespace Enigma.ViewModels
 
         }
 
-
         public void ChangePage()
         {
             //var model = new PuzzlePageViewModel(encryptKillerName);
@@ -127,13 +134,18 @@ namespace Enigma.ViewModels
             //NavigationService.Navigate(page);
         }
 
-       
+
         public void GoToCreatePlayerPage()
         {
             var model = new PlayerRegistrationViewModel();
             var page = new PlayerRegistration();
             NavigationService.Navigate(page);
         }
+
+        #endregion
+
+
+
 
 
     }
