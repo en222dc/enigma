@@ -5,6 +5,8 @@ using System.Configuration;
 using Npgsql;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls;
+using System.Reflection.Emit;
 
 namespace Enigma.Models.Repositories
 {
@@ -152,17 +154,19 @@ namespace Enigma.Models.Repositories
                     {
                         while (reader.Read())
                         {
-
+                            Image dynamicGlowIcon = new Image();
                             string nySträng = reader["portrait"].ToString();
                             BitmapImage glowIcon = new BitmapImage();
                             glowIcon.BeginInit();
                             glowIcon.UriSource = new Uri($"{nySträng}", UriKind.Relative);
+                            glowIcon.EndInit();
 
+                            dynamicGlowIcon.Source = glowIcon;
 
                             suspect = new Suspect()
                             {
                                 Name = (string)reader["name"],
-                                Portrait = glowIcon
+                                Portrait = dynamicGlowIcon
                             };
                             allSuspects.Add(suspect);
                         }

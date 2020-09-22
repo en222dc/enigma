@@ -14,9 +14,12 @@ namespace Enigma.ViewModels
 {
     class SuspectsPageModel : BaseViewModel
     {
-        public BitmapImage KillerPortrait { get; set; }
+        #region Properties
+        public Image KillerPortrait { get; set; }
         public string KillerName { get; set; }
+        #endregion
 
+        #region Methods
         private void ShowKiller(ObservableCollection<Suspect> SuspectList)
         {
             foreach (var suspect in SuspectList)
@@ -28,13 +31,16 @@ namespace Enigma.ViewModels
                 }
             }
         }
+        #endregion
 
+        #region Constructor
         public SuspectsPageModel(ObservableCollection<Suspect> SuspectList)
         {
             ShowKiller(SuspectList);
         }
+        #endregion 
 
-        
+
         public void ChangePage()
         {
 
