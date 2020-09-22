@@ -15,7 +15,7 @@ namespace Enigma.Views.Base
             get => viewModel;
             set
             {
-                // om modellen inte har ändrats
+              
                 if (viewModel == value)
                     return;
                 viewModel = value;
@@ -30,7 +30,7 @@ namespace Enigma.Views.Base
             ViewModel = new VM();
         }
 
-        // Om man vill ladda en specifik vymodell
+      
         public BasePage(VM specificViewModel = null) : base()
         {
             if (specificViewModel != null)
