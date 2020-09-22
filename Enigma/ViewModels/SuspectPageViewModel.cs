@@ -14,31 +14,31 @@ namespace Enigma.ViewModels
 {
     class SuspectsPageModel : BaseViewModel
     {
-        public BitmapImage KillerPortrait { get; set; }
+        #region Properties
+        public Image KillerPortrait { get; set; }
         public string KillerName { get; set; }
+        #endregion
 
+        #region Methods
         private void ShowKiller(ObservableCollection<Suspect> SuspectList)
         {
             foreach (var suspect in SuspectList)
             {
                 if (suspect.IsKiller == true)
                 {
-                    suspect.Portrait = KillerPortrait;
-                    suspect.Name = KillerName;
+                    KillerPortrait = suspect.Portrait;
+                    KillerName = suspect.Name;
                 }
             }
-
         }
+        #endregion
 
+        #region Constructor
         public SuspectsPageModel(ObservableCollection<Suspect> SuspectList)
         {
-            ShowKiller(ListOfSuspects);
+            ShowKiller(SuspectList);
         }
-
-        public SuspectsPageModel()
-        {
-            ShowKiller(ListOfSuspects);
-        }
+        #endregion 
 
 
         public void ChangePage()
@@ -47,7 +47,13 @@ namespace Enigma.ViewModels
         }
 
 
-       
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        }
 
     }
 }

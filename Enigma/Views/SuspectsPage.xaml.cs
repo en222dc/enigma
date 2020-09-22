@@ -13,10 +13,10 @@ namespace Enigma.Views
     public partial class SuspectsPage : Page
     {
 
-        public SuspectsPage(BaseViewModel SuspectPageModel)
+        public SuspectsPage(BaseViewModel SuspectPageViewModel)
         {
             InitializeComponent();
-            DataContext = SuspectPageModel;
+            DataContext = SuspectPageViewModel;
         }
 
      

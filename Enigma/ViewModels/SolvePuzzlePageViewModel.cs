@@ -7,6 +7,7 @@ using System;
 using System.Windows.Input;
 using Enigma.Views;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Enigma.ViewModels
 {
@@ -19,7 +20,7 @@ namespace Enigma.ViewModels
        public string Guess2ndSymbol { get; set; }
        public string Guess3rdSymbol { get; set; }
        public string Guess4thSymbol { get; set; }
-       public string Guess { get; set; }
+       public string Error { get; set; }
         #endregion
 
         #region Commands
@@ -61,21 +62,32 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
-        public void SymbolsToArray (string killer)
+        public void ShowEncryptedName (ObservableCollection<Suspect> suspects)
         {
             SymbolArray = new ObservableCollection<string>();
 
-            foreach (char symbol in killer)
+            foreach (var suspect in suspects)
             {
-                SymbolArray.Add(symbol.ToString());
+                if (suspect.IsKiller == true)
+                {
+                    for (int i = 0; i < suspect.EncryptedName.Length; i++)
+                    {
+                        SymbolArray.Add(suspect.EncryptedName[i]);
+                    }
+                }
             }
         }
 
-        private void GetLetterArray(string killer)
+        private void GetLetterArray(ObservableCollection<Suspect> suspects)
         {
-            foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
+            string killer = "";
+            foreach (var suspect in suspects)
             {
-                killer = killer.ToLower().Replace(pair.Key, pair.Value);
+                if (suspect.IsKiller == true)
+                {
+                    killer = suspect.Name.ToLower();
+
+                }
             }
 
             LetterArray = new string[4];
@@ -92,14 +104,23 @@ namespace Enigma.ViewModels
 
         private void IsGuessCorrect()
         {
-            if (Guess1stSymbol.ToLower() == LetterArray[0] && Guess2ndSymbol.ToLower() == LetterArray[1] && Guess3rdSymbol.ToLower() == LetterArray[2] && Guess4thSymbol.ToLower() == LetterArray[3])
+            if (string.IsNullOrEmpty(Guess1stSymbol) || string.IsNullOrEmpty(Guess2ndSymbol) || string.IsNullOrEmpty(Guess3rdSymbol) || string.IsNullOrEmpty (Guess4thSymbol))
             {
-                IsGuessCorrectCommand = new RelayCommand(GoToSuspectPage);
+                Error = "Please type a letter into every box";
             }
             else
             {
-                Guess = "Your guess was wrong!";
+                if (Guess1stSymbol.ToLower() == LetterArray[0] && Guess2ndSymbol.ToLower() == LetterArray[1] && Guess3rdSymbol.ToLower() == LetterArray[2] && Guess4thSymbol.ToLower() == LetterArray[3])
+                {
+                    IsGuessCorrectCommand = new RelayCommand(GoToSuspectPage);
+                }
+
+                else
+                {
+                    Error = "Your guess was wrong";
+                }
             }
+            
         }
 
         private void GoToSuspectPage ()
@@ -108,13 +129,18 @@ namespace Enigma.ViewModels
             var page = new SuspectsPage(model);
             NavigationService.Navigate(page);
         }
+
+        public ObservableCollection<Suspect> ReturnList (ObservableCollection<Suspect> test)
+        {
+            return test;
+        }
         #endregion
 
         #region Constructor
-        public SolvePuzzlePageViewModel(int total, string encryptedname)
+        public SolvePuzzlePageViewModel(int total, ObservableCollection<Suspect> SuspectList)
         {
-            SymbolsToArray(encryptedname);
-            GetLetterArray(encryptedname);
+            ShowEncryptedName(SuspectList);
+            GetLetterArray(SuspectList);
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
