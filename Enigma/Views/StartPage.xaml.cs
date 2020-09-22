@@ -27,6 +27,8 @@ namespace Enigma.ViewModels
         {
             InitializeComponent();
             DataContext = new StartPageViewModel();
+
+          
         }
     }
 }

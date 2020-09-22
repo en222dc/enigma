@@ -41,9 +41,9 @@ namespace Enigma.ViewModels
         {            
             PlayGameCommand = new RelayCommand(ChangePage);
             //CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);           
-            ListOfSuspects = SetSuspectsForGame();
-            SetKiller(ListOfSuspects);
-            EncryptKillerName(ListOfSuspects);
+           // ListOfSuspects = SetSuspectsForGame();
+           // SetKiller(ListOfSuspects);
+           // EncryptKillerName(ListOfSuspects);
         }
 
         #endregion
@@ -103,9 +103,9 @@ namespace Enigma.ViewModels
                 {
                     killerName = listOfSuspects[suspect].Name;
                     listOfSuspects[suspect].EncryptedName = new char[listOfSuspects[suspect].Name.Length];
-                    foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
+               //     foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
                     {
-                        killerName = killerName.ToLower().Replace(pair.Value, pair.Key);
+              //          killerName = killerName.ToLower().Replace(pair.Value, pair.Key);
                     }
 
 
@@ -126,18 +126,17 @@ namespace Enigma.ViewModels
 
         public void ChangePage()
         {
-            var model = new PuzzlePageViewModel(ListOfSuspects);
-            var page = new PuzzlePage(model);
+            var model = new PickPlayerViewModel();
+            var page = new PickPlayer();
             NavigationService.Navigate(page);
+            // var model = new PuzzlePageViewModel(ListOfSuspects);
+            //var page = new PuzzlePage(model);
+            // NavigationService.Navigate(page);
+
         }
 
 
-        //public void GoToCreatePlayerPage()
-        //{
-        //    //var model = new PlayerRegistrationViewModel();
-        //    var page = new PlayerRegistration();
-        //    NavigationService.Navigate(page);
-        //}
+      
 
         #endregion
 

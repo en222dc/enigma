@@ -20,7 +20,7 @@ namespace Enigma.ViewModels
         public string PlayerName { get; set; }
         public ObservableCollection<Player> AllPlayers { get; set; }
 
-        public ICommand CommandClick { get; set; }
+        public ICommand ChoosePlayerCommand{ get; set; }
         public ICommand AddPlayerClick { get; set; }
         public ICommand DeletePlayerClick { get; set; }
 
@@ -29,19 +29,29 @@ namespace Enigma.ViewModels
         public PickPlayerViewModel()
         {
             UpdateAllPlayerList();
-            CommandClick = new RelayCommand(GoToPuzzlePage);
+            ChoosePlayerCommand = new RelayCommand(GoToPuzzlePage);
             AddPlayerClick = new RelayCommand(AddPlayer);
             DeletePlayerClick = new RelayCommand(DeletePlayer);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+       
 
         public void GoToPuzzlePage()
         {
-            var model = new PuzzlePageViewModel();
-            var page = new PuzzlePage();
+            
 
-            NavigationService.Navigate(page);
+            if (MyPlayer != null)
+            {
+                var model = new BackStoryViewModel(MyPlayer);
+                var page = new BackStory();
+                NavigationService.Navigate(page);
+            }
+            else
+            {
+                NoPlayerMessage();
+            }
+
+            
         }
 
         public void AddPlayer()
@@ -97,10 +107,6 @@ namespace Enigma.ViewModels
             MessageBox.Show("You have to choose a player first.");
         }
 
-        //protected void OnPropertyChanged([CallerMemberName] string name = null)
-        //    {
-        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        //    }
     }
 }
 
