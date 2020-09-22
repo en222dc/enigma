@@ -21,18 +21,13 @@ namespace Enigma.ViewModels
     /// <summary>
     /// Interaction logic for StartPage.xaml
     /// </summary>
-    public partial class StartPage 
+    public partial class StartPage : Page 
     {
         public StartPage()
         {
             InitializeComponent();
             DataContext = new StartPageViewModel();
         }
-        
-
-       
-
-       
     }
-    }
+}
 

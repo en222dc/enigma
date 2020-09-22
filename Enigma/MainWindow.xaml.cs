@@ -27,21 +27,7 @@ namespace Enigma
 
         public MainWindow()
         {
-
             InitializeComponent();
-
-            //var startPage = new StartPage();
-            //var menuPage = new MenuPage();
-
-            ////Ta bort sen
-            //var pickPlayerPage = new PickPlayer();
-
-
-            //MainFrame.Content = pickPlayerPage;
-            //MenuFrame.Content = menuPage;
-
-
-            //DataContext = new MainViewModel();
 
             var startPage = new StartPage();
             var menuPage = new MenuPage();
@@ -49,7 +35,7 @@ namespace Enigma
             MainFrame.Content = startPage;
             MenuFrame.Content = menuPage;
 
-            DataContext = new MainViewModel();
+            //DataContext = new MainViewModel();
         }
     }
 }
