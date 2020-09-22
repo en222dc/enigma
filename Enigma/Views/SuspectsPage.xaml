@@ -36,7 +36,7 @@
             <Button x:Name="btnSuspectOne"
                     Grid.Column="0"
                     IsEnabled="False">
-                <Image Source="\Assets\Images\image1.jpg" 
+                <Image Source="{Binding XPath = KillerPortrait}" 
                        Stretch="Uniform" 
                        Margin="5" />
             </Button>
@@ -63,7 +63,7 @@
             </Button>
             
             <Label x:Name="lblSuspect1" 
-                   Content="Adam"
+                   Content="{Binding KillerName}"
                    Grid.Row="1" Grid.Column="0"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontSize="19" Foreground="#5F606B" FontFamily="Banschrift" />
