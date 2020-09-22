@@ -15,7 +15,7 @@ namespace Enigma.ViewModels
     class SuspectsPageModel : BaseViewModel
     {
         #region Properties
-        public Image KillerPortrait { get; set; }
+        public BitmapImage KillerPortrait { get; set; }
         public string KillerName { get; set; }
         #endregion
 
@@ -47,13 +47,7 @@ namespace Enigma.ViewModels
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        }
+       
 
     }
 }
