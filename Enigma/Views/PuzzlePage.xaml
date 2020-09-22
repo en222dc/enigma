@@ -55,7 +55,7 @@
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Content="{Binding SpecificSymbol}" 
                 Visibility="{Binding LblInvisibleSymbolsGetVisible}"
-                FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" />
+                FontSize="60" Foreground="#5F606B" FontFamily="Bell MT" />
 
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
