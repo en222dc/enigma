@@ -22,24 +22,22 @@ namespace Enigma.ViewModels
         public ObservableCollection<IGameLogic> listOfPuzzles { get; set; } = new ObservableCollection<IGameLogic>();    //Används inte till något för tillfället, kan vara bra att ha ifall vi vill ha flera pussel 
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
-       
+
 
         public string ButtonName { get; set; } = "Guess nr";
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
-        public string EncryptedName { get; set; }
-
-
-
-        #endregion
-
-        #region Variabler
-
-        private int totalSeconds = 0;
+        public char[] EncryptedName { get; set; } = new char[4];
+        public int CountPuzzles { get; set; }
+        public char SpecificSymbol { get; set; }
 
         private DispatcherTimer dispatcherTimer = null;
 
+
+        private int totalSeconds = 0;
+
         public string _timeLapse;
+
 
         #endregion
 
@@ -56,6 +54,8 @@ namespace Enigma.ViewModels
 
 
         #region Konstruktor
+
+        ObservableCollection<Suspect> ListOfSuspects = new ObservableCollection<Suspect>();
 
         public PuzzlePageViewModel()
         {
@@ -78,24 +78,46 @@ namespace Enigma.ViewModels
 
 
             Time();
-         
+
 
 
         }
 
-        
 
-        public PuzzlePageViewModel(ObservableCollection<Suspect>ListOfSuspects)
-        {           
-           
+        public PuzzlePageViewModel(ObservableCollection<Suspect> ImportedListOfSuspects)
+        {
+
             int[] fibonacciArray = new int[5];
             IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
             fibonacci.GenerateRandomNr(fibonacciArray);
             fibonacci.GetRestOfNrInSequence(fibonacciArray);
             GetPuzzleSequenceToProperty(fibonacciArray);
-           
+            ListOfSuspects = ImportedListOfSuspects;
+
             GetEncryptedName(ListOfSuspects);
-            Time();        
+            GetSymbolToPuzzle();
+            Time();
+
+            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            ShowHintCommand = new RelayCommand(ShowHint);
+
+        }
+
+        public PuzzlePageViewModel(int total, int puzzleCounter, ObservableCollection<Suspect> ImportedListOfSuspects)
+        {
+
+            int[] fibonacciArray = new int[5];
+            IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
+            fibonacci.GenerateRandomNr(fibonacciArray);
+            fibonacci.GetRestOfNrInSequence(fibonacciArray);
+            GetPuzzleSequenceToProperty(fibonacciArray);
+            ListOfSuspects = ImportedListOfSuspects;
+            CountPuzzles = puzzleCounter;
+            totalSeconds = total;
+
+            GetEncryptedName(ListOfSuspects);
+            GetSymbolToPuzzle();
+            Time();
 
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
@@ -108,15 +130,15 @@ namespace Enigma.ViewModels
 
         #region Metoder
 
-        private void GetPuzzleSequenceToProperty(int[]array)
+        private void GetPuzzleSequenceToProperty(int[] array)
         {
             foreach (var item in array)
             {
                 Fibonacci.Add(item);
-            }          
+            }
         }
-                      
-        private string GetEncryptedName(ObservableCollection<Suspect>List)
+
+        private void GetEncryptedName(ObservableCollection<Suspect> List)
         {
             foreach (var item in List)
             {
@@ -124,40 +146,57 @@ namespace Enigma.ViewModels
                 {
                     for (int i = 0; i < item.EncryptedName.Length; i++)
                     {
-                        EncryptedName += item.EncryptedName[i];
-                    }                   
-                    return EncryptedName;
+                        EncryptedName[i] += item.EncryptedName[i];
+                    }
+
                 }
             }
-            return EncryptedName; 
+
         }
-     
-        private void CheckIfGuessCorrect()
+
+
+        private void CheckIfGuessCorrect() //Ta in metoder här istället som kollar vilkoren?
         {
             if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr == Fibonacci[4].ToString())
             {
                 ButtonName = "Go To The Next Puzzle!";
-                LblInvisibleSymbolsGetVisible = Visibility.Visible;               
+                LblInvisibleSymbolsGetVisible = Visibility.Visible;
+                CountPuzzles++;
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
             }
             else ButtonName = "Wrong, guess again!";
 
         }
 
+        private void GetSymbolToPuzzle()
+        {
+            SpecificSymbol = EncryptedName[CountPuzzles];
+        }
+
         private void ShowHint()
         {
-            if (LblInvisibleHintGetVisible==Visibility.Hidden)
+            if (LblInvisibleHintGetVisible == Visibility.Hidden)
             {
                 LblInvisibleHintGetVisible = Visibility.Visible;
-                Hint60();         
+                Hint60();
+
             }
         }
 
         private void ChangePage()
         {
-            var model = new SolvePuzzlePageViewModel(totalSeconds, EncryptedName);
-            var page = new SolvePuzzlePage(model);
-            NavigationService.Navigate(page);
+            if (CountPuzzles == 4)
+            {
+                var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
+                var page = new SolvePuzzlePage(model);
+                NavigationService.Navigate(page);
+            }
+            else
+            {
+                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, ListOfSuspects);
+                var page = new PuzzlePage(model);
+                NavigationService.Navigate(page);
+            }
         }
 
 
@@ -175,7 +214,7 @@ namespace Enigma.ViewModels
             }
         }
 
-      
+
 
 
         public void Time()
@@ -202,6 +241,7 @@ namespace Enigma.ViewModels
 
         public int getTimeElapsed()
         {
+
             return totalSeconds;
         }
         #endregion

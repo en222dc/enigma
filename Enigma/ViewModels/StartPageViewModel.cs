@@ -37,6 +37,8 @@ namespace Enigma.ViewModels
 
         #region Konstruktor
 
+        ObservableCollection<Suspect> ListOfSuspects = new ObservableCollection<Suspect>();
+
         public StartPageViewModel()
         {            
             PlayGameCommand = new RelayCommand(ChangePage);

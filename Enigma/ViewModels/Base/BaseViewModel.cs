@@ -13,7 +13,7 @@ namespace Enigma.ViewModels.Base
 {
   public class BaseViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Suspect> ListOfSuspects { get; set; }
+        //public ObservableCollection<Suspect> ListOfSuspects { get; set; }
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService; 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)

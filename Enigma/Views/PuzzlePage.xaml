@@ -53,7 +53,7 @@
         <Label x:Name="lblShowSymbols" 
                 Grid.Row="3"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
-                Content="{Binding EncryptedName}" 
+                Content="{Binding SpecificSymbol}" 
                 Visibility="{Binding LblInvisibleSymbolsGetVisible}"
                 FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" />
 

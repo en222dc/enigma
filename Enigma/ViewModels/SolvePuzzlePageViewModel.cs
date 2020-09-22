@@ -104,17 +104,20 @@ namespace Enigma.ViewModels
 
         private void GoToSuspectPage ()
         {
-            var model = new SuspectsPageModel(ListOfSuspects);
+            var model = new SuspectsPageModel(ListOfSuspectsInGame);
             var page = new SuspectsPage(model);
             NavigationService.Navigate(page);
         }
         #endregion
 
+        ObservableCollection<Suspect> ListOfSuspectsInGame = new ObservableCollection<Suspect>();
+
         #region Constructor
-        public SolvePuzzlePageViewModel(int total, string encryptedname)
+        public SolvePuzzlePageViewModel(int total, ObservableCollection<Suspect>ListOfSuspects)
         {
-            SymbolsToArray(encryptedname);
-            GetLetterArray(encryptedname);
+            ListOfSuspectsInGame = ListOfSuspects;
+            //SymbolsToArray(encryptedname);
+            //GetLetterArray(encryptedname);
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
