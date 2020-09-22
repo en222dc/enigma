@@ -35,20 +35,19 @@ namespace Enigma.ViewModels
             ShowKiller(ListOfSuspects);
         }
 
-        
+        public SuspectsPageModel()
+        {
+            ShowKiller(ListOfSuspects);
+        }
+
+
         public void ChangePage()
         {
 
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        }
+       
 
     }
 }

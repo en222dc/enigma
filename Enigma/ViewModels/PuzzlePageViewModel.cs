@@ -22,7 +22,9 @@ namespace Enigma.ViewModels
         public ObservableCollection<IGameLogic> listOfPuzzles { get; set; } = new ObservableCollection<IGameLogic>();    //Används inte till något för tillfället, kan vara bra att ha ifall vi vill ha flera pussel 
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
-       
+
+        public Player MyPlayer { get; set; }
+
 
         public string ButtonName { get; set; } = "Guess nr";
         public string Guess4thNr { get; set; }
@@ -91,6 +93,23 @@ namespace Enigma.ViewModels
            
             GetEncryptedName(ListOfSuspects);
             Time();        
+
+            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            ShowHintCommand = new RelayCommand(ShowHint);
+
+        }
+
+        public PuzzlePageViewModel(Player player)
+        {
+
+            int[] fibonacciArray = new int[5];
+            IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
+            fibonacci.GenerateRandomNr(fibonacciArray);
+            fibonacci.GetRestOfNrInSequence(fibonacciArray);
+            GetPuzzleSequenceToProperty(fibonacciArray);
+            MyPlayer = player;
+            GetEncryptedName(ListOfSuspects);
+            Time();
 
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);

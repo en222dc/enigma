@@ -24,9 +24,11 @@ namespace Enigma.ViewModels
             DataContext = new BackStoryViewModel();
          }
 
-        
-      
-        
    
+
+
+
+
+
     }
 }

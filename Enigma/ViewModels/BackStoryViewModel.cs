@@ -13,15 +13,17 @@ namespace Enigma.ViewModels
    public class BackStoryViewModel : BaseViewModel
     {
         public ICommand GoToPageCommand { get; set; }
-
+        public Player MyPlayer;
         public BackStoryViewModel(Player player)
         {
+            MyPlayer = new Player();
+            MyPlayer = player;
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
         }
 
         public BackStoryViewModel()
         {
-           
+            GoToPageCommand = new RelayCommand(GoToPuzzlePage);
         }
 
 
@@ -30,12 +32,10 @@ namespace Enigma.ViewModels
 
 
         public void GoToPuzzlePage()
-
-        {  
-            var model = new PuzzlePageViewModel();
-            var page = new PuzzlePage();
-            
-            NavigationService.Navigate(page);
+        {
+         var model = new PuzzlePageViewModel(MyPlayer);
+         var page = new PuzzlePage();
+          NavigationService.Navigate(page);
 
 
 

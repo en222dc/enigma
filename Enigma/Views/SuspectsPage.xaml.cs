@@ -19,9 +19,6 @@ namespace Enigma.Views
             DataContext = SuspectPageModel;
         }
 
-        private void btnGoToPuzzle_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Views/PuzzlePage.xaml", UriKind.Relative));
-        }
+     
     }
 }
