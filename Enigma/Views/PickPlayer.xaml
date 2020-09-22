@@ -27,8 +27,8 @@
                     FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
             <StackPanel Grid.Row="1" Grid.Column ="0" Margin="20">
                 <ListBox x:Name="lstAllPlayers" 
-                        ItemsSource="{Binding AllPlayers}"
                         SelectedItem="{Binding MyPlayer}"
+                        ItemsSource="{Binding AllPlayers}"
                         FontSize="30" FontFamily="Bell MT" FontWeight="Bold"
                         Foreground="#5F606B" 
                         Background="Transparent"
@@ -38,6 +38,22 @@
                 <Button x:Name="btnPickPlayer" Command="{Binding ChoosePlayerCommand}"
                         Margin="0 0 0 50"
                         Content="Choose Player" 
+                        FontFamily="Bell MT" FontSize="30" Foreground="White"
+                        VerticalAlignment="Top" HorizontalAlignment="Center"
+                        Height="60"
+                        Width="250" 
+                        BorderBrush="#4E0106" BorderThickness="2"
+                        Background="#5C0106">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btnDeletePlayer"
+                        Margin="0 0 0 50"
+                        Content="Delete Player" 
+                        Command="{Binding DeletePlayerClick}"
                         FontFamily="Bell MT" FontSize="30" Foreground="White"
                         VerticalAlignment="Top" HorizontalAlignment="Center"
                         Height="60"

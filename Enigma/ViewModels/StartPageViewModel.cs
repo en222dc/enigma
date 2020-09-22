@@ -129,18 +129,17 @@ namespace Enigma.ViewModels
 
         public void ChangePage()
         {
-           // var model = new PuzzlePageViewModel(ListOfSuspects);
-          //  var page = new PuzzlePage(model);
-           // NavigationService.Navigate(page);
-            var page = new PickPlayer();
+            var model = new PuzzlePageViewModel(ListOfSuspects);
+            var page = new PuzzlePage(model);
             NavigationService.Navigate(page);
         }
 
 
         public void GoToCreatePlayerPage()
         {
-          
-           
+            //var model = new PlayerRegistrationViewModel();
+            //var page = new PlayerRegistration();
+            //NavigationService.Navigate(page);
         }
 
         #endregion
