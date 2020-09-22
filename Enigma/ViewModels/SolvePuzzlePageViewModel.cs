@@ -6,25 +6,29 @@ using System.Windows.Threading;
 using System;
 using System.Windows.Input;
 using Enigma.Views;
+using System.Collections.Generic;
 
 namespace Enigma.ViewModels
 {
     public class SolvePuzzlePageViewModel : BaseViewModel
     {
-       public ObservableCollection<char> SymbolArray { get; set; }
-       private char[] LetterArray { get; set; }
+        #region Properties
+       public ObservableCollection<string> SymbolArray { get; set; }
+       private string[] LetterArray { get; set; }
        public string Guess1stSymbol { get; set; }
        public string Guess2ndSymbol { get; set; }
        public string Guess3rdSymbol { get; set; }
        public string Guess4thSymbol { get; set; }
-       public string Guess { get; set; } 
+       public string Guess { get; set; }
+        #endregion
 
-       public ICommand IsGuessCorrectCommand { get; set; }
-       
+        #region Commands
+        public ICommand IsGuessCorrectCommand { get; set; }
+        #endregion
 
-
-       private int totalSeconds = 0;
-       private DispatcherTimer dispatcherTimer = null;
+        #region Timer
+        private int totalSeconds = 0;
+        private DispatcherTimer dispatcherTimer = null;
  
         private string _timeLapse2;
         public string TimeLapse2
@@ -44,7 +48,6 @@ namespace Enigma.ViewModels
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Tick += new EventHandler(Timer_Tick2);
             dispatcherTimer.Start();
-
         }
 
 
@@ -55,37 +58,41 @@ namespace Enigma.ViewModels
             TimeLapse2 = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
         }
 
+        #endregion
+
+        #region Methods
         public void SymbolsToArray (string killer)
         {
-            SymbolArray = new ObservableCollection<char>();
+            SymbolArray = new ObservableCollection<string>();
 
             foreach (char symbol in killer)
             {
-                SymbolArray.Add(symbol);
+                SymbolArray.Add(symbol.ToString());
             }
-
         }
 
-        public void GetLetterArray(string killer)
+        private void GetLetterArray(string killer)
         {
-            //KillerTranslation killerTranslation = new KillerTranslation();
-            //killer = killerTranslation.SymbolsToLetters(killer);
-            //LetterArray = new char[4];
+            foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
+            {
+                killer = killer.ToLower().Replace(pair.Key, pair.Value);
+            }
 
-            //for (int i = 0; i < killer.Length; i++)
-            //{
-            //    foreach (char c in killer)
-            //    {
-            //        LetterArray[i] = c;
-            //        i++;
-            //    }
-            //}
+            LetterArray = new string[4];
+
+            for (int i = 0; i < killer.Length; i++)
+            {
+                foreach (char c in killer)
+                {
+                    LetterArray[i] = c.ToString();
+                    i++;
+                }
+            }
         }
 
         private void IsGuessCorrect()
         {
-
-            if (Guess1stSymbol == LetterArray[0].ToString() && Guess2ndSymbol == LetterArray[1].ToString() && Guess3rdSymbol == LetterArray[2].ToString() && Guess4thSymbol == LetterArray[3].ToString())
+            if (Guess1stSymbol.ToLower() == LetterArray[0] && Guess2ndSymbol.ToLower() == LetterArray[1] && Guess3rdSymbol.ToLower() == LetterArray[2] && Guess4thSymbol.ToLower() == LetterArray[3])
             {
                 IsGuessCorrectCommand = new RelayCommand(GoToSuspectPage);
             }
@@ -97,22 +104,24 @@ namespace Enigma.ViewModels
 
         private void GoToSuspectPage ()
         {
-            var model = new SuspectsPageModel();
+            var model = new SuspectsPageModel(ListOfSuspects);
             var page = new SuspectsPage(model);
             NavigationService.Navigate(page);
-
         }
+        #endregion
 
-
-        public SolvePuzzlePageViewModel(int total, string killer)
+        #region Constructor
+        public SolvePuzzlePageViewModel(int total, string encryptedname)
         {
-            SymbolsToArray(killer);
-            GetLetterArray(killer);
+            SymbolsToArray(encryptedname);
+            GetLetterArray(encryptedname);
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
         }
 
-    }
+        #endregion
 
     }
+
+}

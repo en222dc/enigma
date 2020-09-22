@@ -4,15 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using System.Windows;
+
 
 namespace Enigma.ViewModels
 {
     class MenuPageViewModel : BaseViewModel
     {
+        public string ExitButtonContent { get; set; }
         public ICommand ExitGameCommand { get; set; }
         public ICommand ChangeToHighScorePageCommand { get; set; }
        
         public ICommand ChangeToHelpAndRulesCommand { get; set; }
+
+
+        public MainWindow myWindow = (MainWindow)Application.Current.MainWindow;
+        
 
         public MenuPageViewModel()
         {
@@ -21,12 +28,29 @@ namespace Enigma.ViewModels
             ChangeToHelpAndRulesCommand = new RelayCommand(ChangeToHelpAndRules);
         }
 
-
-
         public void ExitGame()
         {
-            var startpage = new StartPage();
-            NavigationService.Navigate(startpage);
+            if (IsMainFrameSetToStartPage())
+            {
+                myWindow.Close();
+            }
+            else
+            {
+                var startpage = new StartPage();
+                NavigationService.Navigate(startpage);
+            }
+        }
+
+        public bool IsMainFrameSetToStartPage()
+        {
+            bool result = false;
+
+            Object CurrentPage = myWindow.MainFrame.Content.GetType().Name;
+            if ((string)CurrentPage == "StartPage")
+            {
+                result = true;
+            }
+            return result;
         }
 
         public void ChangeToHighScorePage()
