@@ -189,7 +189,28 @@ namespace Enigma.Models.Repositories
             }
             
         }
-#endregion
+        #endregion
+
+        public static Highscore AddHighScore(Highscore highscoretoadd)
+        {
+            string stmt = "INSERT INTO highscore() VALUES(@fk_player_id, @time, @player_name) RETURNING highscore_id";
+        
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+                    command.Parameters.AddWithValue("fk_player_id", highscoretoadd.Fk_Player_id);
+                    command.Parameters.AddWithValue("time", highscoretoadd.Time);
+                    command.Parameters.AddWithValue("player_name", highscoretoadd.Player_name);
+
+                    int id = (int)command.ExecuteScalar();
+                    highscoretoadd.Highscore_id = id;
+
+                    return highscoretoadd;
+                }
+            }
+        }
     }
 }
 

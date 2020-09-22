@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Enigma.Models
 {
-    class Highscore
+   public class Highscore
     {
         public int Highscore_id { get; set; }
         public int Fk_Player_id { get; set; }

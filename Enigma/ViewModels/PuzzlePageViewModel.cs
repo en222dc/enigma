@@ -23,7 +23,7 @@ namespace Enigma.ViewModels
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
 
-        public Player MyPlayer { get; set; }
+        public Player player { get; set; }
 
 
         public string ButtonName { get; set; } = "Guess nr";
@@ -99,25 +99,6 @@ namespace Enigma.ViewModels
 
         }
 
-        public PuzzlePageViewModel(Player player)
-        {
-
-            int[] fibonacciArray = new int[5];
-            IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
-            fibonacci.GenerateRandomNr(fibonacciArray);
-            fibonacci.GetRestOfNrInSequence(fibonacciArray);
-            GetPuzzleSequenceToProperty(fibonacciArray);
-            MyPlayer = player;
-            GetEncryptedName(ListOfSuspects);
-            Time();
-
-            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
-            ShowHintCommand = new RelayCommand(ShowHint);
-
-        }
-
-
-
         #endregion
 
         #region Metoder
@@ -160,6 +141,7 @@ namespace Enigma.ViewModels
                 ButtonName = "Go To The Next Puzzle!";
                 LblInvisibleSymbolsGetVisible = Visibility.Visible;               
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
+              
             }
             else ButtonName = "Wrong, guess again!";
 
@@ -180,6 +162,9 @@ namespace Enigma.ViewModels
             var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
             var page = new SolvePuzzlePage(model);
             NavigationService.Navigate(page);
+          //  MyPlayerInGame;
+          //totalseconds
+
         }
 
 
