@@ -73,7 +73,6 @@ namespace Enigma.ViewModels
                     for (int i = 0; i < suspect.EncryptedName.Length; i++)
                     {
                         SymbolArray.Add(suspect.EncryptedName[i]);
-                        i++;
                     }
                 }
             }
@@ -86,12 +85,8 @@ namespace Enigma.ViewModels
             {
                 if (suspect.IsKiller == true)
                 {
-                    killer = suspect.Name;
+                    killer = suspect.Name.ToLower();
 
-                    foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
-                    {
-                        killer = killer.ToLower().Replace(pair.Key, pair.Value);
-                    }
                 }
             }
 
