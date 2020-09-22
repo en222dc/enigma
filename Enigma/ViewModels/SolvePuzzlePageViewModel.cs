@@ -161,7 +161,7 @@ namespace Enigma.ViewModels
                 Fk_Player_id= MyPlayerInGame.Player_id,
                 Player_name = MyPlayerInGame.Player_name
                 };
-              HighscoreToDB = Repository.AddHighScore(newHighScore);
+            //  HighscoreToDB = Repository.AddHighScore(newHighScore);
                
               
             }

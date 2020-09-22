@@ -61,7 +61,7 @@
             Grid.Column="1" Grid.Row="2"
             FontFamily="Bell MT" FontSize="30" Foreground="White"
             Margin="0 30"
-            Command= "{Binding GoToPageCommand}"
+            Command= "{Binding GoToStartPageCommand}"
             VerticalAlignment="Center" HorizontalAlignment="Center"
             Height="60"
             Width="250" 

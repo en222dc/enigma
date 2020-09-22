@@ -39,12 +39,12 @@ namespace Enigma.Models
             totalSeconds += 60;
         }
 
-        public void getTime(int seconds, String timeLapse)
+        public int getTime(int seconds)
         {
 
            totalSeconds = seconds;
-           TimeLapse = timeLapse;
-            Time();
+           Time();
+            return totalSeconds;
 
 
         }

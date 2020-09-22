@@ -162,8 +162,7 @@ namespace Enigma.ViewModels
             var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
             var page = new SolvePuzzlePage(model);
             NavigationService.Navigate(page);
-          //  MyPlayerInGame;
-          //totalseconds
+       
 
         }
 

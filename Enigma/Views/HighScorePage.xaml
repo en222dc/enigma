@@ -47,7 +47,7 @@
                  Background="Transparent"
                  FontFamily="Banschrift" Foreground="#5F606B" FontSize="30"/>
 
-        <Button x:Name="btnBackToStart" 
+        <Button x:Name="btnBackToStart"  
             Content="Back to Start" 
             Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3"
             FontFamily="Bell MT" FontSize="30" Foreground="White"
