@@ -9,21 +9,21 @@
       Title="StartPage">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="500"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Label Content="Welcome to Engima" 
                HorizontalAlignment="Center" VerticalAlignment="Top" 
-               FontFamily="Castellar" Foreground="#5C0106" FontSize="40" FontWeight="Bold"
-               Padding="0 70 0 0"/>
+               FontFamily="Castellar" Foreground="#5C0106" FontSize="60" FontWeight="Bold"
+               Padding="0 100 0 0"/>
         <Button x:Name="btnPlayGame" Content="New Game"  
                 FontFamily="Bell MT" FontSize="35"  Foreground="White"
                 BorderBrush="#4E0106" BorderThickness="2"
                 Background="#5C0106"
                 Command ="{Binding PlayGameCommand}"
                 Grid.Row="1"
-                VerticalAlignment="Top" HorizontalAlignment="Center"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
                 Height="60"
                 Width="300">
             <Button.Resources>
