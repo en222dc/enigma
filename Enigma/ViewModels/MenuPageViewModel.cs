@@ -27,14 +27,6 @@ namespace Enigma.ViewModels
             ChangeToHelpAndRulesCommand = new RelayCommand(ChangeToHelpAndRules);
         }
 
-        public bool IsMainFrameSetToStartPage()
-        {
-            bool result = false;
-            //if (myWindow.MainFrame.Content == StartPage)
-            //    result = true;
-            return result;
-        }
-
         public void ExitGame()
         {
             if (IsMainFrameSetToStartPage())
@@ -46,6 +38,19 @@ namespace Enigma.ViewModels
                 var startpage = new StartPage();
                 NavigationService.Navigate(startpage);
             }
+        }
+
+        public bool IsMainFrameSetToStartPage()
+        {
+            bool result = false;
+
+            Object CurrentPage;
+            CurrentPage = myWindow.MainFrame.Content.GetType().Name;
+            if ((string)CurrentPage == "StartPage")
+            {
+                result = true;
+            }
+            return result;
         }
 
         public void ChangeToHighScorePage()
