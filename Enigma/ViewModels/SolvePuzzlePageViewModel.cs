@@ -62,21 +62,37 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
-        public void SymbolsToArray (string killer)
+        public void ShowEncryptedName (ObservableCollection<Suspect> suspects)
         {
             SymbolArray = new ObservableCollection<string>();
 
-            foreach (char symbol in killer)
+            foreach (var suspect in suspects)
             {
-                SymbolArray.Add(symbol.ToString());
+                if (suspect.IsKiller == true)
+                {
+                    for (int i = 0; i < suspect.EncryptedName.Length; i++)
+                    {
+                        SymbolArray.Add(suspect.EncryptedName[i]);
+                        i++;
+                    }
+                }
             }
         }
 
-        private void GetLetterArray(string killer)
+        private void GetLetterArray(ObservableCollection<Suspect> suspects)
         {
-            foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
+            string killer = "";
+            foreach (var suspect in suspects)
             {
-                killer = killer.ToLower().Replace(pair.Key, pair.Value);
+                if (suspect.IsKiller == true)
+                {
+                    killer = suspect.Name;
+
+                    foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
+                    {
+                        killer = killer.ToLower().Replace(pair.Key, pair.Value);
+                    }
+                }
             }
 
             LetterArray = new string[4];
@@ -118,13 +134,18 @@ namespace Enigma.ViewModels
             var page = new SuspectsPage(model);
             NavigationService.Navigate(page);
         }
+
+        public ObservableCollection<Suspect> ReturnList (ObservableCollection<Suspect> test)
+        {
+            return test;
+        }
         #endregion
 
         #region Constructor
-        public SolvePuzzlePageViewModel(int total, string encryptedname)
+        public SolvePuzzlePageViewModel(int total, ObservableCollection<Suspect> SuspectList)
         {
-            SymbolsToArray(encryptedname);
-            GetLetterArray(encryptedname);
+            ShowEncryptedName(SuspectList);
+            GetLetterArray(SuspectList);
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
