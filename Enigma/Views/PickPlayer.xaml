@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Enigma.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1600"
       Title="PickPlayer">
     <Page.Background>
         <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
@@ -13,8 +13,9 @@
     <StackPanel Margin="0 20">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.5*" />
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -24,12 +25,14 @@
             <Label Grid.Row="0" Grid.ColumnSpan="2"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
                     Content="Choose Player"
-                    FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
+                    FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"
+                   Padding="20"/>
             <StackPanel Grid.Row="1" Grid.Column ="0" Margin="20">
                 <ListBox x:Name="lstAllPlayers" 
                         SelectedItem="{Binding MyPlayer}"
                         ItemsSource="{Binding AllPlayers}"
                         FontSize="30" FontFamily="Bell MT" FontWeight="Bold"
+                        Height="500"
                         Foreground="#5F606B" 
                         Background="Transparent"
                         BorderBrush="Transparent"/>
@@ -68,8 +71,13 @@
                 </Button>
                 
             </StackPanel>
+            <Label Content="... Or create a new one:" 
+                   Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Padding="30"
+                   FontSize="30" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
             <TextBox x:Name="txtPlayerName" 
-                 Grid.Column="0" Grid.Row="2" 
+                 Grid.Column="0" Grid.Row="3" 
                      Text="{Binding PlayerName}"
                  HorizontalAlignment="Center" VerticalAlignment="Center" 
                  Margin="10"
@@ -79,7 +87,7 @@
             <Button x:Name="btnAddPlayer" 
                     Content="Create New Player"
                     Command="{Binding AddPlayerClick}"
-                    Grid.Row="2" Grid.Column="1"
+                    Grid.Row="3" Grid.Column="1"
                     FontFamily="Bell MT" FontSize="30" Foreground="White"
                         VerticalAlignment="Top" HorizontalAlignment="Center"
                         Height="60"
