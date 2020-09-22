@@ -68,7 +68,7 @@
                    FontSize="50" Foreground="#5F606B" FontFamily="Bahnschrift" 
                    Content = "{Binding SymbolArray[3]}"/>
 
-            <TextBox x:Name="txtFirstSymbol" MaxLength="1"
+            <TextBox x:Name="txtFirstSymbol"
                      Grid.Row="1" Grid.Column="0"
                      MaxLength="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
@@ -77,7 +77,7 @@
                      Width="50"
                      FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"
                      Text="{Binding Guess1stSymbol}"/>
-            <TextBox x:Name="txtSecondSymbol" MaxLength="1"
+            <TextBox x:Name="txtSecondSymbol"
                      Grid.Row="1" Grid.Column="1"
                      MaxLength="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
@@ -87,7 +87,7 @@
                      FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"
                      Text="{Binding Guess2ndSymbol}"/>
 
-            <TextBox x:Name="txtThirdSymbol" MaxLength="1"
+            <TextBox x:Name="txtThirdSymbol"
                      Grid.Row="1" Grid.Column="2"
                      MaxLength="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
@@ -96,7 +96,7 @@
                      Width="50"
                      FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift"
                      Text="{Binding Guess3rdSymbol}"/>
-            <TextBox x:Name="txtFourthSymbol" MaxLength="1"
+            <TextBox x:Name="txtFourthSymbol"
                      Grid.Row="1" Grid.Column="3"
                      MaxLength="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
