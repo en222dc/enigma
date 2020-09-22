@@ -29,12 +29,17 @@ namespace Enigma.ViewModels
         public string Guess5thNr { get; set; }
         public string EncryptedName { get; set; }
 
+
+
+        #endregion
+
+        #region Variabler
+
         private int totalSeconds = 0;
 
         private DispatcherTimer dispatcherTimer = null;
 
         public string _timeLapse;
-      
 
         #endregion
 
@@ -126,14 +131,7 @@ namespace Enigma.ViewModels
             }
             return EncryptedName; 
         }
-        private void EncryptetNameToString(char[] encryptKillerName)
-        {          
-            foreach (var c in encryptKillerName)
-            {
-                EncryptedName += c;
-            }
-        }
-
+     
         private void CheckIfGuessCorrect()
         {
             if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr == Fibonacci[4].ToString())
@@ -151,8 +149,7 @@ namespace Enigma.ViewModels
             if (LblInvisibleHintGetVisible==Visibility.Hidden)
             {
                 LblInvisibleHintGetVisible = Visibility.Visible;
-                Hint60();           
-
+                Hint60();         
             }
         }
 

@@ -135,7 +135,7 @@ namespace Enigma.Models.Repositories
             }
         }
 
-        public static IEnumerable<Suspect> GetAllSuspects()
+        public static ObservableCollection<Suspect> GetAllSuspects()
         {
             string stmt = "SELECT name, portrait FROM suspect;";
 
@@ -153,11 +153,10 @@ namespace Enigma.Models.Repositories
                         while (reader.Read())
                         {
 
-                            string nySträng = reader["portrait"].ToString();
+                            string portraitPath = reader["portrait"].ToString();
                             BitmapImage glowIcon = new BitmapImage();
                             glowIcon.BeginInit();
-                            glowIcon.UriSource = new Uri($"{nySträng}", UriKind.Relative);
-
+                            glowIcon.UriSource = new Uri(portraitPath, UriKind.Relative);
 
                             suspect = new Suspect()
                             {
