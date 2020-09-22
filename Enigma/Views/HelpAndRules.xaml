@@ -56,8 +56,8 @@
                         FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" 
                         Padding="5" Margin="10 0 0 0"/>
         </StackPanel>
-        <Button x:Name="btnBackToGame" 
-            Content="Back to the Game" 
+        <Button x:Name="btnBackToStart" 
+            Content="Back to Start" 
             Grid.Column="1" Grid.Row="2"
             FontFamily="Bell MT" FontSize="30" Foreground="White"
             Margin="0 30"

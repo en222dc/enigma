@@ -78,7 +78,8 @@
                    FontSize="30" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
             <TextBox x:Name="txtPlayerName" 
                  Grid.Column="0" Grid.Row="3" 
-                     Text="{Binding PlayerName}"
+                 Text="{Binding PlayerName}"
+                 MaxLength="10"
                  HorizontalAlignment="Center" VerticalAlignment="Center" 
                  Margin="10"
                  FontSize="25" Foreground="#5F606B" FontFamily="Bahnschrift" 
