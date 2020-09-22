@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Enigma.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="SolvePuzzlePage">
     <Page.Background>
         <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
@@ -70,6 +70,7 @@
 
             <TextBox x:Name="txtFirstSymbol" MaxLength="1"
                      Grid.Row="1" Grid.Column="0"
+                     MaxLength="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
                      Margin="5"
                      Height="40"
@@ -78,6 +79,7 @@
                      Text="{Binding Guess1stSymbol}"/>
             <TextBox x:Name="txtSecondSymbol" MaxLength="1"
                      Grid.Row="1" Grid.Column="1"
+                     MaxLength="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
                      Margin="5"
                      Height="40"
@@ -87,6 +89,7 @@
 
             <TextBox x:Name="txtThirdSymbol" MaxLength="1"
                      Grid.Row="1" Grid.Column="2"
+                     MaxLength="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
                      Margin="5"
                      Height="40"
@@ -95,6 +98,7 @@
                      Text="{Binding Guess3rdSymbol}"/>
             <TextBox x:Name="txtFourthSymbol" MaxLength="1"
                      Grid.Row="1" Grid.Column="3"
+                     MaxLength="1"
                      VerticalAlignment="Top" HorizontalAlignment="Center"
                      Margin="5"
                      Height="40"
@@ -103,20 +107,13 @@
                      Text="{Binding Guess4thSymbol}"/>
         </Grid>
 
-        <Image  Grid.Column="2" Grid.RowSpan="4"
+        <Image  Grid.Column="2" Grid.Row="1" Grid.RowSpan="2"
                 Source="\Assets\Images\solvesheet.png" 
-                Stretch="Uniform" Margin="9,72,-95,11"
-                Visibility="Visible" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-15.715"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
+                HorizontalAlignment="Center"
+                Stretch="UniformToFill"
+                Visibility="Visible" >
             <Image.LayoutTransform>
-                <RotateTransform CenterX="25" CenterY="25" Angle="15" />
+                <RotateTransform Angle="8" />
             </Image.LayoutTransform>
         </Image>
 
