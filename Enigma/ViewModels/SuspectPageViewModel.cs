@@ -23,11 +23,10 @@ namespace Enigma.ViewModels
             {
                 if (suspect.IsKiller == true)
                 {
-                    suspect.Portrait = KillerPortrait;
-                    suspect.Name = KillerName;
+                    KillerPortrait = suspect.Portrait;
+                    KillerName = suspect.Name;
                 }
             }
-
         }
 
         public SuspectsPageModel(ObservableCollection<Suspect> SuspectList)

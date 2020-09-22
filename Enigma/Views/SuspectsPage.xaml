@@ -36,7 +36,7 @@
             <Button x:Name="btnSuspectOne"
                     Grid.Column="0"
                     IsEnabled="False">
-                <Image Source="{Binding XPath = KillerPortrait}" 
+                <Image Source="{Binding KillerPortrait}" 
                        Stretch="Uniform" 
                        Margin="5" />
             </Button>
