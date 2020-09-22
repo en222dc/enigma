@@ -7,6 +7,7 @@ using System;
 using System.Windows.Input;
 using Enigma.Views;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Enigma.ViewModels
 {
@@ -19,7 +20,7 @@ namespace Enigma.ViewModels
        public string Guess2ndSymbol { get; set; }
        public string Guess3rdSymbol { get; set; }
        public string Guess4thSymbol { get; set; }
-       public string Guess { get; set; }
+       public string Error { get; set; }
         #endregion
 
         #region Commands
@@ -92,14 +93,23 @@ namespace Enigma.ViewModels
 
         private void IsGuessCorrect()
         {
-            if (Guess1stSymbol.ToLower() == LetterArray[0] && Guess2ndSymbol.ToLower() == LetterArray[1] && Guess3rdSymbol.ToLower() == LetterArray[2] && Guess4thSymbol.ToLower() == LetterArray[3])
+            if (string.IsNullOrEmpty(Guess1stSymbol) || string.IsNullOrEmpty(Guess2ndSymbol) || string.IsNullOrEmpty(Guess3rdSymbol) || string.IsNullOrEmpty (Guess4thSymbol))
             {
-                IsGuessCorrectCommand = new RelayCommand(GoToSuspectPage);
+                Error = "Please type a letter into every box";
             }
             else
             {
-                Guess = "Your guess was wrong!";
+                if (Guess1stSymbol.ToLower() == LetterArray[0] && Guess2ndSymbol.ToLower() == LetterArray[1] && Guess3rdSymbol.ToLower() == LetterArray[2] && Guess4thSymbol.ToLower() == LetterArray[3])
+                {
+                    IsGuessCorrectCommand = new RelayCommand(GoToSuspectPage);
+                }
+
+                else
+                {
+                    Error = "Your guess was wrong";
+                }
             }
+            
         }
 
         private void GoToSuspectPage ()

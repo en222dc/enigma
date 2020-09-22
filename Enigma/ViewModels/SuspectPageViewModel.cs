@@ -32,7 +32,7 @@ namespace Enigma.ViewModels
 
         public SuspectsPageModel(ObservableCollection<Suspect> SuspectList)
         {
-            ShowKiller(ListOfSuspects);
+            ShowKiller(SuspectList);
         }
 
         
