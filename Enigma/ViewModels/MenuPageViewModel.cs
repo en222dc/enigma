@@ -11,6 +11,7 @@ namespace Enigma.ViewModels
 {
     class MenuPageViewModel : BaseViewModel
     {
+        public string ExitButtonContent { get; set; }
         public ICommand ExitGameCommand { get; set; }
         public ICommand ChangeToHighScorePageCommand { get; set; }
        
@@ -44,8 +45,7 @@ namespace Enigma.ViewModels
         {
             bool result = false;
 
-            Object CurrentPage;
-            CurrentPage = myWindow.MainFrame.Content.GetType().Name;
+            Object CurrentPage = myWindow.MainFrame.Content.GetType().Name;
             if ((string)CurrentPage == "StartPage")
             {
                 result = true;
