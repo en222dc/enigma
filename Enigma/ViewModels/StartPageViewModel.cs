@@ -42,7 +42,7 @@ namespace Enigma.ViewModels
         public StartPageViewModel()
         {            
             PlayGameCommand = new RelayCommand(ChangePage);
-            CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);           
+            //CreatePlayerCommand = new RelayCommand(GoToCreatePlayerPage);           
             ListOfSuspects = SetSuspectsForGame();
             SetKiller(ListOfSuspects);
             EncryptKillerName(ListOfSuspects);
@@ -134,12 +134,12 @@ namespace Enigma.ViewModels
         }
 
 
-        public void GoToCreatePlayerPage()
-        {
-            //var model = new PlayerRegistrationViewModel();
-            var page = new PlayerRegistration();
-            NavigationService.Navigate(page);
-        }
+        //public void GoToCreatePlayerPage()
+        //{
+        //    //var model = new PlayerRegistrationViewModel();
+        //    var page = new PlayerRegistration();
+        //    NavigationService.Navigate(page);
+        //}
 
         #endregion
 

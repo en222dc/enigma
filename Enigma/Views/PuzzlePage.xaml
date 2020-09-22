@@ -41,21 +41,21 @@
                 Grid.Row="1"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Content="{Binding TimeLapse}"
-                FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" />
+                FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
 
         <Label x:Name="lblHint" 
                 Grid.Row="2"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Content="{Binding Hint, Source={StaticResource FibonacciProperty}}"                 
                 Visibility="{Binding LblInvisibleHintGetVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" />
+                FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
 
         <Label x:Name="lblShowSymbols" 
                 Grid.Row="3"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
-                Content="{Binding SpecificSymbol}" 
+                Content="{Binding EncryptedName}" 
                 Visibility="{Binding LblInvisibleSymbolsGetVisible}"
-                FontSize="60" Foreground="#5F606B" FontFamily="Bell MT" />
+                FontSize="40" Foreground="#5F606B" FontFamily="Bell MT" />
 
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
