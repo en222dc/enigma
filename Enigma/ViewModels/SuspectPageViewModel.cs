@@ -15,7 +15,7 @@ namespace Enigma.ViewModels
     class SuspectsPageModel : BaseViewModel
     {
         #region Properties
-        public BitmapImage KillerPortrait { get; set; }
+        public string KillerPortrait { get; set; }
         public string KillerName { get; set; }
         #endregion
 
@@ -26,7 +26,7 @@ namespace Enigma.ViewModels
             {
                 if (suspect.IsKiller == true)
                 {
-                    KillerPortrait = suspect.Portrait;
+                    KillerPortrait = suspect.Portrait.UriSource.ToString();
                     KillerName = suspect.Name;
                 }
             }
