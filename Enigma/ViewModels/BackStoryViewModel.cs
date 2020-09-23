@@ -18,6 +18,7 @@ namespace Enigma.ViewModels
 
         public ICommand GoToPageCommand { get; set; }
         //public Player MyPlayer;
+        public string BackStoryText { get; set; }
         public BackStoryViewModel(Player player)
         {
             MyPlayer = new Player();
@@ -122,7 +123,7 @@ namespace Enigma.ViewModels
         public void GoToPuzzlePage()
         {
          var model = new PuzzlePageViewModel();
-         var page = new PuzzlePage();
+         var page = new PuzzlePage(model);
           NavigationService.Navigate(page);
 
 

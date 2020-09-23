@@ -14,7 +14,9 @@ namespace Enigma.ViewModels.Base
   public class BaseViewModel : INotifyPropertyChanged
     {
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } =new ObservableCollection<Suspect>();
-        public static  Player MyPlayerInGame { get; set; }
+        public static Player MyPlayerInGame { get; set; }
+
+        public static Player MyPlayer { get; set; }
 
         public static int MyHighScoreInGame { get; set; }
 

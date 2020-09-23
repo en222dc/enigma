@@ -59,45 +59,45 @@ namespace Enigma.ViewModels
 
         #region Konstruktor
 
-        //public PuzzlePageViewModel()
-        //{
+        public PuzzlePageViewModel()
+        {
 
-        //    //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
-        //    int[] fibonacciArray = new int[5];
-        //    IGameLogic fibonacci = new Fibonacci();
-        //    fibonacci.GenerateRandomNr(fibonacciArray);
-        //    fibonacci.GetRestOfNrInSequence(fibonacciArray);
-        //    GetHint(fibonacci);
-        //    GetSymbolToPuzzle();
-
-
-        //    foreach (var position in fibonacciArray)
-        //    {
-        //        Fibonacci.Add(position);
-        //    }
-
-        //    listOfPuzzles.Add(fibonacci);
-        //    CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
-        //    ShowHintCommand = new RelayCommand(ShowHint);
+            //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
+            int[] fibonacciArray = new int[5];
+            IGameLogic fibonacci = new Fibonacci();
+            fibonacci.GenerateRandomNr(fibonacciArray);
+            fibonacci.GetRestOfNrInSequence(fibonacciArray);
+            GetHint(fibonacci);
+            GetSymbolToPuzzle();
 
 
-        //    Time();
-         
+            foreach (var position in fibonacciArray)
+            {
+                Fibonacci.Add(position);
+            }
+
+            listOfPuzzles.Add(fibonacci);
+            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            ShowHintCommand = new RelayCommand(ShowHint);
 
 
-        //}
+            Time();
 
-        
+
+
+        }
+
+
 
         //public PuzzlePageViewModel(ObservableCollection<Suspect>ListOfSuspects)
         //{           
-           
+
         //    int[] fibonacciArray = new int[5];
         //    IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
         //    fibonacci.GenerateRandomNr(fibonacciArray);
         //    fibonacci.GetRestOfNrInSequence(fibonacciArray);
         //    GetPuzzleSequenceToProperty(fibonacciArray);
-           
+
         //    GetEncryptedName(ListOfSuspects);
         //    Time();        
 
