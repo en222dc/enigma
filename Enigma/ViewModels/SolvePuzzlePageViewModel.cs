@@ -129,6 +129,7 @@ namespace Enigma.ViewModels
         {
             var model = new SuspectsPageModel(ListOfSuspects);
             var page = new SuspectsPage(model);
+            AddHighScore();
             NavigationService.Navigate(page);
         }
 
@@ -144,9 +145,10 @@ namespace Enigma.ViewModels
             ShowEncryptedName(SuspectList);
             GetLetterArray(SuspectList);
             totalSeconds = total;
+            //MyHighScoreInGame = totalSeconds;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
-            AddHighScore();
+           
         }
 
         #endregion
@@ -159,9 +161,8 @@ namespace Enigma.ViewModels
             {
                 Time = totalSeconds,
                 Fk_Player_id= MyPlayerInGame.Player_id,
-                Player_name = MyPlayerInGame.Player_name
                 };
-            //  HighscoreToDB = Repository.AddHighScore(newHighScore);
+              HighscoreToDB = Repository.AddHighScore(newHighScore);
                
               
             }

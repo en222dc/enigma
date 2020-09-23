@@ -15,6 +15,9 @@ namespace Enigma.ViewModels.Base
     {
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } =new ObservableCollection<Suspect>();
         public static  Player MyPlayerInGame { get; set; }
+
+        public static int MyHighScoreInGame { get; set; }
+
         
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService; 
         public event PropertyChangedEventHandler PropertyChanged;

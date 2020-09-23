@@ -191,27 +191,42 @@ namespace Enigma.Models.Repositories
         }
         #endregion
 
-        public static Highscore AddHighScore(Highscore highscoretoadd)
-        {
-            string stmt = "INSERT INTO highscore() VALUES(@fk_player_id, @time, @player_name) RETURNING highscore_id";
         
+              
+            
+        
+        public static Highscore AddHighScore(Highscore newHighscore)
+        {
+            string stmt = "INSERT INTO highscore(fk_player_id, time) VALUES(@fk_player_id, @time) RETURNING highscore_id";
+          
             using (var conn = new NpgsqlConnection(connectionString))
             {
                 conn.Open();
-                using (var command = new NpgsqlCommand(stmt, conn))
+
+                using (var trans = conn.BeginTransaction())
                 {
-                    command.Parameters.AddWithValue("fk_player_id", highscoretoadd.Fk_Player_id);
-                    command.Parameters.AddWithValue("time", highscoretoadd.Time);
-                    command.Parameters.AddWithValue("player_name", highscoretoadd.Player_name);
-
-                    int id = (int)command.ExecuteScalar();
-                    highscoretoadd.Highscore_id = id;
-
-                    return highscoretoadd;
+                    try
+                    {
+                        using (var command = new NpgsqlCommand(stmt, conn))
+                        {
+                            command.Parameters.AddWithValue("fk_player_id", newHighscore.Fk_Player_id);
+                            command.Parameters.AddWithValue("time", newHighscore.Time);
+                        
+                            int id = (int)command.ExecuteScalar();
+                            newHighscore.Highscore_id = id;
+                        }
+                        trans.Commit();
+                        return newHighscore;
+                    }
+                    catch (PostgresException)
+                    {
+                        trans.Rollback();
+                        throw;
+                    }
                 }
-              
             }
         }
+
     }
 }
 
