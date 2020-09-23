@@ -23,7 +23,7 @@
                    Content="Oh, no! What happend here?"/>
         <TextBlock 
             Grid.Row="1" 
-            Text= "{Binding BacStoryText}"
+            Text= "{Binding BackStoryText}" 
             TextWrapping="WrapWithOverflow"  
             HorizontalAlignment="Center"  
             Margin="30" 

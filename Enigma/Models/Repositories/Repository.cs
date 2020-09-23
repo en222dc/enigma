@@ -209,6 +209,7 @@ namespace Enigma.Models.Repositories
 
                     return highscoretoadd;
                 }
+              
             }
         }
     }

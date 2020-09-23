@@ -224,10 +224,10 @@ namespace Enigma.ViewModels
         //        }
         //        if (count==2)
         //        {
-        //            SecondHelp= Fibonacci[count].ToString();
-        //        }
 
         //    } // Den här metoden används inte för tillfället
+        //            SecondHelp= Fibonacci[count].ToString();
+        //        }
 
 
     }
