@@ -16,31 +16,30 @@ namespace Enigma.ViewModels
     {
         #region Properties
         public BitmapImage KillerPortrait { get; set; }
-        public string KillerName { get; set; }
+        public static string KillerName { get; set; }
+
+        
+
+        public string Summary { get; set; } =$"Well done {MyPlayer}, you have done an excellent job to find and charge the killer! {MyMurderer.Name} is a notorious serial killer and the question was not if, but when, {MyMurderer.Name} would strike again! Thanks to you, our citizens can once again feel safe. We knew we did the right thing to put our faith in you {MyPlayer}, thank you!";
         #endregion
 
+
         #region Methods
-        private void ShowKiller(ObservableCollection<Suspect> SuspectList)
+        private void ShowKiller()
         {
-            foreach (var suspect in SuspectList)
-            {
-                if (suspect.IsKiller == true)
-                {
-                    KillerPortrait = suspect.Portrait;
-                    KillerName = suspect.Name;
-                }
-            }
+            KillerPortrait = MyMurderer.Portrait;
+            KillerName = MyMurderer.Name;
         }
         #endregion
 
         #region Constructor
-        public SuspectsPageModel(ObservableCollection<Suspect> SuspectList)
+        public SuspectsPageModel()
         {
-            ShowKiller(SuspectList);
+            ShowKiller();
         }
         #endregion 
 
-
+       
         public void ChangePage()
         {
 

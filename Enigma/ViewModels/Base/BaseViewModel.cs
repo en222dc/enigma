@@ -13,10 +13,37 @@ namespace Enigma.ViewModels.Base
 {
   public class BaseViewModel : INotifyPropertyChanged
     {
+
+        #region Properties
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } =new ObservableCollection<Suspect>();
         public static  Player MyPlayer { get; set; }
+        public static Suspect MyMurderer { get; set; }
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService; 
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Constructor
+        public BaseViewModel()
+        {
+            GetMurderer();
+        }
+
+        #endregion
+
+        #region Methods
+
+        private Suspect  GetMurderer()
+        {
+            foreach (var suspect in ListOfSuspects)
+            {
+                if (suspect.IsKiller)
+                {
+                    MyMurderer = suspect;
+                    return MyMurderer;
+                }
+            }
+            return MyMurderer;
+        }
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
 
@@ -24,6 +51,10 @@ namespace Enigma.ViewModels.Base
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
         }
+
+        #endregion 
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
     

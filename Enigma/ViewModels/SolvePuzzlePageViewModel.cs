@@ -17,7 +17,6 @@ namespace Enigma.ViewModels
         #region Properties
         public ObservableCollection<char> SymbolArray { get; set; }           
         private string Name { get; set; }
-
         public string Guess1stSymbol { get; set; }
         public string Guess2ndSymbol { get; set; }
         public string Guess3rdSymbol { get; set; }
@@ -120,7 +119,7 @@ namespace Enigma.ViewModels
 
         private void GoToSuspectPage()
         {
-            var model = new SuspectsPageModel(ListOfSuspects);
+            var model = new SuspectsPageModel();
             var page = new SuspectsPage(model);
             NavigationService.Navigate(page);
         }
