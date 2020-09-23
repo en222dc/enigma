@@ -10,33 +10,22 @@ using System.Configuration; // For å conneste til database
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Collections;
-
-//De kan være du må se om system.configuration ligger i Enigma prosjektet også
-// Nedenfor kommer kode som kanskje skal være i App.Xaml filen.
-// Må også lage en metode som legger til Highscore i databasen, savehighscore > kan legges i en knapp når spillet avsluttes.
-/* <connectionStrings>
-            < add x: Name = "ConnectionDatabase" connectionString="" providerName= "System.Data.SqlClient" >
-  
-          </ connectionStrings >
-
-OBS Lag gjerne teksten bli igjen fordi jeg kanskje trenger det til å lagre highscore
-*/
+using Enigma.ViewModels.Base;
 
 namespace Enigma.ViewModels
 {
-    class HighscoreViewModel
+    class HighscoreViewModel : BaseViewModel
     {
+        public ICommand GoToPageCommand { get; set; }
 
         public ObservableCollection<Highscore> HighScoreDatabase { get; set; } = new ObservableCollection<Highscore>();
         public ObservableCollection<Player> PlayerNameDataBase { get; set; } = new ObservableCollection<Player>();
-       
+
 
         public HighscoreViewModel()
         {
-
-
             ShowHighScoreFromDataBase();
-            
+            GoToPageCommand = new RelayCommand(GoToStartPage);
         }
 
         public void ShowHighScoreFromDataBase()
@@ -50,17 +39,17 @@ namespace Enigma.ViewModels
                 PlayerNameDataBase.Add(player);
             }
         }
-
+        public void GoToStartPage()
+        {
+            MyWindow.MainFrame.Content = new StartPage();
+        }
     }
-
-      
-
 }
-        
-     
 
 
-    
 
-    
+
+
+
+
 

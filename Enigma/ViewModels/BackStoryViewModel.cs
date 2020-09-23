@@ -90,7 +90,7 @@ namespace Enigma.ViewModels
                 {
                     killerName = listOfSuspects[suspect].Name;
                     listOfSuspects[suspect].EncryptedName = new char[listOfSuspects[suspect].Name.Length];
-                    foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
+                    foreach (KeyValuePair<string, string> pair in SymbolAlphabet.TranslateMySymbolsToLetters)
                     {
                         killerName = killerName.ToLower().Replace(pair.Value, pair.Key);
                     }

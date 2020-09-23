@@ -11,15 +11,10 @@ namespace Enigma.ViewModels
 {
     class MenuPageViewModel : BaseViewModel
     {
-        public string ExitButtonContent { get; set; }
         public ICommand ExitGameCommand { get; set; }
         public ICommand ChangeToHighScorePageCommand { get; set; }
-       
+
         public ICommand ChangeToHelpAndRulesCommand { get; set; }
-
-
-        public MainWindow myWindow = (MainWindow)Application.Current.MainWindow;
-        
 
         public MenuPageViewModel()
         {
@@ -32,7 +27,7 @@ namespace Enigma.ViewModels
         {
             if (IsMainFrameSetToStartPage())
             {
-                myWindow.Close();
+                MyWindow.Close();
             }
             else
             {
@@ -45,7 +40,7 @@ namespace Enigma.ViewModels
         {
             bool result = false;
 
-            Object CurrentPage = myWindow.MainFrame.Content.GetType().Name;
+            Object CurrentPage = MyWindow.MainFrame.Content.GetType().Name;
             if ((string)CurrentPage == "StartPage")
             {
                 result = true;
@@ -55,7 +50,7 @@ namespace Enigma.ViewModels
 
         public void ChangeToHighScorePage()
         {
-            var  highScorePage  = new HighScorePage();
+            var highScorePage = new HighScorePage();
             NavigationService.Navigate(highScorePage);
         }
 

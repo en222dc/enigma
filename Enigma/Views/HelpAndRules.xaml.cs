@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -13,14 +14,12 @@ using System.Windows.Shapes;
 
 namespace Enigma.Views
 {
-    /// <summary>
-    /// Interaction logic for HelpAndRules.xaml
-    /// </summary>
     public partial class HelpAndRules : Page
     {
         public HelpAndRules()
         {
             InitializeComponent();
+            DataContext = new HelpAndRulesViewModel();
         }
     }
 }
