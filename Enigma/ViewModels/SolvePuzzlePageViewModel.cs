@@ -16,14 +16,14 @@ namespace Enigma.ViewModels
     public class SolvePuzzlePageViewModel : BaseViewModel
     {
         #region Properties
-        public ObservableCollection<string> SymbolArray { get; set; }
-        private string[] LetterArray { get; set; }
+        public ObservableCollection<char> SymbolArray { get; set; }
+        private string Name { get; set; }
         public string Guess1stSymbol { get; set; }
         public string Guess2ndSymbol { get; set; }
         public string Guess3rdSymbol { get; set; }
         public string Guess4thSymbol { get; set; }
         public string Error { get; set; }
-       public Highscore HighscoreToDB {get; set;}
+        public Highscore HighscoreToDB {get; set;}
         #endregion
 
         #region Commands
@@ -92,8 +92,8 @@ namespace Enigma.ViewModels
             }
         }
 
-      
-        
+
+
 
         private void IsGuessCorrect()
         {
@@ -134,8 +134,7 @@ namespace Enigma.ViewModels
         public SolvePuzzlePageViewModel(int total, ObservableCollection<Suspect> SuspectList)
         {
             ShowEncryptedName(SuspectList);
-            GetNameOnMurderer(SuspectList);
-            //GetLetterArray(SuspectList);           
+            GetNameOnMurderer(SuspectList);                 
             totalSeconds = total;
             //MyHighScoreInGame = totalSeconds;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);

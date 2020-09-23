@@ -43,7 +43,7 @@ namespace Enigma.ViewModels
             if (MyPlayer != null)
             {
                 MyPlayerInGame = MyPlayer;
-                var model = new BackStoryViewModel();
+                var model = new BackStoryViewModel(MyPlayer);
                 var page = new BackStory();
                 NavigationService.Navigate(page);
             }

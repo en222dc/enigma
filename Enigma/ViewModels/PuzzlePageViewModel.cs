@@ -23,7 +23,7 @@ namespace Enigma.ViewModels
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
 
-       // public Player MyPlayer { get; set; }
+        // public Player MyPlayer { get; set; }
 
 
         public string ButtonName { get; set; } = "Guess nr";
@@ -41,7 +41,7 @@ namespace Enigma.ViewModels
         private DispatcherTimer dispatcherTimer = null;
 
         public string _timeLapse;
-      
+
 
         #endregion
 
@@ -68,6 +68,7 @@ namespace Enigma.ViewModels
             fibonacci.GenerateRandomNr(fibonacciArray);
             fibonacci.GetRestOfNrInSequence(fibonacciArray);
             GetHint(fibonacci);
+            GetEncryptedName(ListOfSuspects);
             GetSymbolToPuzzle();
 
 
@@ -133,7 +134,7 @@ namespace Enigma.ViewModels
             fibonacci.GenerateRandomNr(fibonacciArray);
             fibonacci.GetRestOfNrInSequence(fibonacciArray);
             GetEntirePuzzleSequence(fibonacciArray);
-            GetHint(fibonacci); 
+            GetHint(fibonacci);
             ListOfSuspects = ImportedListOfSuspects;
             CountPuzzles = puzzleCounter;
             totalSeconds = total;
@@ -147,16 +148,18 @@ namespace Enigma.ViewModels
 
         }
 
+
+
         #endregion
 
         #region Metoder
 
-        private void GetEntirePuzzleSequence(int[]array)
+        private void GetEntirePuzzleSequence(int[] array)
         {
             foreach (var item in array)
             {
                 Fibonacci.Add(item);
-            }          
+            }
         }
 
         private void GetEncryptedName(ObservableCollection<Suspect> List)
@@ -165,7 +168,7 @@ namespace Enigma.ViewModels
             {
                 if (item.IsKiller)
                 {
-                  
+
                     for (int i = 0; i < item.EncryptedName.Length; i++)
                     {
                         EncryptedName[i] = item.EncryptedName[i];
@@ -180,7 +183,7 @@ namespace Enigma.ViewModels
         {
             SpecificSymbol = EncryptedName[CountPuzzles];
         }
-       
+
 
         private void CheckIfGuessCorrect()
         {
@@ -190,7 +193,6 @@ namespace Enigma.ViewModels
                 LblInvisibleSymbolsGetVisible = Visibility.Visible;
                 CountPuzzles++;
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
-              
             }
             else ButtonName = "Wrong, guess again!";
 
@@ -198,14 +200,14 @@ namespace Enigma.ViewModels
 
         private void GetHint(IGameLogic puzzle)
         {
-            Hint=puzzle.Hint;
+            Hint = puzzle.Hint;
         }
         private void ShowHint()
         {
-            if (LblInvisibleHintGetVisible==Visibility.Hidden)
+            if (LblInvisibleHintGetVisible == Visibility.Hidden)
             {
                 LblInvisibleHintGetVisible = Visibility.Visible;
-                Hint60();           
+                Hint60();
 
             }
         }
@@ -241,7 +243,7 @@ namespace Enigma.ViewModels
             }
         }
 
-      
+
 
 
         public void Time()
@@ -284,10 +286,10 @@ namespace Enigma.ViewModels
         //        }
         //        if (count==2)
         //        {
-
-        //    } // Den här metoden används inte för tillfället
         //            SecondHelp= Fibonacci[count].ToString();
         //        }
+
+        //    } // Den här metoden används inte för tillfället
 
 
     }
