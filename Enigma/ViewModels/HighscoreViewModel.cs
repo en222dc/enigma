@@ -10,6 +10,8 @@ using System.Configuration; // For å conneste til database
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Collections;
+using System.Windows.Navigation;
+using Enigma.ViewModels.Base;
 
 //De kan være du må se om system.configuration ligger i Enigma prosjektet også
 // Nedenfor kommer kode som kanskje skal være i App.Xaml filen.
@@ -24,19 +26,21 @@ OBS Lag gjerne teksten bli igjen fordi jeg kanskje trenger det til å lagre high
 
 namespace Enigma.ViewModels
 {
-    class HighscoreViewModel
+    public class HighscoreViewModel : BaseViewModel
     {
 
         public ObservableCollection<Highscore> HighScoreDatabase { get; set; } = new ObservableCollection<Highscore>();
         public ObservableCollection<Player> PlayerNameDataBase { get; set; } = new ObservableCollection<Player>();
-       
+
+        public ICommand GoToPageCommand { get; set; }
 
         public HighscoreViewModel()
         {
 
 
             ShowHighScoreFromDataBase();
-            
+            GoToPageCommand = new RelayCommand(GoToStartPage);
+
         }
 
         public void ShowHighScoreFromDataBase()
@@ -50,12 +54,17 @@ namespace Enigma.ViewModels
                 PlayerNameDataBase.Add(player);
             }
         }
+        public void GoToStartPage()
+        {
+            var startpage = new StartPage();
+            NavigationService.Navigate(startpage);
+        }
 
     }
 
-      
+}  
 
-}
+
         
      
 

@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Enigma.Views;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Enigma.Models.Repositories;
 using System.Linq;
 
 namespace Enigma.ViewModels
@@ -15,14 +16,14 @@ namespace Enigma.ViewModels
     public class SolvePuzzlePageViewModel : BaseViewModel
     {
         #region Properties
-        public ObservableCollection<char> SymbolArray { get; set; }           
-        private string Name { get; set; }
-
+        public ObservableCollection<string> SymbolArray { get; set; }
+        private string[] LetterArray { get; set; }
         public string Guess1stSymbol { get; set; }
         public string Guess2ndSymbol { get; set; }
         public string Guess3rdSymbol { get; set; }
         public string Guess4thSymbol { get; set; }
         public string Error { get; set; }
+       public Highscore HighscoreToDB {get; set;}
         #endregion
 
         #region Commands
@@ -122,6 +123,7 @@ namespace Enigma.ViewModels
         {
             var model = new SuspectsPageModel(ListOfSuspects);
             var page = new SuspectsPage(model);
+            AddHighScore();
             NavigationService.Navigate(page);
         }
 
@@ -135,14 +137,30 @@ namespace Enigma.ViewModels
             GetNameOnMurderer(SuspectList);
             //GetLetterArray(SuspectList);           
             totalSeconds = total;
+            //MyHighScoreInGame = totalSeconds;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
+           
         }
 
         #endregion
 
+        #region HighscoreToDB
+        public void AddHighScore()
+        {
+
+            var newHighScore = new Highscore
+            {
+                Time = totalSeconds,
+                Fk_Player_id= MyPlayerInGame.Player_id,
+                };
+              HighscoreToDB = Repository.AddHighScore(newHighScore);
+               
+              
+            }
+         
+
     }
+        #endregion
 
-}
-
-
+    }

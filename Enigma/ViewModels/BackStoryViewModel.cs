@@ -33,7 +33,10 @@ namespace Enigma.ViewModels
 
         public BackStoryViewModel()
         {
+           
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
+            BackStoryText = "The president of Russia has assigned " + MyPlayerInGame.Player_name + " to solve the mysterious murder of his wife Katja.The police has apprehended 4 suspects.The only clue at your disposal" +
+                " is a puzzle left by the killer with the note Solve me for a clue. Will You be the player who finds the killer the fastest ? ";
         }
 
 
@@ -118,8 +121,8 @@ namespace Enigma.ViewModels
 
         public void GoToPuzzlePage()
         {
-         var model = new PuzzlePageViewModel(MyPlayer, ListOfSuspects);
-         var page = new PuzzlePage(model);
+         var model = new PuzzlePageViewModel();
+         var page = new PuzzlePage();
           NavigationService.Navigate(page);
 
 

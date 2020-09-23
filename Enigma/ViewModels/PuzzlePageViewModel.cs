@@ -147,8 +147,6 @@ namespace Enigma.ViewModels
 
         }
 
-
-
         #endregion
 
         #region Metoder
@@ -192,6 +190,7 @@ namespace Enigma.ViewModels
                 LblInvisibleSymbolsGetVisible = Visibility.Visible;
                 CountPuzzles++;
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
+              
             }
             else ButtonName = "Wrong, guess again!";
 
@@ -285,10 +284,10 @@ namespace Enigma.ViewModels
         //        }
         //        if (count==2)
         //        {
-        //            SecondHelp= Fibonacci[count].ToString();
-        //        }
 
         //    } // Den här metoden används inte för tillfället
+        //            SecondHelp= Fibonacci[count].ToString();
+        //        }
 
 
     }
