@@ -16,7 +16,7 @@ namespace Enigma.ViewModels
 {
     class PickPlayerViewModel : BaseViewModel
     {
-        public Player MyPlayer { get; set; }
+       // public Player MyPlayer { get; set; }
         public string PlayerName { get; set; }
         public ObservableCollection<Player> AllPlayers { get; set; }
 
@@ -43,7 +43,7 @@ namespace Enigma.ViewModels
             if (MyPlayer != null)
             {
                 var model = new BackStoryViewModel(MyPlayer);
-                var page = new BackStory();
+                var page = new BackStory(); //Här borde vi lägga in "model" ?
                 NavigationService.Navigate(page);
             }
             else

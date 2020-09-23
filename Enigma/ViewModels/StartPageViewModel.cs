@@ -39,94 +39,18 @@ namespace Enigma.ViewModels
 
         public StartPageViewModel()
         {            
-            PlayGameCommand = new RelayCommand(ChangePage);
-                
-            ListOfSuspects = SetSuspectsForGame();
-            SetKiller(ListOfSuspects);
-            EncryptKillerName(ListOfSuspects);
+            PlayGameCommand = new RelayCommand(ChangePage);                         
         }
 
         #endregion
 
         #region Metoder
 
-        private ObservableCollection<Suspect> GetAllSuspects()
-        {
-            ObservableCollection<Suspect> Templist = new ObservableCollection<Suspect>();
-            foreach (var suspect in Repository.GetAllSuspects())
-            {
-                Templist.Add(suspect);
-            }
-
-            return Templist;
-        }
-
-        private ObservableCollection<Suspect> SetSuspectsForGame(int number = 4)
-        {
-            ObservableCollection<Suspect> ListOfAllSuspects = new ObservableCollection<Suspect>();
-            ListOfAllSuspects = GetAllSuspects();
-            ObservableCollection<Suspect> SuspectsInGame = new ObservableCollection<Suspect>();
-           
-            int position;
-            Random random = new Random();
-            for (int i = 0; i < number; i++)
-            {               
-                    position = random.Next(ListOfAllSuspects.Count);
-                    if (SuspectsInGame.Contains(ListOfAllSuspects[position]))
-                    {
-                        i = i - 1;
-                    }
-                    else
-                    { 
-                    SuspectsInGame.Add(ListOfAllSuspects[position]);                    
-                    }                
-            }
-            return SuspectsInGame;
-        }
-
-        private void SetKiller(ObservableCollection<Suspect> suspects)
-        {
-
-            Random random = new Random();
-            int index;
-            index = random.Next(suspects.Count);
-            suspects[index].IsKiller = true;
-
-        }
-
-        public void EncryptKillerName(ObservableCollection<Suspect> listOfSuspects)
-        {
-            string killerName = "";
-            for (int suspect = 0; suspect < listOfSuspects.Count; suspect++)
-            {
-                if (listOfSuspects[suspect].IsKiller)
-                {
-                    killerName = listOfSuspects[suspect].Name;
-                    listOfSuspects[suspect].EncryptedName = new string[listOfSuspects[suspect].Name.Length];
-                    foreach (KeyValuePair<string, string> pair in SymbolAlphabet.SymbolMap)
-                    {
-                        killerName = killerName.ToLower().Replace(pair.Value, pair.Key);
-                    }
-
-
-                    for (int i = 0; i < killerName.Length; i++)
-                    {
-                        foreach (char c in killerName)
-                        {
-                            listOfSuspects[suspect].EncryptedName[i] = c.ToString();
-                            i++;
-                        }
-                    }
-                }
-            }      
-
-
-
-        }
+      
 
         public void ChangePage()
         {
-            var sendInfo = new PuzzlePageViewModel(ListOfSuspects);
+            //var sendInfo = new PuzzlePageViewModel(ListOfSuspects);
             var model = new PickPlayerViewModel();
             var page = new PickPlayer();
             NavigationService.Navigate(page);

@@ -18,7 +18,7 @@ namespace Enigma.Models
         public bool IsKiller { get; set; }
 
 
-        public string[] EncryptedName { get; set; }
+        public char[] EncryptedName { get; set; }
 
 
 

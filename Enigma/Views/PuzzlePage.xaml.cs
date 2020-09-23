@@ -22,11 +22,11 @@ namespace Enigma.Views
     public partial class PuzzlePage : Page
 
     {
-        public PuzzlePage()
-        {
-            InitializeComponent();
-            DataContext = new PuzzlePageViewModel();
-        }
+        //public PuzzlePage()
+        //{
+        //    InitializeComponent();
+        //    DataContext = new PuzzlePageViewModel();
+        //}
 
         public PuzzlePage(BaseViewModel PuzzelPageViewModel)
         {

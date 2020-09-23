@@ -8,19 +8,21 @@ using System.Windows.Input;
 using Enigma.Views;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 namespace Enigma.ViewModels
 {
     public class SolvePuzzlePageViewModel : BaseViewModel
     {
         #region Properties
-       public ObservableCollection<string> SymbolArray { get; set; }
-       private string[] LetterArray { get; set; }
-       public string Guess1stSymbol { get; set; }
-       public string Guess2ndSymbol { get; set; }
-       public string Guess3rdSymbol { get; set; }
-       public string Guess4thSymbol { get; set; }
-       public string Error { get; set; }
+        public ObservableCollection<char> SymbolArray { get; set; }           
+        private string Name { get; set; }
+
+        public string Guess1stSymbol { get; set; }
+        public string Guess2ndSymbol { get; set; }
+        public string Guess3rdSymbol { get; set; }
+        public string Guess4thSymbol { get; set; }
+        public string Error { get; set; }
         #endregion
 
         #region Commands
@@ -30,7 +32,7 @@ namespace Enigma.ViewModels
         #region Timer
         private int totalSeconds = 0;
         private DispatcherTimer dispatcherTimer = null;
- 
+
         private string _timeLapse2;
         public string TimeLapse2
         {
@@ -52,8 +54,8 @@ namespace Enigma.ViewModels
         }
 
 
-   
-     private void Timer_Tick2(object state, EventArgs e)
+
+        private void Timer_Tick2(object state, EventArgs e)
         {
             totalSeconds++;
             TimeLapse2 = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
@@ -62,9 +64,9 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
-        public void ShowEncryptedName (ObservableCollection<Suspect> suspects)
+        public void ShowEncryptedName(ObservableCollection<Suspect> suspects)
         {
-            SymbolArray = new ObservableCollection<string>();
+            SymbolArray = new ObservableCollection<char>();
 
             foreach (var suspect in suspects)
             {
@@ -78,39 +80,32 @@ namespace Enigma.ViewModels
             }
         }
 
-        private void GetLetterArray(ObservableCollection<Suspect> suspects)
+        private void GetNameOnMurderer(ObservableCollection<Suspect> suspects)
         {
-            string killer = "";
             foreach (var suspect in suspects)
             {
-                if (suspect.IsKiller == true)
+                if (suspect.IsKiller)
                 {
-                    killer = suspect.Name.ToLower();
-
-                }
-            }
-
-            LetterArray = new string[4];
-
-            for (int i = 0; i < killer.Length; i++)
-            {
-                foreach (char c in killer)
-                {
-                    LetterArray[i] = c.ToString();
-                    i++;
+                    Name = suspect.Name;
                 }
             }
         }
 
+      
+        
+
         private void IsGuessCorrect()
         {
-            if (string.IsNullOrEmpty(Guess1stSymbol) || string.IsNullOrEmpty(Guess2ndSymbol) || string.IsNullOrEmpty(Guess3rdSymbol) || string.IsNullOrEmpty (Guess4thSymbol))
+
+            if (string.IsNullOrEmpty(Guess1stSymbol) || string.IsNullOrEmpty(Guess2ndSymbol) || string.IsNullOrEmpty(Guess3rdSymbol) || string.IsNullOrEmpty(Guess4thSymbol))
             {
                 Error = "Please type a letter into every box";
             }
             else
             {
-                if (Guess1stSymbol.ToLower() == LetterArray[0] && Guess2ndSymbol.ToLower() == LetterArray[1] && Guess3rdSymbol.ToLower() == LetterArray[2] && Guess4thSymbol.ToLower() == LetterArray[3])
+                string guess = (Guess1stSymbol + Guess2ndSymbol + Guess3rdSymbol + Guess4thSymbol).ToString();
+
+                if (guess.ToLower() == Name.ToLower())
                 {
                     IsGuessCorrectCommand = new RelayCommand(GoToSuspectPage);
                 }
@@ -120,27 +115,25 @@ namespace Enigma.ViewModels
                     Error = "Your guess was wrong";
                 }
             }
-            
+
         }
 
-        private void GoToSuspectPage ()
+        private void GoToSuspectPage()
         {
             var model = new SuspectsPageModel(ListOfSuspects);
             var page = new SuspectsPage(model);
             NavigationService.Navigate(page);
         }
 
-        public ObservableCollection<Suspect> ReturnList (ObservableCollection<Suspect> test)
-        {
-            return test;
-        }
+        
         #endregion
 
         #region Constructor
         public SolvePuzzlePageViewModel(int total, ObservableCollection<Suspect> SuspectList)
         {
             ShowEncryptedName(SuspectList);
-            GetLetterArray(SuspectList);
+            GetNameOnMurderer(SuspectList);
+            //GetLetterArray(SuspectList);           
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
@@ -151,3 +144,5 @@ namespace Enigma.ViewModels
     }
 
 }
+
+

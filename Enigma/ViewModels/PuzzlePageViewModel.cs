@@ -23,13 +23,18 @@ namespace Enigma.ViewModels
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
 
-        public Player MyPlayer { get; set; }
+       // public Player MyPlayer { get; set; }
 
 
         public string ButtonName { get; set; } = "Guess nr";
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
-        public string EncryptedName { get; set; }
+
+        public string Hint { get; set; }
+        public char[] EncryptedName { get; set; } = new char[4];
+        public int CountPuzzles { get; set; }
+        public char SpecificSymbol { get; set; }
+
 
         private int totalSeconds = 0;
 
@@ -54,61 +59,87 @@ namespace Enigma.ViewModels
 
         #region Konstruktor
 
-        public PuzzlePageViewModel()
-        {
+        //public PuzzlePageViewModel()
+        //{
 
-            //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
-            int[] fibonacciArray = new int[5];
-            IGameLogic fibonacci = new Fibonacci();
-            fibonacci.GenerateRandomNr(fibonacciArray);
-            fibonacci.GetRestOfNrInSequence(fibonacciArray);
-
-
-            foreach (var position in fibonacciArray)
-            {
-                Fibonacci.Add(position);
-            }
-
-            listOfPuzzles.Add(fibonacci);
-            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
-            ShowHintCommand = new RelayCommand(ShowHint);
+        //    //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
+        //    int[] fibonacciArray = new int[5];
+        //    IGameLogic fibonacci = new Fibonacci();
+        //    fibonacci.GenerateRandomNr(fibonacciArray);
+        //    fibonacci.GetRestOfNrInSequence(fibonacciArray);
+        //    GetHint(fibonacci);
+        //    GetSymbolToPuzzle();
 
 
-            Time();
+        //    foreach (var position in fibonacciArray)
+        //    {
+        //        Fibonacci.Add(position);
+        //    }
+
+        //    listOfPuzzles.Add(fibonacci);
+        //    CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+        //    ShowHintCommand = new RelayCommand(ShowHint);
+
+
+        //    Time();
          
 
 
-        }
+        //}
 
         
 
-        public PuzzlePageViewModel(ObservableCollection<Suspect>ListOfSuspects)
-        {           
+        //public PuzzlePageViewModel(ObservableCollection<Suspect>ListOfSuspects)
+        //{           
            
-            int[] fibonacciArray = new int[5];
-            IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
-            fibonacci.GenerateRandomNr(fibonacciArray);
-            fibonacci.GetRestOfNrInSequence(fibonacciArray);
-            GetPuzzleSequenceToProperty(fibonacciArray);
+        //    int[] fibonacciArray = new int[5];
+        //    IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
+        //    fibonacci.GenerateRandomNr(fibonacciArray);
+        //    fibonacci.GetRestOfNrInSequence(fibonacciArray);
+        //    GetPuzzleSequenceToProperty(fibonacciArray);
            
-            GetEncryptedName(ListOfSuspects);
-            Time();        
+        //    GetEncryptedName(ListOfSuspects);
+        //    Time();        
 
-            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
-            ShowHintCommand = new RelayCommand(ShowHint);
+        //    CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+        //    ShowHintCommand = new RelayCommand(ShowHint);
 
-        }
+        //}
 
-        public PuzzlePageViewModel(Player player)
+        public PuzzlePageViewModel(Player player, ObservableCollection<Suspect> ListOfSuspects)
         {
 
             int[] fibonacciArray = new int[5];
             IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
             fibonacci.GenerateRandomNr(fibonacciArray);
             fibonacci.GetRestOfNrInSequence(fibonacciArray);
-            GetPuzzleSequenceToProperty(fibonacciArray);
+            GetEntirePuzzleSequence(fibonacciArray);
+            GetHint(fibonacci);
             MyPlayer = player;
             GetEncryptedName(ListOfSuspects);
+            GetSymbolToPuzzle();
+            Time();
+
+            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            ShowHintCommand = new RelayCommand(ShowHint);
+
+        }
+
+        public PuzzlePageViewModel(int total, int puzzleCounter, ObservableCollection<Suspect> ImportedListOfSuspects)
+        {
+
+            int[] fibonacciArray = new int[5];
+            IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
+            fibonacci.GenerateRandomNr(fibonacciArray);
+            fibonacci.GetRestOfNrInSequence(fibonacciArray);
+            GetEntirePuzzleSequence(fibonacciArray);
+            GetHint(fibonacci); 
+            ListOfSuspects = ImportedListOfSuspects;
+            CountPuzzles = puzzleCounter;
+            totalSeconds = total;
+
+            GetEncryptedName(ListOfSuspects);
+            GetSymbolToPuzzle();
             Time();
 
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
@@ -122,49 +153,54 @@ namespace Enigma.ViewModels
 
         #region Metoder
 
-        private void GetPuzzleSequenceToProperty(int[]array)
+        private void GetEntirePuzzleSequence(int[]array)
         {
             foreach (var item in array)
             {
                 Fibonacci.Add(item);
             }          
         }
-                      
-        private string GetEncryptedName(ObservableCollection<Suspect>List)
+
+        private void GetEncryptedName(ObservableCollection<Suspect> List)
         {
             foreach (var item in List)
             {
                 if (item.IsKiller)
                 {
+                  
                     for (int i = 0; i < item.EncryptedName.Length; i++)
                     {
-                        EncryptedName += item.EncryptedName[i];
-                    }                   
-                    return EncryptedName;
+                        EncryptedName[i] = item.EncryptedName[i];
+                    }
+
                 }
             }
-            return EncryptedName; 
+
         }
-        private void EncryptetNameToString(char[] encryptKillerName)
-        {          
-            foreach (var c in encryptKillerName)
-            {
-                EncryptedName += c;
-            }
+
+        private void GetSymbolToPuzzle()
+        {
+            SpecificSymbol = EncryptedName[CountPuzzles];
         }
+       
 
         private void CheckIfGuessCorrect()
         {
             if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr == Fibonacci[4].ToString())
             {
                 ButtonName = "Go To The Next Puzzle!";
-                LblInvisibleSymbolsGetVisible = Visibility.Visible;               
+                LblInvisibleSymbolsGetVisible = Visibility.Visible;
+                CountPuzzles++;
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
             }
             else ButtonName = "Wrong, guess again!";
 
         }
 
+        private void GetHint(IGameLogic puzzle)
+        {
+            Hint=puzzle.Hint;
+        }
         private void ShowHint()
         {
             if (LblInvisibleHintGetVisible==Visibility.Hidden)
@@ -177,9 +213,18 @@ namespace Enigma.ViewModels
 
         private void ChangePage()
         {
-            var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
-            var page = new SolvePuzzlePage(model);
-            NavigationService.Navigate(page);
+            if (CountPuzzles == 4)
+            {
+                var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
+                var page = new SolvePuzzlePage(model);
+                NavigationService.Navigate(page);
+            }
+            else
+            {
+                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, ListOfSuspects);
+                var page = new PuzzlePage(model);
+                NavigationService.Navigate(page);
+            }
         }
 
 
