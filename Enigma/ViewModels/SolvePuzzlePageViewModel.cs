@@ -145,7 +145,6 @@ namespace Enigma.ViewModels
             ShowEncryptedName(SuspectList);
             GetLetterArray(SuspectList);
             totalSeconds = total;
-            //MyHighScoreInGame = totalSeconds;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             Time();
            
@@ -156,10 +155,10 @@ namespace Enigma.ViewModels
         #region HighscoreToDB
         public void AddHighScore()
         {
-
+            MyHighScoreInGame = totalSeconds;
             var newHighScore = new Highscore
             {
-                Time = totalSeconds,
+                Time = MyHighScoreInGame,
                 Fk_Player_id= MyPlayerInGame.Player_id,
                 };
               HighscoreToDB = Repository.AddHighScore(newHighScore);
