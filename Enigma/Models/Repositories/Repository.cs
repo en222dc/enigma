@@ -172,7 +172,7 @@ namespace Enigma.Models.Repositories
 
         public static ObservableCollection<Suspect> GetAllSuspects()
         {
-            string stmt = "SELECT name FROM suspect;";
+            string stmt = "SELECT name, portrait FROM suspect;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -188,15 +188,15 @@ namespace Enigma.Models.Repositories
                         while (reader.Read())
                         {
 
-                            //string portraitPath = reader["portrait"].ToString();
-                           // BitmapImage glowIcon = new BitmapImage();
-                           // glowIcon.BeginInit();
-                           // glowIcon.UriSource = new Uri(portraitPath, UriKind.Relative);
+                            string portraitPath = reader["portrait"].ToString();
+                            BitmapImage glowIcon = new BitmapImage();
+                            glowIcon.BeginInit();
+                            glowIcon.UriSource = new Uri(portraitPath, UriKind.Relative);
 
                             suspect = new Suspect()
                             {
                                 Name = (string)reader["name"],
-                               // Portrait =(string) reader["portrait"],
+                                Portrait = glowIcon,
                             };
                             allSuspects.Add(suspect);
                         }
