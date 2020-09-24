@@ -19,6 +19,7 @@ namespace Enigma.ViewModels.Base
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } =new ObservableCollection<Suspect>();
         public static Player MyPlayerInGame { get; set; }
         public static Player MyPlayer { get; set; }
+        public MainWindow MyWindow { get; } = (MainWindow)Application.Current.MainWindow;
         public static Suspect MyMurderer { get; set; }
         public static int MyHighScoreInGame { get; set; }
         public static string GetPicture { get; set; }
