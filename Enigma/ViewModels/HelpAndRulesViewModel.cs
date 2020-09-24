@@ -1,25 +1,23 @@
-﻿using System;
+﻿using Enigma.ViewModels.Base;
+using System;
 using System.Collections.Generic;
-using System.Text; 
+using System.Text;
 using System.Windows.Input;
 
 namespace Enigma.ViewModels
 {
-  public class HelpAndRulesViewModel: BackStoryViewModel
+    class HelpAndRulesViewModel : BaseViewModel
     {
-      public ICommand GoToStartPageCommand { get; set; }
+        public ICommand GoToPageCommand { get; set; }
 
-      public HelpAndRulesViewModel()
+        public HelpAndRulesViewModel()
         {
             GoToPageCommand = new RelayCommand(GoToStartPage);
         }
 
-
         public void GoToStartPage()
         {
-            var page = new StartPage();
-            NavigationService.Navigate(page);
+            MyWindow.MainFrame.Content = new StartPage();
         }
-
     }
 }

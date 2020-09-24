@@ -50,14 +50,7 @@ namespace Enigma.ViewModels
 
         public void ChangePage()
         {
-            //var sendInfo = new PuzzlePageViewModel(ListOfSuspects);
-            var model = new PickPlayerViewModel();
-            var page = new PickPlayer();
-            NavigationService.Navigate(page);
-   
-            //var page = new PuzzlePage(model);
-            // NavigationService.Navigate(page);
-
+            MyWindow.MainFrame.Content = new PickPlayer();
         }
 
 

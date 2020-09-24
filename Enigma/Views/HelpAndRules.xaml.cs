@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Enigma.Views
 {
-    /// <summary>
-    /// Interaction logic for HelpAndRules.xaml
-    /// </summary>
     public partial class HelpAndRules : Page
     {
         public HelpAndRules()

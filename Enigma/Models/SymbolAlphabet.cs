@@ -12,7 +12,7 @@ namespace Enigma.Models
     {
         public string Hint { get; set; } = "Use the solve-sheet to translate the symbols to get the name of the killer"; // Potentiell hint för sista puzzlet
 
-        public static Dictionary<string, string> SymbolMap { get; set; } = new Dictionary<string, string> // Skapar en mappning av vilka symboler som är kopplade till respektive bokstav
+        public static Dictionary<string, string> TranslateMySymbolsToLetters { get; set; } = new Dictionary<string, string> // Skapar en mappning av vilka symboler som är kopplade till respektive bokstav
         {
                 { "क", "a" },
                 { "ख", "b" },
