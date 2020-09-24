@@ -38,21 +38,21 @@
             <TextBlock Grid.Row="1" Grid.Column="1" 
                         TextWrapping="Wrap"
                         HorizontalAlignment="Left" VerticalAlignment="Center"
-                        Text="If this is your first time playing, create a new player by pressing the New Player Button and enter your desired player name, after your player is created the game begins."
+                        Text="If this is your first time playing, create a new player by entering your desired player name and click Create New Player, after your player is created and you can choose your name in the list above."
                         FontSize="20" Foreground="#5F606B" FontFamily="Bell MT"
                         Padding="5" Margin="10 0 0 0"/>
 
             <TextBlock Grid.Row="1" Grid.Column="1" 
                         TextWrapping="Wrap"
                         HorizontalAlignment="Left" VerticalAlignment="Center"
-                        Text="The goal of the game is to solve a series of puzzles sa fast as possible to unveil a symbol or hint. This hint or symbol will lead you to a killer out of 4 suspects which are displayed in the beginning of the game"
+                        Text="The goal of the game is to solve a series of puzzles sa fast as possible to unveil a mysterious symbol. This symbols will help you find out who the killer is, by translating them to letters in the final puzzle."
                         FontSize="20" Foreground="#5F606B" FontFamily="Bell MT"
                         Padding="5" Margin="10 0 0 0"/>
 
             <TextBlock Grid.Row="1" Grid.Column="1" 
                         TextWrapping="Wrap"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
-                        Text="If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add some seconds to your time."
+                        Text="If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 60 seconds to your time."
                         FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" 
                         Padding="5" Margin="10 0 0 0"/>
         </StackPanel>
