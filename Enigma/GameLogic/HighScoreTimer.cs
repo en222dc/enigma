@@ -23,9 +23,7 @@ namespace Enigma.Models
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Tick += new EventHandler(Timer_Ticks);
             dispatcherTimer.Start();
-
         }
-
 
         private void Timer_Ticks(object state, EventArgs e)
         {
@@ -39,17 +37,14 @@ namespace Enigma.Models
             totalSeconds += 60;
         }
 
-        public void getTime(int seconds, String timeLapse)
+        public void GetTime(int seconds, string timeLapse)
         {
-
-           totalSeconds = seconds;
-           TimeLapse = timeLapse;
+            totalSeconds = seconds;
+            TimeLapse = timeLapse;
             Time();
-
-
         }
 
     }
 
-    }
+}
 
