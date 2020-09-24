@@ -24,6 +24,8 @@ namespace Enigma.ViewModels
         public string Guess4thSymbol { get; set; }
         public string Error { get; set; }
         public Highscore HighscoreToDB {get; set;}
+
+      
         #endregion
 
         #region Commands
@@ -32,6 +34,7 @@ namespace Enigma.ViewModels
 
         #region Timer
         private int totalSeconds = 0;
+     
         private DispatcherTimer dispatcherTimer = null;
 
         private string _timeLapse2;
@@ -146,6 +149,7 @@ namespace Enigma.ViewModels
         #region HighscoreToDB
         public void AddHighScore()
         {
+          
             MyHighScoreInGame = totalSeconds;
             var newHighScore = new Highscore
             {
@@ -156,6 +160,8 @@ namespace Enigma.ViewModels
                
               
             }
+
+       
          
 
     }
