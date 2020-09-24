@@ -43,6 +43,41 @@ namespace Enigma.Models.Repositories
             }
         }
 
+
+        public static Highscore AddHighScore(Highscore newHighscore)
+        {
+            string stmt = "INSERT INTO highscore(fk_player_id, time) VALUES(@fk_player_id, @time) RETURNING highscore_id";
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (var command = new NpgsqlCommand(stmt, conn))
+                        {
+                            command.Parameters.AddWithValue("fk_player_id", newHighscore.Fk_Player_id);
+                            command.Parameters.AddWithValue("time", newHighscore.Time);
+
+                            int id = (int)command.ExecuteScalar();
+                            newHighscore.Highscore_id = id;
+                        }
+                        trans.Commit();
+                        return newHighscore;
+                    }
+                    catch (PostgresException)
+                    {
+                        trans.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+
+
+
         #endregion
 
         #region READ
@@ -187,46 +222,14 @@ namespace Enigma.Models.Repositories
                     command.ExecuteScalar();
                 }
             }
-            
+
         }
         #endregion
 
-        
-              
-            
-        
-        public static Highscore AddHighScore(Highscore newHighscore)
-        {
-            string stmt = "INSERT INTO highscore(fk_player_id, time) VALUES(@fk_player_id, @time) RETURNING highscore_id";
-          
-            using (var conn = new NpgsqlConnection(connectionString))
-            {
-                conn.Open();
 
-                using (var trans = conn.BeginTransaction())
-                {
-                    try
-                    {
-                        using (var command = new NpgsqlCommand(stmt, conn))
-                        {
-                            command.Parameters.AddWithValue("fk_player_id", newHighscore.Fk_Player_id);
-                            command.Parameters.AddWithValue("time", newHighscore.Time);
-                        
-                            int id = (int)command.ExecuteScalar();
-                            newHighscore.Highscore_id = id;
-                        }
-                        trans.Commit();
-                        return newHighscore;
-                    }
-                    catch (PostgresException)
-                    {
-                        trans.Rollback();
-                        throw;
-                    }
-                }
-            }
-        }
+
+
+
 
     }
 }
-

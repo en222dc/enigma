@@ -16,7 +16,7 @@ namespace Enigma.ViewModels
 {
     class PickPlayerViewModel : BaseViewModel
     {
-       // public Player MyPlayer { get; set; }
+       
         public string PlayerName { get; set; }
         public ObservableCollection<Player> AllPlayers { get; set; }
 
@@ -52,11 +52,12 @@ namespace Enigma.ViewModels
                 NoPlayerMessage();
             }
 
-            
-        }
 
+        }
+      
         public void AddPlayer()
         {
+
             if (CanListHaveMorePlayers())
             {
                 var newPlayer = new Player
