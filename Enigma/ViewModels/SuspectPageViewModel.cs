@@ -17,6 +17,8 @@ namespace Enigma.ViewModels
         #region Properties
         public BitmapImage KillerPortrait { get; set; }
         public string KillerName { get; set; }
+
+        
         #endregion
 
         #region Methods
@@ -40,6 +42,21 @@ namespace Enigma.ViewModels
         }
         #endregion 
 
+
+
+        public void getImage () {
+            
+            MyMurderer. name
+
+            if()
+           
+            KillerName = 
+
+
+
+
+
+            }
 
         public void ChangePage()
         {

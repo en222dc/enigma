@@ -5,6 +5,7 @@ using System.Configuration;
 using Npgsql;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
+using log4net.Core;
 
 namespace Enigma.Models.Repositories
 {
@@ -13,7 +14,7 @@ namespace Enigma.Models.Repositories
         private static string connectionString = ConfigurationManager.ConnectionStrings["sup_db4"].ConnectionString;
 
         #region CREATE
-        public static Player AddNewPlayerToDb(Player newPlayer)
+        public static Player AddNewPlayerToDb(Player newPlayer, out string errorCode )
         {
             string stmt = "INSERT INTO player (player_name) VALUES (@player_name) RETURNING player_id";
 
@@ -32,13 +33,16 @@ namespace Enigma.Models.Repositories
                             newPlayer.Player_id = id;
                         }
                         trans.Commit();
-                        return newPlayer;
+                       
                     }
-                    catch (PostgresException)
+                    catch (PostgresException error)
                     {
+                        errorCode = error.SqlState;
                         trans.Rollback();
                         throw;
                     }
+                    errorCode = null;
+                    return newPlayer;
                 }
             }
         }

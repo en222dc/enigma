@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -54,11 +55,13 @@ namespace Enigma.ViewModels
                 NoPlayerMessage();
             }
 
-            
-        }
+               }
+
+
 
         public void AddPlayer()
         {
+          
             if (CanListHaveMorePlayers())
             {
                 var newPlayer = new Player
@@ -68,9 +71,13 @@ namespace Enigma.ViewModels
                 MyPlayer = Repository.AddNewPlayerToDb(newPlayer);
                 UpdateAllPlayerList();
                 PlayerName = null;
+              
+
             }
             else
+            
                 MessageBox.Show($"You have to delete a player first, maximum allowed players is {maxNumberOfPlayers}");
+            
         }
 
         private bool CanListHaveMorePlayers()
@@ -108,6 +115,23 @@ namespace Enigma.ViewModels
         private void NoPlayerMessage()
         {
             MessageBox.Show("You have to choose a player first.");
+        }
+
+        public void CatchPlayerExistInDatbaseExcepsion()
+        {
+            if (Repository.AddNewPlayerToDb( MyPlayer, out string errorCode) ==)
+            {
+                if (errorCode == "23505")
+                {
+                    MessageBox.Show($"PlayerName already exists");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wring");
+                }
+
+                return;
+            }
         }
 
     }
