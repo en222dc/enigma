@@ -19,8 +19,8 @@ namespace Enigma.ViewModels
         public MenuPageViewModel()
         {
             ExitGameCommand = new RelayCommand(ExitGame);
-            ChangeToHighScorePageCommand = new RelayCommand(ChangeToHighScorePage);
-            ChangeToHelpAndRulesCommand = new RelayCommand(ChangeToHelpAndRules);
+            ChangeToHighScorePageCommand = new RelayCommand(GoToHighscore);
+            ChangeToHelpAndRulesCommand = new RelayCommand(GoToHelpAndRules);
         }
 
         public void ExitGame()
@@ -33,6 +33,46 @@ namespace Enigma.ViewModels
             {
                 var startpage = new StartPage();
                 NavigationService.Navigate(startpage);
+            }
+        }
+
+        public void GoToHelpAndRules()
+        {
+            if (IsMainFrameSetToStartPage())
+            {
+                ChangeToHelpAndRules();
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        ChangeToHelpAndRules();
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+        }
+
+        public void GoToHighscore()
+        {
+            if (IsMainFrameSetToStartPage())
+            {
+                ChangeToHighScorePage();
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        ChangeToHighScorePage();
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
         }
 
