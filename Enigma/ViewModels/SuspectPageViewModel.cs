@@ -15,7 +15,7 @@ namespace Enigma.ViewModels
     class SuspectsPageModel : BaseViewModel
     {
         #region Properties
-        public BitmapImage KillerPortrait { get; set; }
+        public string KillerPortrait { get; set; }
         public string KillerName { get; set; }
         public string Summary { get; set; } = $"Well done {MyPlayer}, you have done an excellent job to find and charge the killer! {MyMurderer.Name} is a notorious serial killer and the question was not if, but when, {MyMurderer.Name} would strike again! Thanks to you, our citizens can once again feel safe. We knew we did the right thing to put our faith in you {MyPlayer}, thank you!";
         #endregion
@@ -27,7 +27,7 @@ namespace Enigma.ViewModels
             {
                 if (suspect.IsKiller == true)
                 {
-                    KillerPortrait = suspect.Portrait;
+                    KillerPortrait = GetPicture;
                     KillerName = suspect.Name;
                 }
             }

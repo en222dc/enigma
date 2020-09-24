@@ -21,7 +21,9 @@ namespace Enigma.ViewModels.Base
         public static Player MyPlayer { get; set; }
         public static Suspect MyMurderer { get; set; }
         public static int MyHighScoreInGame { get; set; }
+        public static string GetPicture { get; set; }
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService;
+
 
         #endregion
 
@@ -29,6 +31,8 @@ namespace Enigma.ViewModels.Base
         public BaseViewModel()
         {
             GetMurderer();
+            GetPicture = @"\Assets\Images\image3.jpg";
+           
         }
 
         #endregion
