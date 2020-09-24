@@ -27,12 +27,27 @@ namespace Enigma.ViewModels
         {
             if (IsMainFrameSetToStartPage())
             {
-                MyWindow.Close();
+                MessageBoxResult result = MessageBox.Show("Do you want to exit the game?", "Exit", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        MyWindow.Close();
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
             else
             {
-                var startpage = new StartPage();
-                NavigationService.Navigate(startpage);
+                MessageBoxResult result = MessageBox.Show("Do you want to quit to Title?", "Exit", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        MyWindow.MainFrame.Content = new StartPage();
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
         }
 
@@ -44,7 +59,7 @@ namespace Enigma.ViewModels
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("If you leave this page, all your none saved progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -64,7 +79,7 @@ namespace Enigma.ViewModels
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("If you leave this page, all your none saved progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -75,6 +90,7 @@ namespace Enigma.ViewModels
                 }
             }
         }
+
 
         public bool IsMainFrameSetToStartPage()
         {
