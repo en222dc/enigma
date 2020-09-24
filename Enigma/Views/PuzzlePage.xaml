@@ -10,12 +10,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PuzzlePage">
-  
-    
+
+
     <Page.Background>
         <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
     </Page.Background>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -25,8 +25,8 @@
             <RowDefinition Height="3*" />
             <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
-        
-            
+
+
         <Label Grid.Row="0" Grid.Column="0"
                Content="What is missing from the sequence?" 
                VerticalAlignment="Center" HorizontalAlignment="Center" 
@@ -46,12 +46,42 @@
                 Visibility="{Binding LblInvisibleHintGetVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                 FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
 
-        <Label x:Name="lblShowSymbols" 
-                Grid.Row="3"
-                VerticalAlignment="Center" HorizontalAlignment="Center"
-                Content="{Binding SpecificSymbol}" 
-                Visibility="{Binding LblInvisibleSymbolsGetVisible}"
-                FontSize="40" Foreground="#5F606B" FontFamily="Bell MT" />
+
+        <TextBlock 
+            Grid.Row="3" 
+            Text= "Well Done, You found A Clue:" 
+            TextWrapping="WrapWithOverflow"  
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center"
+            Margin="30" 
+            FontFamily="Bell MT"  Foreground="Maroon" FontSize="40"
+            Visibility="{Binding LblInvisibleSymbolsGetVisible}"/>
+
+        <TextBlock
+            Grid.Row="3"
+            Visibility="{Binding LblInvisibleSymbolsGetVisible}"
+             VerticalAlignment="Center" HorizontalAlignment="Center"
+  Name="MyFadingSymbol"
+  Margin="20" 
+   Text="{Binding SpecificSymbol}"
+  Width="100" Height="80" FontSize="50" FontWeight="Bold" Foreground="Maroon">
+ 
+
+  <!-- Animates the text block's opacity. -->
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+            Storyboard.TargetName="MyFadingSymbol" 
+            Storyboard.TargetProperty="(TextBlock.Opacity)"
+            From="1.0" To="0.0" Duration="0:0:5" 
+            AutoReverse="True" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
 
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -71,7 +101,7 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     IsEnabled="False"/>
-            
+
             <TextBox x:Name="txtSequenceAnswer2"
                     Grid.Column="1"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -112,7 +142,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Button x:Name="btnShowHint"
                 Grid.Column="0"
                 Content="Show Hint (+60sec)"
@@ -131,7 +161,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            
+
             <Button x:Name="btnSolvePuzzle" 
                 Grid.Column="1"
                 Content="{Binding ButtonName}"
@@ -152,4 +182,3 @@
         </Grid>
     </Grid>
 </Page>
-
