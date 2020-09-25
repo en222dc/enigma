@@ -15,7 +15,7 @@ namespace Enigma.ViewModels
     class SuspectsPageModel : BaseViewModel
     {
         #region Properties
-        public string KillerPortrait { get; set; }
+        public BitmapImage KillerPortrait { get; set; }
         public string KillerName { get; set; }
 
         public string YourTime { get; set; } = $"Your highscore has been saved";
@@ -25,14 +25,16 @@ namespace Enigma.ViewModels
         #region Methods
         private void ShowKiller(ObservableCollection<Suspect> SuspectList)
         {
-            foreach (var suspect in SuspectList)
-            {
-                if (suspect.IsKiller == true)
-                {
-                    KillerPortrait = GetPicture;
-                    KillerName = suspect.Name;
-                }
-            }
+
+            string portraitPath = MyMurderer.Portrait.UriSource.ToString();
+            BitmapImage glowIcon = new BitmapImage();
+            glowIcon.BeginInit();
+            glowIcon.UriSource = new Uri(portraitPath, UriKind.Relative);
+            glowIcon.EndInit();
+
+            KillerPortrait = glowIcon;
+            KillerName = MyMurderer.Name;
+
         }
         #endregion
 
