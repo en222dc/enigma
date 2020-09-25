@@ -68,6 +68,7 @@ namespace Enigma.ViewModels
                 UpdateAllPlayerList();
                 PlayerName = null;
                 MyPlayerInGame = MyPlayer;
+                GoToPuzzlePage();
             }
             else
                 MessageBox.Show($"You have to delete a player first, maximum allowed players is {maxNumberOfPlayers}");
