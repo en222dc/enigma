@@ -13,7 +13,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Content="Welcome to Engima" 
+        <Label Content="Welcome to Enigma" 
                HorizontalAlignment="Center" VerticalAlignment="Top" 
                FontFamily="Castellar" Foreground="#5C0106" FontSize="60" FontWeight="Bold"
                Padding="0 100 0 0"/>
