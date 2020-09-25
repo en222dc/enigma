@@ -22,15 +22,15 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="HighScore"
+        <Label Content="High Score"
                Grid.ColumnSpan="2" Grid.Row="0"  
                HorizontalAlignment="Center" VerticalAlignment="Center" 
                FontFamily="Banschrift" Foreground="#5F606B" FontSize="40" />
-        <Label Content="HighScore" 
+        <Label Content="High Score" 
                Grid.Column="0" Grid.Row="1"  
                HorizontalAlignment="Center" VerticalAlignment="Center" 
                FontFamily="Banschrift" Foreground="#5F606B" FontSize="30" />
-        <Label Content="TopPlayer" 
+        <Label Content="Top Player" 
                Grid.Column="1" Grid.Row="1"  
                HorizontalAlignment="Center" VerticalAlignment="Center" 
                FontFamily="Banschrift" Foreground="#5F606B" FontSize="30" />
