@@ -111,7 +111,7 @@ namespace Enigma.ViewModels
 
                 if (guess.ToLower() == Name.ToLower())
                 {
-                    IsGuessCorrectCommand = new RelayCommand(GoToSuspectPage);
+                    GoToSuspectPage();
                 }
 
                 else
