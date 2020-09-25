@@ -67,6 +67,7 @@ namespace Enigma.ViewModels
                 MyPlayer = Repository.AddNewPlayerToDb(newPlayer);
                 UpdateAllPlayerList();
                 PlayerName = null;
+                MyPlayerInGame = MyPlayer;
             }
             else
                 MessageBox.Show($"You have to delete a player first, maximum allowed players is {maxNumberOfPlayers}");
