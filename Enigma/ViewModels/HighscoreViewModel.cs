@@ -28,17 +28,20 @@ namespace Enigma.ViewModels
 {
     public class HighscoreViewModel : BaseViewModel
     {
+        public ObservableCollection<Highscore> ListOfHighScores { get; set; } = new ObservableCollection<Highscore>();
+        public ObservableCollection<Player> ListOfPlayersInHighScore { get; set; } = new ObservableCollection<Player>();
 
-        public ObservableCollection<Highscore> HighScoreDatabase { get; set; } = new ObservableCollection<Highscore>();
-        public ObservableCollection<Player> PlayerNameDataBase { get; set; } = new ObservableCollection<Player>();
+        public string ListOfHighScoreToString { get; set; }
+        public string MostFrequentPlayersToString { get; set; }
 
         public ICommand GoToPageCommand { get; set; }
 
         public HighscoreViewModel()
         {
 
-
             ShowHighScoreFromDataBase();
+            GetHighScoreListToString();
+            GetMostFrequentPlayersToString();
             GoToPageCommand = new RelayCommand(GoToStartPage);
 
         }
@@ -47,18 +50,54 @@ namespace Enigma.ViewModels
         {
             foreach (var highscore in Repository.GetHighscores())
             {
-                HighScoreDatabase.Add(highscore);
+                ListOfHighScores.Add(highscore);
             }
             foreach (var player in Repository.GetTopPlayers())
             {
-                PlayerNameDataBase.Add(player);
+                ListOfPlayersInHighScore.Add(player);
             }
         }
+
+        private void GetHighScoreListToString(int highScoreToDisplay=10)
+        {
+            int highScorePlace = 1;
+
+            foreach (var position in ListOfHighScores)
+            {
+                if (highScorePlace <= highScoreToDisplay)
+                {
+                    ListOfHighScoreToString += $"    {highScorePlace}.\t{position.Player_name}\t   {position.Time}\n";
+                    highScorePlace++;
+                }
+            }
+        }
+
+        private void GetMostFrequentPlayersToString()
+        {
+
+            foreach (var player in ListOfPlayersInHighScore)
+            {
+                int numberOfGames = 0;
+                foreach (var score in ListOfHighScores)
+                {
+                    if (score.Player_name == player.Player_name)
+                    {
+                        numberOfGames++;
+                    }
+                }
+                MostFrequentPlayersToString += $"{player}\t{numberOfGames}\n";
+
+            }
+
+        }
+
+
         public void GoToStartPage()
         {
             var startpage = new StartPage();
             NavigationService.Navigate(startpage);
         }
+
 
     }
 
