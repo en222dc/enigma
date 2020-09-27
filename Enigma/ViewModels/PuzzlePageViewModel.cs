@@ -36,11 +36,6 @@ namespace Enigma.ViewModels
         public char SpecificSymbol { get; set; }
 
 
-        private int totalSeconds = 0;
-
-        private DispatcherTimer dispatcherTimer = null;
-
-        public string _timeLapse;
 
 
         #endregion
@@ -80,9 +75,7 @@ namespace Enigma.ViewModels
             listOfPuzzles.Add(fibonacci);
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
-
-
-            Time();
+            TimeStart();
 
 
 
@@ -119,7 +112,7 @@ namespace Enigma.ViewModels
             MyPlayer = player;
             GetEncryptedName(ListOfSuspects);
             GetSymbolToPuzzle();
-            Time();
+            TimeStart();
 
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
@@ -141,7 +134,7 @@ namespace Enigma.ViewModels
 
             GetEncryptedName(ListOfSuspects);
             GetSymbolToPuzzle();
-            Time();
+            TimeStart();
 
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
@@ -231,48 +224,17 @@ namespace Enigma.ViewModels
 
         #endregion
 
-        #region Time
+ 
 
-        public string TimeLapse
-        {
-            get { return _timeLapse; }
-            set
-            {
-                _timeLapse = value;
-                OnPropertyChanged();
-            }
-        }
+      
 
 
 
 
-        public void Time()
-        {
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Tick += new EventHandler(Timer_Tick2);
-            dispatcherTimer.Start();
+       
 
-        }
-
-
-        private void Timer_Tick2(object state, EventArgs e)
-        {
-            totalSeconds++;
-            TimeLapse = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
-            OnPropertyChanged();
-        }
-
-        public void Hint60()
-        {
-            totalSeconds += 60;
-        }
-
-        public int getTimeElapsed()
-        {
-            return totalSeconds;
-        }
-        #endregion
+    
+        
 
 
 

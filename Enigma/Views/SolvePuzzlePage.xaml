@@ -34,7 +34,7 @@
         <Label x:Name="lblShowTime"
                 Grid.Row="1" Grid.Column="1" 
                 VerticalAlignment="Top" HorizontalAlignment="Center"
-                Content="{Binding TimeLapse2}"
+                Content="{Binding TimeLapse}"
                 FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" />
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>

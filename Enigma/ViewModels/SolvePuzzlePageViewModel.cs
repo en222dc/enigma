@@ -32,40 +32,7 @@ namespace Enigma.ViewModels
         public ICommand IsGuessCorrectCommand { get; set; }
         #endregion
 
-        #region Timer
-        private int totalSeconds = 0;
-     
-        private DispatcherTimer dispatcherTimer = null;
-
-        private string _timeLapse2;
-        public string TimeLapse2
-        {
-            get { return _timeLapse2; }
-            set
-            {
-                _timeLapse2 = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        public void Time()
-        {
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Tick += new EventHandler(Timer_Tick2);
-            dispatcherTimer.Start();
-        }
-
-
-
-        private void Timer_Tick2(object state, EventArgs e)
-        {
-            totalSeconds++;
-            TimeLapse2 = string.Format("{0:hh\\:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
-        }
-
-        #endregion
+       
 
         #region Methods
         public void ShowEncryptedName(ObservableCollection<Suspect> suspects)
@@ -124,7 +91,7 @@ namespace Enigma.ViewModels
 
         private void GoToSuspectPage()
         {
-            var model = new SuspectsPageModel(ListOfSuspects);
+            var model = new SuspectsPageModel(ListOfSuspects, totalSeconds);
             var page = new SuspectsPage(model);
             AddHighScore();
             NavigationService.Navigate(page);
@@ -140,7 +107,7 @@ namespace Enigma.ViewModels
             GetNameOnMurderer(SuspectList);                 
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
-            Time();
+            TimeStart();
            
         }
 

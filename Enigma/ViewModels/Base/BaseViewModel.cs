@@ -23,6 +23,12 @@ namespace Enigma.ViewModels.Base
         public static Suspect MyMurderer { get; set; }
         public static int MyHighScoreInGame { get; set; }
         public static string GetPicture { get; set; }
+
+        public string TimeLapse { get; set; }
+
+        public int totalSeconds = 0;
+
+        public DispatcherTimer dispatcherTimer = new DispatcherTimer();
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService;
 
 
@@ -55,7 +61,32 @@ namespace Enigma.ViewModels.Base
 
         #endregion
 
+        #region Timer
+        public void TimeStart()
+        {
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Tick += new EventHandler(TimerTicks);
+            dispatcherTimer.Start();
 
+        }
+
+        public void TimeStop()
+        {
+            dispatcherTimer.Stop();
+        }
+        public void Hint60()
+        {
+            totalSeconds += 60;
+        }
+
+        private void TimerTicks(object state, EventArgs e)
+        {
+            totalSeconds++;
+            TimeLapse = string.Format("{0:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
+            OnPropertyChanged();
+        }
+
+        #endregion
 
 
         public event PropertyChangedEventHandler PropertyChanged;
