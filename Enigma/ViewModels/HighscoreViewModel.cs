@@ -81,24 +81,25 @@ namespace Enigma.ViewModels
         private void GetMostFrequentPlayersToString()
         {
 
-            if (ListOfPlayersInHighScore.Count==0)
+            if (ListOfPlayersInHighScore.Count == 0)
             {
                 MostFrequentPlayersToString = "No player has played the game";
             }
-            foreach (var player in ListOfPlayersInHighScore)
+            else
             {
-                int numberOfGames = 0;
-                foreach (var score in ListOfHighScores)
+                foreach (var player in ListOfPlayersInHighScore)
                 {
-                    if (score.Player_name == player.Player_name)
+                    int numberOfGames = 0;
+                    foreach (var score in ListOfHighScores)
                     {
-                        numberOfGames++;
+                        if (score.Player_name == player.Player_name)
+                        {
+                            numberOfGames++;
+                        }
                     }
+                    MostFrequentPlayersToString += $"{player}\t{numberOfGames}\n";
                 }
-                MostFrequentPlayersToString += $"{player}\t{numberOfGames}\n";
-
             }
-
         }
 
 
