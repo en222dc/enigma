@@ -10,11 +10,12 @@ using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 
-namespace Enigma.ViewModels
+namespace Enigma.Views
 {
 
     public class StartPageViewModel : BaseViewModel

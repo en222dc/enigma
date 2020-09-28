@@ -1,4 +1,5 @@
 ﻿using Enigma.ViewModels;
+using Enigma.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Enigma.Views
     /// <summary>
     /// Interaction logic for StartPage.xaml
     /// </summary>
-    public partial class StartPage : BasePage
+    public partial class StartPage : BasePage<StartPageViewModel>
     {
         public StartPage()
         {
