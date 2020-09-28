@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -18,25 +19,21 @@ namespace Enigma.ViewModels
     class PuzzlePageViewModel : BaseViewModel
     {
         #region Properties
-        public ObservableCollection<int> Fibonacci { get; set; } = new ObservableCollection<int>();
-        public ObservableCollection<IGameLogic> listOfPuzzles { get; set; } = new ObservableCollection<IGameLogic>();    //Används inte till något för tillfället, kan vara bra att ha ifall vi vill ha flera pussel 
+        public ObservableCollection<IGameLogic> ListOfPuzzlesAvaible { get; set; } = new ObservableCollection<IGameLogic>();    
+        public ObservableCollection<IGameLogic> PuzzlesForGame { get; set; } = new ObservableCollection<IGameLogic>();
+        public ObservableCollection<int> NumberSequence { get; set; } = new ObservableCollection<int>();
+
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
-
-        // public Player MyPlayer { get; set; }
-
 
         public string ButtonName { get; set; } = "Guess nr";
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
 
         public string Hint { get; set; }
-        public char[] EncryptedName { get; set; } = new char[4];
+        public char[] EncryptedName { get; set; } = new char[MyMurderer.EncryptedName.Length];
         public int CountPuzzles { get; set; }
         public char SpecificSymbol { get; set; }
-
-
-
 
         #endregion
 
@@ -50,128 +47,124 @@ namespace Enigma.ViewModels
 
         #endregion
 
-
-
         #region Konstruktor
 
         public PuzzlePageViewModel()
         {
-
-            //this.GoToNextPuzzleCommand = new GoToNextPuzzleCommand(this);
-            int[] fibonacciArray = new int[5];
-            IGameLogic fibonacci = new Fibonacci();
-            fibonacci.GenerateRandomNr(fibonacciArray);
-            fibonacci.GetRestOfNrInSequence(fibonacciArray);
-            GetHint(fibonacci);
-            GetEncryptedName(ListOfSuspects);
-            GetSymbolToPuzzle();
-
-
-            foreach (var position in fibonacciArray)
-            {
-                Fibonacci.Add(position);
-            }
-
-            listOfPuzzles.Add(fibonacci);
+            StartGame();      
+          
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
-            TimeStart();
-
-
-
         }
 
-
-
-        //public PuzzlePageViewModel(ObservableCollection<Suspect>ListOfSuspects)
-        //{           
-
-        //    int[] fibonacciArray = new int[5];
-        //    IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
-        //    fibonacci.GenerateRandomNr(fibonacciArray);
-        //    fibonacci.GetRestOfNrInSequence(fibonacciArray);
-        //    GetPuzzleSequenceToProperty(fibonacciArray);
-
-        //    GetEncryptedName(ListOfSuspects);
-        //    Time();        
-
-        //    CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
-        //    ShowHintCommand = new RelayCommand(ShowHint);
-
-        //}
-
-        public PuzzlePageViewModel(Player player, ObservableCollection<Suspect> ListOfSuspects)
+      
+        public PuzzlePageViewModel(int total, int puzzleCounter, ObservableCollection<IGameLogic> puzzlesForGame)
         {
-
-            int[] fibonacciArray = new int[5];
-            IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
-            fibonacci.GenerateRandomNr(fibonacciArray);
-            fibonacci.GetRestOfNrInSequence(fibonacciArray);
-            GetEntirePuzzleSequence(fibonacciArray);
-            GetHint(fibonacci);
-            MyPlayer = player;
-            GetEncryptedName(ListOfSuspects);
-            GetSymbolToPuzzle();
-            TimeStart();
-
-            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
-            ShowHintCommand = new RelayCommand(ShowHint);
-
-        }
-
-        public PuzzlePageViewModel(int total, int puzzleCounter, ObservableCollection<Suspect> ImportedListOfSuspects)
-        {
-
-            int[] fibonacciArray = new int[5];
-            IGameLogic fibonacci = new Fibonacci(); //Detta borde möjliggöra att vi kan lägga flera olika typer av pussel i samma lista (Alla som har IGameLogic)
-            fibonacci.GenerateRandomNr(fibonacciArray);
-            fibonacci.GetRestOfNrInSequence(fibonacciArray);
-            GetEntirePuzzleSequence(fibonacciArray);
-            GetHint(fibonacci);
-            ListOfSuspects = ImportedListOfSuspects;
-            CountPuzzles = puzzleCounter;
             totalSeconds = total;
-
-            GetEncryptedName(ListOfSuspects);
-            GetSymbolToPuzzle();
-            TimeStart();
+            CountPuzzles = puzzleCounter;
+            PuzzlesForGame = puzzlesForGame;
+            ContinueGame();
 
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
 
         }
-
 
 
         #endregion
 
         #region Metoder
 
+
+        private void StartGame()
+        {
+            GetAllTypeOfPuzzles();
+            SetPuzzlesForGame();
+            int[] numberSequenceArray = new int[5];
+            InstantiatePuzzle(numberSequenceArray);
+            GetEntirePuzzleSequence(numberSequenceArray);
+            GetHint();
+            GetEncryptedName();
+            GetSymbolToPuzzle();
+            TimeStart();
+        }
+
+        private void ContinueGame()
+        {
+            int[] numberSequenceArray = new int[5];
+            InstantiatePuzzle(numberSequenceArray);
+            GetEntirePuzzleSequence(numberSequenceArray);
+            GetHint();
+            GetEncryptedName();
+            GetSymbolToPuzzle();
+            TimeStart();
+        }
+
+        /// <summary>
+        /// Gets all type of puzzles who implements the Interface "IGameLogic"
+        /// </summary>
+        private void GetAllTypeOfPuzzles()
+        {
+            //Tagit från sida https://stackoverflow.com/questions/699852/how-to-find-all-the-classes-which-implement-a-given-interface
+            var instances = from classes in Assembly.GetExecutingAssembly().GetTypes()
+                            where classes.GetInterfaces().Contains(typeof(IGameLogic))
+                                     && classes.GetConstructor(Type.EmptyTypes) != null
+                            select Activator.CreateInstance(classes) as IGameLogic;
+
+            foreach (var item in instances)
+            {
+                ListOfPuzzlesAvaible.Add(item);
+            }
+
+        }
+
+        /// <summary>
+        /// Gets the list with all avaible puzzles and it will randomize what type of puzzles that will be presented for the player in the game 
+        /// </summary>
+        private void SetPuzzlesForGame()
+        {
+            Random random = new Random();
+            for (int i = 0; i < MyMurderer.Name.Length; i++)
+            {
+                PuzzlesForGame.Add(ListOfPuzzlesAvaible[random.Next(ListOfPuzzlesAvaible.Count)]);
+            }
+
+        }
+
+        private void InstantiatePuzzle(int[] array)
+        {
+            PuzzlesForGame[CountPuzzles].GenerateRandomNr(array);
+            PuzzlesForGame[CountPuzzles].GetRestOfNrInSequence(array);
+        }
+
+        /// <summary>
+        /// Transfer an array of integers into a property
+        /// </summary>
+        /// <param name="array"></param>
         private void GetEntirePuzzleSequence(int[] array)
         {
-            foreach (var item in array)
+            for (int i = 0; i < array.Length; i++)
             {
-                Fibonacci.Add(item);
-            }
-        }
-
-        private void GetEncryptedName(ObservableCollection<Suspect> List)
-        {
-            foreach (var item in List)
-            {
-                if (item.IsKiller)
-                {
-
-                    for (int i = 0; i < item.EncryptedName.Length; i++)
-                    {
-                        EncryptedName[i] = item.EncryptedName[i];
-                    }
-
-                }
+                NumberSequence.Add(array[i]);
             }
 
         }
 
+        /// <summary>
+        /// Gets the killers encrypted name and put it into a property
+        /// </summary>
+        private void GetEncryptedName()
+        {        
+            for (int i = 0; i < MyMurderer.EncryptedName.Length; i++)
+            {            
+                EncryptedName[i] = MyMurderer.EncryptedName[i];
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the propertys "EncryptedName" and "CountPuzzles" to specify a specific position in the killers encrypted name and put it into a property
+        /// </summary>
         private void GetSymbolToPuzzle()
         {
             SpecificSymbol = EncryptedName[CountPuzzles];
@@ -180,7 +173,7 @@ namespace Enigma.ViewModels
 
         private void CheckIfGuessCorrect()
         {
-            if (Guess4thNr == Fibonacci[3].ToString() && Guess5thNr == Fibonacci[4].ToString())
+            if (Guess4thNr == NumberSequence[3].ToString() && Guess5thNr == NumberSequence[4].ToString())
             {
                 ButtonName = "Go To The Next Puzzle!";
                 LblInvisibleSymbolsGetVisible = Visibility.Visible;
@@ -191,9 +184,9 @@ namespace Enigma.ViewModels
 
         }
 
-        private void GetHint(IGameLogic puzzle)
+        private void GetHint()
         {
-            Hint = puzzle.Hint;
+            Hint = PuzzlesForGame[CountPuzzles].Hint;
         }
         private void ShowHint()
         {
@@ -207,7 +200,7 @@ namespace Enigma.ViewModels
 
         private void ChangePage()
         {
-            if (CountPuzzles == 4)
+            if (CountPuzzles == MyMurderer.Name.Length)
             {
                 var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
                 var page = new SolvePuzzlePage(model);
@@ -215,7 +208,7 @@ namespace Enigma.ViewModels
             }
             else
             {
-                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, ListOfSuspects);
+                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
                 var page = new PuzzlePage(model);
                 NavigationService.Navigate(page);
             }
