@@ -57,21 +57,29 @@ namespace Enigma.ViewModels
       
         public void AddPlayer()
         {
-
-            if (CanListHaveMorePlayers())
+            if (PlayerName != null)
             {
-                var newPlayer = new Player
+                if (CanListHaveMorePlayers())
                 {
-                    Player_name = PlayerName
-                };
-                MyPlayer = Repository.AddNewPlayerToDb(newPlayer);
-                UpdateAllPlayerList();
-                PlayerName = null;
-                MyPlayerInGame = MyPlayer;
-                GoToPuzzlePage();
+                    var newPlayer = new Player
+                    {
+                        Player_name = PlayerName
+                    };
+                    MyPlayer = Repository.AddNewPlayerToDb(newPlayer);
+                    UpdateAllPlayerList();
+                    PlayerName = null;
+                    MyPlayerInGame = MyPlayer;
+                    GoToPuzzlePage();
+                }
+                else
+                {
+                    MessageBox.Show($"You have to delete a player first, maximum allowed players is {maxNumberOfPlayers}");
+                }
             }
             else
-                MessageBox.Show($"You have to delete a player first, maximum allowed players is {maxNumberOfPlayers}");
+            {
+                MessageBox.Show("You have to enter a name first.");
+            }
         }
 
         private bool CanListHaveMorePlayers()
