@@ -1,11 +1,7 @@
-﻿using Enigma.ViewModels.Base;
-using Enigma.Views;
-using Enigma.Views.Base;
-using Microsoft.Win32;
+﻿using Enigma.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,20 +12,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Enigma.ViewModels
+namespace Enigma.Views
 {
     /// <summary>
     /// Interaction logic for StartPage.xaml
     /// </summary>
-    public partial class StartPage : Page 
+    public partial class StartPage : BasePage
     {
         public StartPage()
         {
             InitializeComponent();
             DataContext = new StartPageViewModel();
-
-          
         }
     }
 }
-

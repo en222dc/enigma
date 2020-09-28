@@ -12,6 +12,7 @@ using System.Linq;
 using System.Collections;
 using System.Windows.Navigation;
 using Enigma.ViewModels.Base;
+using Enigma.Views;
 
 //De kan være du må se om system.configuration ligger i Enigma prosjektet også
 // Nedenfor kommer kode som kanskje skal være i App.Xaml filen.
