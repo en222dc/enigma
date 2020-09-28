@@ -38,6 +38,7 @@ namespace Enigma.Views
         }
         #endregion
 
+        #region Animation Tasks
         public async Task AnimateIn()
         {
             if (this.PageLoadAnimation == PageAnimation.None)
@@ -71,6 +72,7 @@ namespace Enigma.Views
                     break;
             }
         }
+        #endregion 
 
     }
 }
