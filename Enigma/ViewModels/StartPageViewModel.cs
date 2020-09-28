@@ -51,11 +51,13 @@ namespace Enigma.Views
 
         public void ChangePage()
         {
+            
             MyWindow.MainFrame.Content = new PickPlayer();
         }
 
 
-      
+
+
 
         #endregion
 

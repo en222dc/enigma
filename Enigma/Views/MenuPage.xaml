@@ -22,7 +22,7 @@
             <Button Content="HighScore" Command="{Binding ChangeToHighScorePageCommand}" Margin="10"
                    Grid.Column="0" Grid.Row="0" 
                    FontSize="30" 
-                   BorderBrush="#5C0106"
+                   BorderBrush="White" BorderThickness="3"
                    Background="#5C0106" Foreground="White">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -35,7 +35,7 @@
                    Grid.Column="1" Grid.Row="0"
                    FontSize="25" 
                    Foreground="White" 
-                   BorderBrush="#5C0106"
+                   BorderBrush="White" BorderThickness="3"
                    Background="#5C0106">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -48,7 +48,7 @@
                    Command="{Binding ExitGameCommand}"
                    Grid.Column="2" Grid.Row="0"
                    FontSize="30" 
-                   BorderBrush="#5C0106"
+                   BorderBrush="White" BorderThickness="3"
                    Background="#5C0106" Foreground="White">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
