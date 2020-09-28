@@ -28,8 +28,8 @@ namespace Enigma.ViewModels
             SetKiller(ListOfSuspects);
             EncryptKillerName(ListOfSuspects);
 
+            ExitButtonContent = "Quit Game";
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
-
         }
 
         public BackStoryViewModel()

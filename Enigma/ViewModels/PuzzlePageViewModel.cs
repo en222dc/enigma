@@ -87,6 +87,7 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
+            ExitButtonContent = "Quit Game";
         }
 
         private void ContinueGame()
@@ -98,6 +99,8 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
+            ExitButtonContent = "Quit Game";
+
         }
 
         /// <summary>
