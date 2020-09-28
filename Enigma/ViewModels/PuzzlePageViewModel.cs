@@ -31,7 +31,7 @@ namespace Enigma.ViewModels
         public string Guess5thNr { get; set; }
 
         public string Hint { get; set; }
-        public char[] EncryptedName { get; set; } = new char[MyMurderer.EncryptedName.Length];
+        public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
         public int CountPuzzles { get; set; }
         public char SpecificSymbol { get; set; }
 
@@ -87,7 +87,6 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
-            ExitButtonContent = "Quit Game";
         }
 
         private void ContinueGame()
@@ -99,7 +98,6 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
-            ExitButtonContent = "Quit Game";
 
         }
 
@@ -127,7 +125,7 @@ namespace Enigma.ViewModels
         private void SetPuzzlesForGame()
         {
             Random random = new Random();
-            for (int i = 0; i < MyMurderer.Name.Length; i++)
+            for (int i = 0; i < MyKiller.Name.Length; i++)
             {
                 PuzzlesForGame.Add(ListOfPuzzlesAvaible[random.Next(ListOfPuzzlesAvaible.Count)]);
             }
@@ -158,9 +156,9 @@ namespace Enigma.ViewModels
         /// </summary>
         private void GetEncryptedName()
         {        
-            for (int i = 0; i < MyMurderer.EncryptedName.Length; i++)
+            for (int i = 0; i < MyKiller.EncryptedName.Length; i++)
             {            
-                EncryptedName[i] = MyMurderer.EncryptedName[i];
+                EncryptedName[i] = MyKiller.EncryptedName[i];
             }
         }
 
@@ -203,7 +201,7 @@ namespace Enigma.ViewModels
 
         private void ChangePage()
         {
-            if (CountPuzzles == MyMurderer.Name.Length)
+            if (CountPuzzles == MyKiller.Name.Length)
             {
                 var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
                 var page = new SolvePuzzlePage(model);

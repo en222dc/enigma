@@ -42,7 +42,6 @@ namespace Enigma.ViewModels
 
             if (MyPlayer != null)
             {
-                MyPlayerInGame = MyPlayer;
                 var model = new BackStoryViewModel(MyPlayer);
                 var page = new BackStory();
                 NavigationService.Navigate(page);
@@ -68,7 +67,6 @@ namespace Enigma.ViewModels
                     MyPlayer = Repository.AddNewPlayerToDb(newPlayer);
                     UpdateAllPlayerList();
                     PlayerName = null;
-                    MyPlayerInGame = MyPlayer;
                     GoToPuzzlePage();
                 }
                 else

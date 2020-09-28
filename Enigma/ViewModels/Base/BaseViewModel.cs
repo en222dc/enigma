@@ -13,23 +13,19 @@ namespace Enigma.ViewModels.Base
 {
   public class BaseViewModel : INotifyPropertyChanged
     {
-
         #region Properties
-        public string ExitButtonContent { get; set; } = "Exit";
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } =new ObservableCollection<Suspect>();
-        public static Player MyPlayerInGame { get; set; }
         public static Player MyPlayer { get; set; }
         public MainWindow MyWindow { get; } = (MainWindow)Application.Current.MainWindow;
-        public static Suspect MyMurderer { get; set; }
-        public static int MyHighScoreInGame { get; set; }
+        public static Suspect MyKiller { get; set; }
+        public static int MyHighScore { get; set; }
         public static string GetPicture { get; set; }
-
         public string TimeLapse { get; set; }
-
-        public int totalSeconds = 0;
-
-        public DispatcherTimer dispatcherTimer = new DispatcherTimer();
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService;
+
+        
+        public int totalSeconds = 0;
+        public DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
 
         #endregion
@@ -52,11 +48,11 @@ namespace Enigma.ViewModels.Base
             {
                 if (suspect.IsKiller)
                 {
-                    MyMurderer = suspect;
-                    return MyMurderer;
+                    MyKiller = suspect;
+                    return MyKiller;
                 }
             }
-            return MyMurderer;
+            return MyKiller;
         }
 
         #endregion
