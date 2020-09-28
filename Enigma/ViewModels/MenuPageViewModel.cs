@@ -11,23 +11,25 @@ namespace Enigma.ViewModels
 {
     class MenuPageViewModel : BaseViewModel
     {
+        #region Properties
         public ICommand ExitGameCommand { get; set; }
         public ICommand ChangeToHighScorePageCommand { get; set; }
-
         public ICommand ChangeToHelpAndRulesCommand { get; set; }
-
+        #endregion
+        #region Construct
         public MenuPageViewModel()
         {
             ExitGameCommand = new RelayCommand(ExitGame);
             ChangeToHighScorePageCommand = new RelayCommand(GoToHighscore);
             ChangeToHelpAndRulesCommand = new RelayCommand(GoToHelpAndRules);
         }
+        #endregion
 
         public void ExitGame()
         {
             if (IsMainFrameSetToStartPage())
             {
-                MessageBoxResult result = MessageBox.Show("Do you want to exit the game?", "Exit", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("Do you want to quit the game?", "Quit", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -39,11 +41,12 @@ namespace Enigma.ViewModels
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Do you want to quit to Title?", "Exit", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("Do you want to exit to start page?", "Exit", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
                         MyWindow.MainFrame.Content = new StartPage();
+                        MyPlayer = null;
                         break;
                     case MessageBoxResult.No:
                         break;

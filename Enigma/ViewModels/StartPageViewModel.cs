@@ -22,45 +22,26 @@ namespace Enigma.ViewModels
 
         #region Properties
 
-        public string ButtonName { get; set; } = "Play Game";
-
-        #endregion
-
-
-        #region
-
         public ICommand PlayGameCommand { get; set;}
-     
 
         #endregion
 
-
-        #region Konstruktor
-
+        #region Construct
         public StartPageViewModel()
         {            
-            PlayGameCommand = new RelayCommand(ChangePage);                         
+            PlayGameCommand = new RelayCommand(ChangePage);
+            ExitButtonContent = "Quit Game";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
 
         #endregion
 
-        #region Metoder
-
-      
-
+        #region Methods
         public void ChangePage()
         {
             MyWindow.MainFrame.Content = new PickPlayer();
         }
 
-
-      
-
         #endregion
-
-
-
-
-
     }
 }

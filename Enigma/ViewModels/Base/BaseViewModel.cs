@@ -14,6 +14,7 @@ namespace Enigma.ViewModels.Base
   public class BaseViewModel : INotifyPropertyChanged
     {
         #region Properties
+        public static string ExitButtonContent { get; set; }
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } =new ObservableCollection<Suspect>();
         public static Player MyPlayer { get; set; }
         public MainWindow MyWindow { get; } = (MainWindow)Application.Current.MainWindow;
@@ -33,7 +34,7 @@ namespace Enigma.ViewModels.Base
         #region Constructor
         public BaseViewModel()
         {
-            GetMurderer();
+            WhoIsTheKiller();
             GetPicture = @"\Assets\Images\image3.jpg";
            
         }
@@ -42,14 +43,13 @@ namespace Enigma.ViewModels.Base
 
         #region Methods
 
-        private Suspect GetMurderer()
+        private Suspect WhoIsTheKiller()
         {
             foreach (var suspect in ListOfSuspects)
             {
                 if (suspect.IsKiller)
                 {
                     MyKiller = suspect;
-                    return MyKiller;
                 }
             }
             return MyKiller;
@@ -63,7 +63,6 @@ namespace Enigma.ViewModels.Base
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Tick += new EventHandler(TimerTicks);
             dispatcherTimer.Start();
-
         }
 
         public void TimeStop()
@@ -88,10 +87,7 @@ namespace Enigma.ViewModels.Base
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
-
-
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
         }
     }
 }
