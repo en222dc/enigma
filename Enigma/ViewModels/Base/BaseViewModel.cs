@@ -11,37 +11,28 @@ using System.Windows.Threading;
 
 namespace Enigma.ViewModels.Base
 {
-  public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
 
         #region Properties
-
-        public static ObservableCollection<Suspect> ListOfSuspects { get; set; } =new ObservableCollection<Suspect>();
-        public static Player MyPlayerInGame { get; set; }
-        public static Player MyPlayer { get; set; }
+        protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService;
+        public static ObservableCollection<Suspect> ListOfSuspects { get; set; } = new ObservableCollection<Suspect>();
         public MainWindow MyWindow { get; } = (MainWindow)Application.Current.MainWindow;
-        public static Suspect MyMurderer { get; set; }
-        public static int MyHighScoreInGame { get; set; }
-        public static string GetPicture { get; set; }
-
+        public static string ExitButtonContent { get; set; }
+        public static Player MyPlayer { get; set; }
+        public static Suspect MyKiller { get; set; }
+        public static int MyHighScore { get; set; }
         public string TimeLapse { get; set; }
-
-        public int totalSeconds = 0;
+        #endregion
 
         public DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService;
-
-
-        #endregion
+        public int totalSeconds = 0;
 
         #region Constructor
         public BaseViewModel()
         {
             GetMurderer();
-            GetPicture = @"\Assets\Images\image3.jpg";
-           
         }
-
         #endregion
 
         #region Methods
@@ -52,22 +43,17 @@ namespace Enigma.ViewModels.Base
             {
                 if (suspect.IsKiller)
                 {
-                    MyMurderer = suspect;
-                    return MyMurderer;
+                    MyKiller = suspect;
                 }
             }
-            return MyMurderer;
+            return MyKiller;
         }
 
-        #endregion
-
-        #region Timer
         public void TimeStart()
         {
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Tick += new EventHandler(TimerTicks);
             dispatcherTimer.Start();
-
         }
 
         public void TimeStop()
@@ -85,19 +71,16 @@ namespace Enigma.ViewModels.Base
             TimeLapse = string.Format("{0:mm\\:ss}", TimeSpan.FromSeconds(totalSeconds).Duration());
             OnPropertyChanged();
         }
-
         #endregion
 
-
+        #region EventHandler
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
-
-
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
         }
+        #endregion
     }
 }
-    
+
 

@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
+
 namespace Enigma.Views
 {
     /// <summary>

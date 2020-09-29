@@ -14,11 +14,12 @@ namespace Enigma.ViewModels
 {
     public class BackStoryViewModel : BaseViewModel
     {
-        //ObservableCollection<Suspect> ListOfSuspects = new ObservableCollection<Suspect>();
-
-        public ICommand GoToPageCommand { get; set; }
-        //public Player MyPlayer;
+        #region Properties
         public string BackStoryText { get; set; }
+        public ICommand GoToPageCommand { get; set; }
+        #endregion
+
+        #region Constructors
         public BackStoryViewModel(Player player)
         {
             MyPlayer = new Player();
@@ -29,18 +30,26 @@ namespace Enigma.ViewModels
             EncryptKillerName(ListOfSuspects);
 
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
-
         }
 
         public BackStoryViewModel()
         {
-           
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
-            BackStoryText = $"The president of Russia has assigned {MyPlayer.Player_name} to solve the mysterious murder of his wife Katja.The police has no suspects and are totally perplexed.The only clue at your disposal" +
-                " is a series of puzzles found at the crime scene. If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 60 seconds to your time. Will You be the player who finds the killer the fastest?";
+            BackStoryText = $"The president of Russia has assigned {MyPlayer.Player_name} to solve the mysterious murder of his wife Katja. \nThe police has no suspects and are totally perplexed. \nThe only clue at your disposal" +
+                " is a series of puzzles found at the crime scene. \nIf the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 60 seconds to your time. \n\n\n\t\tWill You be the player who finds the killer the fastest?";
         }
+        #endregion
 
+        #region Navigation
+        public void GoToPuzzlePage()
+        {
+         var model = new PuzzlePageViewModel();
+         var page = new PuzzlePage(model);
+         NavigationService.Navigate(page);
+        }
+        #endregion
 
+        #region Methods
         private ObservableCollection<Suspect> GetAllSuspects()
         {
             ObservableCollection<Suspect> Templist = new ObservableCollection<Suspect>();
@@ -48,7 +57,6 @@ namespace Enigma.ViewModels
             {
                 Templist.Add(suspect);
             }
-
             return Templist;
         }
 
@@ -77,12 +85,10 @@ namespace Enigma.ViewModels
 
         private void SetKiller(ObservableCollection<Suspect> suspects)
         {
-
             Random random = new Random();
             int index;
             index = random.Next(suspects.Count);
             suspects[index].IsKiller = true;
-
         }
 
         public void EncryptKillerName(ObservableCollection<Suspect> listOfSuspects)
@@ -99,7 +105,6 @@ namespace Enigma.ViewModels
                         killerName = killerName.ToLower().Replace(pair.Value, pair.Key);
                     }
 
-
                     for (int i = 0; i < killerName.Length; i++)
                     {
                         foreach (char c in killerName)
@@ -110,26 +115,7 @@ namespace Enigma.ViewModels
                     }
                 }
             }
-
-
-
         }
-
-
-
-
-
-
-        public void GoToPuzzlePage()
-        {
-         var model = new PuzzlePageViewModel();
-         var page = new PuzzlePage(model);
-          NavigationService.Navigate(page);
-
-
-
-        }
-       
-
+        #endregion
     }
 }

@@ -30,7 +30,7 @@
                    Foreground="White" 
                    BorderBrush="#5C0106"
                    Background="#5C0106"/>
-            <Button Content="Exit" 
+            <Button Content="{Binding ExitButtonContent, Mode=TwoWay}" 
                    Command="{Binding ExitGameCommand}"
                    Grid.Column="2" Grid.Row="0"
                    FontSize="30" 
