@@ -10,12 +10,11 @@ using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 
-namespace Enigma.Views
+namespace Enigma.ViewModels
 {
 
     public class StartPageViewModel : BaseViewModel
@@ -23,47 +22,27 @@ namespace Enigma.Views
 
         #region Properties
 
-        public string ButtonName { get; set; } = "Play Game";
-
-        #endregion
-
-
-        #region
-
         public ICommand PlayGameCommand { get; set;}
-     
 
         #endregion
 
-
-        #region Konstruktor
-
+        #region Constructor
         public StartPageViewModel()
         {            
-            PlayGameCommand = new RelayCommand(ChangePage);                         
+            PlayGameCommand = new RelayCommand(ChangePage);
+            MyPlayer = null;
+            ExitButtonContent = "Quit Game";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
 
         #endregion
 
-        #region Metoder
-
-      
-
+        #region Navigation
         public void ChangePage()
         {
-            
             MyWindow.MainFrame.Content = new PickPlayer();
         }
 
-
-
-
-
         #endregion
-
-
-
-
-
     }
 }

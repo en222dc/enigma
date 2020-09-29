@@ -2,6 +2,7 @@
 using Enigma.Models.Repositories;
 using Enigma.ViewModels.Base;
 using Enigma.Views;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,33 +17,34 @@ namespace Enigma.ViewModels
 {
     class PickPlayerViewModel : BaseViewModel
     {
-       
+        #region Properties
         public string PlayerName { get; set; }
+        public string CreateNewPlayerLabel { get; set; } = "Create new player:";
         public ObservableCollection<Player> AllPlayers { get; set; }
-
-        public ICommand ChoosePlayerCommand{ get; set; }
+        public ICommand ChoosePlayerCommand { get; set; }
         public ICommand AddPlayerClick { get; set; }
         public ICommand DeletePlayerClick { get; set; }
+        #endregion
 
         private int maxNumberOfPlayers = 10;
 
+        #region Constructor
         public PickPlayerViewModel()
         {
             UpdateAllPlayerList();
             ChoosePlayerCommand = new RelayCommand(GoToPuzzlePage);
             AddPlayerClick = new RelayCommand(AddPlayer);
             DeletePlayerClick = new RelayCommand(DeletePlayer);
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
+        #endregion
 
-       
-
+        #region Navigation
         public void GoToPuzzlePage()
         {
-            
-
             if (MyPlayer != null)
             {
-                MyPlayerInGame = MyPlayer;
                 var model = new BackStoryViewModel(MyPlayer);
                 var page = new BackStory();
                 NavigationService.Navigate(page);
@@ -51,34 +53,39 @@ namespace Enigma.ViewModels
             {
                 NoPlayerMessage();
             }
-
-
         }
-      
+        #endregion
+
+        #region Methods
         public void AddPlayer()
         {
-            if (PlayerName != null)
+            if (CanListHaveMorePlayers())
             {
-                if (CanListHaveMorePlayers())
+                var newPlayer = new Player
                 {
-                    var newPlayer = new Player
-                    {
-                        Player_name = PlayerName
-                    };
-                    MyPlayer = Repository.AddNewPlayerToDb(newPlayer);
-                    UpdateAllPlayerList();
+                    Player_name = PlayerName
+                };
+
+                try
+                {
+                    Repository.AddNewPlayerToDb(newPlayer);
+                    MyPlayer = newPlayer;
                     PlayerName = null;
-                    MyPlayerInGame = MyPlayer;
+                    UpdateAllPlayerList();
                     GoToPuzzlePage();
+                    MyPlayer = null; // må se videre på om dette er nyttig
+                    CreateNewPlayerLabel = "Create new player:";
                 }
-                else
+                catch (PostgresException error)
                 {
-                    MessageBox.Show($"You have to delete a player first, maximum allowed players is {maxNumberOfPlayers}");
+                    CreateNewPlayerLabel = PostgresError.GetErrorMessage(error.SqlState);
+                    PlayerName = null;
+                    // MessageBox.Show(PostgresError.GetErrorMessage(error.SqlState));
                 }
             }
-            else
+            else if (!CanListHaveMorePlayers())
             {
-                MessageBox.Show("You have to enter a name first.");
+                CreateNewPlayerLabel = "There are to many players. Delete one to add a new.";
             }
         }
 
@@ -86,7 +93,9 @@ namespace Enigma.ViewModels
         {
             bool result = false;
             if (AllPlayers.Count < maxNumberOfPlayers)
+            {
                 result = true;
+            }
             return result;
         }
 
@@ -94,11 +103,14 @@ namespace Enigma.ViewModels
         {
             if (IsMyPlayerNotNull())
             {
+                CreateNewPlayerLabel = "Create new player:";
                 Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
                 UpdateAllPlayerList();
             }
             else
+            {
                 NoPlayerMessage();
+            }
         }
 
         private void UpdateAllPlayerList()
@@ -110,7 +122,9 @@ namespace Enigma.ViewModels
         {
             bool result = false;
             if (MyPlayer != null)
+            {
                 result = true;
+            }
             return result;
         }
 
@@ -118,7 +132,7 @@ namespace Enigma.ViewModels
         {
             MessageBox.Show("You have to choose a player first.");
         }
-
+        #endregion
     }
 }
 

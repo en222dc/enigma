@@ -5,29 +5,48 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using System.Windows;
-
+using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Enigma.ViewModels
 {
     class MenuPageViewModel : BaseViewModel
     {
+        #region Properties
         public ICommand ExitGameCommand { get; set; }
         public ICommand ChangeToHighScorePageCommand { get; set; }
-
         public ICommand ChangeToHelpAndRulesCommand { get; set; }
+        #endregion
 
+        #region Constructor
         public MenuPageViewModel()
         {
             ExitGameCommand = new RelayCommand(ExitGame);
             ChangeToHighScorePageCommand = new RelayCommand(GoToHighscore);
             ChangeToHelpAndRulesCommand = new RelayCommand(GoToHelpAndRules);
         }
+        #endregion
 
-        public void ExitGame()
+        #region Navigation
+        private void ChangeToHighScorePage()
+        {
+            var highScorePage = new HighScorePage();
+            NavigationService.Navigate(highScorePage);
+        }
+
+        private void ChangeToHelpAndRules()
+        {
+            var helpAndRulesPage = new HelpAndRules();
+            NavigationService.Navigate(helpAndRulesPage);
+        }
+        #endregion
+
+        #region Methods
+        private void ExitGame()
         {
             if (IsMainFrameSetToStartPage())
             {
-                MessageBoxResult result = MessageBox.Show("Do you want to exit the game?", "Exit", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("Do you want to quit the game?", "Quit", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -39,7 +58,7 @@ namespace Enigma.ViewModels
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Do you want to quit to Title?", "Exit", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("Do you want to exit to start page?", "Exit", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -51,15 +70,11 @@ namespace Enigma.ViewModels
             }
         }
 
-        public void GoToHelpAndRules()
+        private void GoToHelpAndRules()
         {
-            if (IsMainFrameSetToStartPage())
+            if (IsMainFrameSetToPuzzlePage() || IsMainFrameSetToSolvePuzzlePage())
             {
-                ChangeToHelpAndRules();
-            }
-            else
-            {
-                MessageBoxResult result = MessageBox.Show("If you leave this page, all your none saved progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -69,17 +84,17 @@ namespace Enigma.ViewModels
                         break;
                 }
             }
-        }
-
-        public void GoToHighscore()
-        {
-            if (IsMainFrameSetToStartPage())
-            {
-                ChangeToHighScorePage();
-            }
             else
             {
-                MessageBoxResult result = MessageBox.Show("If you leave this page, all your none saved progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
+                ChangeToHelpAndRules();
+            }
+        }
+
+        private void GoToHighscore()
+        {
+            if (IsMainFrameSetToPuzzlePage() || IsMainFrameSetToSolvePuzzlePage())
+            {
+                MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -89,10 +104,13 @@ namespace Enigma.ViewModels
                         break;
                 }
             }
+            else
+            {
+                ChangeToHighScorePage();
+            }
         }
 
-
-        public bool IsMainFrameSetToStartPage()
+        private bool IsMainFrameSetToStartPage()
         {
             bool result = false;
 
@@ -104,16 +122,29 @@ namespace Enigma.ViewModels
             return result;
         }
 
-        public void ChangeToHighScorePage()
+        private bool IsMainFrameSetToPuzzlePage()
         {
-            var highScorePage = new HighScorePage();
-            NavigationService.Navigate(highScorePage);
+            bool result = false;
+
+            Object CurrentPage = MyWindow.MainFrame.Content.GetType().Name;
+            if ((string)CurrentPage == "PuzzlePage")
+            {
+                result = true;
+            }
+            return result;
         }
 
-        public void ChangeToHelpAndRules()
+        private bool IsMainFrameSetToSolvePuzzlePage()
         {
-            var helpAndRulesPage = new HelpAndRules();
-            NavigationService.Navigate(helpAndRulesPage);
+            bool result = false;
+
+            Object CurrentPage = MyWindow.MainFrame.Content.GetType().Name;
+            if ((string)CurrentPage == "SolvePuzzlePage")
+            {
+                result = true;
+            }
+            return result;
         }
+        #endregion
     }
 }

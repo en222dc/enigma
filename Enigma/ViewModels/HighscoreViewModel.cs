@@ -14,39 +14,37 @@ using System.Windows.Navigation;
 using Enigma.ViewModels.Base;
 using Enigma.Views;
 
-//De kan være du må se om system.configuration ligger i Enigma prosjektet også
-// Nedenfor kommer kode som kanskje skal være i App.Xaml filen.
-// Må også lage en metode som legger til Highscore i databasen, savehighscore > kan legges i en knapp når spillet avsluttes.
-/* <connectionStrings>
-            < add x: Name = "ConnectionDatabase" connectionString="" providerName= "System.Data.SqlClient" >
-  
-          </ connectionStrings >
-
-OBS Lag gjerne teksten bli igjen fordi jeg kanskje trenger det til å lagre highscore
-*/
-
 namespace Enigma.ViewModels
 {
     public class HighscoreViewModel : BaseViewModel
     {
+        #region Properties
         public ObservableCollection<Highscore> ListOfHighScores { get; set; } = new ObservableCollection<Highscore>();
         public ObservableCollection<Player> ListOfPlayersInHighScore { get; set; } = new ObservableCollection<Player>();
-
         public string ListOfHighScoreToString { get; set; } 
         public string MostFrequentPlayersToString { get; set; }
-
         public ICommand GoToPageCommand { get; set; }
+        #endregion
 
+        #region Constructor
         public HighscoreViewModel()
         {
-
             ShowHighScoreFromDataBase();
             GetHighScoreListToString();
             GetMostFrequentPlayersToString();
             GoToPageCommand = new RelayCommand(GoToStartPage);
-
         }
+        #endregion
 
+        #region Navigation
+        public void GoToStartPage()
+        {
+            var startpage = new StartPage();
+            NavigationService.Navigate(startpage);
+        }
+        #endregion
+
+        #region Methods
         public void ShowHighScoreFromDataBase()
         {
             foreach (var highscore in Repository.GetHighscores())
@@ -81,7 +79,6 @@ namespace Enigma.ViewModels
 
         private void GetMostFrequentPlayersToString()
         {
-
             if (ListOfPlayersInHighScore.Count == 0)
             {
                 MostFrequentPlayersToString = "No player has played the game";
@@ -102,17 +99,8 @@ namespace Enigma.ViewModels
                 }
             }
         }
-
-
-        public void GoToStartPage()
-        {
-            var startpage = new StartPage();
-            NavigationService.Navigate(startpage);
-        }
-
-
+        #endregion
     }
-
 }  
 
 

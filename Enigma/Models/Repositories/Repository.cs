@@ -13,7 +13,9 @@ namespace Enigma.Models.Repositories
         private static string connectionString = ConfigurationManager.ConnectionStrings["sup_db4"].ConnectionString;
 
         #region CREATE
-        public static Player AddNewPlayerToDb(Player newPlayer)
+
+        /*  
+        public static Player AddNewPlayerToDb1(Player newPlayer, out string errorCode)
         {
             string stmt = "INSERT INTO player (player_name) VALUES (@player_name) RETURNING player_id";
 
@@ -42,6 +44,43 @@ namespace Enigma.Models.Repositories
                 }
             }
         }
+
+        */
+        public static Player AddNewPlayerToDb(Player newPlayer)
+        {
+            string stmt = "INSERT INTO player (player_name) VALUES (@player_name) RETURNING player_id";
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (var command = new NpgsqlCommand(stmt, conn))
+                        {
+                            command.Parameters.AddWithValue("player_name", newPlayer.Player_name);
+                            int id = (int)command.ExecuteScalar();
+                            newPlayer.Player_id = id;
+                        }
+                        trans.Commit();
+                        return newPlayer;
+                    }
+                    catch (PostgresException)
+                    {
+                        throw; 
+                       
+                                             
+                    }
+                    
+                }
+                           
+            }
+        }
+
+    
+
 
 
         public static Highscore AddHighScore(Highscore newHighscore)
