@@ -101,12 +101,7 @@ namespace Enigma.ViewModels
 
         public void DeletePlayer()
         {
-            while (CanListHaveMorePlayers() && IsMyPlayerNotNull())
-            {
-                Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
-                UpdateAllPlayerList();
-            }
-            if (!CanListHaveMorePlayers() && IsMyPlayerNotNull())
+            if (IsMyPlayerNotNull())
             {
                 CreateNewPlayerLabel = "Create new player:";
                 Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
