@@ -14,50 +14,41 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="0.5*"/>            
             <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        
         <Label Grid.Row="0"
+               Grid.Column="1"
                Content="The Killer is behind bars"
                VerticalAlignment="Center" HorizontalAlignment="Center"
-               FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
-
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="0.5*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-
-            </Grid.ColumnDefinitions>
-            <Button x:Name="btnSuspectOne"
-                    Grid.Column="1"
-                    IsEnabled="False">
-                <Image Source="{Binding KillerPortrait}" 
-                       Stretch="Uniform" 
-                       Margin="5" />
-            </Button>
-            <Label x:Name="lblKiller" 
-                   Content="{Binding KillerName}"
-                   Grid.Row="1" Grid.Column="1"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="30" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold" />
-        </Grid>
-        <TextBlock 
-            Grid.Row="3" 
-            Text= "{Binding Summary}" 
-            TextWrapping="WrapWithOverflow"  
-            HorizontalAlignment="Center"  
-            Margin="30" 
-            FontFamily="Bell MT"  Foreground="#5F606B" FontSize="20" />
-
-
-        <Label Grid.Row="3"              
+               FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>             
+        <Image Grid.Row="1"
+               Grid.Column="1"
+               Source="{Binding KillerPortrait}" 
+               Stretch="Uniform" 
+               Margin="5" />          
+        <Label x:Name="lblKiller" 
+               Content="{Binding KillerName}"
+               Grid.Row="2" Grid.Column="1"
+               VerticalAlignment="Center" HorizontalAlignment="Center"
+               FontSize="30" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold" />              
+        <TextBlock
+               Grid.Row="3"
+               Grid.Column="1"            
+               Text= "{Binding Summary}" 
+               TextWrapping="WrapWithOverflow"                        
+               FontFamily="Bell MT"  Foreground="#5F606B" FontSize="20" />
+        <Label Grid.Row="3"  
+               Grid.Column="1"
                Content="{Binding TimeLapse}"
-               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+               VerticalAlignment="Center" HorizontalAlignment="Center"
                FontSize="20" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
     </Grid>
 </Page>
