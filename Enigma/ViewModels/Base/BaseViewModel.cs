@@ -17,13 +17,10 @@ namespace Enigma.ViewModels.Base
         #region Properties
 
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } =new ObservableCollection<Suspect>();
-        public static Player MyPlayerInGame { get; set; }
         public static Player MyPlayer { get; set; }
         public MainWindow MyWindow { get; } = (MainWindow)Application.Current.MainWindow;
-        public static Suspect MyMurderer { get; set; }
-        public static int MyHighScoreInGame { get; set; }
-        public static string GetPicture { get; set; }
-
+        public static Suspect MyKiller { get; set; }
+        public static int MyHighScore { get; set; }
         public string TimeLapse { get; set; }
 
         public int totalSeconds = 0;
@@ -38,8 +35,6 @@ namespace Enigma.ViewModels.Base
         public BaseViewModel()
         {
             GetMurderer();
-            GetPicture = @"\Assets\Images\image3.jpg";
-           
         }
 
         #endregion
@@ -52,11 +47,11 @@ namespace Enigma.ViewModels.Base
             {
                 if (suspect.IsKiller)
                 {
-                    MyMurderer = suspect;
-                    return MyMurderer;
+                    MyKiller = suspect;
+                    return MyKiller;
                 }
             }
-            return MyMurderer;
+            return MyKiller;
         }
 
         #endregion

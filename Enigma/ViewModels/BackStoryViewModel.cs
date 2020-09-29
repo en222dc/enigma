@@ -36,7 +36,7 @@ namespace Enigma.ViewModels
         {
            
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
-            BackStoryText = $"The president of Russia has assigned {MyPlayerInGame.Player_name} to solve the mysterious murder of his wife Katja.The police has no suspects and are totally perplexed.The only clue at your disposal" +
+            BackStoryText = $"The president of Russia has assigned {MyPlayer.Player_name} to solve the mysterious murder of his wife Katja.The police has no suspects and are totally perplexed.The only clue at your disposal" +
                 " is a series of puzzles found at the crime scene. If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 60 seconds to your time. Will You be the player who finds the killer the fastest?";
         }
 

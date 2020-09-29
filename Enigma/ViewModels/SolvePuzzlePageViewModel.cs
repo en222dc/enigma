@@ -117,11 +117,11 @@ namespace Enigma.ViewModels
         public void AddHighScore()
         {
           
-            MyHighScoreInGame = totalSeconds;
+            MyHighScore = totalSeconds;
             var newHighScore = new Highscore
             {
                 Time = totalSeconds,
-                Fk_Player_id= MyPlayerInGame.Player_id,
+                Fk_Player_id= MyPlayer.Player_id,
                 };
               HighscoreToDB = Repository.AddHighScore(newHighScore);
                
