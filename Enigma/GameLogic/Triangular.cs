@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Enigma.GameLogic
 {
-    class Triangular : IGameLogic
+    class Triangular 
     {
 
         public string Hint { get; set; } = $"  *  1   *  3     * 6          *  10" +
