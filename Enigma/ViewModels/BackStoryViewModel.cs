@@ -22,14 +22,13 @@ namespace Enigma.ViewModels
         #region Constructors
         public BackStoryViewModel(Player player)
         {
-            MyPlayer = new Player();
-            MyPlayer = player;
-
             ListOfSuspects = SetSuspectsForGame();
             SetKiller(ListOfSuspects);
             EncryptKillerName(ListOfSuspects);
 
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
 
         public BackStoryViewModel()
