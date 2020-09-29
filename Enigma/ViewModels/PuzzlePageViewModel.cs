@@ -98,6 +98,7 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
+
         }
 
         /// <summary>

@@ -16,30 +16,32 @@ namespace Enigma.ViewModels
 {
     class PickPlayerViewModel : BaseViewModel
     {
-       
+
+        #region Properties
         public string PlayerName { get; set; }
         public ObservableCollection<Player> AllPlayers { get; set; }
-
         public ICommand ChoosePlayerCommand{ get; set; }
         public ICommand AddPlayerClick { get; set; }
         public ICommand DeletePlayerClick { get; set; }
+        #endregion
 
         private int maxNumberOfPlayers = 10;
 
+        #region Construct
         public PickPlayerViewModel()
         {
             UpdateAllPlayerList();
             ChoosePlayerCommand = new RelayCommand(GoToPuzzlePage);
             AddPlayerClick = new RelayCommand(AddPlayer);
             DeletePlayerClick = new RelayCommand(DeletePlayer);
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
+        #endregion
 
-       
-
+        #region Methods
         public void GoToPuzzlePage()
         {
-            
-
             if (MyPlayer != null)
             {
                 var model = new BackStoryViewModel(MyPlayer);
@@ -50,8 +52,6 @@ namespace Enigma.ViewModels
             {
                 NoPlayerMessage();
             }
-
-
         }
       
         public void AddPlayer()
@@ -96,7 +96,9 @@ namespace Enigma.ViewModels
                 UpdateAllPlayerList();
             }
             else
+            {
                 NoPlayerMessage();
+            }
         }
 
         private void UpdateAllPlayerList()
@@ -108,7 +110,9 @@ namespace Enigma.ViewModels
         {
             bool result = false;
             if (MyPlayer != null)
+            {
                 result = true;
+            }
             return result;
         }
 
@@ -116,8 +120,8 @@ namespace Enigma.ViewModels
         {
             MessageBox.Show("You have to choose a player first.");
         }
-
     }
+    #endregion
 }
 
 

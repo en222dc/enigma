@@ -108,7 +108,6 @@ namespace Enigma.ViewModels
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             TimeStart();
-           
         }
 
         #endregion
