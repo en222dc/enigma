@@ -31,23 +31,13 @@ namespace Enigma.ViewModels.Base
         #region Constructor
         public BaseViewModel()
         {
-            GetMurderer();
+            
         }
         #endregion
 
         #region Methods
 
-        private Suspect GetMurderer()
-        {
-            foreach (var suspect in ListOfSuspects)
-            {
-                if (suspect.IsKiller)
-                {
-                    MyKiller = suspect;
-                }
-            }
-            return MyKiller;
-        }
+        
 
         public void TimeStart()
         {
