@@ -2,6 +2,7 @@
 using Enigma.Models.Repositories;
 using Enigma.ViewModels.Base;
 using Enigma.Views;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,8 @@ namespace Enigma.ViewModels
     {
        
         public string PlayerName { get; set; }
+
+        public string CreateNewPlayerLabel { get; set; } = "Create new player:";
         public ObservableCollection<Player> AllPlayers { get; set; }
 
         public ICommand ChoosePlayerCommand{ get; set; }
@@ -42,45 +45,53 @@ namespace Enigma.ViewModels
 
             if (MyPlayer != null)
             {
-                MyPlayerInGame = MyPlayer;
+                //MyPlayerInGame = MyPlayer;
                 var model = new BackStoryViewModel(MyPlayer);
                 var page = new BackStory();
                 NavigationService.Navigate(page);
             }
             else
             {
-                NoPlayerMessage();
+               NoPlayerMessage();
             }
 
 
         }
-      
+
         public void AddPlayer()
         {
-            if (PlayerName != null)
-            {
-                if (CanListHaveMorePlayers())
+            if (CanListHaveMorePlayers() == true)
+            {        
+                var newPlayer = new Player
                 {
-                    var newPlayer = new Player
-                    {
-                        Player_name = PlayerName
-                    };
-                    MyPlayer = Repository.AddNewPlayerToDb(newPlayer);
-                    UpdateAllPlayerList();
+                    Player_name = PlayerName
+                };
+
+                try
+                {
+                    Repository.AddNewPlayerToDb(newPlayer);
+                    MyPlayer = newPlayer;
                     PlayerName = null;
-                    MyPlayerInGame = MyPlayer;
+                    UpdateAllPlayerList();
                     GoToPuzzlePage();
+                    MyPlayer = null; // må se videre på om dette er nyttig
+                    CreateNewPlayerLabel = "Create new player:";
                 }
-                else
+                catch (PostgresException error)
                 {
-                    MessageBox.Show($"You have to delete a player first, maximum allowed players is {maxNumberOfPlayers}");
+                    CreateNewPlayerLabel = PostgresError.GetErrorMessage(error.SqlState);
+                    PlayerName = null;
+                    // MessageBox.Show(PostgresError.GetErrorMessage(error.SqlState));
                 }
+                
             }
-            else
-            {
-                MessageBox.Show("You have to enter a name first.");
+            else if (CanListHaveMorePlayers()== false )
+                {
+                CreateNewPlayerLabel = "There is to many players, Delete one to add a new one";
             }
+
         }
+
 
         private bool CanListHaveMorePlayers()
         {
@@ -92,8 +103,14 @@ namespace Enigma.ViewModels
 
         public void DeletePlayer()
         {
-            if (IsMyPlayerNotNull())
+            while (CanListHaveMorePlayers() == true && IsMyPlayerNotNull())
             {
+                Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
+                UpdateAllPlayerList();
+            }
+            if (CanListHaveMorePlayers() == false && IsMyPlayerNotNull())
+            {
+                CreateNewPlayerLabel = "Create new player:";
                 Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
                 UpdateAllPlayerList();
             }

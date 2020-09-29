@@ -19,9 +19,9 @@ namespace Enigma.GameLogic
             
             Random randomGenerator = new Random();
             int triangleNumber = randomGenerator.Next(7); 
-            anyArray[0] = GetTriangularNumbers()[triangleNumber]; // her henter den en random plass i arrayen å lagrer det i en ny array
-            int counter = triangleNumber + 1; // her finner man neste posisjon i arrayen
-            anyArray[1] = GetTriangularNumbers()[counter];//setter neste posisjon i arrayen
+            anyArray[0] = GetRandomTriangularNumbers()[triangleNumber]; // her henter den en random plass i arrayen å lagrer det i en ny array
+            int nextTriangularNumber = triangleNumber + 1; // her finner man neste posisjon i arrayen
+            anyArray[1] = GetRandomTriangularNumbers()[nextTriangularNumber];//setter neste posisjon i arrayen
             
         }
 
@@ -39,7 +39,7 @@ namespace Enigma.GameLogic
         }
 
 
-        public int[] GetTriangularNumbers()
+        public int[] GetRandomTriangularNumbers()
         {
             int[] anyArray = new int[6]; // skaper an ny array
             anyArray[0] = 1; // setter første posisjonen i arrayen til en fordi det er første nummeret
