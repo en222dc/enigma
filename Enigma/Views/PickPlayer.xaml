@@ -28,14 +28,15 @@
                     FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"
                    Padding="20"/>
             <StackPanel Grid.Row="1" Grid.Column ="0" Margin="20">
-                <ListBox x:Name="lstAllPlayers" 
-                        SelectedItem="{Binding MyPlayer}"
-                        ItemsSource="{Binding AllPlayers}"
-                        FontSize="30" FontFamily="Bell MT" FontWeight="Bold"
-                        Height="500"
-                        Foreground="#5F606B" 
-                        Background="Transparent"
-                        BorderBrush="Transparent"/>
+                <ListBox x:Name="lstAllPlayers"  
+                         ItemsSource="{Binding AllPlayers}"
+                         DisplayMemberPath="Player_name"
+                         SelectedItem="{Binding MyPlayer}"                        
+                         FontSize="30" FontFamily="Bell MT" FontWeight="Bold"
+                         Height="500"
+                         Foreground="#5F606B" 
+                         Background="Transparent"
+                         BorderBrush="Transparent"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column ="1" Margin="20">
                 <Button x:Name="btnPickPlayer" Command="{Binding ChoosePlayerCommand}"
