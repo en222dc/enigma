@@ -17,51 +17,50 @@ namespace Enigma.ViewModels
 {
     class PickPlayerViewModel : BaseViewModel
     {
-       
+        #region Properties
         public string PlayerName { get; set; }
-
         public string CreateNewPlayerLabel { get; set; } = "Create new player:";
         public ObservableCollection<Player> AllPlayers { get; set; }
-
-        public ICommand ChoosePlayerCommand{ get; set; }
+        public ICommand ChoosePlayerCommand { get; set; }
         public ICommand AddPlayerClick { get; set; }
         public ICommand DeletePlayerClick { get; set; }
+        #endregion
 
         private int maxNumberOfPlayers = 10;
 
+        #region Constructor
         public PickPlayerViewModel()
         {
             UpdateAllPlayerList();
             ChoosePlayerCommand = new RelayCommand(GoToPuzzlePage);
             AddPlayerClick = new RelayCommand(AddPlayer);
             DeletePlayerClick = new RelayCommand(DeletePlayer);
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
+        #endregion
 
-       
-
+        #region Navigation
         public void GoToPuzzlePage()
         {
-            
-
             if (MyPlayer != null)
             {
-                //MyPlayerInGame = MyPlayer;
                 var model = new BackStoryViewModel(MyPlayer);
                 var page = new BackStory();
                 NavigationService.Navigate(page);
             }
             else
             {
-               NoPlayerMessage();
+                NoPlayerMessage();
             }
-
-
         }
+        #endregion
 
+        #region Methods
         public void AddPlayer()
         {
-            if (CanListHaveMorePlayers() == true)
-            {        
+            if (CanListHaveMorePlayers())
+            {
                 var newPlayer = new Player
                 {
                     Player_name = PlayerName
@@ -83,39 +82,40 @@ namespace Enigma.ViewModels
                     PlayerName = null;
                     // MessageBox.Show(PostgresError.GetErrorMessage(error.SqlState));
                 }
-                
             }
-            else if (CanListHaveMorePlayers()== false )
-                {
-                CreateNewPlayerLabel = "There is to many players, Delete one to add a new one";
+            else if (!CanListHaveMorePlayers())
+            {
+                CreateNewPlayerLabel = "There are to many players. Delete one to add a new.";
             }
-
         }
-
 
         private bool CanListHaveMorePlayers()
         {
             bool result = false;
             if (AllPlayers.Count < maxNumberOfPlayers)
+            {
                 result = true;
+            }
             return result;
         }
 
         public void DeletePlayer()
         {
-            while (CanListHaveMorePlayers() == true && IsMyPlayerNotNull())
+            while (CanListHaveMorePlayers() && IsMyPlayerNotNull())
             {
                 Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
                 UpdateAllPlayerList();
             }
-            if (CanListHaveMorePlayers() == false && IsMyPlayerNotNull())
+            if (!CanListHaveMorePlayers() && IsMyPlayerNotNull())
             {
                 CreateNewPlayerLabel = "Create new player:";
                 Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
                 UpdateAllPlayerList();
             }
             else
+            {
                 NoPlayerMessage();
+            }
         }
 
         private void UpdateAllPlayerList()
@@ -127,7 +127,9 @@ namespace Enigma.ViewModels
         {
             bool result = false;
             if (MyPlayer != null)
+            {
                 result = true;
+            }
             return result;
         }
 
@@ -135,7 +137,7 @@ namespace Enigma.ViewModels
         {
             MessageBox.Show("You have to choose a player first.");
         }
-
+        #endregion
     }
 }
 
