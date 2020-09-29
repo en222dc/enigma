@@ -1,5 +1,6 @@
 ﻿using Enigma.Models;
 using Enigma.ViewModels.Base;
+using Enigma.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,15 +18,23 @@ namespace Enigma.ViewModels
         #region Properties
         public BitmapImage KillerPortrait { get; set; }
         public string KillerName { get; set; }
-
-       // public string YourTime { get; set; } = $"Your highscore has been saved";
         public string Summary { get; set; } = $"Well done {MyPlayer}, you have done an excellent job to find and charge the killer! {MyKiller.Name} is a notorious serial killer and the question was not if, but when, {MyKiller.Name} would strike again! Thanks to you, our citizens can once again feel safe. We knew we did the right thing to put our faith in you {MyPlayer}, thank you!";
         #endregion
+
+        #region Constructor
+        public SuspectsPageModel(ObservableCollection<Suspect> SuspectList, int time)
+        {
+            ShowKiller(SuspectList);
+            TimeLapse = "You used: " + time.ToString() + " seconds to catch the killer";
+            TimeStop();
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
+        }
+        #endregion 
 
         #region Methods
         private void ShowKiller(ObservableCollection<Suspect> SuspectList)
         {
-
             string portraitPath = MyKiller.Portrait.UriSource.ToString();
             BitmapImage glowIcon = new BitmapImage();
             glowIcon.BeginInit();
@@ -33,29 +42,7 @@ namespace Enigma.ViewModels
             glowIcon.EndInit();
             KillerPortrait = glowIcon;
             KillerName = MyKiller.Name;
-            
-            
-
         }
         #endregion
-
-        #region Constructor
-        public SuspectsPageModel(ObservableCollection<Suspect> SuspectList, int time)
-        {
-            ShowKiller(SuspectList);
-            TimeLapse = "You used: " + time.ToString() + ". seconds to catch the killer";
-            TimeStop();
-        }
-        #endregion 
-
-
-        public void ChangePage()
-        {
-
-        }
-
-
-       
-
     }
 }

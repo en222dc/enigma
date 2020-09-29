@@ -24,15 +24,31 @@ namespace Enigma.ViewModels
         public string Guess4thSymbol { get; set; }
         public string Error { get; set; }
         public Highscore HighscoreToDB {get; set;}
-
-      
-        #endregion
-
-        #region Commands
         public ICommand IsGuessCorrectCommand { get; set; }
         #endregion
 
-       
+        #region Constructor
+        public SolvePuzzlePageViewModel(int total, ObservableCollection<Suspect> SuspectList)
+        {
+            ShowEncryptedName(SuspectList);
+            GetNameOnMurderer(SuspectList);
+            totalSeconds = total;
+            IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
+            TimeStart();
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
+        }
+        #endregion
+
+        #region Navigation
+        private void GoToSuspectPage()
+        {
+            var model = new SuspectsPageModel(ListOfSuspects, totalSeconds);
+            var page = new SuspectsPage(model);
+            AddHighScore();
+            NavigationService.Navigate(page);
+        }
+        #endregion
 
         #region Methods
         public void ShowEncryptedName(ObservableCollection<Suspect> suspects)
@@ -62,12 +78,8 @@ namespace Enigma.ViewModels
             }
         }
 
-
-
-
         private void IsGuessCorrect()
         {
-
             if (string.IsNullOrEmpty(Guess1stSymbol) || string.IsNullOrEmpty(Guess2ndSymbol) || string.IsNullOrEmpty(Guess3rdSymbol) || string.IsNullOrEmpty(Guess4thSymbol))
             {
                 Error = "Please type a letter into every box";
@@ -80,57 +92,22 @@ namespace Enigma.ViewModels
                 {
                     GoToSuspectPage();
                 }
-
                 else
                 {
                     Error = "Your guess was wrong";
                 }
             }
-
         }
-
-        private void GoToSuspectPage()
-        {
-            var model = new SuspectsPageModel(ListOfSuspects, totalSeconds);
-            var page = new SuspectsPage(model);
-            AddHighScore();
-            NavigationService.Navigate(page);
-        }
-
-        
-        #endregion
-
-        #region Constructor
-        public SolvePuzzlePageViewModel(int total, ObservableCollection<Suspect> SuspectList)
-        {
-            ShowEncryptedName(SuspectList);
-            GetNameOnMurderer(SuspectList);                 
-            totalSeconds = total;
-            IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
-            TimeStart();
-        }
-
-        #endregion
-
-        #region HighscoreToDB
         public void AddHighScore()
         {
-          
             MyHighScore = totalSeconds;
             var newHighScore = new Highscore
             {
                 Time = totalSeconds,
-                Fk_Player_id= MyPlayer.Player_id,
-                };
-              HighscoreToDB = Repository.AddHighScore(newHighScore);
-               
-              
-            }
-
-       
-         
-
-    }
+                Fk_Player_id = MyPlayer.Player_id,
+            };
+            HighscoreToDB = Repository.AddHighScore(newHighScore);
+        }
         #endregion
-
     }
+}

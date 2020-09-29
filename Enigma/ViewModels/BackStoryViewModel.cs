@@ -14,10 +14,12 @@ namespace Enigma.ViewModels
 {
     public class BackStoryViewModel : BaseViewModel
     {
+        #region Properties
         public string BackStoryText { get; set; }
         public ICommand GoToPageCommand { get; set; }
+        #endregion
 
-
+        #region Constructors
         public BackStoryViewModel(Player player)
         {
             MyPlayer = new Player();
@@ -36,8 +38,18 @@ namespace Enigma.ViewModels
             BackStoryText = $"The president of Russia has assigned {MyPlayer.Player_name} to solve the mysterious murder of his wife Katja. \nThe police has no suspects and are totally perplexed. \nThe only clue at your disposal" +
                 " is a series of puzzles found at the crime scene. \nIf the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 60 seconds to your time. \n\n\n\t\tWill You be the player who finds the killer the fastest?";
         }
+        #endregion
 
+        #region Navigation
+        public void GoToPuzzlePage()
+        {
+         var model = new PuzzlePageViewModel();
+         var page = new PuzzlePage(model);
+         NavigationService.Navigate(page);
+        }
+        #endregion
 
+        #region Methods
         private ObservableCollection<Suspect> GetAllSuspects()
         {
             ObservableCollection<Suspect> Templist = new ObservableCollection<Suspect>();
@@ -104,12 +116,6 @@ namespace Enigma.ViewModels
                 }
             }
         }
-
-        public void GoToPuzzlePage()
-        {
-         var model = new PuzzlePageViewModel();
-         var page = new PuzzlePage(model);
-         NavigationService.Navigate(page);
-        }
+        #endregion
     }
 }

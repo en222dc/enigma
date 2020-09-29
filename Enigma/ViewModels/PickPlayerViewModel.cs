@@ -27,7 +27,7 @@ namespace Enigma.ViewModels
 
         private int maxNumberOfPlayers = 10;
 
-        #region Construct
+        #region Constructor
         public PickPlayerViewModel()
         {
             UpdateAllPlayerList();

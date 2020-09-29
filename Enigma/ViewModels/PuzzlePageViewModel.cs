@@ -22,41 +22,30 @@ namespace Enigma.ViewModels
         public ObservableCollection<IGameLogic> ListOfPuzzlesAvaible { get; set; } = new ObservableCollection<IGameLogic>();    
         public ObservableCollection<IGameLogic> PuzzlesForGame { get; set; } = new ObservableCollection<IGameLogic>();
         public ObservableCollection<int> NumberSequence { get; set; } = new ObservableCollection<int>();
-
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
-
         public string ButtonName { get; set; } = "Guess nr";
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
-
         public string Hint { get; set; }
         public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
         public int CountPuzzles { get; set; }
         public char SpecificSymbol { get; set; }
-
-        #endregion
-
-        #region Commands
-
         public ICommand GetNxtNrInSequenceCommand { get; set; }
-
         public ICommand CheckIfGuessCorrectCommand { get; set; }
-
         public ICommand ShowHintCommand { get; set; }
-
         #endregion
 
-        #region Konstruktor
-
+        #region Constructors
         public PuzzlePageViewModel()
         {
             StartGame();      
           
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
-
       
         public PuzzlePageViewModel(int total, int puzzleCounter, ObservableCollection<IGameLogic> puzzlesForGame)
         {
@@ -67,15 +56,12 @@ namespace Enigma.ViewModels
 
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
-
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
-
-
         #endregion
 
-        #region Metoder
-
-
+        #region Methods
         private void StartGame()
         {
             GetAllTypeOfPuzzles();
@@ -98,7 +84,6 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
-
         }
 
         /// <summary>
@@ -116,7 +101,6 @@ namespace Enigma.ViewModels
             {
                 ListOfPuzzlesAvaible.Add(item);
             }
-
         }
 
         /// <summary>
@@ -129,7 +113,6 @@ namespace Enigma.ViewModels
             {
                 PuzzlesForGame.Add(ListOfPuzzlesAvaible[random.Next(ListOfPuzzlesAvaible.Count)]);
             }
-
         }
 
         private void InstantiatePuzzle(int[] array)
@@ -148,7 +131,6 @@ namespace Enigma.ViewModels
             {
                 NumberSequence.Add(array[i]);
             }
-
         }
 
         /// <summary>
@@ -162,7 +144,6 @@ namespace Enigma.ViewModels
             }
         }
 
-
         /// <summary>
         /// Gets the propertys "EncryptedName" and "CountPuzzles" to specify a specific position in the killers encrypted name and put it into a property
         /// </summary>
@@ -170,7 +151,6 @@ namespace Enigma.ViewModels
         {
             SpecificSymbol = EncryptedName[CountPuzzles];
         }
-
 
         private void CheckIfGuessCorrect()
         {
@@ -182,7 +162,6 @@ namespace Enigma.ViewModels
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
             }
             else ButtonName = "Wrong, guess again!";
-
         }
 
         private void GetHint()
@@ -195,7 +174,6 @@ namespace Enigma.ViewModels
             {
                 LblInvisibleHintGetVisible = Visibility.Visible;
                 Hint60();
-
             }
         }
 
@@ -214,39 +192,6 @@ namespace Enigma.ViewModels
                 NavigationService.Navigate(page);
             }
         }
-
-
         #endregion
-
- 
-
-      
-
-
-
-
-       
-
-    
-        
-
-
-
-
-        //public void GetNxtNrInSequence()
-        //    {            
-        //          count++; // Variabel för att veta filket fack koden ska hämta ifrån i "Fibonacci"-arrayen.
-        //        if (count==1)
-        //        {
-        //          FirstHelp =  Fibonacci[count].ToString();
-        //        }
-        //        if (count==2)
-        //        {
-        //            SecondHelp= Fibonacci[count].ToString();
-        //        }
-
-        //    } // Den här metoden används inte för tillfället
-
-
     }
 }

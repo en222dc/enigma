@@ -26,17 +26,18 @@ namespace Enigma.ViewModels
 
         #endregion
 
-        #region Construct
+        #region Constructor
         public StartPageViewModel()
         {            
             PlayGameCommand = new RelayCommand(ChangePage);
+            MyPlayer = null;
             ExitButtonContent = "Quit Game";
             MyWindow.MenuFrame.Content = new MenuPage();
         }
 
         #endregion
 
-        #region Methods
+        #region Navigation
         public void ChangePage()
         {
             MyWindow.MainFrame.Content = new PickPlayer();

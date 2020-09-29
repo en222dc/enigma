@@ -18,13 +18,26 @@ namespace Enigma.ViewModels
         public ICommand ChangeToHelpAndRulesCommand { get; set; }
         #endregion
 
-        #region Construct
+        #region Constructor
         public MenuPageViewModel()
         {
             ExitGameCommand = new RelayCommand(ExitGame);
             ChangeToHighScorePageCommand = new RelayCommand(GoToHighscore);
             ChangeToHelpAndRulesCommand = new RelayCommand(GoToHelpAndRules);
-            //ChangeExitButtonContent();
+        }
+        #endregion
+
+        #region Navigation
+        private void ChangeToHighScorePage()
+        {
+            var highScorePage = new HighScorePage();
+            NavigationService.Navigate(highScorePage);
+        }
+
+        private void ChangeToHelpAndRules()
+        {
+            var helpAndRulesPage = new HelpAndRules();
+            NavigationService.Navigate(helpAndRulesPage);
         }
         #endregion
 
@@ -50,7 +63,6 @@ namespace Enigma.ViewModels
                 {
                     case MessageBoxResult.Yes:
                         MyWindow.MainFrame.Content = new StartPage();
-                        MyPlayer = null;
                         break;
                     case MessageBoxResult.No:
                         break;
@@ -60,11 +72,7 @@ namespace Enigma.ViewModels
 
         private void GoToHelpAndRules()
         {
-            if (IsMainFrameSetToStartPage() || IsMainFrameSetToSuspectsPage())
-            {
-                ChangeToHelpAndRules();
-            }
-            else
+            if (IsMainFrameSetToPuzzlePage() || IsMainFrameSetToSolvePuzzlePage())
             {
                 MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
                 switch (result)
@@ -76,15 +84,15 @@ namespace Enigma.ViewModels
                         break;
                 }
             }
+            else
+            {
+                ChangeToHelpAndRules();
+            }
         }
 
         private void GoToHighscore()
         {
-            if (IsMainFrameSetToStartPage() || IsMainFrameSetToSuspectsPage())
-            {
-                ChangeToHighScorePage();
-            }
-            else
+            if (IsMainFrameSetToPuzzlePage() || IsMainFrameSetToSolvePuzzlePage())
             {
                 MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
                 switch (result)
@@ -95,6 +103,10 @@ namespace Enigma.ViewModels
                     case MessageBoxResult.No:
                         break;
                 }
+            }
+            else
+            {
+                ChangeToHighScorePage();
             }
         }
 
@@ -110,43 +122,29 @@ namespace Enigma.ViewModels
             return result;
         }
 
-        private bool IsMainFrameSetToSuspectsPage()
+        private bool IsMainFrameSetToPuzzlePage()
         {
             bool result = false;
 
             Object CurrentPage = MyWindow.MainFrame.Content.GetType().Name;
-            if ((string)CurrentPage == "SuspectsPage")
+            if ((string)CurrentPage == "PuzzlePage")
             {
                 result = true;
             }
             return result;
         }
 
-        private void ChangeToHighScorePage()
+        private bool IsMainFrameSetToSolvePuzzlePage()
         {
-            var highScorePage = new HighScorePage();
-            NavigationService.Navigate(highScorePage);
+            bool result = false;
+
+            Object CurrentPage = MyWindow.MainFrame.Content.GetType().Name;
+            if ((string)CurrentPage == "SolvePuzzlePage")
+            {
+                result = true;
+            }
+            return result;
         }
-
-        private void ChangeToHelpAndRules()
-        {
-            var helpAndRulesPage = new HelpAndRules();
-            NavigationService.Navigate(helpAndRulesPage);
-        }
-
-        //private async void ChangeExitButtonContent()
-        //{
-        //    await Task.Delay(10);
-        //    if (IsMainFrameSetToStartPage())
-        //    {
-        //        ExitButtonContent = "Quit Game";
-        //    }
-        //    else
-        //    {
-        //        ExitButtonContent = "Exit to Start Page";
-        //    }
-        //}
-
         #endregion
     }
 }
