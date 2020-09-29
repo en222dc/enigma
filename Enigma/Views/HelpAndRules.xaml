@@ -28,12 +28,6 @@
             FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Grid.Row="1" Grid.Column="1" 
-                        TextWrapping="Wrap"
-                        HorizontalAlignment="Left" VerticalAlignment="Center"
-                        Text= "At any time you can exit the game by pressing Exit in the menu"
-                        FontSize="20" Foreground="#5F606B" FontFamily="Bell MT"
-                        Padding="5" Margin="10 0 0 0"/>
 
             <TextBlock Grid.Row="1" Grid.Column="1" 
                         TextWrapping="Wrap"
@@ -54,6 +48,12 @@
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         Text="If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 60 seconds to your time."
                         FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" 
+                        Padding="5" Margin="10 0 0 0"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" 
+                        TextWrapping="Wrap"
+                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Text= "At any time you can exit the game by pressing Exit in the menu"
+                        FontSize="20" Foreground="#5F606B" FontFamily="Bell MT"
                         Padding="5" Margin="10 0 0 0"/>
         </StackPanel>
         <Button x:Name="btnBackToStart" 
