@@ -1,6 +1,8 @@
-﻿using Enigma.ViewModels;
+﻿using Enigma.Animation;
+using Enigma.ViewModels;
 using Enigma.ViewModels.Base;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -13,13 +15,39 @@ namespace Enigma.Views
     /// </summary>
     public partial class SuspectsPage : Page
     {
+        public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
+
+        public float SlideSeconds { get; set; } = 0.5f;
 
         public SuspectsPage(BaseViewModel SuspectPageViewModel)
         {
             InitializeComponent();
+            this.Loaded += SuspectsPage_Loaded;
             DataContext = SuspectPageViewModel;
         }
 
-     
+        private async void SuspectsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            await AnimateIn();
+        }
+
+        public async Task AnimateIn()
+        {
+            if (this.PageLoadAnimation == PageAnimation.None)
+            {
+                return;
+            }
+
+            switch (this.PageLoadAnimation)
+            {
+                case PageAnimation.SlideAndFadeInFromRight:
+
+                    await this.SlideAndFadeInFromRight(this.SlideSeconds * 4);
+
+                    break;
+            }
+        }
+
+
     }
 }

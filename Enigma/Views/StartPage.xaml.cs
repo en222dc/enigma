@@ -33,16 +33,12 @@ namespace Enigma.Views
         {
             InitializeComponent();
             this.Loaded += StartPage_Loaded;
-            if (this.PageLoadAnimation != PageAnimation.None)
-            {
-                this.Visibility = Visibility.Collapsed;
-            }
             DataContext = new StartPageViewModel();
         }
 
-        private async void StartPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void StartPage_Loaded(object sender, RoutedEventArgs e)
         {
-            await AnimateIn();
+           await AnimateIn();
         }
 
         public async Task AnimateIn()

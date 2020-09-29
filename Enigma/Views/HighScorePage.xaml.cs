@@ -1,7 +1,9 @@
-﻿using Enigma.Models.Repositories;
+﻿using Enigma.Animation;
+using Enigma.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,16 +21,39 @@ namespace Enigma.ViewModels
     /// </summary>
     public partial class HighScorePage : Page
     {
+        public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.FadeIn;
+
+        public float SlideSeconds { get; set; } = 0.5f;
         public HighScorePage()
         {
             InitializeComponent();
+            this.Loaded += HighScorePage_Loaded;
             DataContext = new HighscoreViewModel();
-
-           // lstBoHighscoreName.ItemsSource = Repository.GetHighscores();
-
-          //  lstBoTopPlayer.ItemsSource = Repository.GetTopPlayers();
-
-
         }
+
+        private async void HighScorePage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            await AnimateIn();
+        }
+
+        public async Task AnimateIn()
+        {
+            if (this.PageLoadAnimation == PageAnimation.None)
+            {
+                return;
+            }
+
+            switch (this.PageLoadAnimation)
+            {
+                case PageAnimation.FadeIn:
+
+                    await this.FadeIn (this.SlideSeconds * 2);
+
+                    break;
+            }
+        }
+       
+
+
     }
 }

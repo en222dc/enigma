@@ -44,7 +44,7 @@ namespace Enigma.ViewModels
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
             ExitButtonContent = "Exit to Start Page";
-            MyWindow.MenuFrame.Content = new MenuPage();
+            
         }
       
         public PuzzlePageViewModel(int total, int puzzleCounter, ObservableCollection<IGameLogic> puzzlesForGame)
@@ -57,7 +57,6 @@ namespace Enigma.ViewModels
             CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
             ShowHintCommand = new RelayCommand(ShowHint);
             ExitButtonContent = "Exit to Start Page";
-            MyWindow.MenuFrame.Content = new MenuPage();
         }
         #endregion
 

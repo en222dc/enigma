@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Enigma.Animation;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,17 +20,46 @@ namespace Enigma.ViewModels
     /// </summary>
     public partial class BackStory : Page
     {
+        public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
+
+        public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
+
+        public float SlideSeconds { get; set; } = 0.5f;
         public BackStory()
         {
             InitializeComponent();
+            this.Loaded += BackStory_Loaded;
             DataContext = new BackStoryViewModel();
-         }
+        }
 
-   
+        private async void BackStory_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            await AnimateIn();
+        }
 
+        public async Task AnimateIn()
+        {
+            if (this.PageLoadAnimation == PageAnimation.None)
+            {
+                return;
+            }
 
+            switch (this.PageLoadAnimation)
+            {
+                case PageAnimation.SlideAndFadeInFromRight:
 
+                    await this.SlideAndFadeInFromRight(this.SlideSeconds * 4);
 
+                    break;
+            }
+        }
 
     }
+
+
+
+
+
+
+
 }

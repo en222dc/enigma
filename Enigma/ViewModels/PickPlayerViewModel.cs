@@ -36,7 +36,7 @@ namespace Enigma.ViewModels
             AddPlayerClick = new RelayCommand(AddPlayer);
             DeletePlayerClick = new RelayCommand(DeletePlayer);
             ExitButtonContent = "Exit to Start Page";
-            MyWindow.MenuFrame.Content = new MenuPage();
+            
         }
         #endregion
 

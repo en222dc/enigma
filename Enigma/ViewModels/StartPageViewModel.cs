@@ -40,6 +40,7 @@ namespace Enigma.ViewModels
         #region Navigation
         public void ChangePage()
         {
+            
             MyWindow.MainFrame.Content = new PickPlayer();
         }
 

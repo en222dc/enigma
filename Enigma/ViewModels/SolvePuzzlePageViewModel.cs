@@ -36,7 +36,7 @@ namespace Enigma.ViewModels
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             TimeStart();
             ExitButtonContent = "Exit to Start Page";
-            MyWindow.MenuFrame.Content = new MenuPage();
+            
         }
         #endregion
 

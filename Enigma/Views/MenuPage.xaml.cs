@@ -22,42 +22,11 @@ namespace Enigma.Views
     public partial class MenuPage : Page
     {
 
-        public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
-
-        public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
-
-        public float SlideSeconds { get; set; } = 0.8f;
         public MenuPage()
         {
             InitializeComponent();
-            this.Loaded += PickPlayerPage_Loaded;
-            if (this.PageLoadAnimation != PageAnimation.None)
-            {
-                this.Visibility = Visibility.Collapsed;
-            }
             DataContext = new MenuPageViewModel();
         }
 
-        private async void PickPlayerPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            await AnimateIn();
-        }
-
-        public async Task AnimateIn()
-        {
-            if (this.PageLoadAnimation == PageAnimation.None)
-            {
-                return;
-            }
-
-            switch (this.PageLoadAnimation)
-            {
-                case PageAnimation.SlideAndFadeInFromRight:
-
-                    await this.SlideAndFadeInFromRight(this.SlideSeconds * 4);
-
-                    break;
-            }
-        }
     }
 }

@@ -28,7 +28,7 @@ namespace Enigma.ViewModels
             TimeLapse = "You used: " + time.ToString() + " seconds to catch the killer";
             TimeStop();
             ExitButtonContent = "Exit to Start Page";
-            MyWindow.MenuFrame.Content = new MenuPage();
+            
         }
         #endregion 
 
