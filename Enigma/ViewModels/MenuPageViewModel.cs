@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using System.Windows;
-
+using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Enigma.ViewModels
 {
@@ -16,16 +17,19 @@ namespace Enigma.ViewModels
         public ICommand ChangeToHighScorePageCommand { get; set; }
         public ICommand ChangeToHelpAndRulesCommand { get; set; }
         #endregion
+
         #region Construct
         public MenuPageViewModel()
         {
             ExitGameCommand = new RelayCommand(ExitGame);
             ChangeToHighScorePageCommand = new RelayCommand(GoToHighscore);
             ChangeToHelpAndRulesCommand = new RelayCommand(GoToHelpAndRules);
+            //ChangeExitButtonContent();
         }
         #endregion
 
-        public void ExitGame()
+        #region Methods
+        private void ExitGame()
         {
             if (IsMainFrameSetToStartPage())
             {
@@ -54,15 +58,15 @@ namespace Enigma.ViewModels
             }
         }
 
-        public void GoToHelpAndRules()
+        private void GoToHelpAndRules()
         {
-            if (IsMainFrameSetToStartPage())
+            if (IsMainFrameSetToStartPage() || IsMainFrameSetToSuspectsPage())
             {
                 ChangeToHelpAndRules();
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("If you leave this page, all your none saved progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -74,15 +78,15 @@ namespace Enigma.ViewModels
             }
         }
 
-        public void GoToHighscore()
+        private void GoToHighscore()
         {
-            if (IsMainFrameSetToStartPage())
+            if (IsMainFrameSetToStartPage() || IsMainFrameSetToSuspectsPage())
             {
                 ChangeToHighScorePage();
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("If you leave this page, all your none saved progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("If you leave this page, all your progress will be lost. Are you sure?", "Leave page", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -94,8 +98,7 @@ namespace Enigma.ViewModels
             }
         }
 
-
-        public bool IsMainFrameSetToStartPage()
+        private bool IsMainFrameSetToStartPage()
         {
             bool result = false;
 
@@ -107,16 +110,43 @@ namespace Enigma.ViewModels
             return result;
         }
 
-        public void ChangeToHighScorePage()
+        private bool IsMainFrameSetToSuspectsPage()
+        {
+            bool result = false;
+
+            Object CurrentPage = MyWindow.MainFrame.Content.GetType().Name;
+            if ((string)CurrentPage == "SuspectsPage")
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        private void ChangeToHighScorePage()
         {
             var highScorePage = new HighScorePage();
             NavigationService.Navigate(highScorePage);
         }
 
-        public void ChangeToHelpAndRules()
+        private void ChangeToHelpAndRules()
         {
             var helpAndRulesPage = new HelpAndRules();
             NavigationService.Navigate(helpAndRulesPage);
         }
+
+        //private async void ChangeExitButtonContent()
+        //{
+        //    await Task.Delay(10);
+        //    if (IsMainFrameSetToStartPage())
+        //    {
+        //        ExitButtonContent = "Quit Game";
+        //    }
+        //    else
+        //    {
+        //        ExitButtonContent = "Exit to Start Page";
+        //    }
+        //}
+
+        #endregion
     }
 }

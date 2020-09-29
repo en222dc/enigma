@@ -18,6 +18,7 @@ namespace Enigma.ViewModels.Base
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService;
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } = new ObservableCollection<Suspect>();
         public MainWindow MyWindow { get; } = (MainWindow)Application.Current.MainWindow;
+        public static string ExitButtonContent { get; set; }
         public static Player MyPlayer { get; set; }
         public static Suspect MyKiller { get; set; }
         public static int MyHighScore { get; set; }
