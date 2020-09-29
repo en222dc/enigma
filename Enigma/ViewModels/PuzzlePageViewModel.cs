@@ -28,6 +28,7 @@ namespace Enigma.ViewModels
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
         public string Hint { get; set; }
+        public bool IsButtonClickable { get; set; } = true;
         public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
         public int CountPuzzles { get; set; }
         public char SpecificSymbol { get; set; }
@@ -174,6 +175,8 @@ namespace Enigma.ViewModels
                 LblInvisibleHintGetVisible = Visibility.Visible;
                 Hint60();
             }
+            IsButtonClickable = false;
+
         }
 
         private void ChangePage()
@@ -191,6 +194,7 @@ namespace Enigma.ViewModels
                 NavigationService.Navigate(page);
             }
         }
+
         #endregion
     }
 }
