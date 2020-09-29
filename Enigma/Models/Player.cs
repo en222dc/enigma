@@ -10,6 +10,11 @@ namespace Enigma.Models
         public string Player_name { get; set; }
         //public int NumberOfGames { get; set; }
 
+        public Player(string playerName)
+        {
+            Player_name = playerName;
+        }
+
         public Player()
         {
 

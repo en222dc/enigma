@@ -11,9 +11,9 @@ namespace Enigma
             switch (sqlState)
             {
                 case "23505":
-                    return "Användarnamnet måste vara unikt";
+                    return "The Username must be unique";
                 default:
-                    return "Något gick fel med databasen.";
+                    return "Something whent wrong with the database";
             }
         }
     }
