@@ -18,6 +18,8 @@
     <None Remove="Assets\Images\image7.jpg" />
     <None Remove="Assets\Images\image8.jpg" />
     <None Remove="Assets\Images\image9.jpg" />
+    <None Remove="Assets\Images\murderMystery.jpg" />
+    <None Remove="Assets\Images\runningAway.jpg" />
     <None Remove="Assets\Images\solvesheet.png" />
   </ItemGroup>
 
@@ -44,6 +46,8 @@
     <Resource Include="Assets\Images\image7.jpg" />
     <Resource Include="Assets\Images\image8.jpg" />
     <Resource Include="Assets\Images\image9.jpg" />
+    <Resource Include="Assets\Images\murderMystery.jpg" />
+    <Resource Include="Assets\Images\runningAway.jpg" />
     <Resource Include="Assets\Images\solvesheet.png" />
   </ItemGroup>
 
