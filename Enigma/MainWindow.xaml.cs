@@ -1,6 +1,5 @@
 ﻿using Enigma.Models;
 using Enigma.Models.Repositories;
-using Enigma.ViewModels;
 using Enigma.Views;
 using System;
 using System.Collections.Generic;
@@ -35,7 +34,6 @@ namespace Enigma
             MainFrame.Content = startPage;
             MenuFrame.Content = menuPage;
 
-            //DataContext = new MainViewModel();
         }
     }
 }

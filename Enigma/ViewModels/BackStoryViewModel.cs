@@ -28,7 +28,7 @@ namespace Enigma.ViewModels
 
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
             ExitButtonContent = "Exit to Start Page";
-            
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
 
         public BackStoryViewModel()
