@@ -14,9 +14,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="2.3*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>
@@ -30,24 +30,23 @@
         <Image Grid.Row="1"
                Grid.Column="1"
                Source="\Assets\Images\runningAway.jpg"
-               Stretch="UniformToFill" 
-               Margin="5" />
+               Stretch="UniformToFill" />
         <TextBlock 
             Grid.Row="2" Grid.Column="1"
             Text= "{Binding GameOverText}" 
             TextWrapping="WrapWithOverflow"  
             HorizontalAlignment="Center"  
-            Margin="30" 
+            Margin="20" 
             FontFamily="Bell MT"  Foreground="#5F606B" FontSize="30" />
 
         <Button x:Name="btnLetsPaly" 
                 Content="Start New Game" 
                 FontFamily="Bell MT" FontSize="30" Foreground="White"
-                Margin="0 30"
+                Margin="0 20"
                 Command= "{Binding GoToBackStoryCommand}"
                 Grid.Row="3"
                 Grid.Column="1"
-                VerticalAlignment="Center" HorizontalAlignment="Center"
+                VerticalAlignment="Top" HorizontalAlignment="Center"
                 Height="60"
                 Width="250" 
                 BorderBrush="#4E0106" BorderThickness="2"

@@ -17,7 +17,7 @@ namespace Enigma.ViewModels
         public GameOverViewModel()
         {
             GoToBackStoryCommand = new RelayCommand(GoToBackStory);
-            GameOverText = $"You really let us down {MyPlayer.Player_name}, apparently you´re not as good as we thought you were ...\nBecause of your incapability, the killer got away and continues to end peoples lives, leaving similar clues at the crime scenes. We do not enjoy this kind of mockery, and we do blame you. \nWe will hire a new detective and hunt this serial killer down, before he or she kills more people.";
+            GameOverText = $"You really let us down {MyPlayer.Player_name}, apparently you´re not as good as we thought you were ...\nBecause of your incapability, the killer got away and continues to end peoples lifes, leaving similar clues at the crime scenes. \n\nWe do not enjoy this kind of mockery, and we do blame you.";
         }
         #endregion
 
