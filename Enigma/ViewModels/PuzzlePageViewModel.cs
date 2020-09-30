@@ -28,6 +28,8 @@ namespace Enigma.ViewModels
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
         public string Hint { get; set; }
+
+        public string CluesLeftToFind { get; set; }
         public bool IsButtonClickable { get; set; } = true;
         public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
         public int CountPuzzles { get; set; }
@@ -170,8 +172,14 @@ namespace Enigma.ViewModels
                 ButtonName = "Go To The Next Puzzle!";
                 CountPuzzles++;
                 CountNumbeOfSymbols -= CountPuzzles;
-                Hint = CountNumbeOfSymbols.ToString();
-                LblInvisibleHintGetVisible = Visibility.Visible;
+                if (CountPuzzles < 4)
+                {
+                    CluesLeftToFind = "Well Done, You found A Clue. Try to collect " + CountNumbeOfSymbols.ToString() + " more symbols";
+                }
+                else
+                {
+                    CluesLeftToFind = "Well Done, You found all the Clues. Now go an catch the killer";
+                }
                 LblInvisibleSymbolsGetVisible = Visibility.Visible; 
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
 
@@ -205,7 +213,7 @@ namespace Enigma.ViewModels
             }
             else
             {
-                CountNumbeOfSymbols--;
+               
                 var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
                 var page = new PuzzlePage(model);
                 NavigationService.Navigate(page);

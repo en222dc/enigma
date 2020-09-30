@@ -46,7 +46,7 @@
                 FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
         <TextBlock 
             Grid.Row="3" 
-            Text= "Well Done, You found A Clue:" 
+            Text= "{Binding CluesLeftToFind}" 
             TextWrapping="WrapWithOverflow"  
             HorizontalAlignment="Center" 
             VerticalAlignment="Center"
