@@ -11,7 +11,7 @@ namespace Enigma.GameLogic
         public void GenerateRandomNr(int[] anyArray)
         {
             Random randomGenerator = new Random();
-            anyArray[0] = randomGenerator.Next(50);
+            anyArray[0] = randomGenerator.Next(1,51);
                 
             }
 

@@ -17,7 +17,7 @@ namespace Enigma.GameLogic
             for (int counter = 0; counter < anyArray.Length; counter++)
             {
                 
-                anyArray[counter] = randomGenerator.Next(20);
+                anyArray[counter] = randomGenerator.Next(1,30);
                
                
             }
