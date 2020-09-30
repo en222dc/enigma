@@ -1,7 +1,9 @@
-﻿using Enigma.ViewModels;
+﻿using Enigma.Animation;
+using Enigma.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,10 +21,12 @@ namespace Enigma.Views
     /// </summary>
     public partial class MenuPage : Page
     {
+
         public MenuPage()
         {
             InitializeComponent();
             DataContext = new MenuPageViewModel();
         }
+
     }
 }

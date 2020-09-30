@@ -73,7 +73,6 @@ namespace Enigma.ViewModels
                     PlayerName = null;
                     UpdateAllPlayerList();
                     GoToPuzzlePage();
-                    MyPlayer = null; // må se videre på om dette er nyttig
                     CreateNewPlayerLabel = "Create new player:";
                 }
                 catch (PostgresException error)

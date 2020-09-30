@@ -28,6 +28,7 @@ namespace Enigma.ViewModels
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
         public string Hint { get; set; }
+        public bool IsButtonClickable { get; set; } = true;
         public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
         public int CountPuzzles { get; set; }
         public int CountNumbeOfSymbols { get; set; } = 4;
@@ -48,6 +49,7 @@ namespace Enigma.ViewModels
             ShowHintCommand = new RelayCommand(ShowHint);
             ExitButtonContent = "Exit to Start Page";
             MyWindow.MenuFrame.Content = new MenuPage();
+
         }
       
         public PuzzlePageViewModel(int total, int puzzleCounter, ObservableCollection<IGameLogic> puzzlesForGame)
@@ -188,6 +190,8 @@ namespace Enigma.ViewModels
                 LblInvisibleHintGetVisible = Visibility.Visible;
                 Hint60();
             }
+            IsButtonClickable = false;
+
         }
 
         private void ChangePage()
@@ -207,6 +211,7 @@ namespace Enigma.ViewModels
                 NavigationService.Navigate(page);
             }
         }
+
         #endregion
     }
 }

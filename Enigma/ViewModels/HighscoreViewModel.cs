@@ -12,6 +12,7 @@ using System.Linq;
 using System.Collections;
 using System.Windows.Navigation;
 using Enigma.ViewModels.Base;
+using Enigma.Views;
 
 namespace Enigma.ViewModels
 {
@@ -94,7 +95,7 @@ namespace Enigma.ViewModels
                             numberOfGames++;
                         }
                     }
-                    MostFrequentPlayersToString += $"{player}\t{numberOfGames}\n";
+                    MostFrequentPlayersToString += $"{player.Player_name}\t{numberOfGames}\n";
                 }
             }
         }

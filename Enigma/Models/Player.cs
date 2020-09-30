@@ -1,29 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Enigma.Models
+﻿namespace Enigma.Models
 {
-   public class Player
+   public class Player : IPlayer
     {
+        #region Properties
         public int Player_id { get; set; }
         public string Player_name { get; set; }
-        //public int NumberOfGames { get; set; }
+        #endregion
 
-
-        public Player(string playerName)
-        {
-            Player_name = playerName;
-        }
-
+        #region Constructor
         public Player()
         {
-
         }
-
-        public override string ToString()
-        {
-            return $"{Player_name}";
-        }
+        #endregion
     }
 }

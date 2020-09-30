@@ -1,46 +1,65 @@
 ﻿using Enigma.Animation;
-using Enigma.ViewModels;
-using Enigma.ViewModels.Base;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows;
+using System.Threading.Tasks;
+using System.Windows.Media.Animation;
+using Enigma.ViewModels.Base;
 
 namespace Enigma.Views
 {
-    /// <summary>
-    /// Interaction logic for StartPage.xaml
-    /// </summary>
-    public partial class StartPage : Page
+    public class BasePage<VM> : Page
+        where VM: BaseViewModel, new()
     {
-
+        #region Private Member
+        private VM myViewModel;
+        #endregion
+        #region Public Properties
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
 
         public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
 
         public float SlideSeconds { get; set; } = 0.8f;
 
-        public StartPage()
+        public VM ViewModel
         {
-            InitializeComponent();
-            this.Loaded += StartPage_Loaded;
-            DataContext = new StartPageViewModel();
-        }
+            get { return myViewModel; }
+            set
+            {
+                if (myViewModel == value)
+                    return;
 
-        private async void StartPage_Loaded(object sender, RoutedEventArgs e)
+                myViewModel = value;
+
+                this.DataContext = myViewModel;
+            }
+        }
+           
+
+
+        #endregion
+
+        #region Constructor
+        public BasePage()
         {
-           await AnimateIn();
-        }
+            this.Loaded += BasePage_Loaded;
+            if (this.PageLoadAnimation != PageAnimation.None)
+            {
+                this.Visibility = Visibility.Collapsed;
+            }
 
+            this.ViewModel = new VM();
+        }
+        #endregion
+
+        #region Animation Load / Unload
+        private async void BasePage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            await AnimateIn();
+        }
+        #endregion
+
+        #region Animation Tasks
         public async Task AnimateIn()
         {
             if (this.PageLoadAnimation == PageAnimation.None)
@@ -74,9 +93,7 @@ namespace Enigma.Views
                     break;
             }
         }
-
-
-
+        #endregion 
 
     }
 }
