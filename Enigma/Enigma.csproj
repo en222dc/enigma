@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Base\**" />
+    <EmbeddedResource Remove="Views\Base\**" />
+    <None Remove="Views\Base\**" />
+    <Page Remove="Views\Base\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\Images\bloodyKnife.jpg" />
     <None Remove="Assets\Images\image1.jpg" />
     <None Remove="Assets\Images\image10.jpg" />
@@ -25,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\Base\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
 
   <ItemGroup>

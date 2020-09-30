@@ -1,15 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using Enigma.Models;
-using System.ComponentModel;
 using Enigma.ViewModels.Base;
-using System.Windows.Threading;
-using System;
 using System.Windows.Input;
 using Enigma.Views;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Enigma.Models.Repositories;
-using System.Linq;
 
 namespace Enigma.ViewModels
 {
@@ -59,7 +53,6 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
-        
         /// <summary>
         /// Get the Killers Encrypted name and set it in a property array of chars
         /// </summary>
@@ -107,9 +100,6 @@ namespace Enigma.ViewModels
             }
         }
 
-
-
-
         private bool IsGameOver()
         {
             if (GuessesLeft==0)
@@ -128,7 +118,6 @@ namespace Enigma.ViewModels
             else GoToSuspectPage();
         }
 
-       // private void 
         public void AddHighScore()
         {
             MyHighScore = totalSeconds;

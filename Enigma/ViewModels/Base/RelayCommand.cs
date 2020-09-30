@@ -9,7 +9,6 @@ namespace Enigma.ViewModels.Base
         
         public event EventHandler CanExecuteChanged;
 
-
         public RelayCommand(Action action)
         {
             this.action = action;

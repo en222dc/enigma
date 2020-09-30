@@ -1,12 +1,8 @@
 ﻿using Enigma.ViewModels.Base;
 using Enigma.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using System.Windows;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
 
 namespace Enigma.ViewModels
 {

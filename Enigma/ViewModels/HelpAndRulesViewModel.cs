@@ -1,8 +1,5 @@
 ﻿using Enigma.ViewModels.Base;
 using Enigma.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace Enigma.ViewModels
@@ -17,6 +14,8 @@ namespace Enigma.ViewModels
         public HelpAndRulesViewModel()
         {
             GoToPageCommand = new RelayCommand(GoToStartPage);
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
         #endregion
 

@@ -1,10 +1,8 @@
 ﻿using Enigma.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Windows.Threading;
@@ -13,7 +11,6 @@ namespace Enigma.ViewModels.Base
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-
         #region Properties
         protected static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).MainFrame.NavigationService;
         public static ObservableCollection<Suspect> ListOfSuspects { get; set; } = new ObservableCollection<Suspect>();
@@ -31,14 +28,10 @@ namespace Enigma.ViewModels.Base
         #region Constructor
         public BaseViewModel()
         {
-            
         }
         #endregion
 
         #region Methods
-
-        
-
         public void TimeStart()
         {
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);

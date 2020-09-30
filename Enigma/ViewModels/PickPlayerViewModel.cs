@@ -3,12 +3,7 @@ using Enigma.Models.Repositories;
 using Enigma.ViewModels.Base;
 using Enigma.Views;
 using Npgsql;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -79,7 +74,6 @@ namespace Enigma.ViewModels
                 {
                     CreateNewPlayerLabel = PostgresError.GetErrorMessage(error.SqlState);
                     PlayerName = null;
-                    // MessageBox.Show(PostgresError.GetErrorMessage(error.SqlState));
                 }
             }
             else if (!CanListHaveMorePlayers())
@@ -89,10 +83,7 @@ namespace Enigma.ViewModels
             else
             {
                 CreateNewPlayerLabel = "You have to write in a name";
-                
             }
-
-
         }
 
         private bool CanListHaveMorePlayers()

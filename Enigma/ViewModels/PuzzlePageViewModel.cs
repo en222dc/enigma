@@ -1,18 +1,12 @@
-﻿using Enigma.GameLogic;
-using Enigma.Interfaces;
-using Enigma.Models;
+﻿using Enigma.Interfaces;
 using Enigma.ViewModels.Base;
 using Enigma.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 namespace Enigma.ViewModels
 {
@@ -67,6 +61,30 @@ namespace Enigma.ViewModels
         }
         #endregion
 
+        #region Navigation
+        /// <summary>
+        /// Generate new puzzles until the player has collected as many symbols as chars in Encrypted name.
+        /// When player has collected all symbols-> Navigate to new ViewModel
+        /// </summary>
+        private void ChangePage()
+        {
+            if (CountPuzzles == MyKiller.Name.Length)
+            {
+                var model = new SolvePuzzlePageViewModel(totalSeconds);
+                var page = new SolvePuzzlePage(model);
+
+                NavigationService.Navigate(page);
+            }
+            else
+            {
+                CountNumbeOfSymbols--;
+                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
+                var page = new PuzzlePage(model);
+                NavigationService.Navigate(page);
+            }
+        }
+        #endregion
+
         #region Methods
         private void StartGame()
         {
@@ -79,8 +97,6 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
-
-          
         }
 
         private void ContinueGame()
@@ -92,9 +108,6 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
-            
-
-
         }
 
         /// <summary>
@@ -166,7 +179,6 @@ namespace Enigma.ViewModels
 
         private void GoToNextPuzzle()
         {
-           
             if (IsGuessCorrect())
             {
                 ButtonName = "Go To The Next Puzzle!";
@@ -196,31 +208,6 @@ namespace Enigma.ViewModels
             return false;
         }
 
-        /// <summary>
-        /// Generate new puzzles until the player has collected as many symbols as chars in Encrypted name.
-        /// When player has collected all symbols-> Navigate to new ViewModel
-        /// </summary>
-        private void ChangePage()
-        {
-            if (CountPuzzles == MyKiller.Name.Length)
-            {
-                var model = new SolvePuzzlePageViewModel(totalSeconds);
-                var page = new SolvePuzzlePage(model);
-
-                NavigationService.Navigate(page);
-            }
-            else
-            {
-                CountNumbeOfSymbols--;
-                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
-                var page = new PuzzlePage(model);
-                NavigationService.Navigate(page);
-            }
-        }
-
-
-
-
         private void GetHint()
         {
             Hint = PuzzlesForGame[CountPuzzles].Hint;
@@ -233,11 +220,7 @@ namespace Enigma.ViewModels
                 Hint60();
             }
             IsButtonClickable = false;
-
         }
-
-      
-
         #endregion
     }
 }

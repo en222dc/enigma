@@ -1,15 +1,7 @@
 ﻿using Enigma.Models;
 using Enigma.Models.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
-using System.Data;
-using System.Data.SqlClient; //For å connecte til databasen
-using System.Configuration; // For å conneste til database 
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Collections;
 using System.Windows.Navigation;
 using Enigma.ViewModels.Base;
 using Enigma.Views;
@@ -33,6 +25,8 @@ namespace Enigma.ViewModels
             GetHighScoreListToString();
             GetMostFrequentPlayersToString();
             GoToPageCommand = new RelayCommand(GoToStartPage);
+            ExitButtonContent = "Exit to Start Page";
+            MyWindow.MenuFrame.Content = new MenuPage();
         }
         #endregion
 
@@ -102,13 +96,3 @@ namespace Enigma.ViewModels
         #endregion
     }
 }  
-
-
-        
-     
-
-
-    
-
-    
-
