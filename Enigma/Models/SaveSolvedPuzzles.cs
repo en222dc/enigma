@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Enigma.Models
+﻿namespace Enigma.Models
 {
     class SaveSolvedPuzzles
     {
