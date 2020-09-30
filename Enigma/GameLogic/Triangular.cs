@@ -9,10 +9,8 @@ namespace Enigma.GameLogic
     class Triangular : IGameLogic
     {
 
-        public string Hint { get; set; } = $"  *  1   *  3     * 6          *  10" +
-            "                                        * *      * *          * * " +
-            "                                                * * *        * * * " +
-            "                                                            * * * *  ";
+        public string Hint { get; set; } = "";
+                                                             
 
         public void GenerateRandomNr(int[] anyArray)
         { 
@@ -30,7 +28,7 @@ namespace Enigma.GameLogic
              int counter = anyArray[1] - anyArray[0]; // henter potensen til de nåværende tallene altså for å finne det tredje tallet i rekken
              int areTaken = 2;
             
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < anyArray.Length - areTaken; i++)
             {
                     counter++;
                     anyArray[areTaken + i] = anyArray[areTaken + i - 1] + counter;

@@ -59,7 +59,7 @@ namespace Enigma.ViewModels
         #region Methods
         public void AddPlayer()
         {
-            if (CanListHaveMorePlayers())
+            if (CanListHaveMorePlayers() && PlayerName != null)
             {
                 var newPlayer = new Player
                 {
@@ -87,6 +87,13 @@ namespace Enigma.ViewModels
             {
                 CreateNewPlayerLabel = "There are to many players. Delete one to add a new.";
             }
+            else
+            {
+                CreateNewPlayerLabel = "You have to write in a name";
+                
+            }
+
+
         }
 
         private bool CanListHaveMorePlayers()
@@ -101,12 +108,7 @@ namespace Enigma.ViewModels
 
         public void DeletePlayer()
         {
-            while (CanListHaveMorePlayers() && IsMyPlayerNotNull())
-            {
-                Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);
-                UpdateAllPlayerList();
-            }
-            if (!CanListHaveMorePlayers() && IsMyPlayerNotNull())
+            if (IsMyPlayerNotNull())
             {
                 CreateNewPlayerLabel = "Create new player:";
                 Repository.DeleteChosenPlayerFromDb(MyPlayer.Player_id);

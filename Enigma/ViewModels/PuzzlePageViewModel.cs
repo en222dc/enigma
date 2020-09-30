@@ -30,10 +30,13 @@ namespace Enigma.ViewModels
         public string Hint { get; set; }
         public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
         public int CountPuzzles { get; set; }
+        public int CountNumbeOfSymbols { get; set; } = 4;
         public char SpecificSymbol { get; set; }
         public ICommand GetNxtNrInSequenceCommand { get; set; }
         public ICommand CheckIfGuessCorrectCommand { get; set; }
         public ICommand ShowHintCommand { get; set; }
+
+
         #endregion
 
         #region Constructors
@@ -73,6 +76,8 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
+
+          
         }
 
         private void ContinueGame()
@@ -84,6 +89,9 @@ namespace Enigma.ViewModels
             GetEncryptedName();
             GetSymbolToPuzzle();
             TimeStart();
+            
+
+
         }
 
         /// <summary>
@@ -154,12 +162,17 @@ namespace Enigma.ViewModels
 
         private void CheckIfGuessCorrect()
         {
+           
             if (Guess4thNr == NumberSequence[3].ToString() && Guess5thNr == NumberSequence[4].ToString())
             {
                 ButtonName = "Go To The Next Puzzle!";
-                LblInvisibleSymbolsGetVisible = Visibility.Visible;
                 CountPuzzles++;
+                CountNumbeOfSymbols -= CountPuzzles;
+                Hint = CountNumbeOfSymbols.ToString();
+                LblInvisibleHintGetVisible = Visibility.Visible;
+                LblInvisibleSymbolsGetVisible = Visibility.Visible; 
                 CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
+
             }
             else ButtonName = "Wrong, guess again!";
         }
@@ -183,10 +196,12 @@ namespace Enigma.ViewModels
             {
                 var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
                 var page = new SolvePuzzlePage(model);
+               
                 NavigationService.Navigate(page);
             }
             else
             {
+                CountNumbeOfSymbols--;
                 var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
                 var page = new PuzzlePage(model);
                 NavigationService.Navigate(page);

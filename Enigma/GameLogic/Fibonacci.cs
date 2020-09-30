@@ -11,6 +11,7 @@ namespace Enigma.Models
 
         public void GenerateRandomNr(int[] anyArray)
         {
+         
             Random randomGenerator = new Random();
             int needValues = 2;
 
@@ -32,6 +33,7 @@ namespace Enigma.Models
                 anyArray[counter] = randomGenerator.Next(20);
                 anyArray[counter]++;
             }
+            
         }
 
         public int[] GetRestOfNrInSequence(int[]anyArray)
@@ -41,12 +43,14 @@ namespace Enigma.Models
                 for (int i = 0; i < anyArray.Length - haveValues; i++)
                 {
 
-                    anyArray[haveValues + i] = anyArray[haveValues + i - 1] + anyArray[haveValues + i - 2];
+                anyArray[haveValues + i] = anyArray[haveValues + i - 1] + anyArray[haveValues + i - 2];
 
 
-                }
+            }
                 return anyArray;
         }
-            
+
+     
+
     }
 }
