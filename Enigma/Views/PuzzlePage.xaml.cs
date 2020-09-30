@@ -7,12 +7,12 @@ namespace Enigma.Views
     /// Interaction logic for PuzzlePage.xaml
     /// </summary>
     public partial class PuzzlePage : Page
-
     {
         public PuzzlePage(BaseViewModel PuzzelPageViewModel)
         {
             InitializeComponent();
             DataContext = PuzzelPageViewModel;
         }
+
     }
 }

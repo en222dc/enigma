@@ -25,20 +25,6 @@ namespace Enigma.Animation
             await Task.Delay((int)(seconds * 1000));
         }
 
-        public static async Task SlideAndFadeOutToLeft(this Page page, float seconds)
-        {
-            var sb = new Storyboard();
-
-            sb.AddSlideToLeft(seconds, page.WindowWidth);
-
-            sb.AddFadeOut(seconds);
-
-            sb.Begin(page);
-
-            page.Visibility = Visibility.Visible;
-
-            await Task.Delay((int)(seconds * 1000));
-        }
 
         public static async Task FadeIn(this Page page, float seconds)
         {

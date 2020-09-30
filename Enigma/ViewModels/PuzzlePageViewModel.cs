@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Schema;
 
 namespace Enigma.ViewModels
 {
@@ -22,7 +23,7 @@ namespace Enigma.ViewModels
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
         public string Hint { get; set; }
-
+        public string TextBoxBorderColor { get; set; } = "Black";
         public string CluesLeftToFind { get; set; }
         public bool IsButtonClickable { get; set; } = true;
         public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
@@ -190,13 +191,18 @@ namespace Enigma.ViewModels
                 }
                 else
                 {
-                    CluesLeftToFind = "Well Done, You found all the Clues. Now go an catch the killer";
+                    CluesLeftToFind = "Well Done, You found all the Clues. Now go and catch the killer";
                 }
-                LblInvisibleSymbolsGetVisible = Visibility.Visible; 
+                LblInvisibleSymbolsGetVisible = Visibility.Visible;
                 GoToNextPuzzleCommand = new RelayCommand(ChangePage);
 
             }
-            else ButtonName = "Wrong, guess again!";
+            else
+            {
+                ButtonName = "Wrong, guess again!";
+                TextBoxBorderColor = "Red";
+            }
+            
         }
 
         private bool IsGuessCorrect()

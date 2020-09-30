@@ -8,7 +8,6 @@ namespace Enigma.Animation
     {
         None = 0,
         SlideAndFadeInFromRight = 1,
-        SlideAndFadeOutToLeft = 2, 
-        FadeIn = 3,
+        FadeIn = 2,
     }
 }
