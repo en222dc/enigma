@@ -1,5 +1,5 @@
-﻿using Enigma.Converters;
-using Enigma.GameLogic;
+﻿using Enigma.GameLogic;
+using Enigma.Interfaces;
 using Enigma.Models;
 using Enigma.ViewModels.Base;
 using Enigma.Views;

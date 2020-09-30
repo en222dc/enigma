@@ -1,4 +1,5 @@
 ﻿using Enigma.GameLogic;
+using Enigma.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;

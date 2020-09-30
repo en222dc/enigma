@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Enigma.Models
+namespace Enigma.Interfaces
 {
     interface IPlayer
     {

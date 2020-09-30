@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Enigma.GameLogic
+namespace Enigma.Interfaces
 {
     interface IGameLogic
     {
