@@ -95,7 +95,7 @@ namespace Enigma.ViewModels
                             numberOfGames++;
                         }
                     }
-                    MostFrequentPlayersToString += $"{player}\t{numberOfGames}\n";
+                    MostFrequentPlayersToString += $"{player.Player_name}\t{numberOfGames}\n";
                 }
             }
         }
