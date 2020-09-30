@@ -20,7 +20,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.50*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="0.50*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="3"
