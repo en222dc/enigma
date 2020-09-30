@@ -22,9 +22,9 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Constructor
-        public SuspectsPageModel(ObservableCollection<Suspect> SuspectList, int time)
+        public SuspectsPageModel(int time)
         {
-            ShowKiller(SuspectList);
+            ShowKiller();
             TimeLapse = "You used: " + time.ToString() + " seconds to catch the killer";
             TimeStop();
             ExitButtonContent = "Exit to Start Page";
@@ -33,7 +33,7 @@ namespace Enigma.ViewModels
         #endregion 
 
         #region Methods
-        private void ShowKiller(ObservableCollection<Suspect> SuspectList)
+        private void ShowKiller()
         {
             string portraitPath = MyKiller.Portrait.UriSource.ToString();
             BitmapImage glowIcon = new BitmapImage();

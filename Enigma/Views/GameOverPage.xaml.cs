@@ -12,30 +12,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Enigma.ViewModels
+namespace Enigma.Views
 {
     /// <summary>
-    /// Interaction logic for BackStory.xaml
+    /// Interaction logic for GameOverPage.xaml
     /// </summary>
-    public partial class BackStory : Page
+    public partial class GameOverPage : Page
     {
-        public BackStory()
+        public GameOverPage(BaseViewModel GameOverViewModel)
         {
             InitializeComponent();
-            DataContext = new BackStoryViewModel();
+            DataContext = GameOverViewModel;
         }
-
-        public BackStory(BaseViewModel BackStoryViewModel)
-        {
-            InitializeComponent();
-            DataContext = BackStoryViewModel;
-        }
-
-   
-
-
-
-
-
+      
     }
 }
