@@ -34,9 +34,8 @@ namespace Enigma.ViewModels
         public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
         public int CountPuzzles { get; set; }
         public int CountNumbeOfSymbols { get; set; } = 4;
-        public char SpecificSymbol { get; set; }
-        public ICommand GetNxtNrInSequenceCommand { get; set; }
-        public ICommand CheckIfGuessCorrectCommand { get; set; }
+        public char SpecificSymbol { get; set; }       
+        public ICommand GoToNextPuzzleCommand { get; set; }
         public ICommand ShowHintCommand { get; set; }
 
 
@@ -47,7 +46,7 @@ namespace Enigma.ViewModels
         {
             StartGame();      
           
-            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            GoToNextPuzzleCommand = new RelayCommand(GoToNextPuzzle);
             ShowHintCommand = new RelayCommand(ShowHint);
             ExitButtonContent = "Exit to Start Page";
             MyWindow.MenuFrame.Content = new MenuPage();
@@ -61,7 +60,7 @@ namespace Enigma.ViewModels
             PuzzlesForGame = puzzlesForGame;
             ContinueGame();
 
-            CheckIfGuessCorrectCommand = new RelayCommand(CheckIfGuessCorrect);
+            GoToNextPuzzleCommand = new RelayCommand(GoToNextPuzzle);
             ShowHintCommand = new RelayCommand(ShowHint);
             ExitButtonContent = "Exit to Start Page";
             MyWindow.MenuFrame.Content = new MenuPage();
@@ -164,10 +163,11 @@ namespace Enigma.ViewModels
             SpecificSymbol = EncryptedName[CountPuzzles];
         }
 
-        private void CheckIfGuessCorrect()
+
+        private void GoToNextPuzzle()
         {
            
-            if (Guess4thNr == NumberSequence[3].ToString() && Guess5thNr == NumberSequence[4].ToString())
+            if (IsGuessCorrect())
             {
                 ButtonName = "Go To The Next Puzzle!";
                 CountPuzzles++;
@@ -181,11 +181,45 @@ namespace Enigma.ViewModels
                     CluesLeftToFind = "Well Done, You found all the Clues. Now go an catch the killer";
                 }
                 LblInvisibleSymbolsGetVisible = Visibility.Visible; 
-                CheckIfGuessCorrectCommand = new RelayCommand(ChangePage);
+                GoToNextPuzzleCommand = new RelayCommand(ChangePage);
 
             }
             else ButtonName = "Wrong, guess again!";
         }
+
+        private bool IsGuessCorrect()
+        {
+            if (Guess4thNr == NumberSequence[3].ToString() && Guess5thNr == NumberSequence[4].ToString())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Generate new puzzles until the player has collected as many symbols as chars in Encrypted name.
+        /// When player has collected all symbols-> Navigate to new ViewModel
+        /// </summary>
+        private void ChangePage()
+        {
+            if (CountPuzzles == MyKiller.Name.Length)
+            {
+                var model = new SolvePuzzlePageViewModel(totalSeconds);
+                var page = new SolvePuzzlePage(model);
+
+                NavigationService.Navigate(page);
+            }
+            else
+            {
+                CountNumbeOfSymbols--;
+                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
+                var page = new PuzzlePage(model);
+                NavigationService.Navigate(page);
+            }
+        }
+
+
+
 
         private void GetHint()
         {
@@ -202,23 +236,7 @@ namespace Enigma.ViewModels
 
         }
 
-        private void ChangePage()
-        {
-            if (CountPuzzles == MyKiller.Name.Length)
-            {
-                var model = new SolvePuzzlePageViewModel(totalSeconds, ListOfSuspects);
-                var page = new SolvePuzzlePage(model);
-               
-                NavigationService.Navigate(page);
-            }
-            else
-            {
-               
-                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
-                var page = new PuzzlePage(model);
-                NavigationService.Navigate(page);
-            }
-        }
+      
 
         #endregion
     }

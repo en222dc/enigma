@@ -29,7 +29,7 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Constructor
-        public SolvePuzzlePageViewModel(int total, ObservableCollection<Suspect> SuspectList)
+        public SolvePuzzlePageViewModel(int total)
         {
             GetNameOnKiller();
             GetEncryptedName();
