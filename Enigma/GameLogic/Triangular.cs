@@ -10,7 +10,7 @@ namespace Enigma.GameLogic
     class Triangular : IGameLogic
     {
 
-        public string Hint { get; set; } = "";
+        public string Hint { get; set; } = "The difference between the previous two numbers, adding one.";
                                                              
 
         public void GenerateRandomNr(int[] anyArray)
