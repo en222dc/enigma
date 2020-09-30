@@ -188,10 +188,12 @@ namespace Enigma.ViewModels
                 if (CountPuzzles < 4)
                 {
                     CluesLeftToFind = "Well Done, You found A Clue. Try to collect " + CountNumbeOfSymbols.ToString() + " more symbols";
+                    TextBoxBorderColor = "Green";
                 }
                 else
                 {
                     CluesLeftToFind = "Well Done, You found all the Clues. Now go and catch the killer";
+                    TextBoxBorderColor = "Green";
                 }
                 LblInvisibleSymbolsGetVisible = Visibility.Visible;
                 GoToNextPuzzleCommand = new RelayCommand(ChangePage);
