@@ -46,7 +46,7 @@
                 FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
         <TextBlock 
             Grid.Row="3" 
-            Text= "Well Done, You found A Clue:" 
+            Text= "{Binding CluesLeftToFind}" 
             TextWrapping="WrapWithOverflow"  
             HorizontalAlignment="Center" 
             VerticalAlignment="Center"
@@ -159,7 +159,7 @@
             <Button x:Name="btnSolvePuzzle" 
                 Grid.Column="1"
                 Content="{Binding ButtonName}"
-                Command="{Binding CheckIfGuessCorrectCommand}"
+                Command="{Binding GoToNextPuzzleCommand}"
                 FontFamily="Bell MT" FontSize="30" Foreground="White"
                 Margin="0 30"
                 VerticalAlignment="Center" HorizontalAlignment="Center"

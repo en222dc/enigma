@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;

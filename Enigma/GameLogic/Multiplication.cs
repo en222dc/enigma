@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace Enigma.GameLogic
         public void GenerateRandomNr(int[] anyArray)
         {
             Random randomGenerator = new Random();
-            anyArray[0] = randomGenerator.Next(50);
+            anyArray[0] = randomGenerator.Next(1,51);
                 
             }
 

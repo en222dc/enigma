@@ -1,4 +1,6 @@
-﻿namespace Enigma.Models
+﻿using Enigma.Interfaces;
+
+namespace Enigma.Models
 {
    public class Player : IPlayer
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media.Imaging;
 
-namespace Enigma.Models
+namespace Enigma.Interfaces
 {
     interface ISuspect
     {
