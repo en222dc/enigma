@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Enigma
+﻿namespace Enigma
 {
     public static class PostgresError
     {
@@ -11,10 +7,22 @@ namespace Enigma
             switch (sqlState)
             {
                 case "23505":
-                    return "The Username must be unique";
+                    return "The Username must be unique, try something else.";
                 default:
-                    return "Something whent wrong with the database";
+                    return "Something whent wrong with the database.";
             }
         }
+
+        //public static string NoNameErrorMessage(string sqlState)
+        //{
+        //    switch (sqlState)
+        //    {
+        //        case "23502":
+        //            return "You must enter a name first.";
+        //        default:
+        //            return "Something whent wrong with the database.";
+        //    }
+        //}
     }
 }
+
