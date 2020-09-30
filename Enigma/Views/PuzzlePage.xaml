@@ -3,8 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Enigma.Views"
-      xmlns:converters="clr-namespace:Enigma.Converters"     
+      xmlns:local="clr-namespace:Enigma.Views"       
       xmlns:vm="clr-namespace:Enigma.ViewModels"
       xmlns:models="clr-namespace:Enigma.Models"
       mc:Ignorable="d" 
@@ -45,27 +44,22 @@
                 Content="{Binding Hint}"                 
                 Visibility="{Binding LblInvisibleHintGetVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                 FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
-
-
         <TextBlock 
             Grid.Row="3" 
             Text= "Well Done, You found A Clue:" 
             TextWrapping="WrapWithOverflow"  
-            HorizontalAlignment="Left" 
+            HorizontalAlignment="Center" 
             VerticalAlignment="Center"
             Margin="30" 
             FontFamily="Bell MT"  Foreground="Maroon" FontSize="40"
             Visibility="{Binding LblInvisibleSymbolsGetVisible}"/>
-
         <TextBlock
-            Grid.Row="3"
+            Name="MyFadingSymbol"  
+            Grid.Row="4"
             Visibility="{Binding LblInvisibleSymbolsGetVisible}"
-             VerticalAlignment="Center" HorizontalAlignment="Center"
-  Name="MyFadingSymbol"
-  Margin="20" 
-   Text="{Binding SpecificSymbol}"
-  Width="100" Height="80" FontSize="50" FontWeight="Bold" Foreground="Maroon">
- 
+            VerticalAlignment="Top" HorizontalAlignment="Center"
+            Text="{Binding SpecificSymbol}"
+            Width="50" Height="60" FontSize="50" FontWeight="Bold" Foreground="Maroon"> 
 
   <!-- Animates the text block's opacity. -->
             <TextBlock.Triggers>
