@@ -22,8 +22,6 @@ namespace Enigma.ViewModels
     {
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
 
-        public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
-
         public float SlideSeconds { get; set; } = 0.5f;
         public BackStoryPage()
         {

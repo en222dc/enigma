@@ -8,7 +8,7 @@ namespace Enigma.GameLogic
     class SubtractNumbers : IGameLogic
     {
 
-        public string Hint { get; set; } = "Subbtract the first number from the the second number. ";
+        public string Hint { get; set; } = "Subtract the first number from the second number.";
 
         public void GenerateRandomNr(int[] anyArray)
         {

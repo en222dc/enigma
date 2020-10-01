@@ -8,8 +8,7 @@
       d:DesignHeight="50" d:DesignWidth="900"
       
       Title="MenuPage">
-    <Border BorderBrush="#4E0106" BorderThickness="2"
-            Background="#5C0106">
+    <Border>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>

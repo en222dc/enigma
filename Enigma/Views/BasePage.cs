@@ -17,8 +17,6 @@ namespace Enigma.Views
         #region Public Properties
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
 
-        public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
-
         public float SlideSeconds { get; set; } = 0.8f;
 
         public VM ViewModel
@@ -77,22 +75,6 @@ namespace Enigma.Views
             }
         }
 
-        public async Task AnimateOut()
-        {
-            if (this.PageUnloadAnimation == PageAnimation.None)
-            {
-                return;
-            }
-
-            switch (this.PageUnloadAnimation)
-            {
-                case PageAnimation.SlideAndFadeOutToLeft:
-
-                    await this.SlideAndFadeOutToLeft(this.SlideSeconds * 4);
-
-                    break;
-            }
-        }
         #endregion 
 
     }

@@ -121,12 +121,14 @@
                     Grid.Column="3"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
                     Width="80"
+                    BorderBrush="{Binding TextBoxBorderColor}" BorderThickness="2"
                     Height="40"                      
                     FontSize="37" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold" />
             <TextBox x:Name="txtSequenceAnswer5"
                     Grid.Column="4"
                     VerticalAlignment="Center" HorizontalAlignment="Center"
                     Width="80"
+                    BorderBrush="{Binding TextBoxBorderColor}" BorderThickness="2"
                     Height="40" 
                     Text="{Binding Guess5thNr}"
                     FontSize="37" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
