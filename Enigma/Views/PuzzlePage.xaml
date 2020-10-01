@@ -9,12 +9,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PuzzlePage">
-
-
     <Page.Background>
         <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
     </Page.Background>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -24,36 +21,27 @@
             <RowDefinition Height="3*" />
             <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
-
-
         <Label Grid.Row="0" Grid.Column="0"
                Content="What is missing from the sequence?" 
                VerticalAlignment="Center" HorizontalAlignment="Center" 
                Margin="10"
                FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
-
         <Label x:Name="lblShowTime" 
                 Grid.Row="1"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Content="{Binding TimeLapse}"
                 FontSize="30" Foreground="#5F606B" FontFamily="Bell MT" />
-
         <Label x:Name="lblHint" 
                 Grid.Row="2"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Content="{Binding Hint}"                 
                 Visibility="{Binding LblInvisibleHintGetVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                 FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
-
         <Label x:Name="lblError"
                Grid.Row="3"
                Content ="{Binding Error}"
                VerticalAlignment="Top" HorizontalAlignment="Center"
-               FontSize="25" Foreground="Red" FontFamily="Bell MT"
-               />
-
-
-
+               FontSize="25" Foreground="Red" FontFamily="Bell MT" />
         <TextBlock 
             Grid.Row="3" 
             Text= "{Binding CluesLeftToFind}" 

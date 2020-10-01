@@ -74,7 +74,6 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                
             </StackPanel>
             <Label Content="{Binding CreateNewPlayerLabel, FallbackValue=... Or create a new one:}"  
                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"

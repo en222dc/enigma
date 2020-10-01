@@ -6,9 +6,7 @@
       xmlns:local="clr-namespace:Enigma.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-           
       Title="HighScoreEndPage">
-   
     <Page.Background>
         <SolidColorBrush Opacity="0.95" Color="WhiteSmoke"/>
     </Page.Background>
@@ -124,12 +122,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-
-
         </Grid>
-
-
-       
         <Button x:Name="btnBackToStart"  
             Content="Back to Start" 
             Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="3"

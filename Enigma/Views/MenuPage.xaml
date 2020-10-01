@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:Enigma.Views"
       mc:Ignorable="d" 
       d:DesignHeight="50" d:DesignWidth="900"
-      
       Title="MenuPage">
     <Border>
         <Grid>
@@ -37,5 +36,4 @@
                    Background="#5C0106" Foreground="White"/>
         </Grid>
     </Border>
-
 </Page>
