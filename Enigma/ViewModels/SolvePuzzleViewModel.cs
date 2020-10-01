@@ -80,16 +80,18 @@ namespace Enigma.ViewModels
         {
             string guess = (Guess1stSymbol + Guess2ndSymbol + Guess3rdSymbol + Guess4thSymbol).ToString();
 
-            if (IsAnyGuessNullOrEmpty() == true)
+            if (IsAnyGuessNullOrEmpty())
             {
                 Error = "Fill in all the boxes.";
                 TextBoxBorderColor = "Red";
+                GuessesLeft--;
             }
 
-            else if (IsAnyGuessNotLetter(guess) == true)
+            else if (IsAnyGuessNotLetter(guess))
             {
                 Error = "Only letters allowed.";
                 TextBoxBorderColor = "Red";
+                GuessesLeft--;
             }
 
             else if (IsAnyGuessNotLetter(guess) == false && IsAnyGuessNullOrEmpty() == false)
