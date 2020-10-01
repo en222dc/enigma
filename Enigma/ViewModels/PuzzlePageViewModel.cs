@@ -19,9 +19,10 @@ namespace Enigma.ViewModels
         public ObservableCollection<int> NumberSequence { get; set; } = new ObservableCollection<int>();
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
-        public string ButtonName { get; set; } = "Guess nr";
+        public string ButtonName { get; set; } = "Solve Puzzle";
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
+        public string Error { get; set; }
         public string Hint { get; set; }
         public string TextBoxBorderColor { get; set; } = "Black";
         public string CluesLeftToFind { get; set; }
@@ -180,30 +181,36 @@ namespace Enigma.ViewModels
 
         private void GoToNextPuzzle()
         {
-            if (IsGuessCorrect())
+            if (IsAnyGuessNullOrEmpty())
             {
-                ButtonName = "Go To The Next Puzzle!";
-                CountPuzzles++;
-                CountNumbeOfSymbols -= CountPuzzles;
-                if (CountPuzzles < 4)
-                {
-                    CluesLeftToFind = "Well Done, You found A Clue. Try to collect " + CountNumbeOfSymbols.ToString() + " more symbols";
-                    TextBoxBorderColor = "Green";
-                }
-                else
-                {
-                    CluesLeftToFind = "Well Done, You found all the Clues. Now go and catch the killer";
-                    TextBoxBorderColor = "Green";
-                }
-                LblInvisibleSymbolsGetVisible = Visibility.Visible;
-                GoToNextPuzzleCommand = new RelayCommand(ChangePage);
-
+                TextBoxBorderColor = "Red";
+                Error = "You need to type a number into each of the boxes";
             }
             else
             {
-                ButtonName = "Wrong, guess again!";
-                TextBoxBorderColor = "Red";
+                if (IsGuessCorrect())
+                {
+                    ButtonName = "Go To The Next Puzzle!";
+                    CountPuzzles++;
+                    CountNumbeOfSymbols -= CountPuzzles;
+                    if (CountPuzzles < 4)
+                    {
+                        CluesLeftToFind = "Well Done, You found A Clue. Try to collect " + CountNumbeOfSymbols.ToString() + " more symbols";
+                        TextBoxBorderColor = "Green";
+                        Error = null;
+                    }
+                    else
+                    {
+                        CluesLeftToFind = "Well Done, You found all the Clues. Now go and catch the killer";
+                        TextBoxBorderColor = "Green";
+                        Error = null;
+                    }
+                    LblInvisibleSymbolsGetVisible = Visibility.Visible;
+                    GoToNextPuzzleCommand = new RelayCommand(ChangePage);
+
+                }
             }
+           
             
         }
 
@@ -215,6 +222,16 @@ namespace Enigma.ViewModels
             }
             return false;
         }
+
+        public bool IsAnyGuessNullOrEmpty()
+        {
+            if (string.IsNullOrEmpty(Guess4thNr) || string.IsNullOrEmpty(Guess5thNr))
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         private void GetHint()
         {

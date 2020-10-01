@@ -44,6 +44,16 @@
                 Content="{Binding Hint}"                 
                 Visibility="{Binding LblInvisibleHintGetVisible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                 FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
+
+        <Label x:Name="lblError"
+               Grid.Row="3"
+               Content ="{Binding Error}"
+               VerticalAlignment="Top" HorizontalAlignment="Center"
+               FontSize="25" Foreground="Red" FontFamily="Bell MT"
+               />
+
+
+
         <TextBlock 
             Grid.Row="3" 
             Text= "{Binding CluesLeftToFind}" 
