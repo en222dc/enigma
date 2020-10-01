@@ -30,7 +30,7 @@
             FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
         <Label x:Name="lblGuessWrong"
                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
-                   VerticalAlignment="Top" HorizontalAlignment="Center" Padding="5"
+                   VerticalAlignment="Top" HorizontalAlignment="Left" Padding="5"
                    FontSize="25" Foreground="Red" FontFamily="Bahnschrift"
                    Content="{Binding Error}"/>
         <Label x:Name="lblShowTime"
