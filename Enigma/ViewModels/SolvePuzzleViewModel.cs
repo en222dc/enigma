@@ -85,6 +85,11 @@ namespace Enigma.ViewModels
                 Error = "Fill in all the boxes.";
                 TextBoxBorderColor = "Red";
                 GuessesLeft--;
+
+                if (IsGameOver())
+                {
+                    ChangePage();
+                }
             }
 
             else if (IsAnyGuessNotLetter(guess))
@@ -92,6 +97,11 @@ namespace Enigma.ViewModels
                 Error = "Only letters allowed.";
                 TextBoxBorderColor = "Red";
                 GuessesLeft--;
+
+                if (IsGameOver())
+                {
+                    ChangePage();
+                }
             }
 
             else if (IsAnyGuessNotLetter(guess) == false && IsAnyGuessNullOrEmpty() == false)

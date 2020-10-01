@@ -44,8 +44,8 @@
                Grid.Column="1"            
                Text= "{Binding Summary}" 
                TextWrapping="WrapWithOverflow"                        
-               FontFamily="Bell MT"  Foreground="#5F606B" FontSize="20" />
-        <Label Grid.Row="3"  
+               FontFamily="Bell MT"  Foreground="#5F606B" FontSize="30" />
+        <Label Grid.Row="4"  
                Grid.Column="1"
                Content="{Binding TimeLapse}"
                VerticalAlignment="Center" HorizontalAlignment="Center"
