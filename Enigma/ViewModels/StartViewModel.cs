@@ -4,14 +4,14 @@ using System.Windows.Input;
 
 namespace Enigma.ViewModels
 {
-    public class StartPageViewModel : BaseViewModel
+    public class StartViewModel : BaseViewModel
     {
         #region Properties
         public ICommand PlayGameCommand { get; set;}
         #endregion
 
         #region Constructor
-        public StartPageViewModel()
+        public StartViewModel()
         {            
             PlayGameCommand = new RelayCommand(ChangePage);
             MyPlayer = null;
@@ -23,7 +23,7 @@ namespace Enigma.ViewModels
         #region Navigation
         public void ChangePage()
         {
-            MyWindow.MainFrame.Content = new PickPlayer();
+            MyWindow.MainFrame.Content = new PickPlayerPage();
         }
         #endregion
     }

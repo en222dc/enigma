@@ -39,7 +39,7 @@ namespace Enigma.ViewModels
         #region Navigation
         public void GoToPuzzlePage()
         {
-         var model = new PuzzlePageViewModel();
+         var model = new PuzzleViewModel();
          var page = new PuzzlePage(model);
          NavigationService.Navigate(page);
         }

@@ -124,6 +124,7 @@ namespace Enigma.Models.Repositories
         public static IEnumerable<Highscore> GetHighscores()
         {
             string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC";
+            int place = 1;
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -141,8 +142,11 @@ namespace Enigma.Models.Repositories
                             {
                                 Time = (int)reader["time"],
                                 Player_name = (string)reader["player_name"],
+                                Place = place,
+                                
                             };
                             highscores.Add(highscore);
+                            place++;
                         }
                     }
                 }
@@ -182,7 +186,7 @@ namespace Enigma.Models.Repositories
 
         public static IEnumerable<Player> GetTopPlayers()
         {
-            string stmt = "SELECT player_name, COUNT(*) AS number_of_games FROM player INNER JOIN highscore on player_id = fk_player_id GROUP BY player_name, player_id ORDER BY COUNT(*) DESC LIMIT 3;";
+            string stmt = "SELECT player_name, COUNT(*) AS number_of_games FROM player INNER JOIN highscore on player_id = fk_player_id GROUP BY player_name, player_id ORDER BY COUNT(*) DESC;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {

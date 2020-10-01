@@ -21,14 +21,14 @@ namespace Enigma.Views
     /// Interaction logic for PickPlayer.xaml
     /// </summary>
     /// 
-    public partial class PickPlayer : Page
+    public partial class PickPlayerPage : Page
     {
      public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
 
      public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
 
      public float SlideSeconds { get; set; } = 0.5f;
-        public PickPlayer()
+        public PickPlayerPage()
         {
             InitializeComponent();
             this.Loaded += PickPlayerPage_Loaded;

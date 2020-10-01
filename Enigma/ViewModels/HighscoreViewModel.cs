@@ -11,19 +11,20 @@ namespace Enigma.ViewModels
     public class HighscoreViewModel : BaseViewModel
     {
         #region Properties
-        public ObservableCollection<Highscore> ListOfHighScores { get; set; } = new ObservableCollection<Highscore>();
-        public ObservableCollection<Player> ListOfPlayersInHighScore { get; set; } = new ObservableCollection<Player>();
-        public string ListOfHighScoreToString { get; set; } 
-        public string MostFrequentPlayersToString { get; set; }
+        public ObservableCollection<Highscore> ListOfAllHighScores { get; set; } = new ObservableCollection<Highscore>();
+        public ObservableCollection<Highscore> ListOfTopHighScores { get; set; } = new ObservableCollection<Highscore>();
+        public ObservableCollection<Player> ListOfMostFrequentPlayers { get; set; } = new ObservableCollection<Player>();        
+        public ObservableCollection<int> PlayerFrequence { get; set; } = new ObservableCollection<int>();
         public ICommand GoToPageCommand { get; set; }
         #endregion
 
         #region Constructor
         public HighscoreViewModel()
         {
-            ShowHighScoreFromDataBase();
-            GetHighScoreListToString();
-            GetMostFrequentPlayersToString();
+            GetAllHighScores();
+            GetTopHighscores();
+            GetMostFrequentPlayers();
+            GetPlayerFrequence();
             GoToPageCommand = new RelayCommand(GoToStartPage);
             ExitButtonContent = "Exit to Start Page";
             MyWindow.MenuFrame.Content = new MenuPage();
@@ -39,57 +40,67 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
-        public void ShowHighScoreFromDataBase()
+        //public void ShowHighScoreFromDataBase()
+        //{
+        //    foreach (var highscore in Repository.GetHighscores())
+        //    {
+        //        ListOfHighScores.Add(highscore);
+        //    }
+        //    foreach (var player in Repository.GetTopPlayers())
+        //    {
+        //        ListOfMostFrequentPlayers.Add(player);
+        //    }
+        //}
+
+        private void GetAllHighScores()
         {
             foreach (var highscore in Repository.GetHighscores())
             {
-                ListOfHighScores.Add(highscore);
-            }
-            foreach (var player in Repository.GetTopPlayers())
-            {
-                ListOfPlayersInHighScore.Add(player);
+                ListOfAllHighScores.Add(highscore);
             }
         }
 
-        private void GetHighScoreListToString(int highScoreToDisplay = 10)
+        private void GetTopHighscores(int highscores = 3)
         {
-            int highScorePlace = 1;
-            if (ListOfHighScores.Count == 0)
+            for (int i = 0; i < ListOfAllHighScores.Count; i++)
             {
-                ListOfHighScoreToString = "There is no High Score registered";
-            }
-            else
-            {
-                foreach (var position in ListOfHighScores)
+                if (i < highscores)
                 {
-                    if (highScorePlace <= highScoreToDisplay)
-                    {
-                        ListOfHighScoreToString += $"    {highScorePlace}.\t{position.Player_name}\t   {position.Time}\n";
-                        highScorePlace++;
-                    }
+                    ListOfTopHighScores.Add(ListOfAllHighScores[i]);
+                }
+                else break;
+            }
+        }
+
+        private void GetMostFrequentPlayers(int players = 3)
+        {
+
+            foreach (var player in Repository.GetTopPlayers())
+            {
+                ListOfMostFrequentPlayers.Add(player);
+                players--;
+                if (players == 0)
+                {
+                    break;
                 }
             }
         }
 
-        private void GetMostFrequentPlayersToString()
+        private void GetPlayerFrequence()
         {
-            if (ListOfPlayersInHighScore.Count == 0)
+            foreach (var player in ListOfMostFrequentPlayers)
             {
-                MostFrequentPlayersToString = "No player has played the game";
-            }
-            else
-            {
-                foreach (var player in ListOfPlayersInHighScore)
+                int numberOfGames = 0;
+                foreach (var score in ListOfAllHighScores)
                 {
-                    int numberOfGames = 0;
-                    foreach (var score in ListOfHighScores)
+                    if (player.Player_name == score.Player_name)
                     {
-                        if (score.Player_name == player.Player_name)
-                        {
-                            numberOfGames++;
-                        }
+                        numberOfGames++;
                     }
-                    MostFrequentPlayersToString += $"{player.Player_name}\t{numberOfGames}\n";
+                }
+                if (numberOfGames > 0)
+                {
+                    PlayerFrequence.Add(numberOfGames);
                 }
             }
         }

@@ -25,7 +25,7 @@ namespace Enigma.Views
         public MenuPage()
         {
             InitializeComponent();
-            DataContext = new MenuPageViewModel();
+            DataContext = new MenuViewModel();
         }
 
     }

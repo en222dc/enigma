@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Enigma.ViewModels
 {
-    class PuzzlePageViewModel : BaseViewModel
+    class PuzzleViewModel : BaseViewModel
     {
         #region Properties
         public ObservableCollection<IGameLogic> ListOfPuzzlesAvaible { get; set; } = new ObservableCollection<IGameLogic>();    
@@ -36,7 +36,7 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Constructors
-        public PuzzlePageViewModel()
+        public PuzzleViewModel()
         {
             StartGame();      
           
@@ -47,7 +47,7 @@ namespace Enigma.ViewModels
 
         }
       
-        public PuzzlePageViewModel(int total, int puzzleCounter, ObservableCollection<IGameLogic> puzzlesForGame)
+        public PuzzleViewModel(int total, int puzzleCounter, ObservableCollection<IGameLogic> puzzlesForGame)
         {
             totalSeconds = total;
             CountPuzzles = puzzleCounter;
@@ -70,7 +70,7 @@ namespace Enigma.ViewModels
         {
             if (CountPuzzles == MyKiller.Name.Length)
             {
-                var model = new SolvePuzzlePageViewModel(totalSeconds);
+                var model = new SolvePuzzleViewModel(totalSeconds);
                 var page = new SolvePuzzlePage(model);
 
                 NavigationService.Navigate(page);
@@ -78,7 +78,7 @@ namespace Enigma.ViewModels
             else
             {
                 CountNumbeOfSymbols--;
-                var model = new PuzzlePageViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
+                var model = new PuzzleViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
                 var page = new PuzzlePage(model);
                 NavigationService.Navigate(page);
             }

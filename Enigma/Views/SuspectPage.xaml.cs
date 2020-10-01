@@ -1,38 +1,32 @@
 ﻿using Enigma.Animation;
+using Enigma.ViewModels;
+using Enigma.ViewModels.Base;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace Enigma.ViewModels
+
+namespace Enigma.Views
 {
     /// <summary>
-    /// Interaction logic for BackStory.xaml
+    /// Interaction logic for SuspectsPage.xaml
     /// </summary>
-    public partial class BackStory : Page
+    public partial class SuspectPage : Page
     {
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
 
-        public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
-
         public float SlideSeconds { get; set; } = 0.5f;
-        public BackStory()
+
+        public SuspectPage(BaseViewModel SuspectPageViewModel)
         {
             InitializeComponent();
-            this.Loaded += BackStory_Loaded;
-            DataContext = new BackStoryViewModel();
+            this.Loaded += SuspectsPage_Loaded;
+            DataContext = SuspectPageViewModel;
         }
 
-        private async void BackStory_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void SuspectsPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             await AnimateIn();
         }
@@ -54,12 +48,6 @@ namespace Enigma.ViewModels
             }
         }
 
+
     }
-
-
-
-
-
-
-
 }

@@ -16,12 +16,12 @@ using System.Windows.Shapes;
 
 namespace Enigma.Views
 {
-    public partial class HelpAndRules : Page
+    public partial class HelpAndRulesPage : Page
     {
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.FadeIn;
 
         public float SlideSeconds { get; set; } = 0.5f;
-        public HelpAndRules()
+        public HelpAndRulesPage()
         {
             InitializeComponent();
             this.Loaded += HighScorePage_Loaded;

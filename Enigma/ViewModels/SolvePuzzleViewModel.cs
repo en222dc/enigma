@@ -7,7 +7,7 @@ using Enigma.Models.Repositories;
 
 namespace Enigma.ViewModels
 {
-    public class SolvePuzzlePageViewModel : BaseViewModel
+    public class SolvePuzzleViewModel : BaseViewModel
     {
         #region Properties
         public ObservableCollection<char> SymbolArray { get; set; } 
@@ -23,7 +23,7 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Constructor
-        public SolvePuzzlePageViewModel(int total)
+        public SolvePuzzleViewModel(int total)
         {
             GetNameOnKiller();
             GetEncryptedName();
@@ -38,8 +38,8 @@ namespace Enigma.ViewModels
         #region Navigation
         private void GoToSuspectPage()
         {
-            var model = new SuspectsPageModel(totalSeconds);
-            var page = new SuspectsPage(model);
+            var model = new SuspectViewModel(totalSeconds);
+            var page = new SuspectPage(model);
             AddHighScore();
             NavigationService.Navigate(page);
         }
