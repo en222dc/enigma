@@ -209,9 +209,12 @@ namespace Enigma.ViewModels
                     GoToNextPuzzleCommand = new RelayCommand(ChangePage);
 
                 }
+                else
+                {
+                    TextBoxBorderColor = "Red";
+                    Error = "Your guess was wrong.";
+                }
             }
-           
-            
         }
 
         private bool IsGuessCorrect()

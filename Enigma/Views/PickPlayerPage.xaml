@@ -31,7 +31,7 @@
                 <Label
                     Content="Players"
                     VerticalAlignment="Center" HorizontalAlignment="Left"
-                    FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
+                    FontSize="30" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
                 <ListBox x:Name="lstAllPlayers"  
                          ItemsSource="{Binding AllPlayers}"
                          DisplayMemberPath="Player_name"
@@ -44,7 +44,7 @@
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column ="1" Margin="20">
                 <Button x:Name="btnPickPlayer" Command="{Binding ChoosePlayerCommand}"
-                        Margin="0 0 0 50"
+                        Margin="0 70 0 50"
                         Content="Choose Player" 
                         FontFamily="Bell MT" FontSize="30" Foreground="White"
                         VerticalAlignment="Top" HorizontalAlignment="Center"

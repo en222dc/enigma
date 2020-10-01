@@ -36,7 +36,7 @@
                 Grid.Row="1"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 Content="{Binding TimeLapse}"
-                FontSize="25" Foreground="#5F606B" FontFamily="Bell MT" />
+                FontSize="30" Foreground="#5F606B" FontFamily="Bell MT" />
 
         <Label x:Name="lblHint" 
                 Grid.Row="2"

@@ -82,13 +82,13 @@ namespace Enigma.ViewModels
 
             if (IsAnyGuessNullOrEmpty() == true)
             {
-                Error = "You need to type a letter into each of the boxes";
+                Error = "Fill in all the boxes.";
                 TextBoxBorderColor = "Red";
             }
 
             else if (IsAnyGuessNotLetter(guess) == true)
             {
-                Error = "You may only type letters (a-z) into the boxes. Please check and try again";
+                Error = "Only letters allowed.";
                 TextBoxBorderColor = "Red";
             }
 

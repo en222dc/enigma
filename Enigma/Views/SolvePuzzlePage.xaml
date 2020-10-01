@@ -14,31 +14,33 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="3*"/>
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="0.5*" />
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Solve the last puzzle!"
-                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
             FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
         <Label x:Name="lblGuessWrong"
-                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
-                   VerticalAlignment="Top" HorizontalAlignment="Left" Padding="5"
+                   Grid.Row="2" Grid.Column="1"
+                   VerticalAlignment="Top" HorizontalAlignment="Center" Padding="5"
                    FontSize="25" Foreground="Red" FontFamily="Bahnschrift"
                    Content="{Binding Error}"/>
         <Label x:Name="lblShowTime"
-                Grid.Row="1" Grid.Column="1" 
+                Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                 VerticalAlignment="Top" HorizontalAlignment="Center"
                 Content="{Binding TimeLapse}"
-                FontSize="20" Foreground="#5F606B" FontFamily="Bell MT" />
-        <Grid Grid.Row="2" Grid.Column="0">
+                FontSize="30" Foreground="#5F606B" FontFamily="Bell MT" />
+        <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -113,11 +115,11 @@
                      Text="{Binding Guess4thSymbol}"/>
         </Grid>
 
-        <Image  Grid.Column="1" Grid.Row="0" Grid.RowSpan="5"
+        <Image  Grid.Column="2" Grid.Row="0" Grid.RowSpan="6"
                 Source="\Assets\Images\solvesheet.png" 
                 HorizontalAlignment="Left"
                 Stretch="UniformToFill"
-                Visibility="Visible" Margin="225,19,0,27" Width="675" Grid.ColumnSpan="2" >
+                Visibility="Visible" Width="675" Grid.ColumnSpan="2" >
             <Image.LayoutTransform>
                 <RotateTransform Angle="8" />
             </Image.LayoutTransform>
@@ -131,16 +133,16 @@
             </Grid.ColumnDefinitions>
         </Grid>
         <Label Content="Guesses Left Until Killer Gets Free:"
-                Grid.Row="3" Grid.ColumnSpan="3" 
-                VerticalAlignment="Bottom" HorizontalAlignment="Center"
-            FontSize="30" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
-        <TextBlock Text="{Binding GuessesLeft}"
                 Grid.Row="4" Grid.Column="1" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Center"
+            FontSize="20" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
+        <TextBlock Text="{Binding GuessesLeft}"
+                Grid.Row="5" Grid.Column="1"
                 VerticalAlignment="Center" HorizontalAlignment="Center"
             FontSize="35" Foreground="Maroon" FontFamily="Banschrift" FontWeight="Bold"/>
         <Button x:Name="btnShowSuspects"
                     Content="Solve Puzzle"
-                    Grid.Row="5" Grid.Column="1"
+                    Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"
                     FontFamily="Bell MT" FontSize="30" Foreground="White"
                 Margin="0 30"
                 Command = "{Binding IsGuessCorrectCommand}"
