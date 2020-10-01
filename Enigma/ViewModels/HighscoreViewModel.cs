@@ -54,7 +54,7 @@ namespace Enigma.ViewModels
 
         private void GetAllHighScores()
         {
-            foreach (var highscore in Repository.GetHighscores())
+            foreach (var highscore in Repository.GetHighscoresFromDb())
             {
                 ListOfAllHighScores.Add(highscore);
             }
@@ -75,7 +75,7 @@ namespace Enigma.ViewModels
         private void GetMostFrequentPlayers(int players = 3)
         {
 
-            foreach (var player in Repository.GetTopPlayers())
+            foreach (var player in Repository.GetTopPlayersFromDb())
             {
                 ListOfMostFrequentPlayers.Add(player);
                 players--;
