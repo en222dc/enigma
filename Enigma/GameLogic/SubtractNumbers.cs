@@ -7,6 +7,14 @@ namespace Enigma.GameLogic
     {
         public string Hint { get; set; } = "Subtract the first number from the second number.";
 
+
+
+        /// <summary>
+        /// This methods fills an Array with random numbers from 1 to 30 and sort it.
+        /// </summary>
+        /// <param name="anyArray"></param>
+
+
         public void GenerateRandomNr(int[] anyArray)
         {
             Random randomGenerator = new Random();
@@ -17,6 +25,13 @@ namespace Enigma.GameLogic
             }
             Array.Sort(anyArray);
         }
+
+
+        /// <summary>
+        /// This method transfer an Array so that the next number is the subtraction of the two previous numbers.
+        /// </summary>
+        /// <param name="anyArray"></param>
+        ///  <returns>Array</returns>
 
         public int[] GetRestOfNrInSequence(int[] anyArray)
         {

@@ -7,6 +7,14 @@ namespace Enigma.Models
     {
         public string Hint { get; set; } = "A Fibonacci puzzle is solved by taking the previous two numbers and adding them together. ";
 
+
+
+        /// <summary>
+        /// This methods fills the two first places in an Array with random numbers and sorts the array.
+        /// </summary>
+        /// <param name="anyArray"></param>
+
+
         public void GenerateRandomNr(int[] anyArray)
         {
             Random randomGenerator = new Random();
@@ -29,6 +37,12 @@ namespace Enigma.Models
                 anyArray[counter]++;
             }
         }
+
+        /// <summary>
+        /// This method transfer an Array baased on the logic of the fobonacci numbers.
+        /// </summary>
+        /// <param name="anyArray"></param>
+        ///  <returns>Array  similar to the fibonacci numbers numbers</returns>
 
         public int[] GetRestOfNrInSequence(int[]anyArray)
         {

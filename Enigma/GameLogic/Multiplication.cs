@@ -7,11 +7,25 @@ namespace Enigma.GameLogic
     {
         public string Hint { get; set; } = "The next number is twice as big as the current number ";
 
+
+
+        /// <summary>
+        /// This methods fill the first place in an Array with a random number.
+        /// </summary>
+        /// <param name="anyArray"></param>
+
         public void GenerateRandomNr(int[] anyArray)
         {
             Random randomGenerator = new Random();
             anyArray[0] = randomGenerator.Next(1, 51);
         }
+
+
+        /// <summary>
+        /// This method transfer an Array so that the first number are twice as big as the first.
+        /// </summary>
+        /// <param name="anyArray"></param>
+        ///  <returns>Array where the last number is twice as big as the first</returns>
 
         public int[] GetRestOfNrInSequence(int[] anyArray)
         {
