@@ -55,7 +55,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Place}"
+                            <TextBlock Text="{Binding PlaceInHighScoreList}"
                                    FontFamily="Banschrift" Foreground="#5F606B" FontSize="30"
                                    VerticalAlignment="Center" HorizontalAlignment="Left"
                                    Margin="30,0,0,0"/>

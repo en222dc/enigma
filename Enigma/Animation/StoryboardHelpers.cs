@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Media.Animation;
 
@@ -20,7 +18,6 @@ namespace Enigma.Animation
             Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
 
             storyboard.Children.Add(animation);
-
         }
 
         public static void AddFadeIn(this Storyboard storyboard, float seconds)
@@ -30,12 +27,10 @@ namespace Enigma.Animation
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
                 From = 0,
                 To = 1,
-                
             };
             Storyboard.SetTargetProperty(animation, new PropertyPath("Opacity"));
 
             storyboard.Children.Add(animation);
-
         }
     }
 }

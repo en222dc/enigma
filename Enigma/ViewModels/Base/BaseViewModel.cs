@@ -24,12 +24,7 @@ namespace Enigma.ViewModels.Base
 
         public DispatcherTimer dispatcherTimer = new DispatcherTimer();
         public int totalSeconds = 0;
-
-        #region Constructor
-        public BaseViewModel()
-        {
-        }
-        #endregion
+        public int hintPenaltySixtySec = 60;
 
         #region Methods
         public void TimeStart()
@@ -43,9 +38,9 @@ namespace Enigma.ViewModels.Base
         {
             dispatcherTimer.Stop();
         }
-        public void Hint60()
+        public void PenaltyTimeForUsedHint()
         {
-            totalSeconds += 60;
+            totalSeconds += hintPenaltySixtySec;
         }
 
         private void TimerTicks(object state, EventArgs e)

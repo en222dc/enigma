@@ -54,7 +54,7 @@ namespace Enigma.ViewModels
         #region Methods
         public void AddPlayer()
         {
-            if (CanListHaveMorePlayers() && PlayerName != null)
+            if (ListCanHaveMorePlayers() && PlayerName != null)
             {
                 var newPlayer = new Player
                 {
@@ -76,7 +76,7 @@ namespace Enigma.ViewModels
                     PlayerName = null;
                 }
             }
-            else if (!CanListHaveMorePlayers())
+            else if (!ListCanHaveMorePlayers())
             {
                 CreateNewPlayerLabel = "There are to many players. Delete one to add a new.";
             }
@@ -86,7 +86,7 @@ namespace Enigma.ViewModels
             }
         }
 
-        private bool CanListHaveMorePlayers()
+        private bool ListCanHaveMorePlayers()
         {
             bool result = false;
             if (AllPlayers.Count < maxNumberOfPlayers)
@@ -132,6 +132,3 @@ namespace Enigma.ViewModels
         #endregion
     }
 }
-
-
-

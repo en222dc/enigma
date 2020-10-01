@@ -1,38 +1,30 @@
 ﻿using Enigma.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Enigma.GameLogic
 {
     class Triangular : IGameLogic
     {
-
         public string Hint { get; set; } = "This is a Triangular number. The difference between the previous two numbers, adding one.";
-                                                             
 
         public void GenerateRandomNr(int[] anyArray)
         { 
-            
             Random randomGenerator = new Random();
-            int triangleNumber = randomGenerator.Next(6); 
+            int triangleNumber = randomGenerator.Next(6);
             anyArray[0] = GetRandomTriangularNumbers()[triangleNumber]; // her henter den en random plass i arrayen å lagrer det i en ny array
             int nextTriangularNumber = triangleNumber + 1; // her finner man neste posisjon i arrayen
             anyArray[1] = GetRandomTriangularNumbers()[nextTriangularNumber];//setter neste posisjon i arrayen
-            
         }
 
         public int[] GetRestOfNrInSequence(int[] anyArray)
         {
-             int counter = anyArray[1] - anyArray[0]; // henter potensen til de nåværende tallene altså for å finne det tredje tallet i rekken
-             int areTaken = 2;
-            
+            int counter = anyArray[1] - anyArray[0]; // henter potensen til de nåværende tallene altså for å finne det tredje tallet i rekken
+            int areTaken = 2;
+
             for (int i = 0; i < anyArray.Length - areTaken; i++)
             {
-                    counter++;
-                    anyArray[areTaken + i] = anyArray[areTaken + i - 1] + counter;
+                counter++;
+                anyArray[areTaken + i] = anyArray[areTaken + i - 1] + counter;
             }
             return anyArray;
         }
@@ -49,12 +41,9 @@ namespace Enigma.GameLogic
             {
                 counter++;
                 anyArray[areTaken + i] = anyArray[areTaken + i - 1] + counter; // Her plusser man potensen med det forrige tallet i arryen for å finne neste
-
             }
             return anyArray;
         }
-
     }
-
 }
 

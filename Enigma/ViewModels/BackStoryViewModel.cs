@@ -72,8 +72,8 @@ namespace Enigma.ViewModels
             {
                 if (listOfSuspects[suspect].IsKiller)
                 {
-                    killerName = listOfSuspects[suspect].Name;
-                    listOfSuspects[suspect].EncryptedName = new char[listOfSuspects[suspect].Name.Length];
+                    killerName = listOfSuspects[suspect].KillerName;
+                    listOfSuspects[suspect].EncryptedNameOfKiller = new char[listOfSuspects[suspect].KillerName.Length];
                     foreach (KeyValuePair<string, string> pair in SymbolAlphabet.TranslateMySymbolsToLetters)
                     {
                         killerName = killerName.ToLower().Replace(pair.Value, pair.Key);
@@ -83,7 +83,7 @@ namespace Enigma.ViewModels
                     {
                         foreach (char c in killerName)
                         {
-                            listOfSuspects[suspect].EncryptedName[i] = c;
+                            listOfSuspects[suspect].EncryptedNameOfKiller[i] = c;
                             i++;
                         }
                     }

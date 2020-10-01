@@ -1,8 +1,5 @@
-﻿using Enigma.GameLogic;
-using Enigma.Interfaces;
+﻿using Enigma.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Enigma.Models
 {
@@ -12,13 +9,11 @@ namespace Enigma.Models
 
         public void GenerateRandomNr(int[] anyArray)
         {
-         
             Random randomGenerator = new Random();
             int needValues = 2;
 
             for (int counter = 0; counter < anyArray.Length; counter++)
             {
-
                 if ((counter) == needValues)
                 {
                     if (anyArray[1] < anyArray[0])
@@ -30,28 +25,20 @@ namespace Enigma.Models
                     }
                     break;
                 }
-
                 anyArray[counter] = randomGenerator.Next(20);
                 anyArray[counter]++;
             }
-            
         }
 
         public int[] GetRestOfNrInSequence(int[]anyArray)
         {
-                int haveValues = 2;
+            int haveValues = 2;
 
-                for (int i = 0; i < anyArray.Length - haveValues; i++)
-                {
-
+            for (int i = 0; i < anyArray.Length - haveValues; i++)
+            {
                 anyArray[haveValues + i] = anyArray[haveValues + i - 1] + anyArray[haveValues + i - 2];
-
-
             }
-                return anyArray;
+            return anyArray;
         }
-
-     
-
     }
 }

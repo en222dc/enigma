@@ -13,6 +13,5 @@ namespace Enigma.Views
             InitializeComponent();
             DataContext = PuzzelPageViewModel;
         }
-
     }
 }

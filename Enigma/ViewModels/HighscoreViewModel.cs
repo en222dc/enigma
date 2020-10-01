@@ -40,18 +40,6 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
-        //public void ShowHighScoreFromDataBase()
-        //{
-        //    foreach (var highscore in Repository.GetHighscores())
-        //    {
-        //        ListOfHighScores.Add(highscore);
-        //    }
-        //    foreach (var player in Repository.GetTopPlayers())
-        //    {
-        //        ListOfMostFrequentPlayers.Add(player);
-        //    }
-        //}
-
         private void GetAllHighScores()
         {
             foreach (var highscore in Repository.GetHighscoresFromDb())

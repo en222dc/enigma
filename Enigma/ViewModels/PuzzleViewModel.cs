@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml.Schema;
 
 namespace Enigma.ViewModels
 {
@@ -27,7 +26,7 @@ namespace Enigma.ViewModels
         public string TextBoxBorderColor { get; set; } = "Black";
         public string CluesLeftToFind { get; set; }
         public bool IsButtonClickable { get; set; } = true;
-        public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedName.Length];
+        public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedNameOfKiller.Length];
         public int CountPuzzles { get; set; }
         public int CountNumbeOfSymbols { get; set; } = 4;
         public char SpecificSymbol { get; set; }       
@@ -46,7 +45,6 @@ namespace Enigma.ViewModels
             ShowHintCommand = new RelayCommand(ShowHint);
             ExitButtonContent = "Exit to Start Page";
             MyWindow.MenuFrame.Content = new MenuPage();
-
         }
       
         public PuzzleViewModel(int total, int puzzleCounter, ObservableCollection<IGameLogic> puzzlesForGame)
@@ -70,7 +68,7 @@ namespace Enigma.ViewModels
         /// </summary>
         private void ChangePage()
         {
-            if (CountPuzzles == MyKiller.Name.Length)
+            if (CountPuzzles == MyKiller.KillerName.Length)
             {
                 var model = new SolvePuzzleViewModel(totalSeconds);
                 var page = new SolvePuzzlePage(model);
@@ -96,7 +94,7 @@ namespace Enigma.ViewModels
             InstantiatePuzzle(numberSequenceArray);
             GetEntirePuzzleSequence(numberSequenceArray);
             GetHint();
-            GetEncryptedName();
+            GetEncryptedNameOfKiller();
             GetSymbolToPuzzle();
             TimeStart();
         }
@@ -107,7 +105,7 @@ namespace Enigma.ViewModels
             InstantiatePuzzle(numberSequenceArray);
             GetEntirePuzzleSequence(numberSequenceArray);
             GetHint();
-            GetEncryptedName();
+            GetEncryptedNameOfKiller();
             GetSymbolToPuzzle();
             TimeStart();
         }
@@ -135,7 +133,7 @@ namespace Enigma.ViewModels
         private void SetPuzzlesForGame()
         {
             Random random = new Random();
-            for (int i = 0; i < MyKiller.Name.Length; i++)
+            for (int i = 0; i < MyKiller.KillerName.Length; i++)
             {
                 PuzzlesForGame.Add(ListOfPuzzlesAvaible[random.Next(ListOfPuzzlesAvaible.Count)]);
             }
@@ -162,11 +160,11 @@ namespace Enigma.ViewModels
         /// <summary>
         /// Gets the killers encrypted name and put it into a property
         /// </summary>
-        private void GetEncryptedName()
+        private void GetEncryptedNameOfKiller()
         {        
-            for (int i = 0; i < MyKiller.EncryptedName.Length; i++)
+            for (int i = 0; i < MyKiller.EncryptedNameOfKiller.Length; i++)
             {            
-                EncryptedName[i] = MyKiller.EncryptedName[i];
+                EncryptedName[i] = MyKiller.EncryptedNameOfKiller[i];
             }
         }
 
@@ -235,7 +233,6 @@ namespace Enigma.ViewModels
             return false;
         }
 
-
         private void GetHint()
         {
             Hint = PuzzlesForGame[CountPuzzles].Hint;
@@ -245,7 +242,7 @@ namespace Enigma.ViewModels
             if (LblInvisibleHintGetVisible == Visibility.Hidden)
             {
                 LblInvisibleHintGetVisible = Visibility.Visible;
-                Hint60();
+                PenaltyTimeForUsedHint();
             }
             IsButtonClickable = false;
         }

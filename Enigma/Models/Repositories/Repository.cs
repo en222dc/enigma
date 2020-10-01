@@ -99,7 +99,7 @@ namespace Enigma.Models.Repositories
                             {
                                 Time = (int)reader["time"],
                                 Player_name = (string)reader["player_name"],
-                                Place = place,
+                                PlaceInHighScoreList = place,
                                 
                             };
                             highscores.Add(highscore);
@@ -192,8 +192,8 @@ namespace Enigma.Models.Repositories
 
                             suspect = new Suspect()
                             {
-                                Name = (string)reader["suspect_name"],
-                                Portrait = glowIcon,
+                                KillerName = (string)reader["suspect_name"],
+                                KillerPortrait = glowIcon,
                             };
                             allSuspects.Add(suspect);
                         }

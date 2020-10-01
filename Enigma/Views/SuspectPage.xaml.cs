@@ -1,12 +1,7 @@
 ﻿using Enigma.Animation;
-using Enigma.ViewModels;
 using Enigma.ViewModels.Base;
-using System;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-
 
 namespace Enigma.Views
 {
@@ -16,7 +11,6 @@ namespace Enigma.Views
     public partial class SuspectPage : Page
     {
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
-
         public float SlideSeconds { get; set; } = 0.5f;
 
         public SuspectPage(BaseViewModel SuspectPageViewModel)
@@ -47,7 +41,5 @@ namespace Enigma.Views
                     break;
             }
         }
-
-
     }
 }

@@ -10,7 +10,7 @@ namespace Enigma.ViewModels
         #region Properties
         public BitmapImage KillerPortrait { get; set; }
         public string KillerName { get; set; }
-        public string Summary { get; set; } = $"Well done {MyPlayer.Player_name}, you have done an excellent job to find and charge the killer! {MyKiller.Name} is a notorious serial killer and the question was not if, but when, {MyKiller.Name} would strike again! Thanks to you, our citizens can once again feel safe. We knew we did the right thing to put our faith in you, {MyPlayer.Player_name}, thank you!";
+        public string SummaryKillerCaught { get; set; } = $"Well done {MyPlayer.Player_name}, you have done an excellent job to find and charge the killer! {MyKiller.KillerName} is a notorious serial killer and the question was not if, but when, {MyKiller.KillerName} would strike again! Thanks to you, our citizens can once again feel safe. We knew we did the right thing to put our faith in you, {MyPlayer.Player_name}, thank you!";
         #endregion
 
         #region Constructor
@@ -27,13 +27,13 @@ namespace Enigma.ViewModels
         #region Methods
         private void ShowKiller()
         {
-            string portraitPath = MyKiller.Portrait.UriSource.ToString();
+            string portraitPath = MyKiller.KillerPortrait.UriSource.ToString();
             BitmapImage glowIcon = new BitmapImage();
             glowIcon.BeginInit();
             glowIcon.UriSource = new Uri(portraitPath, UriKind.Relative);
             glowIcon.EndInit();
             KillerPortrait = glowIcon;
-            KillerName = MyKiller.Name;
+            KillerName = MyKiller.KillerName;
         }
         #endregion
     }

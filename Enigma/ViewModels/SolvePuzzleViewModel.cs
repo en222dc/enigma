@@ -4,7 +4,6 @@ using Enigma.ViewModels.Base;
 using System.Windows.Input;
 using Enigma.Views;
 using Enigma.Models.Repositories;
-using System.Reflection.Metadata;
 using System.Windows.Navigation;
 
 namespace Enigma.ViewModels
@@ -28,8 +27,8 @@ namespace Enigma.ViewModels
         #region Constructor
         public SolvePuzzleViewModel(int total)
         {
-            GetNameOnKiller();
-            GetEncryptedName();
+            GetKillerName();
+            GetEncryptedNameForKiller();
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             TimeStart();
@@ -59,21 +58,21 @@ namespace Enigma.ViewModels
         /// <summary>
         /// Get the Killers Encrypted name and set it in a property array of chars
         /// </summary>
-        public void GetEncryptedName()
+        public void GetEncryptedNameForKiller()
         {
             SymbolArray = new ObservableCollection<char>();
-            for (int i = 0; i < MyKiller.EncryptedName.Length; i++)
+            for (int i = 0; i < MyKiller.EncryptedNameOfKiller.Length; i++)
             {
-                SymbolArray.Add(MyKiller.EncryptedName[i]);
+                SymbolArray.Add(MyKiller.EncryptedNameOfKiller[i]);
             }
         }
 
         /// <summary>
         /// Get the killers name and put it in a property of string
         /// </summary>
-        private void GetNameOnKiller()
+        private void GetKillerName()
         {
-            Name = MyKiller.Name;
+            Name = MyKiller.KillerName;
         }
 
         private void IsGuessCorrect()
@@ -121,7 +120,6 @@ namespace Enigma.ViewModels
                     else Error = "Your guess was wrong";
                 }
             }
-
         }
 
         public bool IsAnyGuessNotLetter(string guess)
@@ -144,8 +142,6 @@ namespace Enigma.ViewModels
             }
             return false;
         }
-
-
 
         private bool IsGameOver()
         {

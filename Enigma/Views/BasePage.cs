@@ -1,9 +1,7 @@
 ﻿using Enigma.Animation;
-using System;
 using System.Windows.Controls;
 using System.Windows;
 using System.Threading.Tasks;
-using System.Windows.Media.Animation;
 using Enigma.ViewModels.Base;
 
 namespace Enigma.Views
@@ -14,6 +12,7 @@ namespace Enigma.Views
         #region Private Member
         private VM myViewModel;
         #endregion
+
         #region Public Properties
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
 
@@ -76,6 +75,5 @@ namespace Enigma.Views
         }
 
         #endregion 
-
     }
 }

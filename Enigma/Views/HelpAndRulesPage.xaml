@@ -32,27 +32,27 @@
             <TextBlock Grid.Row="1" Grid.Column="1" 
                         TextWrapping="Wrap"
                         HorizontalAlignment="Left" VerticalAlignment="Center"
-                        Text="If this is your first time playing, create a new player by entering your desired player name and click Create New Player, after your player is created and you can choose your name in the list above."
+                        Text="If this is your first time playing, create a new player by entering your desired player name and click Create New Player. After your player is created, you can choose your name in the list above."
                         FontSize="30" Foreground="#5F606B" FontFamily="Bell MT"
                         Padding="5" Margin="10 0 0 0"/>
 
             <TextBlock Grid.Row="1" Grid.Column="1" 
                         TextWrapping="Wrap"
                         HorizontalAlignment="Left" VerticalAlignment="Center"
-                        Text="The goal of the game is to solve a series of puzzles sa fast as possible to unveil a mysterious symbol. This symbols will help you find out who the killer is, by translating them to letters in the final puzzle."
+                        Text="The goal of the game is to solve a series of puzzles as fast as possible, to unveil a mysterious symbol. These symbols will help you find out who the killer is, by translating them to letters in the final puzzle."
                         FontSize="30" Foreground="#5F606B" FontFamily="Bell MT"
                         Padding="5" Margin="10 0 0 0"/>
 
             <TextBlock Grid.Row="1" Grid.Column="1" 
                         TextWrapping="Wrap"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
-                        Text="If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle, this will however add 60 seconds to your time. You can only use one hint per puzzle."
+                        Text="If the puzzle is too challenging you have the option to display a hint which could help you in solving the puzzle. This will however add 60 seconds to your time. You can only use one hint per puzzle."
                         FontSize="30" Foreground="#5F606B" FontFamily="Bell MT" 
                         Padding="5" Margin="10 0 0 0"/>
             <TextBlock Grid.Row="1" Grid.Column="1" 
                         TextWrapping="Wrap"
                         HorizontalAlignment="Left" VerticalAlignment="Center"
-                        Text= "At any time you can exit the game by pressing Exit in the menu"
+                        Text= "At any time you can exit the game by pressing Exit to Start Page in the menu"
                         FontSize="30" Foreground="#5F606B" FontFamily="Bell MT"
                         Padding="5" Margin="10 0 0 0"/>
         </StackPanel>

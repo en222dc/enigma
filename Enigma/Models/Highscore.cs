@@ -1,25 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Enigma.Models
+﻿namespace Enigma.Models
 {
    public class Highscore
     {
+        #region Properties
         public int Highscore_id { get; set; }
         public int Fk_Player_id { get; set; }
         public int Time { get; set; }
         public string Player_name { get; set; }
-        public int Place { get; set; }
-
-        public Highscore()
-        {
-            
-        }
-
-       
-
-      
+        public int PlaceInHighScoreList { get; set; }
+        #endregion
     }
 }
 

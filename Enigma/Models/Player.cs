@@ -8,11 +8,5 @@ namespace Enigma.Models
         public int Player_id { get; set; }
         public string Player_name { get; set; }
         #endregion
-
-        #region Constructor
-        public Player()
-        {
-        }
-        #endregion
     }
 }

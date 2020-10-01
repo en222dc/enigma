@@ -42,7 +42,7 @@
         <TextBlock
                Grid.Row="3"
                Grid.Column="1"            
-               Text= "{Binding Summary}" 
+               Text= "{Binding SummaryKillerCaught}" 
                TextWrapping="WrapWithOverflow"                        
                FontFamily="Bell MT"  Foreground="#5F606B" FontSize="30" />
         <Label Grid.Row="4"  
