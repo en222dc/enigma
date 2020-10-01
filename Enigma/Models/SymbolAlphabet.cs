@@ -4,6 +4,9 @@ namespace Enigma.Models
 {
     public class SymbolAlphabet
     {
+        /// <summary>
+        /// A dictionary that uses letters from the nepali alphabet and gives them the value of a letter from the latin alphabet.
+        /// </summary>
         public static Dictionary<string, string> TranslateMySymbolsToLetters { get; set; } = new Dictionary<string, string> 
         {
                 { "क", "a" },

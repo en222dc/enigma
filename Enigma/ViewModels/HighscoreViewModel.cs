@@ -62,7 +62,6 @@ namespace Enigma.ViewModels
 
         private void GetMostFrequentPlayers(int players = 3)
         {
-
             foreach (var player in Repository.GetTopPlayersFromDb())
             {
                 ListOfMostFrequentPlayers.Add(player);

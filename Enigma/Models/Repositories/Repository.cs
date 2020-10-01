@@ -15,6 +15,11 @@ namespace Enigma.Models.Repositories
         private static string connectionString = ConfigurationManager.ConnectionStrings["sup_db4"].ConnectionString;
 
         #region CREATE
+        /// <summary>
+        /// Adds the new player to the database by using Player_name from the class Player
+        /// </summary>
+        /// <param name="newPlayer"></param>
+        /// <returns></returns>
         public static Player AddNewPlayerToDb(Player newPlayer)
         {
             string stmt = "INSERT INTO player (player_name) VALUES (@player_name) RETURNING player_id";
@@ -44,6 +49,11 @@ namespace Enigma.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Adds an new highsscore to the database by using Fk_Player_id and Time from the class Highscore
+        /// </summary>
+        /// <param name="newHighscore"></param>
+        /// <returns></returns>
         public static Highscore AddHighScoreToDb(Highscore newHighscore)
         {
             string stmt = "INSERT INTO highscore(fk_player_id, time) VALUES(@fk_player_id, @time) RETURNING highscore_id";
@@ -78,6 +88,10 @@ namespace Enigma.Models.Repositories
         #endregion
 
         #region READ
+        /// <summary>
+        /// Gets all highscores from the database, order by time ascending.
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<Highscore> GetHighscoresFromDb()
         {
             string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC";
@@ -100,7 +114,6 @@ namespace Enigma.Models.Repositories
                                 Time = (int)reader["time"],
                                 Player_name = (string)reader["player_name"],
                                 PlaceInHighScoreList = place,
-                                
                             };
                             highscores.Add(highscore);
                             place++;
@@ -111,6 +124,10 @@ namespace Enigma.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Gets all players from the database, order by player_id descending so that the last player added, will have first place in the list.
+        /// </summary>
+        /// <returns></returns>
         public static ObservableCollection<Player> GetAllPlayersFromDb()
         {
             string stmt = "SELECT player_name, player_id FROM player ORDER BY player_id DESC;";
@@ -140,6 +157,10 @@ namespace Enigma.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Gets players from the database, ordered by count.
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<Player> GetTopPlayersFromDb()
         {
             string stmt = "SELECT player_name, COUNT(*) AS number_of_games FROM player INNER JOIN highscore on player_id = fk_player_id GROUP BY player_name, player_id ORDER BY COUNT(*) DESC;";
@@ -168,6 +189,10 @@ namespace Enigma.Models.Repositories
             }
         }
 
+        /// <summary>
+        /// Gets all suspects from the database, with suspect_name and suspect_portrait.
+        /// </summary>
+        /// <returns></returns>
         public static ObservableCollection<Suspect> GetAllSuspectsFromDb()
         {
             string stmt = "SELECT suspect_name, suspect_portrait FROM suspect;";
@@ -205,6 +230,10 @@ namespace Enigma.Models.Repositories
         #endregion
 
         #region DELETE
+        /// <summary>
+        /// Deletes the chosen player from the database. The highscores linked to that player will be deleated as well, using on delete cascade.
+        /// </summary>
+        /// <param name="myPlayerId"></param>
         public static void DeleteChosenPlayerFromDb(int myPlayerId)
         {
             string stmt = "DELETE FROM player WHERE player_id = @player_id";

@@ -18,8 +18,8 @@ namespace Enigma.ViewModels
         public MenuViewModel()
         {
             ExitGameCommand = new RelayCommand(ExitGame);
-            ChangeToHighScorePageCommand = new RelayCommand(GoToHighscore);
-            ChangeToHelpAndRulesCommand = new RelayCommand(GoToHelpAndRules);
+            ChangeToHighScorePageCommand = new RelayCommand(GoToHighscoreOption);
+            ChangeToHelpAndRulesCommand = new RelayCommand(GoToHelpAndRulesOption);
         }
         #endregion
 
@@ -38,6 +38,9 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Exits the current game to the start page if the user is in a game, but closes the application completely if the user is on the start page.
+        /// </summary>
         private void ExitGame()
         {
             if (IsMainFrameSetToStartPage())
@@ -66,7 +69,10 @@ namespace Enigma.ViewModels
             }
         }
 
-        private void GoToHelpAndRules()
+        /// <summary>
+        /// Provides the user with a warning that they will loose their current progress from the puzzles if they go to Help and Rules, and lets them decide what to do.
+        /// </summary>
+        private void GoToHelpAndRulesOption()
         {
             if (IsMainFrameSetToPuzzlePage() || IsMainFrameSetToSolvePuzzlePage())
             {
@@ -86,7 +92,10 @@ namespace Enigma.ViewModels
             }
         }
 
-        private void GoToHighscore()
+        /// <summary>
+        /// Provides the user with a warning that they will loose their current progress from the puzzles if they go to Highscore, and lets them decide what to do.
+        /// </summary>
+        private void GoToHighscoreOption()
         {
             if (IsMainFrameSetToPuzzlePage() || IsMainFrameSetToSolvePuzzlePage())
             {
@@ -106,6 +115,10 @@ namespace Enigma.ViewModels
             }
         }
 
+        /// <summary>
+        /// Checks to see if the current page is StartPage.
+        /// </summary>
+        /// <returns></returns>
         private bool IsMainFrameSetToStartPage()
         {
             bool result = false;
@@ -118,6 +131,10 @@ namespace Enigma.ViewModels
             return result;
         }
 
+        /// <summary>
+        /// Checks to see if the current page is set to PuzzlePage.
+        /// </summary>
+        /// <returns></returns>
         private bool IsMainFrameSetToPuzzlePage()
         {
             bool result = false;
@@ -130,6 +147,10 @@ namespace Enigma.ViewModels
             return result;
         }
 
+        /// <summary>
+        /// Checks to see if the current page is set to SolvePuzzlePage.
+        /// </summary>
+        /// <returns></returns>
         private bool IsMainFrameSetToSolvePuzzlePage()
         {
             bool result = false;
