@@ -41,7 +41,7 @@ namespace Enigma.ViewModels
             if (MyPlayer != null)
             {
                 var model = new BackStoryViewModel(MyPlayer);
-                var page = new BackStory();
+                var page = new BackStoryPage();
                 NavigationService.Navigate(page);
             }
             else
@@ -112,7 +112,7 @@ namespace Enigma.ViewModels
 
         private void UpdateAllPlayerList()
         {
-            AllPlayers = Repository.GetAllPlayers();
+            AllPlayers = Repository.GetAllPlayersFromDb();
         }
 
         private bool IsMyPlayerNotNull()

@@ -10,11 +10,14 @@ namespace Enigma.Models
         public int Fk_Player_id { get; set; }
         public int Time { get; set; }
         public string Player_name { get; set; }
+        public int Place { get; set; }
 
         public Highscore()
         {
+            
+        }
 
-        }    
+       
 
       
     }

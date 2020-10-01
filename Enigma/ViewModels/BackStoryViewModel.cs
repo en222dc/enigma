@@ -39,7 +39,7 @@ namespace Enigma.ViewModels
         #region Navigation
         public void GoToPuzzlePage()
         {
-         var model = new PuzzlePageViewModel();
+         var model = new PuzzleViewModel();
          var page = new PuzzlePage(model);
          NavigationService.Navigate(page);
         }
@@ -49,7 +49,7 @@ namespace Enigma.ViewModels
         private ObservableCollection<Suspect> GetAllSuspects()
         {
             ObservableCollection<Suspect> Templist = new ObservableCollection<Suspect>();
-            foreach (var suspect in Repository.GetAllSuspects())
+            foreach (var suspect in Repository.GetAllSuspectsFromDb())
             {
                 Templist.Add(suspect);
             }

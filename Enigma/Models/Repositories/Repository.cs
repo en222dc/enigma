@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Configuration;
 using Npgsql;
 using System.Collections.ObjectModel;
@@ -8,44 +7,14 @@ using System.Windows.Media.Imaging;
 
 namespace Enigma.Models.Repositories
 {
+    /// <summary>
+    /// The Class Repository handles the connection with the database.
+    /// </summary>
     class Repository
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings["sup_db4"].ConnectionString;
 
         #region CREATE
-
-        /*  
-        public static Player AddNewPlayerToDb1(Player newPlayer, out string errorCode)
-        {
-            string stmt = "INSERT INTO player (player_name) VALUES (@player_name) RETURNING player_id";
-
-            using (var conn = new NpgsqlConnection(connectionString))
-            {
-                conn.Open();
-
-                using (var trans = conn.BeginTransaction())
-                {
-                    try
-                    {
-                        using (var command = new NpgsqlCommand(stmt, conn))
-                        {
-                            command.Parameters.AddWithValue("player_name", newPlayer.Player_name);
-                            int id = (int)command.ExecuteScalar();
-                            newPlayer.Player_id = id;
-                        }
-                        trans.Commit();
-                        return newPlayer;
-                    }
-                    catch (PostgresException)
-                    {
-                        trans.Rollback();
-                        throw;
-                    }
-                }
-            }
-        }
-
-        */
         public static Player AddNewPlayerToDb(Player newPlayer)
         {
             string stmt = "INSERT INTO player (player_name) VALUES (@player_name) RETURNING player_id";
@@ -70,20 +39,12 @@ namespace Enigma.Models.Repositories
                     catch (PostgresException)
                     {
                         throw; 
-                       
-                                             
                     }
-                    
                 }
-                           
             }
         }
 
-    
-
-
-
-        public static Highscore AddHighScore(Highscore newHighscore)
+        public static Highscore AddHighScoreToDb(Highscore newHighscore)
         {
             string stmt = "INSERT INTO highscore(fk_player_id, time) VALUES(@fk_player_id, @time) RETURNING highscore_id";
 
@@ -114,16 +75,13 @@ namespace Enigma.Models.Repositories
                 }
             }
         }
-
-
-
         #endregion
 
         #region READ
-
-        public static IEnumerable<Highscore> GetHighscores()
+        public static IEnumerable<Highscore> GetHighscoresFromDb()
         {
             string stmt = "SELECT time, player_name FROM player INNER JOIN highscore ON player_id = fk_player_id ORDER BY time ASC";
+            int place = 1;
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -141,17 +99,19 @@ namespace Enigma.Models.Repositories
                             {
                                 Time = (int)reader["time"],
                                 Player_name = (string)reader["player_name"],
+                                Place = place,
+                                
                             };
                             highscores.Add(highscore);
+                            place++;
                         }
                     }
                 }
-
                 return highscores;
             }
         }
 
-        public static ObservableCollection<Player> GetAllPlayers()
+        public static ObservableCollection<Player> GetAllPlayersFromDb()
         {
             string stmt = "SELECT player_name, player_id FROM player ORDER BY player_id DESC;";
 
@@ -180,9 +140,9 @@ namespace Enigma.Models.Repositories
             }
         }
 
-        public static IEnumerable<Player> GetTopPlayers()
+        public static IEnumerable<Player> GetTopPlayersFromDb()
         {
-            string stmt = "SELECT player_name, COUNT(*) AS number_of_games FROM player INNER JOIN highscore on player_id = fk_player_id GROUP BY player_name, player_id ORDER BY COUNT(*) DESC LIMIT 3;";
+            string stmt = "SELECT player_name, COUNT(*) AS number_of_games FROM player INNER JOIN highscore on player_id = fk_player_id GROUP BY player_name, player_id ORDER BY COUNT(*) DESC;";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -199,7 +159,6 @@ namespace Enigma.Models.Repositories
                             player = new Player()
                             {
                                 Player_name = (string)reader["player_name"],
-                                //NumberOfGames = (int)reader["number_of_games"]
                             };
                             topPlayers.Add(player);
                         }
@@ -209,7 +168,7 @@ namespace Enigma.Models.Repositories
             }
         }
 
-        public static ObservableCollection<Suspect> GetAllSuspects()
+        public static ObservableCollection<Suspect> GetAllSuspectsFromDb()
         {
             string stmt = "SELECT suspect_name, suspect_portrait FROM suspect;";
 
@@ -218,7 +177,6 @@ namespace Enigma.Models.Repositories
                 Suspect suspect = null;
                 ObservableCollection<Suspect> allSuspects = new ObservableCollection<Suspect>();
                 conn.Open();
-
 
                 using (var command = new NpgsqlCommand(stmt, conn))
                 {
@@ -244,7 +202,6 @@ namespace Enigma.Models.Repositories
                 return allSuspects;
             }
         }
-
         #endregion
 
         #region DELETE
@@ -261,14 +218,7 @@ namespace Enigma.Models.Repositories
                     command.ExecuteScalar();
                 }
             }
-
         }
         #endregion
-
-
-
-
-
-
     }
 }

@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace Enigma.ViewModels
 {
-    class MenuPageViewModel : BaseViewModel
+    class MenuViewModel : BaseViewModel
     {
         #region Properties
         public ICommand ExitGameCommand { get; set; }
@@ -15,7 +15,7 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Constructor
-        public MenuPageViewModel()
+        public MenuViewModel()
         {
             ExitGameCommand = new RelayCommand(ExitGame);
             ChangeToHighScorePageCommand = new RelayCommand(GoToHighscore);
@@ -32,7 +32,7 @@ namespace Enigma.ViewModels
 
         private void ChangeToHelpAndRules()
         {
-            var helpAndRulesPage = new HelpAndRules();
+            var helpAndRulesPage = new HelpAndRulesPage();
             NavigationService.Navigate(helpAndRulesPage);
         }
         #endregion

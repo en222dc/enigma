@@ -30,7 +30,7 @@ namespace Enigma.Views
         {
             InitializeComponent();
             this.Loaded += StartPage_Loaded;
-            DataContext = new StartPageViewModel();
+            DataContext = new StartViewModel();
         }
 
         private async void StartPage_Loaded(object sender, RoutedEventArgs e)

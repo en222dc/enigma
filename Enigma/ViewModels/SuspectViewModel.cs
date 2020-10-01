@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace Enigma.ViewModels
 {
-    class SuspectsPageModel : BaseViewModel
+    class SuspectViewModel : BaseViewModel
     {
         #region Properties
         public BitmapImage KillerPortrait { get; set; }
@@ -14,7 +14,7 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Constructor
-        public SuspectsPageModel(int time)
+        public SuspectViewModel(int time)
         {
             ShowKiller();
             TimeLapse = "You used: " + time.ToString() + " seconds to catch the killer";
