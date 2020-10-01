@@ -21,7 +21,7 @@ namespace Enigma.ViewModels
         {
             ListOfSuspects = GetAllSuspects();
             SetKiller(ListOfSuspects);
-            EncryptKillerName(ListOfSuspects);
+            SetEncryptedKillerName(ListOfSuspects);
 
             GoToPageCommand = new RelayCommand(GoToPuzzlePage);
             ExitButtonContent = "Exit to Start Page";
@@ -65,7 +65,7 @@ namespace Enigma.ViewModels
             MyKiller = listOfSuspects[index];
         }
 
-        public void EncryptKillerName(ObservableCollection<Suspect> listOfSuspects)
+        public void SetEncryptedKillerName(ObservableCollection<Suspect> listOfSuspects)
         {
             string killerName = "";
             for (int suspect = 0; suspect < listOfSuspects.Count; suspect++)

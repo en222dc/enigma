@@ -91,7 +91,7 @@ namespace Enigma.ViewModels
             GetAllTypeOfPuzzles();
             SetPuzzlesForGame();
             int[] numberSequenceArray = new int[5];
-            InstantiatePuzzle(numberSequenceArray);
+            SetPuzzle(numberSequenceArray);
             GetEntirePuzzleSequence(numberSequenceArray);
             GetHint();
             GetEncryptedNameOfKiller();
@@ -102,7 +102,7 @@ namespace Enigma.ViewModels
         private void ContinueGame()
         {
             int[] numberSequenceArray = new int[5];
-            InstantiatePuzzle(numberSequenceArray);
+            SetPuzzle(numberSequenceArray);
             GetEntirePuzzleSequence(numberSequenceArray);
             GetHint();
             GetEncryptedNameOfKiller();
@@ -139,7 +139,7 @@ namespace Enigma.ViewModels
             }
         }
 
-        private void InstantiatePuzzle(int[] array)
+        private void SetPuzzle(int[] array)
         {
             PuzzlesForGame[CountPuzzles].GenerateRandomNr(array);
             PuzzlesForGame[CountPuzzles].GetRestOfNrInSequence(array);

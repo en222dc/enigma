@@ -52,6 +52,14 @@ namespace Enigma.ViewModels
             var page = new GameOverPage(model);            
             NavigationService.Navigate(page);
         }
+        private void ChangePage()
+        {
+            if (IsGameOver())
+            {
+                GoToGameOverPage();
+            }
+            else GoToSuspectPage();
+        }
         #endregion
 
         #region Methods
@@ -150,15 +158,6 @@ namespace Enigma.ViewModels
                 return true;
             }
             return false;
-        }
-
-        private void ChangePage()
-        {
-            if (IsGameOver())
-            {
-                GoToGameOverPage();
-            }
-            else GoToSuspectPage();
         }
 
         public void AddHighScore()
