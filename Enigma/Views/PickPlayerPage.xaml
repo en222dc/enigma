@@ -28,6 +28,10 @@
                     FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"
                    Padding="20"/>
             <StackPanel Grid.Row="1" Grid.Column ="0" Margin="20">
+                <Label
+                    Content="Players"
+                    VerticalAlignment="Center" HorizontalAlignment="Left"
+                    FontSize="35" Foreground="#5F606B" FontFamily="Banschrift" FontWeight="Bold"/>
                 <ListBox x:Name="lstAllPlayers"  
                          ItemsSource="{Binding AllPlayers}"
                          DisplayMemberPath="Player_name"
