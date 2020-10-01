@@ -41,11 +41,11 @@ namespace Enigma.ViewModels
         #region Methods
         public void ShowHighScoreFromDataBase()
         {
-            foreach (var highscore in Repository.GetHighscores())
+            foreach (var highscore in Repository.GetHighscoresFromDb())
             {
                 ListOfHighScores.Add(highscore);
             }
-            foreach (var player in Repository.GetTopPlayers())
+            foreach (var player in Repository.GetTopPlayersFromDb())
             {
                 ListOfPlayersInHighScore.Add(player);
             }

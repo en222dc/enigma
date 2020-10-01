@@ -161,7 +161,7 @@ namespace Enigma.ViewModels
                 Time = totalSeconds,
                 Fk_Player_id = MyPlayer.Player_id,
             };
-            HighscoreToDB = Repository.AddHighScore(newHighScore);
+            HighscoreToDB = Repository.AddHighScoreToDb(newHighScore);
         }
         #endregion
     }

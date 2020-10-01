@@ -49,7 +49,7 @@ namespace Enigma.ViewModels
         private ObservableCollection<Suspect> GetAllSuspects()
         {
             ObservableCollection<Suspect> Templist = new ObservableCollection<Suspect>();
-            foreach (var suspect in Repository.GetAllSuspects())
+            foreach (var suspect in Repository.GetAllSuspectsFromDb())
             {
                 Templist.Add(suspect);
             }

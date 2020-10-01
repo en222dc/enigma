@@ -112,7 +112,7 @@ namespace Enigma.ViewModels
 
         private void UpdateAllPlayerList()
         {
-            AllPlayers = Repository.GetAllPlayers();
+            AllPlayers = Repository.GetAllPlayersFromDb();
         }
 
         private bool IsMyPlayerNotNull()
