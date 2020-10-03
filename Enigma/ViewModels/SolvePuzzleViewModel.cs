@@ -11,8 +11,8 @@ namespace Enigma.ViewModels
     public class SolvePuzzleViewModel : BaseViewModel
     {
         #region Properties
-        public ObservableCollection<char> SymbolArray { get; set; } 
-        private string Name { get; set; }
+        public char[] SymbolArray { get; set; } 
+        private string KillerName { get; set; }
         public string Guess1stSymbol { get; set; }
         public string Guess2ndSymbol { get; set; }
         public string Guess3rdSymbol { get; set; }
@@ -27,8 +27,9 @@ namespace Enigma.ViewModels
         #region Constructor
         public SolvePuzzleViewModel(int total)
         {
-            GetKillerName();
-            GetEncryptedNameForKiller();
+           
+            KillerName = MyKiller.KillerName;
+            SymbolArray = MyKiller.EncryptedNameOfKiller;
             totalSeconds = total;
             IsGuessCorrectCommand = new RelayCommand(IsGuessCorrect);
             TimeStart();
@@ -63,26 +64,8 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Get the Killers Encrypted name and set it in a property array of chars
-        /// </summary>
-        public void GetEncryptedNameForKiller()
-        {
-            SymbolArray = new ObservableCollection<char>();
-            for (int i = 0; i < MyKiller.EncryptedNameOfKiller.Length; i++)
-            {
-                SymbolArray.Add(MyKiller.EncryptedNameOfKiller[i]);
-            }
-        }
 
-        /// <summary>
-        /// Get the killers name and put it in a property of string
-        /// </summary>
-        private void GetKillerName()
-        {
-            Name = MyKiller.KillerName;
-        }
-
+       
         private void IsGuessCorrect()
         {
             string guess = (Guess1stSymbol + Guess2ndSymbol + Guess3rdSymbol + Guess4thSymbol).ToString();
@@ -113,7 +96,7 @@ namespace Enigma.ViewModels
 
             else if (IsAnyGuessNotLetter(guess) == false && IsAnyGuessNullOrEmpty() == false)
             {
-                if (guess.ToLower() == Name.ToLower())
+                if (guess.ToLower() == KillerName.ToLower())
                 {
                     TextBoxBorderColor = "Green";
                     ChangePage();

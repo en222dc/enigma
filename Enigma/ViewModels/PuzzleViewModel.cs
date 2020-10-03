@@ -15,19 +15,20 @@ namespace Enigma.ViewModels
         #region Properties
         public ObservableCollection<IGameLogic> ListOfPuzzlesAvaible { get; set; } = new ObservableCollection<IGameLogic>();    
         public ObservableCollection<IGameLogic> PuzzlesForGame { get; set; } = new ObservableCollection<IGameLogic>();
-        public ObservableCollection<int> NumberSequence { get; set; } = new ObservableCollection<int>();
         public Visibility LblInvisibleHintGetVisible { get; set; } = Visibility.Hidden;
         public Visibility LblInvisibleSymbolsGetVisible { get; set; } = Visibility.Hidden;
+        public int[] NumberSequence { get; set; } = new int[5];
         public string ButtonName { get; set; } = "Solve Puzzle";
         public string Guess4thNr { get; set; }
         public string Guess5thNr { get; set; }
+        public string[] Guesses { get; set; }
         public string Error { get; set; }
         public string Hint { get; set; }
         public string TextBoxBorderColor { get; set; } = "Black";
         public string CluesLeftToFind { get; set; }
         public bool IsButtonClickable { get; set; } = true;
         public char[] EncryptedName { get; set; } = new char[MyKiller.EncryptedNameOfKiller.Length];
-        public int CountPuzzles { get; set; }
+        public int PuzzleCounter { get; set; }
         public int CountNumbeOfSymbols { get; set; } = 4;
         public char SpecificSymbol { get; set; }       
         public ICommand GoToNextPuzzleCommand { get; set; }
@@ -50,7 +51,7 @@ namespace Enigma.ViewModels
         public PuzzleViewModel(int total, int puzzleCounter, ObservableCollection<IGameLogic> puzzlesForGame)
         {
             totalSeconds = total;
-            CountPuzzles = puzzleCounter;
+            PuzzleCounter = puzzleCounter;
             PuzzlesForGame = puzzlesForGame;
             ContinueGame();
 
@@ -68,7 +69,7 @@ namespace Enigma.ViewModels
         /// </summary>
         private void ChangePage()
         {
-            if (CountPuzzles == MyKiller.KillerName.Length)
+            if (PuzzleCounter == MyKiller.KillerName.Length)
             {
                 var model = new SolvePuzzleViewModel(totalSeconds);
                 var page = new SolvePuzzlePage(model);
@@ -78,7 +79,7 @@ namespace Enigma.ViewModels
             else
             {
                 CountNumbeOfSymbols--;
-                var model = new PuzzleViewModel(totalSeconds, CountPuzzles, PuzzlesForGame);
+                var model = new PuzzleViewModel(totalSeconds, PuzzleCounter, PuzzlesForGame);
                 var page = new PuzzlePage(model);
                 NavigationService.Navigate(page);
             }
@@ -88,34 +89,35 @@ namespace Enigma.ViewModels
         #region Methods
         private void StartGame()
         {
-            GetAllTypeOfPuzzles();
-            SetPuzzlesForGame();
-            int[] numberSequenceArray = new int[5];
-            SetPuzzle(numberSequenceArray);
-            GetEntirePuzzleSequence(numberSequenceArray);
-            GetHint();
-            GetEncryptedNameOfKiller();
-            GetSymbolToPuzzle();
+            EncryptedName = MyKiller.EncryptedNameOfKiller;
+            ListOfPuzzlesAvaible=GetAllTypeOfPuzzles();
+            PuzzlesForGame=SetPuzzlesForGame(ListOfPuzzlesAvaible, EncryptedName);           
+            NumberSequence=SetNumberSequenceInPuzzle(PuzzlesForGame, PuzzleCounter);
+            Hint = GetHint(PuzzlesForGame, PuzzleCounter);
+            SpecificSymbol = GetSymbolToPuzzle(EncryptedName, PuzzleCounter);
             TimeStart();
         }
 
         private void ContinueGame()
-        {
-            int[] numberSequenceArray = new int[5];
-            SetPuzzle(numberSequenceArray);
-            GetEntirePuzzleSequence(numberSequenceArray);
-            GetHint();
-            GetEncryptedNameOfKiller();
-            GetSymbolToPuzzle();
+        {           
+            EncryptedName = MyKiller.EncryptedNameOfKiller;
+            NumberSequence=SetNumberSequenceInPuzzle(PuzzlesForGame, PuzzleCounter);
+            Hint=GetHint(PuzzlesForGame, PuzzleCounter);
+            SpecificSymbol=GetSymbolToPuzzle(EncryptedName, PuzzleCounter);
             TimeStart();
         }
 
         /// <summary>
         /// Gets all type of puzzles who implements the Interface "IGameLogic"
         /// </summary>
-        private void GetAllTypeOfPuzzles()
+        ///<returns>
+        ///A list with all puzzles who implements the interface
+        ///</returns> 
+        private ObservableCollection<IGameLogic> GetAllTypeOfPuzzles()
         {
             //Tagit från sida https://stackoverflow.com/questions/699852/how-to-find-all-the-classes-which-implement-a-given-interface
+
+            ObservableCollection<IGameLogic> templist = new ObservableCollection<IGameLogic>();
             var instances = from classes in Assembly.GetExecutingAssembly().GetTypes()
                             where classes.GetInterfaces().Contains(typeof(IGameLogic))
                                      && classes.GetConstructor(Type.EmptyTypes) != null
@@ -123,57 +125,57 @@ namespace Enigma.ViewModels
 
             foreach (var item in instances)
             {
-                ListOfPuzzlesAvaible.Add(item);
+                templist.Add(item);
             }
+            return templist;
         }
 
         /// <summary>
         /// Gets the list with all avaible puzzles and it will randomize what type of puzzles that will be presented for the player in the game 
         /// </summary>
-        private void SetPuzzlesForGame()
+        /// <returns>
+        /// An ObservableCollection with puzzles for the game
+        /// </returns>
+        private ObservableCollection<IGameLogic> SetPuzzlesForGame(ObservableCollection<IGameLogic> listOfPuzzlesAvaible, char[] encryptedName)
         {
+            ObservableCollection<IGameLogic> puzzlesForGame = new ObservableCollection<IGameLogic>();
             Random random = new Random();
-            for (int i = 0; i < MyKiller.KillerName.Length; i++)
+            for (int i = 0; i < encryptedName.Length; i++)
             {
-                PuzzlesForGame.Add(ListOfPuzzlesAvaible[random.Next(ListOfPuzzlesAvaible.Count)]);
+                puzzlesForGame.Add(listOfPuzzlesAvaible[random.Next(listOfPuzzlesAvaible.Count)]);
             }
-        }
-
-        private void SetPuzzle(int[] array)
-        {
-            PuzzlesForGame[CountPuzzles].GenerateRandomNr(array);
-            PuzzlesForGame[CountPuzzles].GetRestOfNrInSequence(array);
+            return puzzlesForGame;
         }
 
         /// <summary>
-        /// Transfer an array of integers into a property
+        /// Sets the number sequence for the current puzzle
         /// </summary>
+        /// <param name="puzzlesForGame"></param>
         /// <param name="array"></param>
-        private void GetEntirePuzzleSequence(int[] array)
+        /// <returns>
+        /// An array of integers 
+        /// </returns>
+        private int[] SetNumberSequenceInPuzzle(ObservableCollection<IGameLogic> puzzlesForGame, int puzzleCounter)
         {
-            for (int i = 0; i < array.Length; i++)
-            {
-                NumberSequence.Add(array[i]);
-            }
+            int[] numberSequence = new int[5];
+            puzzlesForGame[puzzleCounter].GenerateRandomNr(numberSequence);
+            puzzlesForGame[puzzleCounter].GetRestOfNrInSequence(numberSequence);
+
+            return numberSequence;
         }
 
+       
         /// <summary>
-        /// Gets the killers encrypted name and put it into a property
+        /// Takes an array with chars and a counter that decides wich char to display 
         /// </summary>
-        private void GetEncryptedNameOfKiller()
-        {        
-            for (int i = 0; i < MyKiller.EncryptedNameOfKiller.Length; i++)
-            {            
-                EncryptedName[i] = MyKiller.EncryptedNameOfKiller[i];
-            }
-        }
-
-        /// <summary>
-        /// Gets the propertys "EncryptedName" and "CountPuzzles" to specify a specific position in the killers encrypted name and put it into a property
-        /// </summary>
-        private void GetSymbolToPuzzle()
+        /// <returns>
+        /// The specific symbol for the current puzzle
+        /// </returns>
+        private char GetSymbolToPuzzle(char[] encryptedName, int puzzleCounter)
         {
-            SpecificSymbol = EncryptedName[CountPuzzles];
+            char specificSymbol;
+            specificSymbol = encryptedName[puzzleCounter];
+            return specificSymbol;
         }
 
 
@@ -189,9 +191,9 @@ namespace Enigma.ViewModels
                 if (IsGuessCorrect())
                 {
                     ButtonName = "Go To The Next Puzzle!";
-                    CountPuzzles++;
-                    CountNumbeOfSymbols -= CountPuzzles;
-                    if (CountPuzzles < 4)
+                    PuzzleCounter++;
+                    CountNumbeOfSymbols -= PuzzleCounter;
+                    if (PuzzleCounter < 4)
                     {
                         CluesLeftToFind = "Well Done, You found A Clue. Try to collect " + CountNumbeOfSymbols.ToString() + " more symbols";
                         TextBoxBorderColor = "Green";
@@ -215,8 +217,10 @@ namespace Enigma.ViewModels
             }
         }
 
+       
         private bool IsGuessCorrect()
         {
+                        
             if (Guess4thNr == NumberSequence[3].ToString() && Guess5thNr == NumberSequence[4].ToString())
             {
                 return true;
@@ -233,9 +237,18 @@ namespace Enigma.ViewModels
             return false;
         }
 
-        private void GetHint()
+        /// <summary>
+        /// Gets the hint for the current puzzle
+        /// </summary>
+        /// <param name="puzzlesForGame"></param>
+        /// <param name="puzzleCounter"></param>
+        /// <returns>
+        /// The hint for the current puzzle
+        /// </returns>
+        private string GetHint(ObservableCollection<IGameLogic>puzzlesForGame, int puzzleCounter)
         {
-            Hint = PuzzlesForGame[CountPuzzles].Hint;
+            string hint = puzzlesForGame[puzzleCounter].Hint;
+            return hint;
         }
         private void ShowHint()
         {

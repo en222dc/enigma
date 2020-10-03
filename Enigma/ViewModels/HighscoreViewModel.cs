@@ -21,10 +21,10 @@ namespace Enigma.ViewModels
         #region Constructor
         public HighscoreViewModel()
         {
-            GetAllHighScores();
-            GetTopHighscores();
-            GetMostFrequentPlayers();
-            GetPlayerFrequence();
+            ListOfAllHighScores=GetAllHighScores();
+            ListOfTopHighScores=GetTopHighscores();
+            ListOfMostFrequentPlayers=GetMostFrequentPlayers();
+            PlayerFrequence=GetPlayerFrequence(ListOfAllHighScores, ListOfMostFrequentPlayers);
             GoToPageCommand = new RelayCommand(GoToStartPage);
             ExitButtonContent = "Exit to Start Page";
             MyWindow.MenuFrame.Content = new MenuPage();
@@ -40,45 +40,54 @@ namespace Enigma.ViewModels
         #endregion
 
         #region Methods
-        private void GetAllHighScores()
+        private ObservableCollection<Highscore> GetAllHighScores()
         {
+            ObservableCollection<Highscore> listOfAllHighScores = new ObservableCollection<Highscore>();
             foreach (var highscore in Repository.GetHighscoresFromDb())
             {
-                ListOfAllHighScores.Add(highscore);
+                listOfAllHighScores.Add(highscore);
             }
+            return listOfAllHighScores;
+
         }
 
-        private void GetTopHighscores(int highscores = 3)
+        private ObservableCollection<Highscore> GetTopHighscores(int highscores = 3)
         {
+            ObservableCollection<Highscore> listOfTopHighScores = new ObservableCollection<Highscore>();
             for (int i = 0; i < ListOfAllHighScores.Count; i++)
             {
                 if (i < highscores)
                 {
-                    ListOfTopHighScores.Add(ListOfAllHighScores[i]);
+                    listOfTopHighScores.Add(ListOfAllHighScores[i]);
                 }
                 else break;
             }
+            return listOfTopHighScores;
         }
 
-        private void GetMostFrequentPlayers(int players = 3)
+        private ObservableCollection<Player> GetMostFrequentPlayers(int players = 3)
         {
+            ObservableCollection<Player> listOfMostFrequentPlayers = new ObservableCollection<Player>();
             foreach (var player in Repository.GetTopPlayersFromDb())
             {
-                ListOfMostFrequentPlayers.Add(player);
+                listOfMostFrequentPlayers.Add(player);
                 players--;
                 if (players == 0)
                 {
                     break;
                 }
             }
+            return listOfMostFrequentPlayers;
+
         }
 
-        private void GetPlayerFrequence()
+        private ObservableCollection<int> GetPlayerFrequence(ObservableCollection<Highscore>listOfAllHighScores,ObservableCollection<Player> listOfMostFrequentPlayers)
         {
-            foreach (var player in ListOfMostFrequentPlayers)
+            ObservableCollection<int> playerFrequence = new ObservableCollection<int>();
+            foreach (var player in listOfMostFrequentPlayers)
             {
                 int numberOfGames = 0;
-                foreach (var score in ListOfAllHighScores)
+                foreach (var score in listOfAllHighScores)
                 {
                     if (player.Player_name == score.Player_name)
                     {
@@ -87,9 +96,10 @@ namespace Enigma.ViewModels
                 }
                 if (numberOfGames > 0)
                 {
-                    PlayerFrequence.Add(numberOfGames);
+                    playerFrequence.Add(numberOfGames);
                 }
             }
+            return playerFrequence;
         }
         #endregion
     }
